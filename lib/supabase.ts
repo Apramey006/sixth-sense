@@ -1,13 +1,29 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 export const supabaseEnabled = Boolean(url && anonKey);
 
-export const supabase = supabaseEnabled
-  ? createClient(url!, anonKey!, { auth: { persistSession: false } })
+// Browser client — persists auth session in localStorage so magic-link sign-in
+// survives reloads. Safe to import server-side; we only call its methods from
+// "use client" components or route handlers (which create their own clients).
+export const supabase: SupabaseClient | null = supabaseEnabled
+  ? createClient(url!, anonKey!, {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true,
+        flowType: "pkce",
+        storageKey: "taste-reps:auth",
+      },
+    })
   : null;
+
+export const supabaseConfig = {
+  url: url ?? "",
+  anonKey: anonKey ?? "",
+};
 
 export type DailyScenario = {
   id: string;
