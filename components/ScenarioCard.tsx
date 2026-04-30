@@ -1,0 +1,58 @@
+import Link from "next/link";
+
+type CardProps = {
+  kind: "daily" | "weekly";
+  company: string;
+  era: string;
+  excerpt: string;
+};
+
+function truncate(s: string, n = 180): string {
+  const flat = s.replace(/\s+/g, " ").trim();
+  if (flat.length <= n) return flat;
+  return flat.slice(0, n - 1).replace(/[ ,;:.!?-]+$/, "") + "…";
+}
+
+export function ScenarioCard({ kind, company, era, excerpt }: CardProps) {
+  const href = kind === "daily" ? "/today" : "/this-week";
+  const cta = kind === "daily" ? "Take today's daily" : "Take this week's deep rep";
+  const badge = kind === "daily" ? "Daily · ~3 min" : "Weekly · ~25 min";
+  const badgeColor = kind === "daily" ? "var(--accent)" : "var(--ink)";
+
+  return (
+    <article
+      className="bg-white border rounded-md p-5 flex flex-col h-full"
+      style={{ borderColor: "var(--rule)" }}
+    >
+      <div className="flex items-baseline justify-between gap-3 mb-3">
+        <span className="smallcaps" style={{ color: badgeColor }}>
+          {badge}
+        </span>
+        <span className="smallcaps" style={{ color: "var(--ink-soft)" }}>
+          {era}
+        </span>
+      </div>
+      <h3 className="serif text-2xl leading-tight mb-2" style={{ fontWeight: 500 }}>
+        {company}
+      </h3>
+      <p
+        className="serif text-base leading-relaxed flex-1"
+        style={{ color: "var(--ink-soft)" }}
+      >
+        {truncate(excerpt)}
+      </p>
+      <div
+        className="mt-4 pt-3 border-t flex items-center justify-between"
+        style={{ borderColor: "var(--rule)" }}
+      >
+        <Link
+          href={href}
+          className="smallcaps hover:underline"
+          style={{ color: "var(--ink)" }}
+        >
+          {cta} →
+        </Link>
+      </div>
+    </article>
+  );
+}
