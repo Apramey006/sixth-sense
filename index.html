@@ -5,151 +5,367 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Taste Reps — Weekly Deep Rep</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif; }
+  :root {
+    --ink: #1c1917;
+    --ink-soft: #44403c;
+    --paper: #faf8f4;
+    --rule: #e7e2d6;
+    --accent: #8a3a1e;
+  }
+  html, body { background: var(--paper); }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .serif { font-family: 'Newsreader', Georgia, serif; font-feature-settings: "ss01", "onum"; }
   .step { display: none; }
-  .step.active { display: block; }
-  textarea { resize: vertical; }
+  .step.active { display: block; animation: fadeUp .55s cubic-bezier(.2,.6,.2,1); }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  textarea { resize: vertical; font-family: 'Newsreader', Georgia, serif; font-size: 1.0625rem; line-height: 1.55; }
+  textarea:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
+  .chapter {
+    font-family: 'Newsreader', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+  .smallcaps {
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .rule { height: 1px; background: var(--rule); }
+  .drop-rule {
+    border-top: 1px solid var(--rule);
+  }
+  .accent-rail {
+    border-left: 2px solid var(--accent);
+  }
+  .scenario p { margin-bottom: 1.1em; }
+  .scenario .lede::first-letter {
+    font-family: 'Newsreader', Georgia, serif;
+    float: left;
+    font-size: 3.6rem;
+    line-height: 0.85;
+    padding: 0.35rem 0.55rem 0 0;
+    font-weight: 500;
+  }
+  .pullquote {
+    font-family: 'Newsreader', Georgia, serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    line-height: 1.35;
+    color: var(--ink);
+  }
+  .stat-num {
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 500;
+    font-variant-numeric: oldstyle-nums;
+    letter-spacing: -0.01em;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: #fafaf9;
+    transition: transform .15s ease, background .2s ease;
+  }
+  .btn-primary:hover { background: #000; transform: translateY(-1px); }
+  .btn-primary:active { transform: translateY(0); }
+  .field-num {
+    font-family: 'Newsreader', Georgia, serif;
+    font-style: italic;
+    color: var(--accent);
+  }
+  /* Side-by-side: stack on mobile, two columns desktop */
+  .compare-row { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  @media (min-width: 768px) {
+    .compare-row { grid-template-columns: 1fr 1fr; gap: 0; }
+    .compare-row > div:first-child { padding-right: 1.75rem; border-right: 1px solid var(--rule); }
+    .compare-row > div:last-child { padding-left: 1.75rem; }
+  }
+  .reveal-stage > * { opacity: 0; animation: stageIn .7s cubic-bezier(.2,.6,.2,1) forwards; }
+  .reveal-stage > *:nth-child(1) { animation-delay: .05s; }
+  .reveal-stage > *:nth-child(2) { animation-delay: .35s; }
+  .reveal-stage > *:nth-child(3) { animation-delay: .65s; }
+  .reveal-stage > *:nth-child(4) { animation-delay: .95s; }
+  .reveal-stage > *:nth-child(5) { animation-delay: 1.25s; }
+  @keyframes stageIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .commit-bar {
+    background: linear-gradient(180deg, transparent, rgba(28,25,23,0.04));
+  }
+  /* Locked-in flash */
+  .locking { animation: lockFlash .9s ease; }
+  @keyframes lockFlash {
+    0% { background: var(--paper); }
+    40% { background: #f0ebe0; }
+    100% { background: var(--paper); }
+  }
 </style>
 </head>
-<body class="bg-stone-50 text-stone-900 min-h-screen">
-<div class="max-w-3xl mx-auto px-6 py-12">
+<body class="min-h-screen">
 
-  <header class="mb-10">
-    <div class="text-xs uppercase tracking-widest text-stone-500 mb-2">Taste Reps · Weekly Deep Rep</div>
-    <h1 class="text-3xl font-semibold">Form your take before you see anyone else's.</h1>
-    <p class="text-stone-600 mt-3 leading-relaxed">
-      Each week you'll work through one real product decision from a real company at a real moment in time.
-      You write your unfiltered take across four dimensions — <em>before</em> we show you what actually shipped and what happened.
-      The point isn't to be right. It's to notice the gap between your instinct and reality, and let that gap teach you.
-    </p>
-  </header>
+<!-- Masthead -->
+<div class="border-b" style="border-color: var(--rule);">
+  <div class="max-w-3xl mx-auto px-6 py-5 flex items-baseline justify-between">
+    <div class="flex items-baseline gap-3">
+      <div class="serif text-lg" style="font-weight:500;">Taste Reps</div>
+      <div class="smallcaps" style="color: var(--ink-soft);">Weekly Deep Rep · No. 01</div>
+    </div>
+    <div class="smallcaps hidden sm:block" style="color: var(--ink-soft);" id="chapter-mark">I · Scenario</div>
+  </div>
+</div>
 
-  <!-- STEP 0: Intro -->
-  <section id="step-0" class="step active bg-white border border-stone-200 rounded-lg p-8">
-    <div class="text-xs uppercase tracking-wider text-stone-500 mb-2">This week's scenario</div>
-    <h2 class="text-2xl font-semibold mb-4">Meta · Early 2023</h2>
-    <div class="prose prose-stone max-w-none text-stone-800 leading-relaxed space-y-4">
-      <p>
+<div class="max-w-3xl mx-auto px-6 pt-14 pb-24">
+
+  <!-- ====================== STEP 0: Intro / Scenario ====================== -->
+  <section id="step-0" class="step active">
+
+    <div class="mb-10">
+      <div class="chapter text-base mb-4" style="color: var(--ink-soft);">I. The scenario</div>
+      <h1 class="serif text-4xl sm:text-5xl leading-[1.08]" style="font-weight:500; letter-spacing:-0.015em;">
+        Form your take before you see anyone else's.
+      </h1>
+      <div class="rule mt-7 mb-7"></div>
+      <p class="serif text-lg leading-relaxed" style="color: var(--ink-soft);">
+        Each week, one real product decision from a real company at a real moment in time.
+        Write your unfiltered take across four dimensions — <em>before</em> we show you what shipped and what happened.
+        The point isn't to be right. It's to notice the gap between your instinct and reality, and let that gap teach you.
+      </p>
+    </div>
+
+    <article class="scenario serif" style="color: var(--ink); font-size: 1.125rem; line-height: 1.7;">
+      <div class="smallcaps mb-2" style="color: var(--accent);">This week</div>
+      <h2 class="serif text-3xl mb-1" style="font-weight:600; letter-spacing:-0.01em;">Meta, in early 2023.</h2>
+      <div class="smallcaps mb-8" style="color: var(--ink-soft);">A decision room, not yet decided.</div>
+
+      <p class="lede">
         It is early 2023. You are a senior PM at Meta. Twitter has been acquired by Elon Musk and is in active turmoil — verification chaos, advertiser pullback, mass layoffs, and a steady exodus of the cultural-influencer cohort who made the platform sticky.
       </p>
       <p>
         Mark Zuckerberg's leadership team is debating whether Meta should ship a text-based social app. Internally there is a working prototype built on the Instagram codebase. The Instagram graph is the largest social graph in the Western world (~2B MAU). A text product could in theory bootstrap on it instantly.
       </p>
-      <p>
-        Several open questions are on the table:
-      </p>
-      <ul class="list-disc pl-6 space-y-1">
-        <li>Should the product be tightly coupled to Instagram (one-tap signup using IG account, IG followers ported in) or stand alone?</li>
-        <li>What features ship at launch? DMs? Hashtags? A chronological feed? A following-only feed? A web app?</li>
-        <li>Is the goal to <em>kill</em> Twitter, <em>complement</em> Instagram, or <em>defend</em> against TikTok absorbing text-social mindshare?</li>
-        <li>How big is the risk that an obvious Twitter-clone gets dismissed by users and press as derivative?</li>
-      </ul>
+
+      <div class="my-8 accent-rail pl-5 py-1" style="color: var(--ink-soft);">
+        <div class="smallcaps mb-3" style="color: var(--accent);">Open questions on the table</div>
+        <ul class="space-y-2" style="font-size: 1.0625rem;">
+          <li>— Tightly couple to Instagram (one-tap signup, IG followers ported in), or stand alone?</li>
+          <li>— What ships at launch? DMs? Hashtags? A chronological feed? A web app?</li>
+          <li>— Is the goal to <em>kill</em> Twitter, <em>complement</em> Instagram, or <em>defend</em> against TikTok absorbing text-social mindshare?</li>
+          <li>— How big is the risk an obvious Twitter-clone gets dismissed by users and press as derivative?</li>
+        </ul>
+      </div>
+
       <p>
         Imagine you're in the room. You don't yet know what they decided or how it played out.
       </p>
+    </article>
+
+    <div class="drop-rule mt-12 pt-8">
+      <button onclick="goTo(1)" class="btn-primary px-7 py-3.5 rounded-sm text-sm" style="font-weight:500; letter-spacing:0.01em;">
+        I'm in the room — let me write my take
+      </button>
+      <p class="smallcaps mt-4" style="color: var(--ink-soft);">~15 minutes of writing · then the reveal</p>
     </div>
-    <button onclick="goTo(1)" class="mt-8 bg-stone-900 text-white px-6 py-3 rounded-md font-medium hover:bg-stone-800">
-      I've read it — let me write my take →
-    </button>
   </section>
 
-  <!-- STEP 1: User input -->
-  <section id="step-1" class="step bg-white border border-stone-200 rounded-lg p-8">
-    <div class="text-xs uppercase tracking-wider text-stone-500 mb-2">Your unfiltered take</div>
-    <h2 class="text-2xl font-semibold mb-2">Write what you actually think.</h2>
-    <p class="text-stone-600 mb-6 text-sm">
-      No editing for the model, no looking things up. The point is your raw instinct — that's the thing we're trying to surface and develop.
-    </p>
+  <!-- ====================== STEP 1: Write ====================== -->
+  <section id="step-1" class="step">
+    <div class="mb-10">
+      <div class="chapter text-base mb-4" style="color: var(--ink-soft);">II. Your take</div>
+      <h2 class="serif text-4xl leading-[1.1]" style="font-weight:500; letter-spacing:-0.015em;">
+        Write what you actually think.
+      </h2>
+      <div class="rule mt-6 mb-6"></div>
+      <p class="serif text-lg leading-relaxed" style="color: var(--ink-soft);">
+        No editing for the model. No looking things up. Your raw instinct is the thing we're trying to surface and develop —
+        a polished answer is a worse answer here.
+      </p>
+    </div>
 
-    <div class="space-y-6">
+    <div class="space-y-10">
       <div>
-        <label class="block font-medium mb-1">1. What's the core tradeoff?</label>
-        <p class="text-sm text-stone-500 mb-2">What's the real tension this decision sits on top of? What gets sacrificed for what?</p>
-        <textarea id="q-tradeoff" rows="4" class="w-full border border-stone-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-stone-400" placeholder="The tradeoff is..."></textarea>
+        <div class="flex items-baseline gap-3 mb-2">
+          <span class="field-num text-2xl">i.</span>
+          <label for="q-tradeoff" class="serif text-xl" style="font-weight:500;">What's the core tradeoff?</label>
+        </div>
+        <p class="text-sm mb-3" style="color: var(--ink-soft); padding-left: 1.75rem;">What's the real tension this decision sits on top of? What gets sacrificed for what?</p>
+        <textarea id="q-tradeoff" rows="4" class="w-full border rounded-sm px-4 py-3" style="border-color: var(--rule); background: #fff;" placeholder="The tradeoff is…"></textarea>
       </div>
 
       <div>
-        <label class="block font-medium mb-1">2. Who is the actual target user?</label>
-        <p class="text-sm text-stone-500 mb-2">Not "everyone." Who specifically is this for at launch — and who are they stealing time/attention from?</p>
-        <textarea id="q-user" rows="4" class="w-full border border-stone-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-stone-400" placeholder="The target user is..."></textarea>
+        <div class="flex items-baseline gap-3 mb-2">
+          <span class="field-num text-2xl">ii.</span>
+          <label for="q-user" class="serif text-xl" style="font-weight:500;">Who is the actual target user?</label>
+        </div>
+        <p class="text-sm mb-3" style="color: var(--ink-soft); padding-left: 1.75rem;">Not "everyone." Who specifically is this for at launch — and who are they stealing time from?</p>
+        <textarea id="q-user" rows="4" class="w-full border rounded-sm px-4 py-3" style="border-color: var(--rule); background: #fff;" placeholder="The target user is…"></textarea>
       </div>
 
       <div>
-        <label class="block font-medium mb-1">3. What would you do differently?</label>
-        <p class="text-sm text-stone-500 mb-2">What's a real alternative path? Coupling, features, positioning — pick one and commit.</p>
-        <textarea id="q-alt" rows="4" class="w-full border border-stone-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-stone-400" placeholder="I would..."></textarea>
+        <div class="flex items-baseline gap-3 mb-2">
+          <span class="field-num text-2xl">iii.</span>
+          <label for="q-alt" class="serif text-xl" style="font-weight:500;">What would you do differently?</label>
+        </div>
+        <p class="text-sm mb-3" style="color: var(--ink-soft); padding-left: 1.75rem;">A real alternative path. Coupling, features, positioning — pick one and commit.</p>
+        <textarea id="q-alt" rows="4" class="w-full border rounded-sm px-4 py-3" style="border-color: var(--rule); background: #fff;" placeholder="I would…"></textarea>
       </div>
 
       <div>
-        <label class="block font-medium mb-1">4. What do you predict will happen?</label>
-        <p class="text-sm text-stone-500 mb-2">Concrete prediction. Big launch then collapse? Slow burn? Fail entirely? Why?</p>
-        <textarea id="q-predict" rows="4" class="w-full border border-stone-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-stone-400" placeholder="I predict..."></textarea>
+        <div class="flex items-baseline gap-3 mb-2">
+          <span class="field-num text-2xl">iv.</span>
+          <label for="q-predict" class="serif text-xl" style="font-weight:500;">What do you predict will happen?</label>
+        </div>
+        <p class="text-sm mb-3" style="color: var(--ink-soft); padding-left: 1.75rem;">Concrete prediction. Big launch then collapse? Slow burn? Fail entirely? Why?</p>
+        <textarea id="q-predict" rows="4" class="w-full border rounded-sm px-4 py-3" style="border-color: var(--rule); background: #fff;" placeholder="I predict…"></textarea>
       </div>
     </div>
 
-    <button onclick="submitTake()" class="mt-8 bg-stone-900 text-white px-6 py-3 rounded-md font-medium hover:bg-stone-800">
-      Lock in my take → reveal what happened
-    </button>
-    <p class="text-xs text-stone-500 mt-3">Once you reveal, you can't un-see it. That's the point.</p>
+    <div class="commit-bar drop-rule mt-14 pt-8">
+      <div class="serif italic text-lg mb-4" style="color: var(--ink-soft);">
+        Once you reveal, you can't un-see it. The rep only works if you commit.
+      </div>
+      <button onclick="submitTake()" class="btn-primary px-7 py-3.5 rounded-sm text-sm" style="font-weight:500; letter-spacing:0.01em;">
+        Lock in my take, then show me what happened
+      </button>
+      <button onclick="goTo(0)" class="ml-4 text-sm underline" style="color: var(--ink-soft);">Back to scenario</button>
+    </div>
   </section>
 
-  <!-- STEP 2: Reveal -->
+  <!-- ====================== STEP 2: Reveal ====================== -->
   <section id="step-2" class="step">
-    <div class="bg-white border border-stone-200 rounded-lg p-8 mb-6">
-      <div class="text-xs uppercase tracking-wider text-stone-500 mb-2">What actually shipped</div>
-      <h2 class="text-2xl font-semibold mb-4">Threads · launched July 5, 2023</h2>
-      <div class="prose prose-stone max-w-none text-stone-800 leading-relaxed space-y-3">
-        <p><strong>The decision:</strong> Ship as a tightly-coupled extension of Instagram. One-tap signup with IG credentials. IG followers auto-suggested. Built and shipped by the IG team in roughly 5 months.</p>
-        <p><strong>What was deliberately left out at launch:</strong> No DMs. No hashtags. No trending topics. No web app for several weeks. No chronological feed by default. No following-only feed initially. No way to delete your Threads account without also deleting your Instagram.</p>
-        <p><strong>Adam Mosseri's stated framing:</strong> not to "replace" Twitter, but to build "a public square for communities on Instagram that never really embraced Twitter." Explicitly de-emphasized news and politics — a deliberate aesthetic and policy choice.</p>
+    <div class="reveal-stage">
+
+      <!-- Reveal: The Decision -->
+      <div class="mb-16">
+        <div class="chapter text-base mb-4" style="color: var(--ink-soft);">III. What actually happened</div>
+        <div class="smallcaps mb-2" style="color: var(--accent);">The decision they made</div>
+        <h2 class="serif text-4xl sm:text-5xl leading-[1.05]" style="font-weight:500; letter-spacing:-0.015em;">
+          Threads.
+        </h2>
+        <div class="serif italic text-xl mt-2" style="color: var(--ink-soft);">Launched July 5, 2023.</div>
+        <div class="rule mt-7 mb-7"></div>
+        <div class="serif text-lg leading-relaxed space-y-4" style="color: var(--ink);">
+          <p>
+            <span class="smallcaps mr-2" style="color: var(--accent);">Shape</span>
+            A tightly-coupled extension of Instagram. One-tap signup with IG credentials. IG followers auto-suggested. Built and shipped by the IG team in roughly five months.
+          </p>
+          <p>
+            <span class="smallcaps mr-2" style="color: var(--accent);">Deliberately omitted</span>
+            No DMs. No hashtags. No trending topics. No web app for several weeks. No chronological feed by default. No following-only feed initially. No way to delete your Threads account without also deleting Instagram.
+          </p>
+        </div>
+
+        <div class="my-10 accent-rail pl-6 py-2">
+          <div class="smallcaps mb-3" style="color: var(--ink-soft);">Mosseri's framing</div>
+          <p class="pullquote">
+            "Not to replace Twitter — but to build a public square for communities on Instagram that never really embraced it."
+          </p>
+          <p class="text-sm mt-3" style="color: var(--ink-soft);">News and politics were explicitly de-emphasized. A deliberate aesthetic and policy choice.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="bg-white border border-stone-200 rounded-lg p-8 mb-6">
-      <div class="text-xs uppercase tracking-wider text-stone-500 mb-2">What happened next</div>
-      <ul class="space-y-2 text-stone-800">
-        <li>• <strong>100M signups in 5 days</strong> — fastest consumer product launch in history at the time.</li>
-        <li>• <strong>DAU collapsed ~80% within 3 weeks.</strong> The IG-graph hack drove signups but not retention.</li>
-        <li>• Account-deletion coupling created immediate backlash; Meta reversed it within months.</li>
-        <li>• Slow, deliberate feature rollout over 12 months (web, following feed, search, hashtags).</li>
-        <li>• <strong>~150M MAU by end of 2024</strong>, ~100M DAU. Now widely viewed inside Meta as a successful long-tail bet that traded launch-week retention for durable growth.</li>
-        <li>• X (Twitter) lost ~20% of US DAU over the same period; Threads is widely credited as a meaningful contributor.</li>
-      </ul>
-    </div>
+      <!-- Reveal: Outcomes scoreboard -->
+      <div class="mb-16">
+        <div class="smallcaps mb-6" style="color: var(--accent);">What happened next</div>
 
-    <div class="bg-amber-50 border border-amber-200 rounded-lg p-8 mb-6">
-      <div class="text-xs uppercase tracking-wider text-amber-700 mb-2">The interesting tradeoffs to notice</div>
-      <ul class="space-y-3 text-stone-800">
-        <li><strong>Speed-to-market vs. product polish.</strong> Meta knew the launch product was thin. They optimized for shipping during Twitter's instability window — a market-timing call, not a product-completeness call.</li>
-        <li><strong>Growth-hack coupling vs. user trust.</strong> The IG-account lock-in was a deliberate growth lever that they expected to reverse. They ate the trust hit on purpose because the alternative was a much slower S-curve.</li>
-        <li><strong>"Defend" framing vs. "kill Twitter" framing.</strong> The actual goal was defensive — keep text-social inside the Meta ecosystem rather than let X or TikTok own it. The Twitter-killer narrative was press, not strategy.</li>
-        <li><strong>Retention-now vs. retention-later.</strong> They explicitly tolerated the DAU collapse. The internal metric that mattered was 6-month and 12-month retained MAU, not week-1 DAU.</li>
-      </ul>
-    </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-y-6 gap-x-4 mb-8 drop-rule pt-7">
+          <div>
+            <div class="stat-num text-3xl sm:text-4xl">100M</div>
+            <div class="text-xs mt-1" style="color: var(--ink-soft);">signups in 5 days<br/><em class="serif italic">fastest launch ever, at the time</em></div>
+          </div>
+          <div>
+            <div class="stat-num text-3xl sm:text-4xl" style="color: var(--accent);">−80%</div>
+            <div class="text-xs mt-1" style="color: var(--ink-soft);">DAU collapse<br/><em class="serif italic">within three weeks</em></div>
+          </div>
+          <div>
+            <div class="stat-num text-3xl sm:text-4xl">~150M</div>
+            <div class="text-xs mt-1" style="color: var(--ink-soft);">MAU by end of 2024<br/><em class="serif italic">~100M DAU</em></div>
+          </div>
+          <div>
+            <div class="stat-num text-3xl sm:text-4xl">−20%</div>
+            <div class="text-xs mt-1" style="color: var(--ink-soft);">X's US DAU<br/><em class="serif italic">over the same period</em></div>
+          </div>
+        </div>
 
-    <div class="bg-white border border-stone-200 rounded-lg p-8 mb-6">
-      <div class="text-xs uppercase tracking-wider text-stone-500 mb-2">Your take, side-by-side</div>
-      <div id="recap" class="space-y-5"></div>
-    </div>
+        <div class="serif text-lg leading-relaxed space-y-3" style="color: var(--ink);">
+          <p>The IG-graph hack drove signups but not retention. Account-deletion coupling created immediate backlash; Meta reversed it within months. Features rolled out slowly and deliberately over twelve months — web, following feed, search, hashtags.</p>
+          <p>It is now widely viewed inside Meta as a successful long-tail bet that traded launch-week retention for durable growth. Threads is widely credited as a meaningful contributor to X's decline.</p>
+        </div>
+      </div>
 
-    <div class="bg-stone-900 text-stone-100 rounded-lg p-8">
-      <div class="text-xs uppercase tracking-wider text-stone-400 mb-2">Reflect — 60 seconds</div>
-      <p class="mb-4">Before you close this tab, answer one question for yourself:</p>
-      <p class="text-lg font-medium">Where did your take diverge most from what actually happened — and is that divergence a signal of a blind spot, or a real disagreement you'd defend?</p>
-      <p class="text-stone-400 text-sm mt-6">In a real product this answer would feed your taste profile over time. For now, just sit with it.</p>
-    </div>
+      <!-- Reveal: The interesting tradeoffs -->
+      <div class="mb-16">
+        <div class="smallcaps mb-6" style="color: var(--accent);">The tradeoffs worth noticing</div>
+        <div class="space-y-6 drop-rule pt-7">
+          <div>
+            <div class="serif text-xl mb-1" style="font-weight:500;">Speed-to-market over product polish.</div>
+            <p class="serif text-base leading-relaxed" style="color: var(--ink-soft);">Meta knew the launch product was thin. They optimized for shipping during Twitter's instability window — a market-timing call, not a product-completeness call.</p>
+          </div>
+          <div>
+            <div class="serif text-xl mb-1" style="font-weight:500;">Growth-hack coupling over user trust.</div>
+            <p class="serif text-base leading-relaxed" style="color: var(--ink-soft);">The IG-account lock-in was a deliberate growth lever they expected to reverse. They ate the trust hit on purpose because the alternative was a much slower S-curve.</p>
+          </div>
+          <div>
+            <div class="serif text-xl mb-1" style="font-weight:500;">"Defend" framing, not "kill Twitter" framing.</div>
+            <p class="serif text-base leading-relaxed" style="color: var(--ink-soft);">The actual goal was defensive — keep text-social inside the Meta ecosystem rather than let X or TikTok own it. The Twitter-killer narrative was press, not strategy.</p>
+          </div>
+          <div>
+            <div class="serif text-xl mb-1" style="font-weight:500;">Retention-later over retention-now.</div>
+            <p class="serif text-base leading-relaxed" style="color: var(--ink-soft);">They explicitly tolerated the DAU collapse. The internal metric that mattered was 6- and 12-month retained MAU, not week-1 DAU.</p>
+          </div>
+        </div>
+      </div>
 
-    <div class="text-center mt-8">
-      <button onclick="restart()" class="text-stone-600 underline hover:text-stone-900">Start over</button>
+      <!-- Side-by-side: the gap -->
+      <div class="mb-16">
+        <div class="smallcaps mb-2" style="color: var(--accent);">The gap</div>
+        <h3 class="serif text-3xl mb-2" style="font-weight:500; letter-spacing:-0.01em;">Your take, against what they did.</h3>
+        <p class="serif italic text-base mb-8" style="color: var(--ink-soft);">Read across. Where you align is calibration. Where you don't is the rep.</p>
+
+        <div id="compare" class="space-y-10 drop-rule pt-8"></div>
+      </div>
+
+      <!-- Reflection coda -->
+      <div class="mb-10 -mx-6 sm:mx-0 px-6 sm:px-10 py-12 sm:py-14" style="background: var(--ink); color: #f5f0e6;">
+        <div class="smallcaps mb-4" style="color: #b8a98e;">Coda · 60 seconds before you close the tab</div>
+        <p class="serif text-2xl sm:text-3xl leading-snug" style="font-weight:500;">
+          Where did your take diverge most from what actually happened —
+          <span class="serif italic" style="color: #d6c8a8;">and is that divergence a blind spot, or a real disagreement you'd defend?</span>
+        </p>
+        <div class="rule mt-8 mb-5" style="background: #3f3a33;"></div>
+        <p class="text-sm" style="color: #a8997d;">
+          Sit with it. Don't type an answer. The rep is the noticing.
+        </p>
+      </div>
+
+      <div class="text-center mt-12 drop-rule pt-8">
+        <button onclick="restart()" class="text-sm underline" style="color: var(--ink-soft);">Start over with a fresh scenario</button>
+      </div>
     </div>
   </section>
 </div>
 
 <script>
+  const chapterLabels = { 0: 'I · Scenario', 1: 'II · Your take', 2: 'III · The reveal' };
+
   function goTo(n) {
+    const target = document.getElementById('step-' + n);
     document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
-    document.getElementById('step-' + n).classList.add('active');
+    target.classList.add('active');
+    const mark = document.getElementById('chapter-mark');
+    if (mark) mark.textContent = chapterLabels[n] || '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -164,24 +380,56 @@
       return;
     }
 
-    const recap = document.getElementById('recap');
-    recap.innerHTML = '';
-    const items = [
-      { label: 'Your tradeoff', text: tradeoff },
-      { label: 'Your target user', text: user },
-      { label: 'Your alternative', text: alt },
-      { label: 'Your prediction', text: predict },
+    // Pair the user's answers with what Meta actually did, dimension by dimension.
+    const pairs = [
+      {
+        label: 'The core tradeoff',
+        you: tradeoff,
+        them: "Speed-to-market over polish, and growth-coupling over trust. Ship a deliberately thin product into Twitter's instability window; absorb the trust hit on IG-account lock-in because the slower alternative gave up the timing advantage."
+      },
+      {
+        label: 'The target user',
+        you: user,
+        them: "Not Twitter power-users. Instagram creators and their audiences who never embraced Twitter — a softer, less news-and-politics-heavy public square for the IG cohort. Defensive against TikTok absorbing text-social, more than offensive against X."
+      },
+      {
+        label: 'A real alternative',
+        you: alt,
+        them: "They chose: tightly couple to IG. One-tap signup, IG follower graph, IG team builds it in five months. No DMs, no hashtags, no web at launch. Account-deletion coupled to IG (later reversed). De-emphasize news and politics by design."
+      },
+      {
+        label: 'The prediction',
+        you: predict,
+        them: "100M signups in 5 days, then DAU collapsed ~80% in three weeks. A deliberate, slow 12-month feature rollout. ~150M MAU by end of 2024 and a meaningful contributor to X losing ~20% of US DAU. Internally judged a successful long-tail bet."
+      },
     ];
-    items.forEach(({ label, text }) => {
-      const div = document.createElement('div');
-      div.innerHTML = `
-        <div class="text-xs uppercase tracking-wider text-stone-500 mb-1">${label}</div>
-        <div class="text-stone-800 whitespace-pre-wrap">${escapeHtml(text)}</div>
+
+    const compare = document.getElementById('compare');
+    compare.innerHTML = '';
+    pairs.forEach(({ label, you, them }, i) => {
+      const block = document.createElement('div');
+      block.innerHTML = `
+        <div class="smallcaps mb-4" style="color: var(--ink-soft);">${escapeHtml(label)}</div>
+        <div class="compare-row">
+          <div>
+            <div class="smallcaps mb-2" style="color: var(--accent);">You wrote</div>
+            <div class="serif whitespace-pre-wrap" style="font-size: 1.0625rem; line-height: 1.6; color: var(--ink);">${escapeHtml(you)}</div>
+          </div>
+          <div>
+            <div class="smallcaps mb-2" style="color: var(--ink-soft);">What they did</div>
+            <div class="serif" style="font-size: 1.0625rem; line-height: 1.6; color: var(--ink);">${escapeHtml(them)}</div>
+          </div>
+        </div>
       `;
-      recap.appendChild(div);
+      compare.appendChild(block);
     });
 
-    goTo(2);
+    // small commit moment before reveal
+    document.body.classList.add('locking');
+    setTimeout(() => {
+      document.body.classList.remove('locking');
+      goTo(2);
+    }, 450);
   }
 
   function restart() {
