@@ -48,7 +48,7 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
     return () => clearTimeout(t);
   }, [take, draftKey]);
 
-  async function lockIn() {
+  async function submitAndReveal() {
     const empty = Object.values(take).some((v) => !v.trim());
     if (empty) {
       alert("Write something for all four — even rough one-liners. The reps only work if you commit.");
@@ -118,7 +118,33 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
           <p>{scenario.closing}</p>
         </article>
 
-        <div className="drop-rule mt-12 pt-8">
+        <div className="mt-12 drop-rule pt-8">
+          <div className="smallcaps mb-4" style={{ color: "var(--ink-soft)" }}>
+            What you'll see after you submit
+          </div>
+          <div className="grid sm:grid-cols-3 gap-5" style={{ color: "var(--ink-soft)" }}>
+            <div className="border-t pt-3" style={{ borderColor: "var(--rule)" }}>
+              <div className="serif text-base" style={{ fontWeight: 500 }}>
+                What shipped
+              </div>
+              <p className="text-xs mt-1 leading-relaxed">The actual decision and the public reasoning behind it.</p>
+            </div>
+            <div className="border-t pt-3" style={{ borderColor: "var(--rule)" }}>
+              <div className="serif text-base" style={{ fontWeight: 500 }}>
+                Real outcomes
+              </div>
+              <p className="text-xs mt-1 leading-relaxed">Numbers from the months and years after — not predictions.</p>
+            </div>
+            <div className="border-t pt-3" style={{ borderColor: "var(--rule)" }}>
+              <div className="serif text-base" style={{ fontWeight: 500 }}>
+                Your take vs. reality
+              </div>
+              <p className="text-xs mt-1 leading-relaxed">A side-by-side, dimension by dimension. The point of the rep.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-10">
           <button onClick={() => setStep(1)} className="btn-primary px-6 py-3 rounded-md font-medium">
             I've read it — let me write my take →
           </button>
@@ -151,12 +177,36 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
         <div className="space-y-8">
           {(
             [
-              { key: "tradeoff", n: "i.", label: "What's the core tradeoff?", help: "What's the real tension this decision sits on top of?" },
-              { key: "user", n: "ii.", label: "Who is the actual target user?", help: "Not 'everyone.' Who specifically — and who are they stealing time from?" },
-              { key: "alt", n: "iii.", label: "What would you do differently?", help: "Pick one real alternative path and commit to it." },
-              { key: "predict", n: "iv.", label: "What do you predict will happen?", help: "Concrete prediction. Big launch then collapse? Slow burn? Why?" },
+              {
+                key: "tradeoff",
+                n: "i.",
+                label: "What's the core tradeoff?",
+                help: "What's the real tension this decision sits on top of?",
+                example: "e.g. They're trading launch-week credibility for long-term retention — willing to look unfinished to ship inside a market window.",
+              },
+              {
+                key: "user",
+                n: "ii.",
+                label: "Who is the actual target user?",
+                help: "Not 'everyone.' Who specifically — and who are they stealing time from?",
+                example: "e.g. Existing IG users curious about text social, not the Twitter power-user cohort. They're stealing time from passive scrolling, not from X.",
+              },
+              {
+                key: "alt",
+                n: "iii.",
+                label: "What would you do differently?",
+                help: "Pick one real alternative path and commit to it.",
+                example: "e.g. Decoupled launch with DMs from day one, slower S-curve but durable trust — accept losing the Twitter timing window.",
+              },
+              {
+                key: "predict",
+                n: "iv.",
+                label: "What do you predict will happen?",
+                help: "Concrete prediction. Big launch then collapse? Slow burn? Why?",
+                example: "e.g. Massive launch-week numbers, fast collapse to 20% of peak, then slow recovery on the back of patient feature work.",
+              },
             ] as const
-          ).map(({ key, n, label, help }) => (
+          ).map(({ key, n, label, help, example }) => (
             <div key={key}>
               <label className="block mb-1">
                 <span className="field-num mr-2">{n}</span>
@@ -171,6 +221,7 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
                 rows={4}
                 className="w-full border rounded-md px-3 py-2"
                 style={{ borderColor: "var(--rule)", background: "white" }}
+                placeholder={example}
                 value={take[key]}
                 onChange={(e) => setTake({ ...take, [key]: e.target.value })}
               />
@@ -180,11 +231,11 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
 
         <div className="drop-rule mt-10 pt-8">
           <button
-            onClick={lockIn}
+            onClick={submitAndReveal}
             disabled={submitting}
             className="btn-primary px-6 py-3 rounded-md font-medium disabled:opacity-50"
           >
-            {submitting ? "Locking in…" : "Lock in my take → reveal what happened"}
+            {submitting ? "Submitting…" : "Submit and reveal what happened →"}
           </button>
           <p className="text-xs mt-3" style={{ color: "var(--ink-soft)" }}>
             Once you reveal, you can't un-see it. That's the point.
