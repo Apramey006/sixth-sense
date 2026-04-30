@@ -1,13 +1,13 @@
 import { Masthead } from "@/components/Masthead";
 import { WeeklyRep } from "@/components/WeeklyRep";
-import { pickWeekly } from "@/lib/seedScenarios";
+import { getWeeklyForWeek } from "@/lib/scenarios";
 import { currentISOWeek } from "@/lib/dates";
 
 export const dynamic = "force-dynamic";
 
-export default function ThisWeekPage() {
+export default async function ThisWeekPage() {
   const week = currentISOWeek();
-  const scenario = pickWeekly(week);
+  const scenario = await getWeeklyForWeek(week);
   return (
     <>
       <Masthead subtitle={`Weekly Deep Rep · ${week}`} chapter="I · Scenario" />

@@ -1,13 +1,13 @@
 import { Masthead } from "@/components/Masthead";
 import { DailyRep } from "@/components/DailyRep";
-import { pickDaily } from "@/lib/seedScenarios";
+import { getDailyForDate } from "@/lib/scenarios";
 import { todayISO } from "@/lib/dates";
 
 export const dynamic = "force-dynamic";
 
-export default function TodayPage() {
+export default async function TodayPage() {
   const date = todayISO();
-  const scenario = pickDaily(date);
+  const scenario = await getDailyForDate(date);
   const formatted = new Date(date + "T00:00:00").toLocaleDateString("en-US", {
     weekday: "long",
     month: "long",

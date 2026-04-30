@@ -21,18 +21,28 @@ Open http://localhost:3000.
 
 The app runs without Supabase configured — takes stash in `localStorage` and the side-by-side reveal still works. Configure Supabase to persist takes across devices (and to enable peer-comparison later).
 
-## Configure Supabase (optional for v1)
+## Configure Supabase
 
 1. Create a free project at [supabase.com](https://supabase.com).
-2. In the SQL editor, run `supabase/schema.sql`.
-3. Copy `.env.example` to `.env.local` and fill in:
+2. In the SQL editor, run `supabase/schema.sql` (creates `scenarios` and `takes` tables with RLS).
+3. Run `supabase/seed.sql` to load the starter scenarios into the database.
+4. Copy `.env.example` to `.env.local` and fill in:
    ```
    NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
    NEXT_PUBLIC_SUPABASE_ANON_KEY=...
    ```
-4. Restart `npm run dev`. Takes will now write to the `takes` table.
+5. Restart `npm run dev`. The app reads scenarios from Supabase and writes takes to the `takes` table.
 
-Scenarios live in `lib/seedScenarios.ts` and rotate deterministically by date / ISO week. They are intentionally NOT seeded into Supabase in v1 — the only thing the database stores in v1 is user takes. We'll move scenarios into the DB when content velocity demands it (~50+ scenarios, or when we want non-engineer authoring).
+The app falls back to the TypeScript seed in `lib/seedScenarios.ts` when Supabase is unconfigured or empty, so the experience never breaks during dev.
+
+## Authoring scenarios
+
+Two paths:
+
+1. **Edit Supabase directly** (production path). Open the Supabase Studio, edit rows in the `scenarios` table. No redeploy needed — the next page load picks up the new content.
+2. **Edit `lib/seedScenarios.ts`** (dev path). Add or change scenarios in the TypeScript file, then run `npm run gen:seed` to regenerate `supabase/seed.sql`, then re-run that SQL in Supabase. This keeps a versioned snapshot of seed content in git.
+
+Both `scenarios` and `takes` tables persist independently — re-seeding scenarios does not touch takes.
 
 ## Deploy
 
@@ -53,13 +63,16 @@ components/
   WeeklyRep.tsx         — weekly rep flow (intro → take → reveal)
 lib/
   supabase.ts           — client + types
-  seedScenarios.ts      — daily and weekly scenarios + date-based picker
+  scenarios.ts          — Supabase-first fetch with TS fallback, date-based rotation
+  seedScenarios.ts      — TS fallback content + source for gen:seed
   anonId.ts             — UUID in localStorage, completion tracking
   submit.ts             — write a take to Supabase (or localStorage fallback)
   dates.ts              — todayISO + currentISOWeek
+scripts/
+  gen-seed-sql.ts       — emit supabase/seed.sql from lib/seedScenarios.ts
 supabase/
   schema.sql            — tables + RLS
-  seed.sql              — optional scenario seed (v1 keeps scenarios in TS)
+  seed.sql              — generated; run after schema.sql to load starter scenarios
 prototype/
   index.html            — original single-file prototype, kept for reference
 ```

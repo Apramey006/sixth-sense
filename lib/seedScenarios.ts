@@ -1,10 +1,11 @@
 import type { DailyScenario, WeeklyScenario } from "./supabase";
 
-// Fallback content used when Supabase is not configured, or when no scenario
-// is scheduled for today's date / this week. The app rotates through these
-// deterministically by index so the experience is always intact.
+// Fallback content used when Supabase is not configured or returns no rows.
+// The canonical source for production is the `scenarios` table in Supabase —
+// see lib/scenarios.ts for the fetch logic. These seeds are also the input to
+// `npm run seed:supabase`, which writes them into the database on initial setup.
 
-export const dailyScenarios: DailyScenario[] = [
+export const dailySeed: DailyScenario[] = [
   {
     id: "linear-keyboard",
     type: "daily",
@@ -55,7 +56,7 @@ export const dailyScenarios: DailyScenario[] = [
   },
 ];
 
-export const weeklyScenarios: WeeklyScenario[] = [
+export const weeklySeed: WeeklyScenario[] = [
   {
     id: "meta-threads-2023",
     type: "weekly",
@@ -176,17 +177,7 @@ export const weeklyScenarios: WeeklyScenario[] = [
   },
 ];
 
-export function pickDaily(date: string): DailyScenario {
-  const idx = hashToIndex(date, dailyScenarios.length);
-  return { ...dailyScenarios[idx], scheduled_date: date };
-}
-
-export function pickWeekly(week: string): WeeklyScenario {
-  const idx = hashToIndex(week, weeklyScenarios.length);
-  return { ...weeklyScenarios[idx], iso_week: week };
-}
-
-function hashToIndex(s: string, mod: number): number {
+export function hashToIndex(s: string, mod: number): number {
   let h = 0;
   for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
   return Math.abs(h) % mod;
