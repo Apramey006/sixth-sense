@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Masthead } from "@/components/Masthead";
 import { RepStatus } from "@/components/RepStatus";
 import { getDailyForDate, getWeeklyForWeek } from "@/lib/scenarios";
 import { todayISO, currentISOWeek } from "@/lib/dates";
@@ -9,116 +8,150 @@ export const dynamic = "force-dynamic";
 export default async function HomePage() {
   const date = todayISO();
   const week = currentISOWeek();
-  const [daily, weekly] = await Promise.all([getDailyForDate(date), getWeeklyForWeek(week)]);
+  const [daily, weekly] = await Promise.all([
+    getDailyForDate(date),
+    getWeeklyForWeek(week),
+  ]);
 
   return (
-    <>
-      <Masthead subtitle="A practice for product taste" />
-      <main className="max-w-3xl mx-auto px-6 pt-16 pb-24">
-        <div className="chapter text-base mb-4" style={{ color: "var(--ink-soft)" }}>
-          A note on what this is
+    <main className="max-w-5xl mx-auto px-5 sm:px-6 pt-10 sm:pt-14 pb-20">
+      {/* Hero */}
+      <section className="max-w-3xl">
+        <div className="flex items-center gap-2 mb-4">
+          <span className="pill pill-accent">A practice for product taste</span>
         </div>
-        <h1
-          className="serif text-4xl sm:text-5xl leading-[1.08]"
-          style={{ fontWeight: 500, letterSpacing: "-0.015em" }}
-        >
+        <h1 className="display text-[2.25rem] sm:text-[2.75rem]">
           Form your take before you see anyone else's.
         </h1>
-        <div className="rule mt-7 mb-7" />
-        <p className="serif text-lg leading-relaxed" style={{ color: "var(--ink-soft)" }}>
-          Product taste is a reflex you build by forming opinions and watching them collide with reality. Not by reading
-          frameworks. Not by asking a model.
-        </p>
-        <p
-          className="serif text-lg leading-relaxed mt-5"
-          style={{ color: "var(--ink-soft)" }}
-        >
-          Taste Reps gives you two practices. A short daily rep — a real product decision, a real screenshot, a single
-          sentence on the most interesting choice you notice. And a weekly deep rep — a full scenario where you write
-          your unfiltered take across four dimensions before we show you what shipped.
+        <p className="body-prose mt-4 max-w-2xl">
+          Product taste is a reflex you build by forming opinions and watching them collide
+          with reality. Two reps a week — one short, one deep — on real product decisions.
+          No frameworks. No model-graded answers.
         </p>
 
-        <div className="mt-12 mb-3 smallcaps" style={{ color: "var(--ink-soft)" }}>
-          How a rep works
+        <div className="flex flex-wrap items-center gap-2 mt-5">
+          <Link href="/today" className="btn-accent rounded-md px-4 py-2 text-sm inline-flex items-center gap-1.5">
+            Start today's rep <span aria-hidden>→</span>
+          </Link>
+          <Link href="/this-week" className="btn-ghost rounded-md px-4 py-2 text-sm">
+            Open this week's deep rep
+          </Link>
         </div>
-        <ol
-          className="grid sm:grid-cols-3 gap-x-6 gap-y-3 serif text-base leading-snug"
-          style={{ color: "var(--ink-soft)" }}
+      </section>
+
+      {/* The two reps */}
+      <section className="grid sm:grid-cols-2 gap-4 mt-10">
+        <Link
+          href="/today"
+          className="card card-link block p-5 group"
         >
-          <li>
-            <span className="field-num mr-2">i.</span>
-            Read a real product moment.
-          </li>
-          <li>
-            <span className="field-num mr-2">ii.</span>
-            Commit to your unfiltered take.
-          </li>
-          <li>
-            <span className="field-num mr-2">iii.</span>
-            See what actually shipped.
-          </li>
+          <div className="flex items-center justify-between gap-3 mb-3">
+            <div className="flex items-center gap-2">
+              <span
+                aria-hidden
+                className="inline-block w-2 h-2 rounded-full"
+                style={{ background: "var(--accent)" }}
+              />
+              <span className="eyebrow">Today · ~3 min</span>
+            </div>
+            <RepStatus kind="daily" scopeKey={date} freshLabel="New today" />
+          </div>
+          <div className="subhead text-xl mb-1.5 group-hover:text-[color:var(--accent)] transition-colors">
+            Daily rep
+          </div>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--ink-soft)" }}>
+            One real product moment. Notice what's interesting before you read what anyone
+            said about it.
+          </p>
+          <div
+            className="mt-4 pt-3 border-t text-sm flex items-baseline justify-between gap-3"
+            style={{ borderColor: "var(--rule)" }}
+          >
+            <span style={{ color: "var(--ink)" }} className="font-medium">
+              {daily.company}
+            </span>
+            <span className="text-xs" style={{ color: "var(--ink-mute)" }}>
+              {daily.era}
+            </span>
+          </div>
+        </Link>
+
+        <Link
+          href="/this-week"
+          className="card card-link block p-5 group"
+        >
+          <div className="flex items-center justify-between gap-3 mb-3">
+            <div className="flex items-center gap-2">
+              <span
+                aria-hidden
+                className="inline-block w-2 h-2 rounded-full"
+                style={{ background: "var(--accent-2)" }}
+              />
+              <span className="eyebrow">This week · ~25 min</span>
+            </div>
+            <RepStatus
+              kind="weekly"
+              scopeKey={week}
+              freshLabel="New this week"
+              tone="accent-2"
+            />
+          </div>
+          <div
+            className="subhead text-xl mb-1.5 transition-colors group-hover:text-[color:var(--accent-2)]"
+          >
+            Weekly deep rep
+          </div>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--ink-soft)" }}>
+            A real decision room. Write your full take across tradeoff, user, alternative,
+            prediction. Then see what actually happened.
+          </p>
+          <div
+            className="mt-4 pt-3 border-t text-sm flex items-baseline justify-between gap-3"
+            style={{ borderColor: "var(--rule)" }}
+          >
+            <span style={{ color: "var(--ink)" }} className="font-medium">
+              {weekly.company}
+            </span>
+            <span className="text-xs" style={{ color: "var(--ink-mute)" }}>
+              {weekly.era}
+            </span>
+          </div>
+        </Link>
+      </section>
+
+      {/* How a rep works */}
+      <section className="mt-12">
+        <div className="eyebrow mb-3">How a rep works</div>
+        <ol className="grid sm:grid-cols-3 gap-3">
+          {[
+            "Read a real product moment.",
+            "Commit to your unfiltered take.",
+            "See what actually shipped.",
+          ].map((step, i) => (
+            <li
+              key={i}
+              className="card p-4 flex items-start gap-3"
+            >
+              <span className="step-num shrink-0 mt-0.5">{i + 1}</span>
+              <span className="text-sm leading-snug" style={{ color: "var(--ink)" }}>
+                {step}
+              </span>
+            </li>
+          ))}
         </ol>
+      </section>
 
-        <div className="grid sm:grid-cols-2 gap-5 mt-10">
-          <Link
-            href="/today"
-            className="group block bg-white border rounded-md p-6 hover:border-ink transition"
-            style={{ borderColor: "var(--rule)" }}
-          >
-            <div className="flex items-baseline justify-between gap-3 mb-3">
-              <div className="smallcaps" style={{ color: "var(--accent)" }}>
-                Today
-              </div>
-              <RepStatus kind="daily" scopeKey={date} freshLabel="New today" />
-            </div>
-            <div className="serif text-2xl mb-2 group-hover:underline">Daily rep</div>
-            <p className="text-sm leading-relaxed" style={{ color: "var(--ink-soft)" }}>
-              Three minutes. One real product moment. Notice what's interesting before you read what anyone said about
-              it.
-            </p>
-            <div
-              className="mt-4 pt-3 border-t text-sm serif italic"
-              style={{ borderColor: "var(--rule)", color: "var(--ink)" }}
-            >
-              Up today: {daily.company}
-              <span style={{ color: "var(--ink-soft)" }}> — {daily.era}</span>
-            </div>
-          </Link>
-          <Link
-            href="/this-week"
-            className="group block bg-white border rounded-md p-6 hover:border-ink transition"
-            style={{ borderColor: "var(--rule)" }}
-          >
-            <div className="flex items-baseline justify-between gap-3 mb-3">
-              <div className="smallcaps" style={{ color: "var(--accent)" }}>
-                This week
-              </div>
-              <RepStatus kind="weekly" scopeKey={week} freshLabel="New this week" />
-            </div>
-            <div className="serif text-2xl mb-2 group-hover:underline">Weekly deep rep</div>
-            <p className="text-sm leading-relaxed" style={{ color: "var(--ink-soft)" }}>
-              Twenty-five minutes. A real decision room. Write your full take across tradeoff, user, alternative,
-              prediction. Then see what actually happened.
-            </p>
-            <div
-              className="mt-4 pt-3 border-t text-sm serif italic"
-              style={{ borderColor: "var(--rule)", color: "var(--ink)" }}
-            >
-              In the room: {weekly.company}
-              <span style={{ color: "var(--ink-soft)" }}> — {weekly.era}</span>
-            </div>
-          </Link>
-        </div>
-
-        <div className="drop-rule mt-16 pt-8 text-sm" style={{ color: "var(--ink-soft)" }}>
-          <span className="smallcaps">A constraint</span>
-          <p className="mt-2 leading-relaxed">
-            Nothing here was written or scored by an LLM. Every scenario is a real decision; every reveal is a real
-            quote, a real outcome, a real tradeoff. The point is to stay out of the model's voice long enough to find
-            your own.
+      {/* Constraint footer */}
+      <section className="mt-12 drop-rule pt-6">
+        <div className="flex items-start gap-3 max-w-2xl">
+          <span className="pill pill-accent-2 shrink-0 mt-0.5">A constraint</span>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--ink-soft)" }}>
+            Nothing here was written or scored by an LLM. Every scenario is a real decision;
+            every reveal is a real quote, a real outcome, a real tradeoff. The point is to
+            stay out of the model's voice long enough to find your own.
           </p>
         </div>
-      </main>
-    </>
+      </section>
+    </main>
   );
 }
