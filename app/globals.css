@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #1c1917;
+  --ink-soft: #44403c;
+  --paper: #faf8f4;
+  --rule: #e7e2d6;
+  --accent: #8a3a1e;
+}
+
+html,
+body {
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.serif {
+  font-family: "Newsreader", Georgia, serif;
+  font-feature-settings: "ss01", "onum";
+}
+
+.smallcaps {
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.chapter {
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.rule {
+  height: 1px;
+  background: var(--rule);
+}
+
+.drop-rule {
+  border-top: 1px solid var(--rule);
+}
+
+.accent-rail {
+  border-left: 2px solid var(--accent);
+}
+
+.scenario p {
+  margin-bottom: 1.1em;
+}
+
+.scenario .lede::first-letter {
+  font-family: "Newsreader", Georgia, serif;
+  float: left;
+  font-size: 3.6rem;
+  line-height: 0.85;
+  padding: 0.35rem 0.55rem 0 0;
+  font-weight: 500;
+}
+
+.pullquote {
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-size: 1.5rem;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.stat-num {
+  font-family: "Newsreader", Georgia, serif;
+  font-weight: 500;
+  font-variant-numeric: oldstyle-nums;
+  letter-spacing: -0.01em;
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: #fafaf9;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+.btn-primary:hover {
+  background: #000;
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+textarea {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  resize: vertical;
+}
+textarea:focus {
+  outline: none;
+  border-color: var(--ink);
+  box-shadow: 0 0 0 1px var(--ink);
+}
+
+.field-num {
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  color: var(--accent);
+}
+
+.compare-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .compare-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .compare-row > div:first-child {
+    padding-right: 1.75rem;
+    border-right: 1px solid var(--rule);
+  }
+  .compare-row > div:last-child {
+    padding-left: 1.75rem;
+  }
+}
+
+.fade-up {
+  animation: fadeUp 0.55s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-stage > * {
+  opacity: 0;
+  animation: stageIn 0.7s cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
+}
+.reveal-stage > *:nth-child(1) { animation-delay: 0.05s; }
+.reveal-stage > *:nth-child(2) { animation-delay: 0.35s; }
+.reveal-stage > *:nth-child(3) { animation-delay: 0.65s; }
+.reveal-stage > *:nth-child(4) { animation-delay: 0.95s; }
+.reveal-stage > *:nth-child(5) { animation-delay: 1.25s; }
+@keyframes stageIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
