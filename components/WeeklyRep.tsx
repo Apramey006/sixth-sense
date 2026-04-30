@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { WeeklyScenario } from "@/lib/supabase";
 import { submitTake } from "@/lib/submit";
 import { markCompleted } from "@/lib/anonId";
+import { PostRepFooter } from "@/components/PostRepFooter";
 
 type Take = { tradeoff: string; user: string; alt: string; predict: string };
 
@@ -11,6 +12,41 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
   const [step, setStep] = useState<0 | 1 | 2>(0);
   const [take, setTake] = useState<Take>({ tradeoff: "", user: "", alt: "", predict: "" });
   const [submitting, setSubmitting] = useState(false);
+  const [draftRestored, setDraftRestored] = useState(false);
+
+  const draftKey = `taste-reps:weekly-draft:${scenario.id}`;
+
+  // Restore any saved draft on mount.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      const raw = window.localStorage.getItem(draftKey);
+      if (raw) {
+        const saved = JSON.parse(raw) as Take;
+        if (saved && (saved.tradeoff || saved.user || saved.alt || saved.predict)) {
+          setTake(saved);
+          setDraftRestored(true);
+        }
+      }
+    } catch {
+      /* ignore */
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scenario.id]);
+
+  // Persist draft as the user types (debounced via rAF-equivalent timeout).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const t = setTimeout(() => {
+      try {
+        const hasContent = Object.values(take).some((v) => v.trim());
+        if (hasContent) window.localStorage.setItem(draftKey, JSON.stringify(take));
+      } catch {
+        /* ignore */
+      }
+    }, 250);
+    return () => clearTimeout(t);
+  }, [take, draftKey]);
 
   async function lockIn() {
     const empty = Object.values(take).some((v) => !v.trim());
@@ -25,6 +61,11 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
       body: take,
     });
     markCompleted("weekly", scenario.iso_week);
+    try {
+      if (typeof window !== "undefined") window.localStorage.removeItem(draftKey);
+    } catch {
+      /* ignore */
+    }
     setSubmitting(false);
     setStep(2);
   }
@@ -98,6 +139,14 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
         <p className="text-sm mb-8" style={{ color: "var(--ink-soft)" }}>
           No editing for a model, no looking things up. The point is your raw instinct.
         </p>
+        {draftRestored && (
+          <div
+            className="text-xs mb-6 -mt-4 italic"
+            style={{ color: "var(--ink-soft)" }}
+          >
+            Draft restored from your last visit.
+          </div>
+        )}
 
         <div className="space-y-8">
           {(
@@ -243,6 +292,8 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
           The rep is the noticing. Close the tab and let it sit.
         </p>
       </div>
+
+      <PostRepFooter kind="weekly" />
     </section>
   );
 }

@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { DailyScenario } from "@/lib/supabase";
 import { submitTake } from "@/lib/submit";
 import { markCompleted } from "@/lib/anonId";
+import { PostRepFooter } from "@/components/PostRepFooter";
 
 export function DailyRep({ scenario }: { scenario: DailyScenario }) {
   const [step, setStep] = useState<0 | 1>(0);
@@ -109,6 +110,8 @@ export function DailyRep({ scenario }: { scenario: DailyScenario }) {
           thinking. Come back tomorrow.
         </p>
       </div>
+
+      <PostRepFooter kind="daily" />
     </section>
   );
 }
