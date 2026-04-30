@@ -11,7 +11,7 @@ export function DailyRep({ scenario }: { scenario: DailyScenario }) {
   const [text, setText] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
-  async function lockIn() {
+  async function submitAndReveal() {
     if (!text.trim()) {
       alert("Even a one-line take. The rep only works if you commit.");
       return;
@@ -55,21 +55,24 @@ export function DailyRep({ scenario }: { scenario: DailyScenario }) {
             rows={5}
             className="w-full border rounded-md px-4 py-3"
             style={{ borderColor: "var(--rule)", background: "white" }}
-            placeholder="One sentence is fine. Two is fine. Don't edit."
+            placeholder="e.g. Pricing AI separately tells me Notion thinks it's a power-user feature, not a default — they're choosing measurement over adoption."
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
+          <p className="text-xs mt-2 italic" style={{ color: "var(--ink-soft)" }}>
+            One sentence is fine. Two is fine. Don't edit.
+          </p>
         </div>
 
         <button
-          onClick={lockIn}
+          onClick={submitAndReveal}
           disabled={submitting}
           className="btn-primary mt-6 px-6 py-3 rounded-md font-medium disabled:opacity-50"
         >
-          {submitting ? "Locking in…" : "Lock in my take →"}
+          {submitting ? "Submitting…" : "Submit and reveal →"}
         </button>
         <p className="text-xs mt-3" style={{ color: "var(--ink-soft)" }}>
-          Once you lock in, you'll see what the team actually said. You can't un-see it.
+          Once you submit, you'll see what the team actually said. You can't un-see it.
         </p>
       </section>
     );
