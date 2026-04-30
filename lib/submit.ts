@@ -21,8 +21,14 @@ export async function submitTake(args: SubmitArgs): Promise<void> {
   }
 
   const anon_id = getAnonId();
+  // If the user is signed in, attribute to both anon_id (for backwards
+  // continuity) and user_id (for the future /me page).
+  const { data: sessionData } = await supabase.auth.getSession();
+  const user_id = sessionData.session?.user?.id ?? null;
+
   const { error } = await supabase.from("takes").insert({
     anon_id,
+    user_id,
     scenario_id: args.scenario_id,
     scenario_type: args.scenario_type,
     body: args.body,

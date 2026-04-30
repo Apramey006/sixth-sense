@@ -40,3 +40,6 @@ create policy "anyone can insert a take" on takes for insert with check (true);
 
 -- Note: we deliberately do NOT add a select policy on takes for v1.
 -- Once peer-comparison ships, we'll add aggregate views or a public read with anonymization.
+
+-- Auth attribution lives in supabase/auth_migration.sql. Run that after this
+-- file to add takes.user_id, the anon→user link function, and per-user RLS.
