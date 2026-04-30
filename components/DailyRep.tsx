@@ -30,87 +30,110 @@ export function DailyRep({ scenario }: { scenario: DailyScenario }) {
   if (step === 0) {
     return (
       <section className="fade-up">
-        <div className="chapter text-base mb-4" style={{ color: "var(--ink-soft)" }}>
-          Today's moment
+        <div className="flex items-center gap-2 mb-3">
+          <span className="pill pill-accent">Today's moment</span>
+          <span className="text-xs" style={{ color: "var(--ink-mute)" }}>
+            {scenario.era}
+          </span>
         </div>
-        <h1 className="serif text-4xl leading-tight" style={{ fontWeight: 500, letterSpacing: "-0.015em" }}>
-          {scenario.company}
-        </h1>
-        <div className="smallcaps mt-2" style={{ color: "var(--ink-soft)" }}>
-          {scenario.era}
-        </div>
-        <div className="rule mt-7 mb-7" />
+        <h1 className="headline text-3xl sm:text-[2rem]">{scenario.company}</h1>
+        <div className="rule mt-5 mb-5" />
 
-        <p className="serif text-lg leading-relaxed">{scenario.context}</p>
+        <p className="text-[0.95rem] leading-relaxed" style={{ color: "var(--ink-soft)" }}>
+          {scenario.context}
+        </p>
 
-        <div className="mt-10 accent-rail pl-5 py-1">
-          <div className="smallcaps mb-2" style={{ color: "var(--accent)" }}>
+        <div className="mt-7 card p-5 accent-rail" style={{ borderRadius: 10 }}>
+          <div className="eyebrow mb-2" style={{ color: "var(--accent)" }}>
             The prompt
           </div>
-          <p className="serif text-xl leading-snug">{scenario.prompt}</p>
+          <p
+            className="text-lg leading-snug"
+            style={{ fontWeight: 500, letterSpacing: "-0.005em" }}
+          >
+            {scenario.prompt}
+          </p>
         </div>
 
-        <div className="mt-8">
+        <div className="mt-6">
+          <label className="eyebrow block mb-2">Your take</label>
           <textarea
-            rows={5}
-            className="w-full border rounded-md px-4 py-3"
-            style={{ borderColor: "var(--rule)", background: "white" }}
+            rows={4}
+            className="w-full border rounded-lg px-3.5 py-2.5"
+            style={{
+              borderColor: "var(--rule)",
+              background: "var(--paper-raised)",
+            }}
             placeholder="e.g. Pricing AI separately tells me Notion thinks it's a power-user feature, not a default — they're choosing measurement over adoption."
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
-          <p className="text-xs mt-2 italic" style={{ color: "var(--ink-soft)" }}>
+          <p className="text-xs mt-1.5" style={{ color: "var(--ink-mute)" }}>
             One sentence is fine. Two is fine. Don't edit.
           </p>
         </div>
 
-        <button
-          onClick={submitAndReveal}
-          disabled={submitting}
-          className="btn-primary mt-6 px-6 py-3 rounded-md font-medium disabled:opacity-50"
-        >
-          {submitting ? "Submitting…" : "Submit and reveal →"}
-        </button>
-        <p className="text-xs mt-3" style={{ color: "var(--ink-soft)" }}>
-          Once you submit, you'll see what the team actually said. You can't un-see it.
-        </p>
+        <div className="mt-5 flex items-center gap-3 flex-wrap">
+          <button
+            onClick={submitAndReveal}
+            disabled={submitting}
+            className="btn-accent px-4 py-2 rounded-md text-sm disabled:opacity-50 inline-flex items-center gap-1.5"
+          >
+            {submitting ? "Submitting…" : (
+              <>
+                Submit and reveal <span aria-hidden>→</span>
+              </>
+            )}
+          </button>
+          <p className="text-xs" style={{ color: "var(--ink-mute)" }}>
+            Once you submit, you'll see what the team actually said. You can't un-see it.
+          </p>
+        </div>
       </section>
     );
   }
 
   return (
     <section className="reveal-stage">
-      <div>
-        <div className="smallcaps mb-2" style={{ color: "var(--accent)" }}>
+      <div className="card p-5">
+        <div className="eyebrow mb-2" style={{ color: "var(--accent)" }}>
           Your note
         </div>
-        <p className="serif text-lg leading-relaxed whitespace-pre-wrap">{text}</p>
+        <p
+          className="text-[0.95rem] leading-relaxed whitespace-pre-wrap"
+          style={{ color: "var(--ink)" }}
+        >
+          {text}
+        </p>
       </div>
 
-      <div className="mt-10">
-        <div className="smallcaps mb-2" style={{ color: "var(--ink-soft)" }}>
-          What they said
-        </div>
+      <div className="mt-7">
+        <div className="eyebrow mb-2">What they said</div>
         <blockquote className="pullquote">"{scenario.reveal_quote}"</blockquote>
-        <div className="smallcaps mt-3" style={{ color: "var(--ink-soft)" }}>
+        <div className="text-xs mt-2" style={{ color: "var(--ink-mute)" }}>
           — {scenario.reveal_quote_attribution}
         </div>
       </div>
 
-      <div className="mt-10 drop-rule pt-8">
-        <div className="smallcaps mb-2" style={{ color: "var(--accent)" }}>
+      <div className="mt-7 drop-rule pt-6">
+        <div className="eyebrow mb-2" style={{ color: "var(--accent-2)" }}>
           The choice that's easy to miss
         </div>
-        <p className="serif text-lg leading-relaxed">{scenario.reveal_note}</p>
+        <p className="text-[0.95rem] leading-relaxed" style={{ color: "var(--ink)" }}>
+          {scenario.reveal_note}
+        </p>
       </div>
 
-      <div className="mt-12 rounded-md p-8" style={{ background: "var(--ink)", color: "#e7e5e4" }}>
-        <div className="smallcaps mb-2" style={{ color: "#a8a29e" }}>
+      <div
+        className="mt-9 rounded-xl p-6"
+        style={{ background: "var(--ink)", color: "#e7e1d2" }}
+      >
+        <div className="eyebrow mb-2" style={{ color: "#b9aa92" }}>
           The rep is the noticing
         </div>
-        <p className="serif text-lg leading-relaxed">
-          You don't need to type an answer to this. Sit with the gap between what you noticed and what they were
-          thinking. Come back tomorrow.
+        <p className="text-[0.95rem] leading-relaxed">
+          You don't need to type an answer to this. Sit with the gap between what you
+          noticed and what they were thinking. Come back tomorrow.
         </p>
       </div>
 

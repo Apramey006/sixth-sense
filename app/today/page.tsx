@@ -15,8 +15,8 @@ export default async function TodayPage() {
   });
   return (
     <>
-      <Masthead subtitle={`Daily rep · ${formatted}`} chapter="" />
-      <main className="max-w-3xl mx-auto px-6 pt-12 pb-24">
+      <Masthead subtitle={`Daily rep · ${formatted}`} tone="accent" />
+      <main className="max-w-3xl mx-auto px-5 sm:px-6 pt-8 pb-20">
         <DailyRep scenario={scenario} />
       </main>
     </>

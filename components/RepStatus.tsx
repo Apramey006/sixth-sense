@@ -7,10 +7,12 @@ export function RepStatus({
   kind,
   scopeKey,
   freshLabel = "New today",
+  tone = "accent",
 }: {
   kind: "daily" | "weekly";
   scopeKey: string;
   freshLabel?: string;
+  tone?: "accent" | "accent-2";
 }) {
   const [status, setStatus] = useState<"loading" | "done" | "fresh">("loading");
 
@@ -19,19 +21,23 @@ export function RepStatus({
   }, [kind, scopeKey]);
 
   if (status === "loading") {
-    return <span className="smallcaps" style={{ color: "var(--ink-soft)", opacity: 0 }}>·</span>;
+    return (
+      <span className="pill pill-mute" style={{ opacity: 0 }}>
+        ·
+      </span>
+    );
   }
 
   if (status === "done") {
     return (
-      <span className="smallcaps" style={{ color: "var(--ink-soft)" }}>
-        ✓ Done
+      <span className="pill pill-mute">
+        <span aria-hidden>✓</span> Done
       </span>
     );
   }
 
   return (
-    <span className="smallcaps" style={{ color: "var(--accent)" }}>
+    <span className={tone === "accent-2" ? "pill pill-accent-2" : "pill pill-accent"}>
       {freshLabel}
     </span>
   );

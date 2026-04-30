@@ -10,8 +10,12 @@ export default async function ThisWeekPage() {
   const scenario = await getWeeklyForWeek(week);
   return (
     <>
-      <Masthead subtitle={`Weekly Deep Rep · ${week}`} chapter="I · Scenario" />
-      <main className="max-w-3xl mx-auto px-6 pt-14 pb-24">
+      <Masthead
+        subtitle={`Weekly deep rep · ${week}`}
+        chapter="A real decision room"
+        tone="accent-2"
+      />
+      <main className="max-w-3xl mx-auto px-5 sm:px-6 pt-8 pb-20">
         <WeeklyRep scenario={scenario} />
       </main>
     </>
