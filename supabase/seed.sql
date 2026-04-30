@@ -1,0 +1,16 @@
+-- Optional: load seed scenarios into Supabase. The app falls back to local seed
+-- content if these aren't present, so this step is optional for v1 demo.
+--
+-- The payload jsonb mirrors the DailyScenario / WeeklyScenario types in lib/supabase.ts.
+-- For v1 we keep authoring in TypeScript (lib/seedScenarios.ts) and only sync to Supabase
+-- when we want cross-device persistence of *takes* — which is the actual reason for the DB.
+--
+-- Run after schema.sql.
+
+-- Example daily insert:
+-- insert into scenarios (id, type, scheduled_date, payload) values (
+--   'linear-keyboard',
+--   'daily',
+--   '2026-05-01',
+--   '{...}'::jsonb
+-- );
