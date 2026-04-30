@@ -19,3 +19,6 @@ out/
 # IDE / editors
 .vscode/
 .idea/
+
+# Claude Code worktrees
+.claude/

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { AuthButton } from "@/components/AuthButton";
 
 const links = [
   { href: "/today", label: "Today" },
@@ -59,14 +60,14 @@ export function TopNav() {
               );
             })}
           </nav>
-          <button
-            type="button"
-            className="btn-ghost rounded-md text-sm px-3 py-1.5"
-            // Placeholder — auth agent wires this up.
-            aria-label="Sign in"
+          <AuthButton />
+          <Link
+            href="/me"
+            className="hidden sm:inline-block text-sm hover:underline whitespace-nowrap"
+            style={{ color: "var(--ink-soft)" }}
           >
-            Sign in
-          </button>
+            Your reps
+          </Link>
         </div>
       </div>
     </header>
