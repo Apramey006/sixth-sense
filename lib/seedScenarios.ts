@@ -3384,6 +3384,238 @@ export const dailySeed: DailyScenario[] = [
     ],
     tags: { industry: "consumer-mobile", region: "us", decade: "2000s" },
   },
+  {
+    id: "facebook-news-feed-launch-2006",
+    type: "daily",
+    scheduled_date: "",
+    company: "Facebook",
+    era: "September 5, 2006 — News Feed launch",
+    context:
+      "Facebook in early 2006 has ~10M users. The product is a network of individual profile pages — to see what a friend has been up to, you visit their profile. There's no aggregated 'recent activity' surface. On September 5, 2006, Facebook launches News Feed — a single chronological stream on the home page showing every friend's recent activity (status updates, photo uploads, relationship changes, wall posts). The launch is immediately controversial: users feel surveilled. Within days, the 'Students Against Facebook News Feed' group has 700,000 members — at the time, ~7% of Facebook's entire user base.",
+    prompt:
+      "Why hold the line on News Feed despite the largest user revolt in social-media history to that point — and what does the revolt tell you about the product's actual value?",
+    reveal_quote:
+      "Calm down. Breathe. We hear you. We didn't take away any privacy options. Your privacy options remain the same. The privacy rules haven't changed. None of your information is visible to anyone who couldn't see it before the changes.",
+    reveal_quote_attribution:
+      "Mark Zuckerberg, Facebook CEO — open letter 'Calm Down. Breathe. We Hear You,' September 8, 2006",
+    reveal_note:
+      "The non-obvious move: News Feed surfaced information that was already public — friends' activities had always been visible on profile pages. What changed wasn't privacy; it was distribution. The revolt was about that distribution shift, even though privacy hadn't actually been reduced. Zuckerberg's open letter correctly identified the misunderstanding (technically) but the broader insight was that the revolt was about something other than privacy — it was about the feeling of being observed at scale. Crucially, the same users protesting were also the heaviest users of the feature itself. Engagement metrics surged on the News Feed even during the protest. Zuckerberg held the line; within 6 weeks the protest petered out and News Feed became the canonical 'feed' surface that every social network has copied since. The lesson: when user behavior contradicts user objection (people use a feature they say they hate), the behavior is the signal, not the words. Holding the line through user revolt is correct when the revolt is about social discomfort rather than actual harm.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Facebook News Feed — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Facebook_News_Feed",
+        type: "article",
+      },
+      {
+        title: "Calm down. Breathe. We hear you.",
+        url: "https://www.facebook.com/notes/facebook/calm-down-breathe-we-hear-you/2208197130",
+        publisher: "Facebook (Mark Zuckerberg)",
+        year: 2006,
+        type: "blog",
+      },
+      {
+        title: "Facebook's News Feed: How 10 years and 1.71B users have changed it",
+        url: "https://www.cnet.com/news/facebook-news-feed-10-years-1-billion-users-zuckerberg/",
+        publisher: "CNET",
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-social", region: "us", decade: "2000s" },
+  },
+  {
+    id: "twitter-algorithmic-timeline",
+    type: "daily",
+    scheduled_date: "",
+    company: "Twitter",
+    era: "February 10, 2016 — algorithmic timeline rollout",
+    context:
+      "Twitter's defining product feature for its first decade is the reverse-chronological timeline — every tweet from people you follow, newest first, no algorithm. Power users defend this religiously. In February 2016, Twitter introduces an algorithmic timeline that surfaces 'tweets you might have missed' from when you were offline — initially as an opt-in toggle, then progressively as the default with the option to switch back. The community reaction is fierce: #RIPTwitter trends globally on launch day.",
+    prompt:
+      "Why move from chronological to algorithmic timeline — when chronological is the explicit positioning that differentiates Twitter from Facebook?",
+    reveal_quote:
+      "We've been listening to lots of conversations on Twitter recently about the home timeline. The home timeline now shows you the very best tweets when you open Twitter — sorted by relevance — followed by all the other tweets you'd normally see in real-time order.",
+    reveal_quote_attribution: "Twitter — algorithmic timeline launch announcement, February 10, 2016",
+    reveal_note:
+      "What's easy to miss: the algorithmic vs. chronological debate is a proxy for a deeper question — does the platform optimize for power-user engagement (chronological feels more 'real') or for casual-user retention (algorithmic surfaces best-of-the-day for users who don't check Twitter constantly)? Twitter's data showed that for casual users, the algorithmic timeline produced higher 7-day return rates. For power users, chronological felt better. Twitter served both — algorithmic by default, opt-out to chronological — and let users self-select. The compromise pleased neither cohort fully but improved aggregate engagement enough to justify the change. The #RIPTwitter cycle peaked then faded; most users never switched back to chronological. The lesson: when a vocal power-user community opposes a change, their objection is often legitimate from their perspective but contradicts what's right for the majority casual cohort. Letting both populations coexist via a setting works when the default favors the larger group.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Never miss important tweets from people you follow",
+        url: "https://blog.twitter.com/en_us/a/2016/never-miss-important-tweets-from-people-you-follow",
+        publisher: "Twitter Blog",
+        year: 2016,
+        type: "blog",
+      },
+      {
+        title: "Twitter's algorithmic timeline isn't going to kill Twitter",
+        url: "https://www.theverge.com/2016/2/10/10954838/twitter-algorithmic-timeline-rolls-out",
+        publisher: "The Verge",
+        year: 2016,
+        type: "article",
+      },
+      {
+        title: "Twitter — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Twitter",
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-social", region: "us", decade: "2010s" },
+  },
+  {
+    id: "slack-empty-state-design",
+    type: "daily",
+    scheduled_date: "",
+    company: "Slack",
+    era: "2013–2014 — early Slack empty states",
+    context:
+      "Most B2B SaaS products in 2013 ship with empty states that say 'You have no projects yet — click here to create one.' Slack's early product is famously different. Empty channels in early Slack contain a small playful illustration of a person ('Slackbot is here!'), warm copy ('No one's here yet. Why not invite some teammates?'), and explicit pointers to the action ('Click the + to add someone'). Every empty state was hand-designed: empty inbox, empty channel, empty DM list, empty file list. The phrase 'don't make me think' (borrowed from Steve Krug's classic usability book) is internal Slack design vocabulary.",
+    prompt:
+      "Why invest design / copywriting effort into empty states — when most users will see them for only a few seconds before they have content?",
+    reveal_quote:
+      "Empty states are not edge cases. They are the first impression of every feature. A user encountering an empty channel for the first time is being onboarded to channels, whether the team realizes it or not.",
+    reveal_quote_attribution:
+      "Slack design team — paraphrased from public commentary on Slack's design principles",
+    reveal_note:
+      "The choice that's easy to miss: empty states are the user's first encounter with every feature. They appear before the user has done anything — and so they're the primary teaching moment. A bad empty state ('You have no messages') is a dead-end; a good empty state ('No one's here yet. Why not invite some teammates? [Add People]') is an onboarding step disguised as a screen. Slack invested heavily in empty states because the product's value depends on adopting features (channels, DMs, file sharing, integrations) — and adoption begins at the moment of emptiness. Casual users go through 20+ empty states in their first week. Slackbot itself is a designed empty-state-filling instrument: when a new user signs up alone, Slackbot is the first 'person' they DM with, which makes the empty-DM-list state warmer than 'You have no direct messages.' The lesson: empty states are not afterthoughts. They are the highest-leverage onboarding surface in a multi-feature product because they appear exactly when the user is trying to figure out what's possible.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Slack's principles for designing empty states",
+        url: "https://slack.engineering/empty-states-as-an-opportunity/",
+        publisher: "Slack Engineering",
+        type: "blog",
+      },
+      {
+        title: "Empty State Design Patterns",
+        url: "https://www.toptal.com/designers/ui/empty-state-design",
+        publisher: "Toptal",
+        type: "article",
+      },
+      {
+        title: "How Slack Onboards New Users — User Onboard",
+        url: "https://www.useronboard.com/how-slack-onboards-new-users/",
+        publisher: "User Onboarding",
+        type: "blog",
+      },
+    ],
+    tags: { industry: "saas", region: "us", decade: "2010s" },
+  },
+  {
+    id: "tinder-super-like-2015",
+    type: "daily",
+    scheduled_date: "",
+    company: "Tinder",
+    era: "September 2015 — Super Like launch",
+    context:
+      "Tinder's core mechanic since launch (2012) is swipe-right-yes / swipe-left-no. The decision is binary and symmetric: both users have to swipe right to match. Super Like introduces a third gesture — swipe up — to express 'I'm really interested.' Users have 1 free Super Like per day; more are gated behind Tinder's paid subscription. When a Super Liked profile sees the other user's profile, the Super Like is visible — a blue star next to the photo with 'they Super Liked you' text. The bet: signaling extraordinary interest changes match dynamics and is worth paying for.",
+    prompt:
+      "Why introduce a paid, scarcity-gated 'extraordinary interest' signal — when Tinder's whole brand is based on the casual, low-stakes binary swipe?",
+    reveal_quote:
+      "Super Like is a way to stand out from the crowd and show someone that you really like them. Members who are Super Liked are 3x more likely to match.",
+    reveal_quote_attribution: "Tinder — Super Like launch announcement, September 2015",
+    reveal_note:
+      "The non-obvious move: introducing scarcity (1 free Super Like per day) creates value where none existed before. Pre-Super-Like, every Tinder right-swipe was the same — there was no way to express 'I really like this person.' Adding a rare, attention-getting signal converts the swipe into a status-signaling instrument. The user paying for additional Super Likes is, in effect, paying for the right to express heightened interest more often. The 3x match-rate stat compounds the willingness to pay. The lesson: in marketplaces or social products with symmetric interaction (both parties swipe / like / accept), introducing an asymmetric scarcity-signal is often the most-defensible monetization mechanic. The user isn't paying for a feature; they're paying for the ability to send a signal that other users will perceive as more valuable than ordinary engagement. Bumble Compliments (2018), LinkedIn InMail credits, and Twitter Blue 'verified' check-marks all run the same playbook.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Tinder introduces Super Like",
+        url: "https://techcrunch.com/2015/09/09/tinder-super-like-launches/",
+        publisher: "TechCrunch",
+        year: 2015,
+        type: "article",
+      },
+      {
+        title: "What is a Super Like? — Tinder",
+        url: "https://www.help.tinder.com/hc/en-us/articles/115004488206-What-is-a-Super-Like",
+        publisher: "Tinder Help",
+        type: "documentation",
+      },
+      {
+        title: "Tinder — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Tinder_(app)",
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-social", region: "us", decade: "2010s" },
+  },
+  {
+    id: "apple-tv-touchpad-remote-2015",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "October 2015 — 4th-generation Apple TV launch",
+    context:
+      "Apple TV remotes through the 3rd generation (2012-2014) were simple — direction buttons, play/pause, menu. In October 2015 Apple ships the 4th-gen Apple TV with the Siri Remote — a smaller remote with a glass touchpad covering the top half of the device. Users swipe on the touchpad to navigate menus. The remote also has a built-in microphone for Siri voice queries. Buttons are minimal. Within months, the Siri Remote becomes universally hated by reviewers and users: easy to grip backwards (the touchpad and the menu side are nearly identical), accidental touch triggers, no easy way to scrub through video.",
+    prompt:
+      "Why ship a remote whose primary interaction is a touchpad — when TV remotes have used physical buttons for ~70 years and the touchpad's biggest weakness (no tactile orientation) is structurally insoluble?",
+    reveal_quote:
+      "The Siri Remote is the perfect companion to Apple TV. Use the Touch surface for swiping and selecting. Press and hold the Siri button to use your voice to control Apple TV.",
+    reveal_quote_attribution: "Apple — Siri Remote announcement, October 2015",
+    reveal_note:
+      "The non-obvious move: the touchpad remote is the wrong design for a fundamental reason — a TV remote is used in low-light, often without looking at it, and a touchpad gives zero tactile orientation feedback (you can't tell which side is up). The original Apple TV team prioritized aesthetics (clean, symmetrical glass) over the use case (find the play button without looking). Six years later, in 2021, Apple ships a redesigned Siri Remote — same software, but with a circular d-pad clickwheel-inspired interface, dedicated physical buttons, and asymmetric shape. The redesign explicitly admits the touchpad was wrong. The lesson: industrial design that violates the use case's structural constraints (in this case, eyes-free tactile interaction) fails regardless of how good the design looks. Aesthetically beautiful products that solve the wrong problem are still bad products. The touchpad remote is the canonical Apple TV miss — and Apple eventually walked it back.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Apple TV (4th generation) — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Apple_TV_(4th_generation)",
+        type: "article",
+      },
+      {
+        title: "Apple's new Siri Remote is here. Finally.",
+        url: "https://www.theverge.com/2021/4/20/22394197/apple-tv-4k-2021-siri-remote-new-design-buttons-clickpad",
+        publisher: "The Verge",
+        year: 2021,
+        type: "article",
+      },
+      {
+        title: "Why the new Apple TV Remote is so much better than the old one",
+        url: "https://9to5mac.com/2021/04/22/new-apple-tv-remote-comparison/",
+        publisher: "9to5Mac",
+        year: 2021,
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
+  {
+    id: "spotify-liked-songs-auto-playlist",
+    type: "daily",
+    scheduled_date: "",
+    company: "Spotify",
+    era: "Mid-2010s — Liked Songs as automatic playlist",
+    context:
+      "Music apps in the late 2000s require users to manually build playlists. iTunes had 'Smart Playlists' (rules-based) and 'Playlists' (manual). Spotify ships 'Liked Songs' (originally 'Your Library' / 'Loved Tracks') — every song you tap the heart on is automatically added to a single, ever-growing personal playlist. The Liked Songs playlist appears at the top of every user's library, alphabetically sortable, searchable, but never editable as a 'playlist' — it's the union of every heart you've ever tapped, organized by when you liked them.",
+    prompt:
+      "Why is 'Liked Songs' a different product than a manually-created playlist — and what does the automatic, no-naming-required design do for user behavior?",
+    reveal_quote:
+      "Your Liked Songs is your personal collection of music you've saved. Every song you've ever tapped the heart icon on lives here, organized by when you added it.",
+    reveal_quote_attribution:
+      "Spotify — Liked Songs / Your Library documentation",
+    reveal_note:
+      "What's easy to miss: Liked Songs eliminates the cognitive overhead of 'should this go in 'Workout' or 'Indie' or 'Recent Favorites'?' Manual playlists force categorical decisions; Liked Songs doesn't ask. The user just taps the heart. The result is a high-engagement low-friction interaction: ~50%+ of active Spotify users have hundreds or thousands of Liked Songs (vs. typical users having 2-5 manually-built playlists). The single-bucket design is also a perfect data source for Spotify's recommender — the user's Liked Songs is the highest-signal data on what they actually want to hear, far better than what they manually tagged into categories. The lesson: when users have to choose between making the right categorization decision or skipping the action entirely, many will skip. Removing the categorization choice ('just tap the heart') converts an occasional action into a habitual one. Apple Music 'Saved' uses the same pattern.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Like, save and download — Spotify",
+        url: "https://support.spotify.com/us/article/like-save-and-download/",
+        publisher: "Spotify Support",
+        type: "documentation",
+      },
+      {
+        title: "What is Your Library? — Spotify",
+        url: "https://newsroom.spotify.com/2019-06-26/your-library-just-got-an-update-on-spotify-mobile/",
+        publisher: "Spotify Newsroom",
+        type: "press-release",
+      },
+      {
+        title: "Spotify — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Spotify",
+        type: "article",
+      },
+    ],
+    tags: { industry: "media", region: "eu", decade: "2010s" },
+  },
 ];
 
 export const weeklySeed: WeeklyScenario[] = [
@@ -9533,6 +9765,424 @@ export const weeklySeed: WeeklyScenario[] = [
       },
     ],
     tags: { industry: "media", region: "us", decade: "2020s" },
+  },
+  {
+    id: "spotify-us-launch-2011",
+    type: "weekly",
+    iso_week: "",
+    company: "Spotify",
+    era: "Late 2010 – July 14, 2011",
+    intro:
+      "It is mid-2010. You are at Spotify. The product has been available in Sweden, UK, France, Spain, Netherlands, Norway, Finland since 2008-2009 — fully-licensed, ad-supported-free + premium-paid streaming with the entire major-label catalog. The US is the largest music market in the world and Spotify's strategic prize. Two structural problems block US entry: (1) US major labels (Universal, Sony, Warner, EMI) are skeptical of Spotify's free-tier model and demand higher per-stream royalties than Spotify pays in Europe; (2) Apple's iTunes Store dominates US digital-music sales and Apple is actively positioning iTunes Match (announced June 2011) as a competing service.\n\nSpotify negotiates with US labels for ~2 years. Daniel Ek personally meets with label executives repeatedly. The labels demand equity in Spotify in exchange for licensing — a multi-percent stake each, plus advance payments — and impose track-level streaming caps on the free tier (10 hours/month, 5 plays per song, for the first 6 months of any free user). The US launch is finally set for July 14, 2011.",
+    open_questions: [
+      "Accept label equity demands (cedes ownership but unlocks US market) vs. negotiate harder for cash-only deals (preserves equity but delays launch indefinitely)?",
+      "Free-tier streaming caps (limit user experience but appease labels) vs. unlimited free tier like EU (better product, no US deal)?",
+      "Launch via Facebook integration (requires Facebook login at launch — massive accelerator + privacy controversy) vs. standalone signup?",
+      "How aggressive to compete with iTunes — frontal challenge (signal confidence) or quiet expansion (avoid Apple retaliation)?",
+    ],
+    closing:
+      "Imagine you're with Daniel Ek in mid-2011. The US labels have signed. The Facebook integration is in. Launch is days away.",
+    decision:
+      "Launch Spotify in the US on July 14, 2011 with: paid label equity stakes (~17% combined to majors), free-tier streaming caps (10hrs/month, 5 plays per song after 6 months), invite-only initial rollout via Facebook integration (requires Facebook login). Spotify hits 1M US users within 5 months. Within a year, Spotify is the dominant streaming brand in the US, ahead of Pandora (which only does radio-style streaming) and Apple's iTunes Match (which only stores your existing library). The label equity stakes are eventually monetized at Spotify's 2018 direct listing — each major label receives several hundred million dollars in stock value.",
+    pullquote:
+      "Today is a big day. We are very, very excited to officially launch in the U.S. We have spent more than two years trying to make this happen. There is finally a free option to legally stream music in the U.S.",
+    pullquote_attribution: "Daniel Ek, Spotify cofounder/CEO — US launch blog post, July 14, 2011",
+    outcomes: [
+      { stat: "Jul 14, 2011", label: "Spotify US launch (after ~2 years of label negotiation)", accent: true },
+      { stat: "~17% equity", label: "Spotify ceded to US major labels combined (Sony, Universal, Warner, EMI)" },
+      { stat: "10 hrs/month", label: "free-tier streaming cap (after 6 months) — required by labels" },
+      { stat: "1M US users", label: "within 5 months of launch" },
+      { stat: "Apr 2018", label: "Spotify direct listing — label equity stakes monetized for $100s of millions each" },
+    ],
+    tradeoffs: [
+      {
+        title: "Equity to labels vs. cash-only licensing",
+        body:
+          "Ceding ~17% equity combined to the major labels was structurally enormous — Daniel Ek and the founders' stake was reduced by that much. The trade: labels became economically aligned with Spotify's success (they win if Spotify wins). Cash-only deals would have preserved equity but kept the labels as adversaries holding licensing leverage forever. Ek chose alignment.",
+      },
+      {
+        title: "Free-tier streaming caps vs. unlimited (EU model)",
+        body:
+          "The 10 hrs/month + 5 plays/song caps materially degraded the free-tier experience vs. EU. The bet: caps appease US labels long enough to lock in the licensing deal, then Spotify can negotiate the caps away once US user volume is established. The caps did get loosened (and eventually removed) within ~2 years.",
+      },
+      {
+        title: "Facebook login requirement vs. standalone signup",
+        body:
+          "Requiring Facebook login at launch accelerated viral growth (every Spotify play published to a user's Facebook feed) but invited privacy controversy. Many users hated the forced social sharing. Spotify added 'private session' mode and eventually decoupled Facebook by 2015. The viral-growth bet paid off — the social-graph viral loop was a major early US accelerant.",
+      },
+      {
+        title: "Frontal Apple challenge vs. quiet expansion",
+        body:
+          "Spotify's US launch was aggressive — direct competition with iTunes Match (Apple's competing announcement). The bet: Apple's product was structurally weaker (only stores your existing library, doesn't offer all-you-can-listen streaming). Spotify chose to compete openly rather than hide. The bet was right — by 2015, iTunes Match was dead, replaced by Apple Music (also a streaming product Apple essentially copied).",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Cede equity to labels + accept user-experience compromises (caps) + tie launch to Facebook (viral but controversial) vs. preserve equity + better free product + slower launch. Spotify chose every short-term concession to get the US market open, then renegotiated as scale grew. The strategy worked — Spotify dominates US streaming through 2025.",
+      user:
+        "The US Spotify user was the existing-iTunes-user who wanted streaming but couldn't get it legally (Pandora was radio-only). The caps and Facebook requirement were friction the user accepted because the alternative (BitTorrent + iTunes Match) was structurally worse.",
+      alt:
+        "Holding out for cash-only deals would have delayed US launch by ~1-2 more years, by which point Apple would have shipped its own competing streaming service. The opposite trade. Spotify's compromise-and-launch-fast strategy got them the US market before Apple Music's 2015 launch could establish.",
+      predict:
+        "Strong launch with Facebook viral loops. Caps loosen within 18-24 months. Spotify becomes the dominant US streaming brand by 2013. iTunes Match dies; Apple Music launches 2015 (3 years late) as a direct copy of Spotify's model. Long-term: the US launch is the canonical case in 'cede short-term value to incumbents (labels) to open a strategically essential market, then rebuild the position as scale compounds.'",
+    },
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Hello America. Spotify Here",
+        url: "https://newsroom.spotify.com/2011-07-13/hello-america-spotify-here/",
+        publisher: "Spotify Newsroom",
+        year: 2011,
+        type: "press-release",
+      },
+      {
+        title: "Spotify launches in the US",
+        url: "https://www.theguardian.com/technology/2011/jul/14/spotify-launches-us",
+        publisher: "The Guardian",
+        year: 2011,
+        type: "article",
+      },
+      {
+        title: "Spotify — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Spotify",
+        type: "article",
+      },
+    ],
+    tags: { industry: "media", region: "eu", decade: "2010s" },
+  },
+  {
+    id: "apple-pay-launch-2014",
+    type: "weekly",
+    iso_week: "",
+    company: "Apple",
+    era: "October 20, 2014 — Apple Pay launch",
+    intro:
+      "It is mid-2014. You are at Apple. Mobile payments have been a graveyard for years — Google Wallet (2011) has struggled, MCX / CurrentC (the retailer-consortium effort) is barely launched, and 'tap-to-pay' NFC payments on Android have failed to gain traction. The infrastructure (contactless terminals at retail, bank-card tokenization) exists but consumer adoption hasn't materialized. Apple is preparing Apple Pay for launch alongside iPhone 6 / 6 Plus.\n\nThe strategic challenge: how to launch a mobile payment product when prior attempts have all failed. Apple's bet — leverage Touch ID (launched 1 year earlier on iPhone 5s) as the authentication primitive. Tap iPhone to terminal, Touch ID confirms, transaction completes. Banks tokenize card numbers so Apple never sees the actual PAN. Retailers don't have to modify checkout software — Apple Pay works with the same contactless terminals already deployed. Launch is set for October 20, 2014.",
+    open_questions: [
+      "Build a closed payments ecosystem (Apple controls every transaction) vs. integrate with existing card networks (Visa, Mastercard, Amex — they take fees)?",
+      "Charge banks for transactions (revenue line, but banks resist) vs. let banks pay processing fees (no Apple revenue but banks more eager)?",
+      "Launch with all major US banks (broad coverage) vs. just a few signature banks (clean launch but smaller initial footprint)?",
+      "How aggressive on retailer-side adoption — sign exclusive deals (faster acceptance but creates incentive for retailer-consortium counter-products) or rely on existing NFC infrastructure (slower but neutral)?",
+    ],
+    closing:
+      "Imagine you're at Apple in fall 2014. iPhone 6 launches in September. Apple Pay is months from rollout. The bank negotiations are intense.",
+    decision:
+      "Launch Apple Pay on October 20, 2014 in the US with iPhone 6 / 6 Plus. Six major US banks (Bank of America, Capital One, Chase, Citi, Wells Fargo, Amex) are signed on at launch. Apple charges banks ~0.15% of each transaction (tiny by industry standards but real). Touch ID is the authentication primitive. Existing NFC infrastructure works at ~220,000 US retailers at launch (Whole Foods, Macy's, Walgreens, McDonald's, others). Retail consortium MCX retaliates — CVS, Rite Aid, and Walmart actively disable NFC payments to block Apple Pay, but their CurrentC product fails commercially within months. Apple Pay grows to ~500M users globally by 2024.",
+    pullquote:
+      "Apple Pay represents the biggest opportunity in the financial system since the introduction of magnetic-stripe payment cards. Security and privacy are at the core of Apple Pay.",
+    pullquote_attribution: "Tim Cook, Apple CEO — Apple Pay launch announcement, October 20, 2014",
+    outcomes: [
+      { stat: "Oct 20, 2014", label: "Apple Pay US launch with iPhone 6 / 6 Plus", accent: true },
+      { stat: "6 major banks", label: "signed on at launch (BofA, Cap One, Chase, Citi, Wells, Amex)" },
+      { stat: "0.15%", label: "Apple's per-transaction fee from banks — tiny but durable revenue" },
+      { stat: "220,000 retailers", label: "US contactless-ready locations at launch" },
+      { stat: "~500M users", label: "Apple Pay users globally by 2024" },
+    ],
+    tradeoffs: [
+      {
+        title: "Closed vs. open payments ecosystem",
+        body:
+          "Apple chose to integrate with existing card networks (Visa, Mastercard, Amex) rather than build a closed Apple-controlled payment system. The trade: Apple doesn't capture full payment value (cards take ~2-3%, Apple takes 0.15% of that), but adoption was infinitely faster because banks were already aligned. Building a closed system would have been a multi-year fight against incumbent networks Apple wouldn't have won.",
+      },
+      {
+        title: "Bank-fee revenue vs. consumer-paid",
+        body:
+          "Apple charges banks the 0.15% fee — not consumers. The trade: Apple Pay is free for consumers (driving adoption), banks pay because Apple Pay is more secure (fewer fraud losses for banks) and they gain young customer acquisition. The 0.15% is small per transaction but durable revenue at scale.",
+      },
+      {
+        title: "Touch ID as auth primitive vs. PIN-based confirmation",
+        body:
+          "Using Touch ID required iPhone 5s+ (excluded older iPhones at launch). The trade: a fingerprint-confirmed payment is structurally more secure than a swipe-and-sign card payment, which justified premium positioning. A PIN-based alternative would have been broader-compatible but introduced friction Apple Pay was designed to eliminate.",
+      },
+      {
+        title: "Frontal MCX retaliation vs. slow expansion",
+        body:
+          "MCX / CurrentC retailers (CVS, Rite Aid, Walmart) actively disabled NFC at their stores to block Apple Pay. Apple chose to wait them out rather than negotiate aggressively. Within 18 months, CurrentC failed commercially and the consortium retailers quietly re-enabled NFC. Apple's strategic patience worked — fighting on price or features would have been more expensive and less effective than letting the alternative fail.",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Integration with existing payment infrastructure (faster adoption, smaller revenue cut) + Touch ID-as-auth + bank-paid fees vs. closed payment ecosystem with full economics. Apple chose adoption speed over revenue maximization. The 500M user base 10 years later validates the choice — Apple Pay is now the dominant mobile-payments product globally, and Apple's small per-transaction fee at scale is materially profitable.",
+      user:
+        "The Apple Pay user is the iPhone 6+ owner with a credit / debit card from a major US bank. Apple sized that user base accurately — by 2024 ~50%+ of all US iPhone users have Apple Pay configured. The acceptance question (retailers) was the bottleneck, not the user-side adoption.",
+      alt:
+        "Building a closed Apple payment system would have given Apple full economic capture but probably failed against bank + card-network resistance. The opposite trade — and Apple chose the partnership path because the alternative would have been a years-long regulatory + commercial fight Apple wouldn't have won.",
+      predict:
+        "Strong launch with iPhone 6. MCX retailers block NFC; CurrentC fails by 2016. Apple Pay grows steadily through 2015-2020. International expansion (UK 2015, Japan 2016, China 2016, etc.). By 2024 Apple Pay is the default mobile-payments product globally. Long-term: Apple Pay is the canonical case in 'integration with incumbents accelerates payment-product adoption' — Stripe, Square, and Plaid all follow similar partnership-led playbooks.",
+    },
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Apple Pay Set to Transform Mobile Payments Starting October 20",
+        url: "https://www.apple.com/newsroom/2014/10/16Apple-Pay-Set-to-Transform-Mobile-Payments-Starting-October-20/",
+        publisher: "Apple Newsroom",
+        year: 2014,
+        type: "press-release",
+      },
+      {
+        title: "Apple Pay — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Apple_Pay",
+        type: "article",
+      },
+      {
+        title: "Apple Pay launches, ending what one bank executive calls 'the biggest moment in payments since the introduction of credit cards'",
+        url: "https://www.businessinsider.com/apple-pay-launch-2014-10",
+        publisher: "Business Insider",
+        year: 2014,
+        type: "article",
+      },
+    ],
+    tags: { industry: "fintech", region: "us", decade: "2010s" },
+  },
+  {
+    id: "apple-airpods-launch-2016",
+    type: "weekly",
+    iso_week: "",
+    company: "Apple",
+    era: "September – December 2016 — AirPods reveal + launch",
+    intro:
+      "It is mid-2016. You are at Apple. The decision to remove the headphone jack from iPhone 7 (announced September 2016) has been made; Bluetooth headphones will be the future. The market is dominated by Beats Studio (which Apple now owns), Bose QuietComfort, and various smaller Bluetooth brands. All have the same baseline UX problem: pairing is tedious, battery life is mediocre, and switching between devices is painful. Apple is preparing AirPods — wireless earbuds with proprietary W1 chip that pairs instantly with any Apple device via iCloud, ~5 hours battery life, ~$159 retail.\n\nReveal is September 7, 2016 (iPhone 7 event). Initial reaction is heavily critical — design is mocked ('they look like cigarettes'), price is high ($159 vs. $20-40 wired earbuds), there are concerns about losing them. Launch is delayed from October to December 13, 2016 ('to make sure they're great' per Apple).",
+    open_questions: [
+      "Custom W1 chip (Apple-only pairing magic) vs. standard Bluetooth (works everywhere but no differentiation)?",
+      "Charging case bundled (premium, adds cost) vs. case-free (lower price, harder to keep batteries charged)?",
+      "Design — earbud-style with stem (looks weird but enables technical features) vs. truepods-style (clean look, harder engineering)?",
+      "Ship on iPhone-7-launch day (riskier, possibly buggy) vs. delay to December (lose pre-holiday window, signal incompleteness)?",
+    ],
+    closing:
+      "Imagine you're at Apple in late October 2016. AirPods are scheduled to ship — but the W1 firmware is producing pairing issues. The decision to delay shipping is on the table.",
+    decision:
+      "Delay AirPods launch from October to December 13, 2016. Ship $159 with W1 chip for instant Apple-device pairing. Include charging case (provides ~24 hours total battery between charges). Stem design enables better microphone placement + battery life. AirPods become Apple's fastest-growing accessory ever — by 2018, AirPods generate ~$6B/year in revenue (more than Spotify's entire annual revenue at the time). By 2020, ~50% of all wireless earbuds sold globally are AirPods or AirPods Pro. The 'cigarettes' mockery dies within months; AirPods become a fashion statement and status symbol.",
+    pullquote:
+      "AirPods are an example of Apple-designed innovation, intelligently delivering wireless audio without the hassles that have plagued Bluetooth headphones to date.",
+    pullquote_attribution: "Phil Schiller, Apple SVP Worldwide Marketing — AirPods launch announcement, September 2016",
+    outcomes: [
+      { stat: "$159", label: "launch price (premium Bluetooth headphones at the time)", accent: true },
+      { stat: "Dec 13, 2016", label: "ship date — ~2 month delay from October target" },
+      { stat: "W1 chip", label: "Apple's proprietary Bluetooth chip enabling instant pairing across Apple devices" },
+      { stat: "~$6B/year", label: "AirPods revenue by 2018 — Apple's fastest-growing accessory ever" },
+      { stat: "~50%", label: "of global wireless-earbuds market share by 2020" },
+    ],
+    tradeoffs: [
+      {
+        title: "Custom W1 chip vs. standard Bluetooth",
+        body:
+          "The W1 chip is the magic — pair an AirPods to any Apple device once, and they automatically pair to every device on the same iCloud account. Standard Bluetooth would have been simpler engineering but lost the differentiation. Apple chose the custom-chip path because the cross-device pairing is the user-experience moat.",
+      },
+      {
+        title: "Premium $159 pricing vs. mass-market pricing",
+        body:
+          "$159 was premium for true-wireless earbuds in 2016 — when competing Bluetooth earphones cost $50-80. Apple bet on the brand + the W1 magic to justify the premium. The pricing held; AirPods are still ~$129-249 across the product line in 2025.",
+      },
+      {
+        title: "Stem design vs. cleaner truepods design",
+        body:
+          "The 'stem' design was mocked at launch but enables technical features: better microphone array (the stem points toward the mouth), more space for battery + sensors, longer reliable Bluetooth antenna. The cleaner truepods design (pursued by Samsung Galaxy Buds, etc.) traded better aesthetics for worse mic quality and shorter battery. Apple chose function over initial aesthetic acceptance — and the stem design became a recognizable fashion statement within 18 months.",
+      },
+      {
+        title: "Delay vs. ship on iPhone-7-launch",
+        body:
+          "Apple committed to shipping AirPods with iPhone 7 in October but delayed to December. The cost: missed pre-holiday viral moment, fed 'Apple is incomplete without Jobs' narratives. The benefit: AirPods shipped working well — no embarrassing recall, no broken-pairing PR cycle. Delaying when the product isn't ready is almost always the right call, even at brand cost.",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Custom-chip differentiation + premium pricing + stem-design technical optimization + delay-for-quality vs. standard Bluetooth + mass-market price + truepods aesthetics + on-time launch. Apple chose every higher-cost-but-better-execution option. The product compounded into one of Apple's most successful new categories ever.",
+      user:
+        "The AirPods user is the iPhone owner (any model with iOS 10+) who values the cross-device pairing magic. The product specifically does not work as well with non-Apple devices — by design. The 1B+ iPhone owners globally are the addressable market.",
+      alt:
+        "A standard-Bluetooth $79 earbud would have addressed a broader market but produced commodity economics. The opposite trade. Apple chose the differentiated-premium path and the AirPods became a category-defining product.",
+      predict:
+        "Mocked at reveal. Delayed launch. Strong demand at launch + holiday 2016. Reviews shift positive within weeks as users experience the W1 pairing magic. By 2018 AirPods are a cultural fashion phenomenon. Long-term: AirPods are the canonical case in 'when a category-defining accessory is the right strategic adjacency for a hardware ecosystem' — and the foundation for Apple's broader audio strategy (HomePod, AirPods Max, AirPods Pro, etc.).",
+    },
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Apple introduces AirPods",
+        url: "https://www.apple.com/newsroom/2016/09/apple-reinvents-wireless-headphones-with-airpods/",
+        publisher: "Apple Newsroom",
+        year: 2016,
+        type: "press-release",
+      },
+      {
+        title: "AirPods Now Available for Online Order — Starting at $159",
+        url: "https://www.macrumors.com/2016/12/12/airpods-available-this-week/",
+        publisher: "MacRumors",
+        year: 2016,
+        type: "article",
+      },
+      {
+        title: "AirPods — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/AirPods",
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
+  {
+    id: "google-plus-launch-2011",
+    type: "weekly",
+    iso_week: "",
+    company: "Google",
+    era: "June 28, 2011 – April 2019 — Google+ life and death",
+    intro:
+      "It is mid-2011. You are at Google. Facebook has crossed 750M users; Twitter has crossed 200M. Google has watched both rise without a credible social product of its own (Google Buzz launched 2010, failed within months). Larry Page returns as CEO in April 2011 and makes social Google's company-wide priority — every Google product (Search, Gmail, YouTube, Android) is to integrate with the new social product. The product is Google+ ('Google Plus'), and the strategic differentiator is 'Circles' — users organize friends into groups (Family, Coworkers, Close Friends, Acquaintances) and share with specific circles rather than 'everyone.' The pitch is privacy through structure.\n\nLaunch is invite-only on June 28, 2011. Demand explodes — within 2 weeks, Google+ hits 10M users. Within 3 months, 50M. The fastest social-network launch ever to that point. Larry Page ties executive bonuses to Google+ engagement metrics. Every Google product gets a '+ Share to Google+' button forced into the UI.",
+    open_questions: [
+      "Invite-only initial launch (signals exclusivity) vs. open launch (maximize speed)?",
+      "Force Google+ integration into every Google product (Search results, YouTube, Gmail — viral but invasive) vs. let it grow standalone (cleaner but slower)?",
+      "Circles structural differentiation (privacy-through-groups, different from Facebook's 'all friends') vs. compete head-on with Facebook on raw features?",
+      "How long to commit before declaring failure — 1 year, 3 years, 5 years?",
+    ],
+    closing:
+      "Imagine you're at Google in 2013-2014. Google+ has hundreds of millions of registered accounts but very low actual engagement. Vic Gundotra (Google+ lead) leaves in April 2014. The strategic question: how to wind down without admitting defeat.",
+    decision:
+      "Quietly retreat Google+ from 2014 onward. Vic Gundotra leaves April 2014. The forced cross-product integrations start being unwound (YouTube comments stop requiring Google+ in 2015; the company stops requiring real-name policies). The product limps along with declining engagement for ~4 years. In October 2018 Google discloses a data breach affecting ~500K Google+ users — the breach is the public face-saving moment to announce shutdown. Consumer Google+ shuts down on April 2, 2019, about 8 years after launch. By then, Google+ engagement is so low (~90 seconds average session) that the shutdown affects almost no one. Google+ is widely cited as the most expensive social-product failure in tech history (Larry Page estimated ~$1.2B+ invested).",
+    pullquote:
+      "While our engineering teams have put a lot of effort and dedication into building Google+ over the years, it has not achieved broad consumer or developer adoption, and has seen limited user interaction with apps.",
+    pullquote_attribution: "Google — Google+ shutdown announcement, October 8, 2018",
+    outcomes: [
+      { stat: "10M → 50M", label: "users in first 2 weeks → first 3 months — fastest launch ever at the time", accent: true },
+      { stat: "$1.2B+", label: "Larry Page's estimated total investment in Google+" },
+      { stat: "Apr 2014", label: "Vic Gundotra (Google+ lead) leaves Google" },
+      { stat: "~90 sec", label: "average user session time on Google+ at the end" },
+      { stat: "Apr 2, 2019", label: "Google+ consumer shutdown — ~8 years after launch" },
+    ],
+    tradeoffs: [
+      {
+        title: "Forced integration across Google vs. standalone product",
+        body:
+          "Larry Page's decision to force Google+ integration into every Google product (Search, Gmail, YouTube) accelerated initial signups but produced massive user resentment. The forced YouTube-comments-via-Google+ moment (2013) generated viral backlash. The 'real names' policy (also from this push) alienated huge cohorts. Building Google+ as a standalone product would have been slower but might have produced a smaller-but-more-engaged audience.",
+      },
+      {
+        title: "Circles differentiator vs. Facebook-clone",
+        body:
+          "Circles was Google's product-level bet on 'share with specific groups, not everyone.' The bet was reasonable in principle — privacy-conscious users prefer audience control. But the friction of organizing friends into Circles + remembering which Circle to share with for each post exceeded the friction users wanted to absorb. Most users just posted to 'Public' — at which point Google+ was just a worse Facebook.",
+      },
+      {
+        title: "Tie executive bonuses to Google+ engagement vs. organic growth",
+        body:
+          "Tying bonuses to G+ engagement created perverse incentives across Google — engineers in unrelated products started prioritizing 'how do we surface Google+ here' over their own products' user experience. The metric-gaming compounded the brand resentment. Removing the bonus structure earlier would have unwound the worst of the cross-product damage faster.",
+      },
+      {
+        title: "Quiet retreat vs. fast shutdown",
+        body:
+          "Google chose to wind Google+ down over ~5 years rather than admit failure quickly. The slow retreat let face be saved but extended the brand cost — every year of G+'s decline reinforced 'Google can't ship consumer social.' A 2014 shutdown would have been embarrassing but cleaner. Google chose embarrassment-management over honest accounting.",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Forced cross-product integration + bonus alignment + Circles differentiator vs. standalone product growth + organic team incentives + Facebook-clone features. Google chose ambition on every dimension and ended up with a product that signed up users in massive numbers but never produced engagement. The strategic ambition was the failure mode — the integration pressure produced sign-ups that didn't reflect intent.",
+      user:
+        "Google+ tried to serve everyone who used Google products — by forcing them to sign up via integration. That 'everyone' audience never wanted Google+; they wanted YouTube, Gmail, Search. The actual users who chose Google+ standalone (~10-20M genuinely engaged) became a small cohort the product couldn't sustain.",
+      alt:
+        "Launching Google+ as a standalone product with no forced integrations, accepting a slower 5-year growth ramp, would have produced a smaller-but-more-engaged community (similar to what Google Reader had been). The opposite trade. Google's all-in commitment compounded the failure when the product didn't work.",
+      predict:
+        "Massive launch numbers from forced integration. Engagement never matches signups. Cross-product backlash builds through 2013-2014. Vic Gundotra leaves. Slow retreat for 5 years. 2018 data breach provides face-saving shutdown excuse. Long-term: Google+ becomes the canonical case in 'when forced cross-product integration is the strategic mistake — viral signups without real intent compound the failure rather than mitigate it.'",
+    },
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Project Strobe: Protecting your data and securing third-party access — Google+ shutdown",
+        url: "https://blog.google/technology/safety-security/project-strobe/",
+        publisher: "Google Blog",
+        year: 2018,
+        type: "press-release",
+      },
+      {
+        title: "Google+ — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Google%2B",
+        type: "article",
+      },
+      {
+        title: "How Google+ failed",
+        url: "https://mashable.com/article/google-plus-shutting-down",
+        publisher: "Mashable",
+        year: 2018,
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-social", region: "us", decade: "2010s" },
+  },
+  {
+    id: "tesla-roadster-launch-2008",
+    type: "weekly",
+    iso_week: "",
+    company: "Tesla",
+    era: "2003 – February 2008 — Tesla Roadster launch",
+    intro:
+      "It is the mid-2000s. You are at Tesla Motors, a startup founded in 2003 by Martin Eberhard and Marc Tarpenning, with Elon Musk joining as Chairman / lead investor in 2004. Tesla's plan is a 3-step strategy explicitly written down in a 'Tesla Master Plan' (2006): (1) build a high-end electric sports car for early adopters who can afford the high cost, (2) use the profits to fund development of a more affordable model, (3) use those profits to fund a mass-market affordable electric vehicle. Step 1 is the Tesla Roadster — a $109,000 high-performance EV based on a modified Lotus Elise chassis, 0-60 in ~4 seconds, ~245-mile range, 6,800 lithium-ion battery cells.\n\nDevelopment is technically extraordinary and operationally chaotic. Multiple production-readiness delays push the launch from late 2006 to early 2008. By the time the Roadster ships, Tesla has burned through cash, fired multiple CEOs (including Eberhard), and is on the verge of insolvency. Musk takes over as CEO. The first customer Roadsters ship February 2008.",
+    open_questions: [
+      "Start with a luxury sports car ($109K) — high-margin, early-adopter demand, but tiny TAM — vs. start with a mass-market vehicle (impossible to fund directly)?",
+      "Use a Lotus Elise chassis (faster time-to-market, signals 'serious EV') vs. design from scratch (longer dev, full Tesla ownership)?",
+      "Lithium-ion 6800-cell battery pack (untested at automotive scale) vs. nickel-metal hydride (proven but heavier and less power-dense)?",
+      "Take customer deposits years before delivery (working capital but reputation risk) vs. internal-only financing (slower but lower-risk)?",
+    ],
+    closing:
+      "Imagine you're at Tesla in late 2007 — the company is bleeding cash, multiple CEOs have departed, and Roadster production is still being figured out. Musk has just taken over as CEO.",
+    decision:
+      "Ship the Tesla Roadster in February 2008 at $109,000. Tesla had taken customer deposits years in advance. Production ramps slowly through 2008 (about 200 units delivered in the first year). Tesla survives the 2008 financial crisis by the skin of its teeth — closing a critical Series D in December 2008, just days before potential bankruptcy. The Roadster sells ~2,450 lifetime units through 2012. It validates the EV-can-be-fast-and-desirable thesis, but its commercial success is modest. The Roadster's real product is the proof-of-concept that enables Step 2 (Model S, launched 2012) and Step 3 (Model 3, launched 2017) of the master plan.",
+    pullquote:
+      "The overarching purpose of Tesla Motors is to help expedite the move from a mine-and-burn hydrocarbon economy towards a solar electric economy.",
+    pullquote_attribution: "Elon Musk — 'The Secret Tesla Motors Master Plan (just between you and me)' blog post, August 2, 2006",
+    outcomes: [
+      { stat: "$109,000", label: "Roadster launch price (Feb 2008)", accent: true },
+      { stat: "~245 miles", label: "Roadster electric range (unprecedented for an EV in 2008)" },
+      { stat: "~2,450", label: "lifetime Roadster units sold (through 2012)" },
+      { stat: "Dec 2008", label: "Tesla Series D closes just days before potential bankruptcy" },
+      { stat: "3-step plan", label: "Roadster → Model S (2012) → Model 3 (2017) — Master Plan executed over a decade" },
+    ],
+    tradeoffs: [
+      {
+        title: "Sports-car-first vs. mass-market-first",
+        body:
+          "Starting with a $109K sports car was the only way to fund EV development with private capital — incumbents (GM, Toyota) had killed every prior consumer-EV effort. The high-margin sports-car bet meant Tesla served ~2,500 customers for the entire lifetime of the Roadster, but those customers funded the development of the next two product lines.",
+      },
+      {
+        title: "Lotus Elise chassis vs. ground-up design",
+        body:
+          "Using the Lotus chassis cut years of mechanical-engineering development but made the Roadster look like a modified Elise, not a Tesla. Designing from scratch would have produced a more distinctively Tesla product but cost ~3-5 more years of development time Tesla couldn't afford.",
+      },
+      {
+        title: "Lithium-ion 6800-cell pack vs. NiMH",
+        body:
+          "The 6800-cell laptop-battery approach was unprecedented at automotive scale. Bet was technical: lithium-ion's energy density meant a 245-mile range, the lowest-end-of-acceptable for a sports car. NiMH would have been safer but produced a sub-150-mile range, which would have made the Roadster a city car rather than a real sports car. The lithium-ion bet was right but technically risky — the cell-management system was the hardest engineering work of the project.",
+      },
+      {
+        title: "Early customer deposits vs. internal financing",
+        body:
+          "Tesla took deposits 1-2 years before delivery to fund the production ramp. The customer-deposit model became Tesla's signature financing approach (used massively for Model S, Model X, Model 3, Cybertruck). The reputational risk was real — every delivery delay angered deposit-holders publicly. Tesla accepted the brand cost because the working-capital alternative was insolvency.",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Survival + technological proof-of-concept + funding for the master plan vs. mainstream commercial success at the moment of launch. Tesla chose strategic groundwork over commercial scale. The Roadster's commercial success was modest (~2,500 lifetime units) but the strategic success was complete — it funded Model S, then Model 3, then everything after.",
+      user:
+        "The Roadster's customer was the early-adopter who wanted to demonstrate green credentials with a $109K sports car — a real but tiny audience. Tesla served them well; they became Roadster evangelists who recruited the next wave of Model S buyers.",
+      alt:
+        "Starting with an affordable EV directly would have been impossible — Tesla would have needed $5B+ in capital to develop a mass-market vehicle, which wasn't available from private investors in 2003-2008. The opposite trade — and almost certainly would have ended in bankruptcy before any product shipped.",
+      predict:
+        "Years of development delays. Cash near-misses. Tesla nearly dies in 2008 financial crisis. Musk takes over. Roadster ships in low volume but technically validates the EV thesis. Model S launches 2012, ramps. Model 3 launches 2017, scales. By 2020 Tesla is the world's most valuable automaker. Long-term: the Roadster is the canonical case in 'when a step-1 product is strategically about funding step-2 and step-3 — and the actual unit-economics of the step-1 product matter less than the proof-of-concept it generates.'",
+    },
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "The Secret Tesla Motors Master Plan",
+        url: "https://www.tesla.com/blog/secret-tesla-motors-master-plan-just-between-you-and-me",
+        publisher: "Tesla Blog (Elon Musk)",
+        year: 2006,
+        type: "blog",
+      },
+      {
+        title: "Tesla Roadster (first generation) — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Tesla_Roadster_(first_generation)",
+        type: "article",
+      },
+      {
+        title: "Tesla, Inc. — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Tesla,_Inc.",
+        type: "article",
+      },
+    ],
+    tags: { industry: "hardware", region: "us", decade: "2000s" },
   },
 ];
 
