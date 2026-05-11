@@ -5412,6 +5412,232 @@ export const dailySeed: DailyScenario[] = [
     ],
     tags: { industry: "devtools", region: "us", decade: "2010s" },
   },
+  {
+    id: "uber-surge-pricing",
+    type: "daily",
+    scheduled_date: "",
+    company: "Uber",
+    era: "2012+ — surge pricing rollout",
+    context:
+      "Taxi pricing is fixed — meter rate is the same Sunday afternoon and 2am Saturday night. The result: rides are abundant when nobody wants them, impossible to get when everyone does. Uber introduces 'surge pricing' (sometimes called 'dynamic pricing') around 2012 — when demand exceeds supply in an area, prices multiply (1.5x, 2x, 3x). High prices push drivers toward the area (more supply) and discourage riders willing to wait (less demand). The multiplier is displayed to riders before they confirm; they have to actively tap 'I accept the higher fare' to request a ride.",
+    prompt:
+      "Why expose the multiplier (1.5x, 2x, 3x) directly to riders — when most price-discrimination systems hide the math?",
+    reveal_quote:
+      "Surge pricing is how we keep the supply and demand of rides balanced. When demand is high, prices rise to encourage more drivers to get on the road and to ration the available cars to those who need them most.",
+    reveal_quote_attribution: "Uber — paraphrased from public commentary on surge pricing",
+    reveal_note:
+      "What's easy to miss: showing the multiplier transparently is what makes surge politically defensible. If Uber raised prices secretly during peak demand, the brand cost would be 'you're price-gouging.' By showing the multiplier explicitly and forcing riders to accept it, Uber transfers the choice to the rider: 'you can pay 2.5x now, or wait 20 minutes for surge to drop.' That's not price gouging; it's a transparent market in real-time. The economic logic also works — surge is the only mechanism that keeps cars actually available during peak demand. Without surge, 2am Saturday becomes 'no cars available, ever,' which is structurally worse for riders than 'cars available at 2.5x.' Lyft introduced 'Prime Time' (their version of surge) with similar transparency. Both are sometimes criticized publicly, but the economic data shows riders during surge events overwhelmingly accept (rather than wait or cancel). The lesson: in two-sided markets, transparent dynamic pricing solves availability problems that fixed pricing structurally cannot.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Uber surge pricing — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Uber",
+        type: "article",
+      },
+      {
+        title: "Surge pricing — How it works",
+        url: "https://www.uber.com/blog/surge-pricing/",
+        publisher: "Uber Blog",
+        type: "blog",
+      },
+      {
+        title: "The economics of Uber surge pricing",
+        url: "https://hbr.org/2016/02/the-future-of-business-models-uber-and-airbnb",
+        publisher: "Harvard Business Review",
+        type: "article",
+      },
+    ],
+    tags: { industry: "transportation", region: "us", decade: "2010s" },
+  },
+  {
+    id: "twilio-pay-as-you-go-pricing",
+    type: "daily",
+    scheduled_date: "",
+    company: "Twilio",
+    era: "2008+ — usage-based pricing default",
+    context:
+      "Telecom services in 2008 require monthly contracts ($500-5000 minimum), long sales cycles, and per-month commitments. Twilio launches with pay-as-you-go SMS / voice API pricing — $0.0075 per SMS sent, no monthly minimum, no contract, sign up with a credit card. A developer can test the API for $5. Production-scale customers pay only for what they use. Twilio's pricing page is a calculator: enter your expected volume; see your monthly cost.",
+    prompt:
+      "Why make usage-based pricing the default — when sales-team SaaS is the obvious 'real revenue' play in B2B telecom?",
+    reveal_quote:
+      "You can sign up, get your credentials, send your first message, and pay $0.0075 — all in 60 seconds. That's the entire pricing page.",
+    reveal_quote_attribution: "Twilio — paraphrased from early Twilio marketing and developer documentation",
+    reveal_note:
+      "What's easy to miss: usage-based pricing reverses the customer-acquisition flow. Traditional B2B sales: sign a contract, then use the product. Usage-based: use the product, then realize you're spending real money on it. The second flow is structurally more durable — the customer is already committed before they think about the cost. Twilio's growth pattern: developer signs up at $5/month for hobby project, scales to $500/month for production, scales to $50K/month for the production company's actual business. No sales call needed for any of those steps. The model gets criticized as 'we can't predict revenue' — but the predictability comes from cohort analysis, not sales commits. By 2024 usage-based pricing is the default for cloud services (AWS, Stripe, Twilio, OpenAI, Vercel) — every category-defining cloud / API company runs this model. The lesson: usage-based pricing is the structurally correct pricing for services where the marginal cost varies with use. The accounting noise (less revenue predictability) is the cost; the customer-acquisition efficiency (no sales motion) is the benefit.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Twilio pricing — Twilio",
+        url: "https://www.twilio.com/en-us/pricing",
+        publisher: "Twilio",
+        type: "documentation",
+      },
+      {
+        title: "Twilio's usage-based pricing — How it works",
+        url: "https://www.getmonetizely.com/articles/how-did-twilio-build-a-multi-billion-dollar-empire-with-usage-based-pricing",
+        publisher: "Monetizely",
+        type: "article",
+      },
+      {
+        title: "Twilio — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Twilio",
+        type: "article",
+      },
+    ],
+    tags: { industry: "devtools", region: "us", decade: "2000s" },
+  },
+  {
+    id: "instagram-square-photos-2010",
+    type: "daily",
+    scheduled_date: "",
+    company: "Instagram",
+    era: "October 2010 — Instagram launch",
+    context:
+      "Phone cameras through 2010 take rectangular photos (4:3 or 16:9 aspect ratios depending on orientation). Instagram launches in October 2010 with a counterintuitive constraint: every photo must be square (1:1). Users have to crop their rectangular phone photos to a square before posting. Square photos also pre-date Instagram on Polaroid film (which used a similar square format) — the format is a deliberate nostalgic reference.",
+    prompt:
+      "Why force every Instagram photo into a square format — when phone cameras produce rectangular photos and users have to crop?",
+    reveal_quote:
+      "The square format was inspired by Polaroid and Kodak Instamatic. It gives Instagram a distinct visual identity that's instantly recognizable. Every Instagram photo, regardless of who shot it or where, has the same shape.",
+    reveal_quote_attribution: "Kevin Systrom, Instagram cofounder — paraphrased from public commentary on Instagram's design",
+    reveal_note:
+      "What's easy to miss: forcing square format gives Instagram a brand-level visual identity that's recognizable at a glance. A square photo with a filter applied is unmistakably Instagram (vs. a rectangular photo on Facebook). The constraint also simplifies the entire app — the feed is a uniform grid, profile photos all match the post format, filters are designed for a fixed aspect ratio. The cost was real (users had to crop, often losing parts of their photos), but the brand-identity benefit compounded. In 2015 Instagram added support for rectangular photos (4:5 portrait, 16:9 landscape) — by then the brand was so embedded that adding flexibility didn't break the identity. The lesson: arbitrary visual constraints at launch can be the brand. Twitter's 140 characters, TikTok's vertical-only video, Snapchat's vanishing photos — all started as constraints that became identities. The Instagram square is the canonical example for visual products. The cost of constraints (user friction) is often outweighed by the brand-recognition benefit when the constraint is the visual signature.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Instagram — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Instagram",
+        type: "article",
+      },
+      {
+        title: "Instagram now supports rectangular photos",
+        url: "https://techcrunch.com/2015/08/27/instagram-square-only-no-more/",
+        publisher: "TechCrunch",
+        year: 2015,
+        type: "article",
+      },
+      {
+        title: "Kevin Systrom on Instagram's design choices",
+        url: "https://about.instagram.com/blog/announcements/instagrams-evolution",
+        publisher: "Instagram Blog",
+        type: "blog",
+      },
+    ],
+    tags: { industry: "consumer-social", region: "us", decade: "2010s" },
+  },
+  {
+    id: "youtube-shorts-launch-2020",
+    type: "daily",
+    scheduled_date: "",
+    company: "YouTube (Google)",
+    era: "September 2020 — YouTube Shorts launch",
+    context:
+      "TikTok in 2020 has exploded — surpassing 1B downloads globally, capturing the under-25 short-form video audience. Instagram has already responded with Reels (August 2020, in pool as a weekly). YouTube launches 'Shorts' in September 2020 in India first (capitalizing on India's TikTok ban that summer), then globally in 2021. Format: vertical videos up to 60 seconds (later extended to 3 minutes), embedded directly inside the main YouTube app, with an algorithmic For You feed. YouTube creator monetization (revenue share with creators) follows in 2023.",
+    prompt:
+      "Why launch Shorts in India first — and what does YouTube's late-but-aggressive entry tell you about platform incumbent response to format disruption?",
+    reveal_quote:
+      "YouTube Shorts is a new short-form video experience for creators and artists who want to shoot snackable videos using nothing but their mobile phones.",
+    reveal_quote_attribution: "YouTube — Shorts launch announcement, September 2020",
+    reveal_note:
+      "What's easy to miss: launching in India first was strategically deliberate — India banned TikTok in June 2020 over national security concerns, leaving ~200M TikTok users overnight without a service. YouTube Shorts captured a meaningful fraction of that displaced cohort instantly, then used the India experience to refine the product before global launch. By 2024 YouTube Shorts has ~70B+ daily views (vs. TikTok's ~140B), competing for short-form video market share. YouTube's structural advantage: the main YouTube app has 2.5B+ MAU already; Shorts inherits that audience for distribution. The 2023 monetization push (revenue share with creators) also leverages YouTube's existing creator-payment infrastructure (something TikTok still struggles with). The lesson: format disruption (TikTok displacing established video) doesn't necessarily kill incumbents if the incumbent moves fast enough and uses geographic or audience advantages. YouTube's Shorts strategy is the canonical case of 'incumbent platform fights back via format adoption + leveraging existing distribution + accelerating monetization to win creators over.'",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "YouTube Shorts — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/YouTube_Shorts",
+        type: "article",
+      },
+      {
+        title: "Introducing YouTube Shorts beta",
+        url: "https://blog.youtube/news-and-events/building-youtube-shorts/",
+        publisher: "YouTube Blog",
+        year: 2020,
+        type: "blog",
+      },
+      {
+        title: "YouTube Shorts gets monetization",
+        url: "https://techcrunch.com/2023/02/01/youtube-shorts-revenue-sharing-creators/",
+        publisher: "TechCrunch",
+        year: 2023,
+        type: "article",
+      },
+    ],
+    tags: { industry: "media", region: "us", decade: "2020s" },
+  },
+  {
+    id: "iphone-do-not-disturb-2012",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "September 2012 — iOS 6 Do Not Disturb",
+    context:
+      "Notifications on iPhone through iOS 5 buzz / chime regardless of time of day. Users have to manually silence the phone to sleep, then manually unsilence in the morning — and risk missing important calls (emergency, family) by accident. Apple ships Do Not Disturb (DND) in iOS 6 (September 2012). DND can be scheduled (silence everything from 10pm to 7am automatically), with explicit exceptions (Favorites contacts can ring through, repeat callers within 3 minutes can ring through — assumed emergency). The user sets it up once; the phone manages the silencing forever.",
+    prompt:
+      "Why include 'allow repeated callers within 3 minutes' as an explicit DND exception — and what does that detail tell you about feature design for trust?",
+    reveal_quote:
+      "With Do Not Disturb, you can schedule when you don't want incoming calls or notifications to disturb you. Repeated calls within three minutes will still ring through — in case it's important.",
+    reveal_quote_attribution: "Apple — Do Not Disturb launch documentation, iOS 6",
+    reveal_note:
+      "What's easy to miss: the 'repeat caller within 3 minutes' exception solves the universal anxiety that prevents people from using DND: 'what if there's a real emergency?' Without the exception, a parent with a sick child or a relative who's had a car accident would be silenced. With the exception, the user trusts DND because 'real emergencies will still get through' (anyone trying again immediately is presumed urgent). The same 3-minute rule has been copied by Android, Samsung, all major DND implementations. The technical implementation is simple (count repeats of the same caller within 3 minutes); the trust-building effect is huge. The lesson: when a feature requires the user to trust that 'this won't break in an emergency,' explicit fallback affordances (repeat-caller bypass, emergency-bypass for specific contacts) are what make adoption possible. Without the trust mechanism, users keep their phone permanently un-silenced and feel constantly interrupted. With it, they actually use DND. The 3-minute window is the entire reason DND works.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "iOS 6 — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/IOS_6",
+        type: "article",
+      },
+      {
+        title: "Set up Do Not Disturb on your iPhone",
+        url: "https://support.apple.com/en-us/HT204321",
+        publisher: "Apple Support",
+        type: "documentation",
+      },
+      {
+        title: "Apple introduces iOS 6 with Do Not Disturb",
+        url: "https://www.apple.com/newsroom/2012/06/11Apple-Previews-iOS-6-with-All-New-Maps-Siri-Features/",
+        publisher: "Apple Newsroom",
+        year: 2012,
+        type: "press-release",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
+  {
+    id: "kindle-x-ray-feature",
+    type: "daily",
+    scheduled_date: "",
+    company: "Amazon",
+    era: "September 2011 — Kindle X-Ray launch",
+    context:
+      "Reading on Kindle through 2010 is linear — flip pages, see text, repeat. For dense fiction (Game of Thrones, Lord of the Rings, classics with many characters), readers often lose track of who's who. Amazon ships 'X-Ray' on the Kindle Touch (September 2011): a button that opens a panel showing all character names, places, and concepts in the book, with frequency-of-appearance and short descriptions. Tap any name to see every passage where they appear in the book. Reference works (textbooks, biographies) get similar treatment with topic / concept jumps.",
+    prompt:
+      "Why ship a 'who is this character' feature as a button rather than something the reader can always see — and what does X-Ray do for the reading experience that page-turning can't?",
+    reveal_quote:
+      "X-Ray lets you explore the 'Bones' of a book by tapping a character name to see everywhere they appear, or jumping to key concepts. It's like having a concordance built into every book.",
+    reveal_quote_attribution: "Amazon — X-Ray launch announcement, September 2011",
+    reveal_note:
+      "What's easy to miss: X-Ray converts the Kindle from 'a digital pager that displays text' into 'a context-aware reading tool.' The feature uses NLP to extract named entities (characters, places) and reference them across the book — a primitive form of what we'd now call 'augmented reading.' Heavy readers (genre fiction, classics, academic books) get an enormous benefit. The same content is just text in a paperback; with Kindle X-Ray it's structured data the reader can navigate. The lesson: digital reading isn't 'a book on a screen' — it's an opportunity to surface contextual information that printed pages structurally can't. Amazon's investment in X-Ray + later features (Highlights, dictionary lookup, Wikipedia inline, Vocabulary Builder) compounded into Kindle's moat over plain-PDF e-reading. The feature also reflects Amazon's data advantage: they have the full text of every book, can run NLP across all of them, and surface the results in the reading UI. Competitors (Kobo, Apple Books) have inferior X-Ray-equivalent experiences because they lack Amazon's catalog depth and data investment.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Kindle X-Ray — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/X-Ray_(Amazon_Kindle)",
+        type: "article",
+      },
+      {
+        title: "Amazon launches Kindle X-Ray feature",
+        url: "https://www.amazon.com/gp/help/customer/display.html?nodeId=GE6PJVZ4TUGTM2BV",
+        publisher: "Amazon Help",
+        type: "documentation",
+      },
+      {
+        title: "How Kindle X-Ray works",
+        url: "https://goodereader.com/blog/e-book-reader/kindle-x-ray-feature-explained",
+        publisher: "Good e-Reader",
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
 ];
 
 export const weeklySeed: WeeklyScenario[] = [
