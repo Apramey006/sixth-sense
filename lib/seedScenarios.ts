@@ -5638,6 +5638,233 @@ export const dailySeed: DailyScenario[] = [
     ],
     tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
   },
+  {
+    id: "spotify-collaborative-playlists-2008",
+    type: "daily",
+    scheduled_date: "",
+    company: "Spotify",
+    era: "2008+ — collaborative playlists launch",
+    context:
+      "Pre-Spotify music collections are personal — you have a music library on your computer; you make playlists; only you see / edit them. iTunes' approach: every playlist is yours. Spotify ships with 'collaborative playlists' from early on: any playlist can be marked collaborative, and any user with the share link can add / remove tracks. Friends building a road-trip playlist together. Wedding playlists co-built by everyone in the wedding party. Office playlists where every coworker adds tracks.",
+    prompt:
+      "Why is collaborative playlists a structurally different product than 'a playlist you share' — and what does the multi-user editing primitive do to social engagement?",
+    reveal_quote:
+      "Collaborative playlists let you create a playlist with friends — everyone can add, remove, and reorder songs. It's the easiest way to make a soundtrack for a road trip, a party, or just to keep up with what your friends are listening to.",
+    reveal_quote_attribution: "Spotify — collaborative playlists documentation",
+    reveal_note:
+      "What's easy to miss: collaborative playlists convert music consumption from a solo experience into a multi-user creative act. The road-trip playlist isn't just music — it's an artifact your group created together. The wedding playlist is part of the wedding's social ritual. The collaborative editing model is what makes Spotify's social layer work where Apple Music's individual-account model doesn't. Apple Music has tried adding social features (Apple Music Replay, friend-following) — they remain shallower than Spotify's because the foundational primitive (collaborative editing) isn't there. Spotify's collaborative playlists also feed the recommendation engine — playlist co-creation reveals shared music taste across friend graphs, which improves Discover Weekly accuracy. The lesson: multi-user editing primitives that turn solo activities into collaborative ones create durable engagement loops competitors can't easily replicate without re-architecting their data model.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Make a playlist with your friends — Spotify",
+        url: "https://support.spotify.com/us/article/playlist-collaboration/",
+        publisher: "Spotify Support",
+        type: "documentation",
+      },
+      {
+        title: "Spotify collaborative playlists",
+        url: "https://newsroom.spotify.com/2020-08-26/collaborative-playlists/",
+        publisher: "Spotify Newsroom",
+        type: "press-release",
+      },
+      {
+        title: "How collaborative playlists work — Spotify",
+        url: "https://artists.spotify.com/help/article/playlist-collaboration",
+        publisher: "Spotify for Artists",
+        type: "documentation",
+      },
+    ],
+    tags: { industry: "media", region: "eu", decade: "2000s" },
+  },
+  {
+    id: "venmo-public-feed",
+    type: "daily",
+    scheduled_date: "",
+    company: "Venmo (PayPal)",
+    era: "2012+ — public payment feed",
+    context:
+      "Payment apps in 2012 (PayPal, Square Cash) treat transactions as strictly private. Venmo (founded 2009, acquired by Braintree 2012, then by PayPal 2013) makes a different design choice: every Venmo payment between users has a 'memo' field (where you write what the payment is for — '🍕' or 'rent' or 'concert tix') AND defaults to public visibility. Your friends, and friends-of-friends, can see WHO paid WHO for WHAT (just not the amount). The result is a 'social feed' of payments — see what your friends are paying each other for, often as a stream of emoji and inside jokes.",
+    prompt:
+      "Why default payments to public — when every other payment company treats transactions as confidential by default?",
+    reveal_quote:
+      "Venmo lets you share what you're doing with your friends through the things you pay them for. Pay for dinner with friends, see what other friends are up to, and share the moment.",
+    reveal_quote_attribution: "Venmo — paraphrased from public commentary on the payment feed design, early Venmo era",
+    reveal_note:
+      "The non-obvious move: public-by-default converts Venmo from a payment utility into a social network. Users post payments to entertain their friends (the emoji memos become inside jokes, status signals, social bonding). The public feed is also a discovery mechanism — see what your friend paid someone for, click their profile, expand your Venmo network. By 2015 Venmo's growth was structurally tied to this social loop. Critics (security researchers, privacy advocates) flagged that public-by-default is genuinely problematic — abusive partners can track payment patterns, criminals can identify drug dealers, etc. Venmo eventually adds more granular privacy controls (2017+), and by 2021 the public-by-default friend feed is removed from the main feed view (still accessible). The lesson: defaults that turn utilities into social products work for adoption but invite real privacy harms. Venmo's adoption curve depended on the public default; the harms required walking it back over years. PMs designing privacy-sensitive products need to think hard about whether 'public by default' is the right call — it almost always is for adoption, but often isn't for user safety long-term.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Venmo — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Venmo",
+        type: "article",
+      },
+      {
+        title: "Venmo's public transactions feed gets criticized",
+        url: "https://www.fastcompany.com/40543998/venmo-needs-to-stop-displaying-everyones-transactions",
+        publisher: "Fast Company",
+        type: "article",
+      },
+      {
+        title: "Venmo removes 'global' public feed",
+        url: "https://techcrunch.com/2021/07/13/venmo-kills-the-global-feed/",
+        publisher: "TechCrunch",
+        year: 2021,
+        type: "article",
+      },
+    ],
+    tags: { industry: "fintech", region: "us", decade: "2010s" },
+  },
+  {
+    id: "google-docs-real-time-cursor",
+    type: "daily",
+    scheduled_date: "",
+    company: "Google",
+    era: "2006+ — Google Docs collaborative cursors",
+    context:
+      "Document editing through 2005 means: open the file, edit, save, send. Two people editing the same Word doc means emailing versions back and forth, manually merging, hoping nothing's lost. Google Docs (launched 2006, acquired Writely + Spreadsheets) ships real-time collaborative editing with a critical UX detail: each collaborator has a labeled colored cursor that appears in the document. You see Alex's cursor moving across the paragraph in real-time, with their name floating above it. Multiple cursors edit simultaneously without conflicts.",
+    prompt:
+      "Why is visible colored cursors with names — vs. just 'real-time updating text' — the entire collaboration primitive?",
+    reveal_quote:
+      "When multiple people edit a Google Doc at the same time, you can see who else is editing through their colored cursor. The cursor shows you exactly where they are and what they're doing.",
+    reveal_quote_attribution: "Google — Google Docs collaboration documentation",
+    reveal_note:
+      "What's easy to miss: visible cursors are a social presence primitive, not just a sync indicator. Without them, real-time editing feels like 'the document is updating somehow' — magical but uncanny. With them, real-time editing feels like 'I can see Alex working with me' — co-presence. The cursor's name label says 'this is a person, not a robot.' Watching collaborators' cursors move across a document is enough to feel team productivity in a way that an empty document doesn't. Figma (2016+) extends this primitive — multi-cursor collaboration on design files with full live presence. Notion, Linear, Quip all ship similar cursor-presence affordances. The pattern is now table stakes for any collaborative product. The lesson: real-time sync isn't enough — the UX that surfaces who else is collaborating is what makes the product feel multi-player rather than just multi-user. The cursor is small, the difference in product feel is enormous.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Google Docs — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Google_Docs",
+        type: "article",
+      },
+      {
+        title: "Real-time collaboration in Google Docs",
+        url: "https://workspace.google.com/learning-center/products/docs/get-started/",
+        publisher: "Google Workspace Learning Center",
+        type: "documentation",
+      },
+      {
+        title: "How collaborative editing became a category",
+        url: "https://www.fastcompany.com/3046669/google-docs-history",
+        publisher: "Fast Company",
+        type: "article",
+      },
+    ],
+    tags: { industry: "productivity", region: "us", decade: "2000s" },
+  },
+  {
+    id: "uber-rate-your-driver",
+    type: "daily",
+    scheduled_date: "",
+    company: "Uber",
+    era: "2010+ — two-way rating system",
+    context:
+      "Taxi services pre-2010 have no rider-driver feedback loop. Riders complain to a dispatch line at best; drivers' bad behavior persists. Uber ships from day one with mandatory two-way rating: after every ride, both rider and driver rate each other on a 5-star scale. Driver ratings affect their ability to keep driving (drop below 4.6 average and Uber deactivates the account). Rider ratings affect their ability to get rides (low-rated riders see slower pickups). The mutual accountability is built into the platform.",
+    prompt:
+      "Why make the rating two-way (rider rates driver AND driver rates rider) — and what does mutual accountability do that one-way ratings can't?",
+    reveal_quote:
+      "After your trip, you'll rate the driver — and they'll rate you. This helps everyone be respectful and treats every Uber trip as a partnership.",
+    reveal_quote_attribution: "Uber — paraphrased from rating-system documentation",
+    reveal_note:
+      "What's easy to miss: two-way rating fundamentally changes the social dynamic between rider and driver. A one-way rating system (rider rates driver only) is structurally a customer-service feedback mechanism — driver behaves well to maintain rating; rider has no accountability. Two-way ratings change the rider's behavior too. Riders who throw up in cars, slam doors, are rude or late get low ratings — and slow pickup times in the future. The mutual accountability creates a different category of marketplace behavior: drivers and riders treat each other like business partners, not service worker / customer. The 5-star scale is functionally a binary (4.6+ is acceptable for drivers; below is deactivated), but the social pressure to maintain a high rating is real on both sides. The same model has been copied by Lyft, Airbnb (host + guest ratings), TaskRabbit, DoorDash. The lesson: in marketplaces where both parties have agency (rider chooses driver, driver accepts ride), bilateral rating systems produce dramatically better behavior than unilateral ones. The asymmetry of 'customer always rates, vendor never rated' is a holdover from one-way commerce that doesn't apply to two-sided gig markets.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Uber — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Uber",
+        type: "article",
+      },
+      {
+        title: "How Uber's rating system works",
+        url: "https://www.uber.com/us/en/drive/basics/how-ratings-work/",
+        publisher: "Uber",
+        type: "documentation",
+      },
+      {
+        title: "Why Uber drivers rate passengers",
+        url: "https://www.cnbc.com/2019/06/04/uber-drivers-rate-passengers-too-heres-how-to-check-your-rating.html",
+        publisher: "CNBC",
+        year: 2019,
+        type: "article",
+      },
+    ],
+    tags: { industry: "transportation", region: "us", decade: "2010s" },
+  },
+  {
+    id: "patreon-creator-tiers",
+    type: "daily",
+    scheduled_date: "",
+    company: "Patreon",
+    era: "May 2013 — Patreon launch with tier system",
+    context:
+      "Pre-Patreon, supporting an independent creator means a one-time donation (PayPal, GoFundMe) or buying their merchandise. There's no easy mechanism for monthly recurring patronage with reward tiers. Patreon launches in May 2013 with a tier-based subscription model: creators define multiple support tiers ($1, $5, $25, $100 per month), each with escalating rewards (early access, behind-the-scenes content, name in credits, monthly Q&A). Patrons pick a tier and pay monthly; creators earn recurring revenue.",
+    prompt:
+      "Why introduce a tiered subscription model — vs. simply a per-creator monthly pledge?",
+    reveal_quote:
+      "Patreon's tiered system lets creators offer different levels of access and rewards. Patrons choose how much they want to support based on the value they get back.",
+    reveal_quote_attribution: "Patreon — paraphrased from launch and early documentation",
+    reveal_note:
+      "What's easy to miss: tiered pricing exploits the patron's willingness to pay across different consumer-surplus segments. Without tiers, every patron pays the same amount. With tiers, the casual fan pays $1/month, the devoted fan pays $25/month, and the superfan pays $100+/month — all for the same underlying creator. Creator revenue is dramatically higher than flat-rate would produce. The tiers also create a status / community hierarchy among patrons (higher tiers get acknowledged publicly, early access, etc.). Substack later goes the opposite direction (single price per newsletter, no tiers) — and that's a deliberate philosophical choice (writers prefer simplicity, readers don't want pricing tiers in publishing). Patreon's tier model works for creator categories where the rewards are clearly differentiated (early access, name in credits, exclusive content). The lesson: tiered pricing converts a flat-rate market into a willingness-to-pay segmentation. Different tiers serve different consumer-surplus segments. Same logic underlies SaaS pricing (Starter / Pro / Enterprise), streaming services (Basic / Standard / Premium), and most consumer subscriptions.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Patreon — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Patreon",
+        type: "article",
+      },
+      {
+        title: "How to set up your Patreon tiers",
+        url: "https://www.patreon.com/blog/setting-up-tiers",
+        publisher: "Patreon Blog",
+        type: "blog",
+      },
+      {
+        title: "Patreon's tier system explained",
+        url: "https://www.thepenny-hoarder.com/make-money/side-gigs/patreon-tiers/",
+        publisher: "The Penny Hoarder",
+        type: "article",
+      },
+    ],
+    tags: { industry: "media", region: "us", decade: "2010s" },
+  },
+  {
+    id: "google-search-instant-2010",
+    type: "daily",
+    scheduled_date: "",
+    company: "Google",
+    era: "September 8, 2010 — Google Instant launch",
+    context:
+      "Web search through 2010 means: type your query, press Enter, see results. Type as fast or as slow as you want — the page won't load until you submit. Google ships 'Google Instant' on September 8, 2010 — search results that update as you type, character by character. Type 'we' and you see results for 'weather'; add 'ather' and they refine. The page never reloads; results update inline. Google claims Instant saves users 2-5 seconds per search and ~11 hours per user per year cumulatively.",
+    prompt:
+      "Why is character-by-character search-as-you-type a fundamentally different product than enter-press search — and what was Google trying to capture?",
+    reveal_quote:
+      "Google Instant predicts what you're searching for and shows results as you type. The new technology saves the average searcher 2 to 5 seconds per search.",
+    reveal_quote_attribution: "Google — Google Instant launch announcement, September 2010",
+    reveal_note:
+      "What's easy to miss: search-as-you-type fundamentally changes the user's behavior. With enter-press search, users compose their entire query in their head before typing. With Instant, users see results refining in real-time and can adjust mid-query. The result: users often complete their search before they've finished typing what they thought their query would be. The technology required massive infrastructure investment — every keystroke triggers a new query result, requiring ~5-10x more search-result traffic than enter-press search. Google's data centers absorbed the cost because the engagement compound was worth it. Google removed Instant in 2017 (after 7 years) — the reason was that mobile usage had grown enormously and Instant didn't work as well on phones (keyboard takes up half the screen; users can't see the results while typing). The lesson: products optimized for the previous device paradigm (desktop search) often don't translate to new paradigms (mobile search). Google removed Instant because the use case had shifted, not because the technology stopped working.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Google Instant search — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Google_Instant",
+        type: "article",
+      },
+      {
+        title: "Google Instant launch announcement",
+        url: "https://googleblog.blogspot.com/2010/09/search-faster-than-you-can-type-with.html",
+        publisher: "Google Official Blog",
+        year: 2010,
+        type: "blog",
+      },
+      {
+        title: "Google removes Instant Search",
+        url: "https://techcrunch.com/2017/07/26/google-instant-search-removed/",
+        publisher: "TechCrunch",
+        year: 2017,
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
 ];
 
 export const weeklySeed: WeeklyScenario[] = [
