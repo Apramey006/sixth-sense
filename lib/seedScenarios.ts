@@ -2450,6 +2450,238 @@ export const dailySeed: DailyScenario[] = [
     ],
     tags: { industry: "saas", region: "us", decade: "2010s" },
   },
+  {
+    id: "tinder-minimal-onboarding",
+    type: "daily",
+    scheduled_date: "",
+    company: "Tinder",
+    era: "September 2012 — launch",
+    context:
+      "Online-dating onboarding in 2012 is a 30-90 minute commitment. OkCupid asks ~50 personality questions to power compatibility matching. eHarmony has a multi-step compatibility quiz. Match.com requires bios, height, hobbies, religion, salary range. The implicit promise is that more data = better matches. Tinder ships with the opposite signup: connect Facebook (auto-pulls name, age, photos, mutual friends), set distance, set age range, start swiping. Total setup: under 60 seconds. No questionnaire. No compatibility algorithm. No bio required.",
+    prompt:
+      "Why ship a dating app with almost zero onboarding signal — when every existing dating product treats onboarding data as the entire matching engine?",
+    reveal_quote:
+      "We didn't compete with OkCupid on quality of match. We competed with the OkCupid signup form. Every minute someone spends in onboarding is a minute they're not in the product feeling the dopamine that makes them stay.",
+    reveal_quote_attribution:
+      "Tinder team — paraphrased from public commentary on the original onboarding philosophy",
+    reveal_note:
+      "The non-obvious move: minimal onboarding is not just lower friction — it's a positioning statement that the product's value is the in-app experience, not the matching algorithm. OkCupid's long signup signals 'we will work hard to find your soulmate'; Tinder's no-signup signals 'open the app, swipe, see what happens.' The two are different products solving different jobs. Tinder's user activation rate (signup → first swipe) was structurally far higher than any competitor's. That activation gap compounded into Tinder's overwhelming scale advantage. The lesson: when a competitor's product depth is anchored in onboarding data, you can sometimes win by structurally refusing to collect that data — making the absence a differentiator. The cost (worse 'matches' on paper) is dwarfed by the activation gain.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Tinder - Onboarding | App Fuel",
+        url: "https://theappfuel.com/examples/tinder_onboarding",
+        type: "blog",
+      },
+      {
+        title: "Tinder vs. OkCupid: Is There a Real Difference?",
+        url: "https://www.privateinternetaccess.com/blog/tinder-vs-okcupid/",
+        publisher: "Private Internet Access",
+        type: "article",
+      },
+      {
+        title: "How To Onboard People Into Your Product — The Right Way",
+        url: "https://about.crunchbase.com/blog/user-onboarding/",
+        publisher: "Crunchbase",
+        type: "blog",
+      },
+    ],
+    tags: { industry: "consumer-social", region: "us", decade: "2010s" },
+  },
+  {
+    id: "pinterest-pick-5-topics",
+    type: "daily",
+    scheduled_date: "",
+    company: "Pinterest",
+    era: "2010s — onboarding optimization",
+    context:
+      "Most social products onboard with empty feeds — log in, see nothing, search for friends to follow. Pinterest takes a different approach: every new user is asked to pick 5 topics they're interested in (cooking, travel, fitness, fashion, etc.) BEFORE seeing the home feed. Once you've picked five topics, Pinterest builds a personalized feed of pins from those categories. The 'follow 5 topics' screen is non-skippable in early versions. Casey Winters and the Pinterest growth team optimize this onboarding obsessively — the 5-topic minimum is the threshold that produces the right initial-feed experience.",
+    prompt:
+      "Why force every new user through a 5-topic interest picker — when most social products treat onboarding friction as the enemy and prefer to drop users straight into the feed?",
+    reveal_quote:
+      "Pinterest's value depends entirely on the home feed showing you something interesting. An empty home feed is product death. Five topics was the minimum input that let our algorithm produce a personalized feed worth coming back to. Less than five = bad first session = no second session.",
+    reveal_quote_attribution:
+      "Casey Winters / Pinterest growth team — paraphrased from public commentary on the onboarding flow",
+    reveal_note:
+      "What's easy to miss: the 5-topic picker is not friction — it's the input that makes the rest of the product work. Most social products can survive an empty initial feed because the user has people to follow / search for. Pinterest's product is content discovery, so an empty feed is structurally a dead product. Forcing 5 topics inverts the typical onboarding logic — the friction enables the product instead of delaying it. Activation rate (signup → meaningful session) jumped materially after the 5-topic threshold was introduced and tuned. The lesson: onboarding friction is contextually right or wrong depending on whether the product can deliver value at zero input. Products whose value depends on collected user signal NEED the friction; products whose value compounds from a known social graph (Facebook, Instagram in early days) don't.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "How Pinterest perfected user onboarding",
+        url: "https://www.appcues.com/blog/casey-winters-pinterest-user-onboarding",
+        publisher: "Appcues",
+        type: "blog",
+      },
+      {
+        title: "Pinterest's value-driven onboarding flow",
+        url: "https://goodux.appcues.com/blog/pinterests-value-driven-onboarding-flow",
+        publisher: "GoodUX (Appcues)",
+        type: "blog",
+      },
+      {
+        title: "How Pinterest Onboards New Users",
+        url: "https://www.useronboard.com/how-pinterest-onboards-new-users/",
+        publisher: "User Onboarding",
+        type: "blog",
+      },
+    ],
+    tags: { industry: "consumer-social", region: "us", decade: "2010s" },
+  },
+  {
+    id: "cashapp-cashtag-identity",
+    type: "daily",
+    scheduled_date: "",
+    company: "Cash App (Block / Square)",
+    era: "March 2015 — $cashtag launch",
+    context:
+      "P2P payments in 2015 require identifying the recipient — usually by phone number or email. Both are clunky: phone numbers are fragmented across SIM cards and country codes; email is tied to a sometimes-private inbox. Square Cash (later Cash App) ships $cashtag — a unique payment-identity username, prefixed with $, that anyone can claim. Want to receive money? Tell people your $cashtag. Type it on a sign, a business card, an Instagram bio. The $cashtag becomes a public-by-design payment handle, simultaneously memorable, claimable, and visible.",
+    prompt:
+      "Why design a public payment handle (a $cashtag) — when the entire payments industry treats account identifiers as private (account numbers, routing numbers, card numbers)?",
+    reveal_quote:
+      "$cashtag is a unique username that allows users to send and receive money. Anyone can create a personalized name like $ErinHills or $SunsetPhotography and get paid privately and securely.",
+    reveal_quote_attribution: "Square — official $cashtag launch announcement, March 2015",
+    reveal_note:
+      "The non-obvious move: making the payment identifier public is a positioning statement, not just a UX detail. Visa / Mastercard / banks treat account numbers as secrets to be guarded. Cash App treats $cashtags as personal-brand assets to be displayed. That single design choice converts 'asking for money' from a social-friction event ('text me your account info') into a brand-friendly one ('venmo me' / 'cashapp me $whoever'). The $cashtag becomes a discoverable identity layer — small businesses, tip jars, street performers, freelancers all use $cashtags as the lowest-friction way to receive money. Venmo's @username had similar mechanics; Cash App's $-prefix made the brand even more identifiable in any text. The lesson: the formats and visual prefixes of identifiers are part of the product's brand, not just plumbing. The $ in $cashtag does as much marketing as a billion dollars of paid acquisition.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Square Cash is Open for Business",
+        url: "https://squareup.com/us/en/press/introducing-cashtags",
+        publisher: "Square Press",
+        year: 2015,
+        type: "press-release",
+      },
+      {
+        title: "Square's $Cashtag Makes Payments URL-Specific",
+        url: "https://www.pymnts.com/news/2015/squares-cashtag-makes-payments-url-specific/",
+        publisher: "PYMNTS",
+        year: 2015,
+        type: "article",
+      },
+      {
+        title: "Cash App — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Cash_App",
+        type: "article",
+      },
+    ],
+    tags: { industry: "fintech", region: "us", decade: "2010s" },
+  },
+  {
+    id: "notion-slash-commands",
+    type: "daily",
+    scheduled_date: "",
+    company: "Notion",
+    era: "2016+ — Notion's editor primitive",
+    context:
+      "Document editors in the 2010s separate content creation (typing) from content structure (formatting menus, drop-downs, paragraph styles). Google Docs, Microsoft Word, and most note-taking apps use this split. Notion ships with a different primitive: type `/` anywhere in a document, and a fuzzy-search menu appears with every block type — heading, bulleted list, toggle, code, embed, table, database. Hit Enter on the type you want and it inserts inline. Existing content can also be 'turned into' a different block via the same `/` interface. Slash commands are the canonical way to do almost anything in the Notion editor.",
+    prompt:
+      "Why bet the entire editor on a `/`-command primitive — when most users (especially non-technical ones) have never used a command-line interface and might find the syntax confusing?",
+    reveal_quote:
+      "Slash commands let us add hundreds of block types without ever showing them in a toolbar. The complexity is searchable, not visible. A new user types '/' and discovers what's possible; a power user types '/h1' and gets a heading without lifting their hand from the keyboard.",
+    reveal_quote_attribution:
+      "Notion design team — paraphrased from public commentary on the editor design",
+    reveal_note:
+      "The choice that's easy to miss: slash commands are progressive disclosure for an arbitrarily-deep feature set. A toolbar can hold ~10-20 block types before becoming overwhelming; a slash-menu can hold hundreds because they're searched, not browsed. As Notion grew from ~10 block types to 50+ to 100+ (with AI blocks, embeds, database views, formula columns), the slash UI scaled without changing — the user experience was the same when the menu had 10 options as when it had 100. By making `/` the universal entry point for all block-type discovery, Notion separated complexity-of-features from complexity-of-UI. The same primitive works for the brand-new user and the 5-year power user. The lesson: when a product's value depends on having many features, a single keyboard-summoned, fuzzy-searched command surface beats any toolbar / menu structure for both discoverability AND speed.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Using slash commands",
+        url: "https://www.notion.com/help/guides/using-slash-commands",
+        publisher: "Notion Help Center",
+        type: "documentation",
+      },
+      {
+        title: "Transforming content blocks in Notion",
+        url: "https://www.notion.com/help/guides/transforming-content-blocks-in-notion",
+        publisher: "Notion Help Center",
+        type: "documentation",
+      },
+      {
+        title: "Top Notion Commands | Keyboard shortcuts",
+        url: "https://blog.prototion.com/guide-notion-keyboard-shortcuts-and-commands-2023/",
+        publisher: "Prototion",
+        type: "blog",
+      },
+    ],
+    tags: { industry: "productivity", region: "us", decade: "2010s" },
+  },
+  {
+    id: "linear-cmd-k",
+    type: "daily",
+    scheduled_date: "",
+    company: "Linear",
+    era: "2019+ — command-bar primitive",
+    context:
+      "Project-management tools like Jira, Asana, and ClickUp all expose hundreds of features through visible UI — sidebars, top navs, drop-downs, modals, settings pages. Configurability is the brand. Linear takes the opposite approach: most features are accessible via a single keyboard shortcut, Cmd+K (Mac) / Ctrl+K (Windows), which opens a fuzzy-search command palette. Need to assign an issue? Cmd+K → 'assign to' → pick name. Need to change priority? Cmd+K → 'priority' → pick level. The command palette is contextual — it knows what you have selected and only shows applicable actions.",
+    prompt:
+      "Why hide most of the product's features behind a single keyboard shortcut — and what kind of user does the design implicitly select for vs. exclude?",
+    reveal_quote:
+      "Cmd+K is a contextual command menu. It gives you access to all actions applicable to your view or selection. If you're in the middle of writing something, you don't even have to take your hands off the keyboard — just a few quick keystrokes and you can find the action you need and run it.",
+    reveal_quote_attribution: "Linear — Contextual command menu changelog, October 2019",
+    reveal_note:
+      "What's easy to miss: hiding features behind Cmd+K is a deliberate user-selection mechanism. The first day in Linear, a new user has no idea Cmd+K exists. They're forced to discover it organically (or learn from a teammate). The discovery is a small ritual that converts a casual user into a power user — once you know Cmd+K, every other PM tool feels slow. Conversely, a customer who hates keyboard shortcuts will leave Linear within a week, which is correct — Linear's product economics depend on selling to high-engagement engineering teams who value speed over discoverability. Most PM tools optimize for casual-first-time discoverability (visible UI, lots of menus); Linear optimizes for the reverse, deliberately filtering out users who would generate support load and brand-dilute the product. Same logic underlies the original Linear keyboard-onboarding decision (already in the daily pool — same company, similar trade). The lesson: feature-discoverability vs. keyboard-speed is a brand-positioning tradeoff, not just a UX tradeoff. Pick which kind of user the product is for — the choice will define the product more than any feature.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Contextual command menu — Changelog",
+        url: "https://linear.app/changelog/2019-10-07-contextual-command-menu",
+        publisher: "Linear Changelog",
+        year: 2019,
+        type: "documentation",
+      },
+      {
+        title: "Command K Bars",
+        url: "https://maggieappleton.com/command-bar",
+        publisher: "Maggie Appleton",
+        type: "blog",
+      },
+      {
+        title: "How to build a remarkable command palette",
+        url: "https://blog.superhuman.com/how-to-build-a-remarkable-command-palette/",
+        publisher: "Superhuman",
+        type: "blog",
+      },
+    ],
+    tags: { industry: "devtools", region: "us", decade: "2010s" },
+  },
+  {
+    id: "ipod-shuffle-no-screen",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "January 11, 2005 — iPod Shuffle launch",
+    context:
+      "By 2005, every flash-memory music player on the market — Creative MuVo, Rio Forge, iRiver, etc. — has a small LCD screen, complicated controls, and lets users navigate to specific tracks. The user can SEE what song is playing and choose what comes next. Apple ships the iPod Shuffle: a flash-based player smaller than a pack of gum, $99 for 512MB / $149 for 1GB, with no screen at all. Five physical buttons (play/pause, next/previous, volume up/down). To pick songs, you sync via iTunes; to listen, you press play and let the device 'shuffle.'",
+    prompt:
+      "Why ship a music player without a screen — when every competitor includes one and consumers explicitly want to see what's playing?",
+    reveal_quote:
+      "With most flash-memory music players users must use tiny displays and complicated controls to find their music; with iPod shuffle you just relax and it serves up new combinations of your music every time you listen.",
+    reveal_quote_attribution: "Steve Jobs, Apple CEO — iPod Shuffle launch press release, January 11, 2005",
+    reveal_note:
+      "The non-obvious move: removing the screen converted a missing feature into a positioning statement. Without a screen, the product's job changes — you're not browsing music, you're trusting the shuffle. That trust is the entire pitch. The screen would have been a $5-10 BOM cost; the absence saved real money but more importantly defined the product's emotional identity. The Shuffle competed with similarly-priced screen-equipped players and outsold them — capturing 43% of the flash-player market within a single month, 58% by month three. The lesson: deliberately omitting an industry-standard feature can be a strategy if (a) the absence simplifies the product's promise, (b) the saved cost / size translates into a meaningful price or form-factor advantage, and (c) the lost capability is the right one to give up given the use case. Most product teams add features to differentiate; the harder discipline is to remove features and let the absence do the differentiation.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Apple Introduces iPod shuffle",
+        url: "https://www.apple.com/newsroom/2005/01/11Apple-Introduces-iPod-shuffle/",
+        publisher: "Apple Newsroom",
+        year: 2005,
+        type: "press-release",
+      },
+      {
+        title: "iPod Shuffle — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/IPod_Shuffle",
+        type: "article",
+      },
+      {
+        title: "iPod shuffle randomizes our music: Today in Apple history",
+        url: "https://www.cultofmac.com/apple-history/ipod-shuffle-launch",
+        publisher: "Cult of Mac",
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2000s" },
+  },
 ];
 
 export const weeklySeed: WeeklyScenario[] = [
@@ -6910,6 +7142,425 @@ export const weeklySeed: WeeklyScenario[] = [
       },
     ],
     tags: { industry: "hardware", region: "us", decade: "2010s" },
+  },
+  {
+    id: "tesla-cybertruck-unveil-2019",
+    type: "weekly",
+    iso_week: "",
+    company: "Tesla",
+    era: "November 21, 2019 — Cybertruck unveiling",
+    intro:
+      "It is November 2019. You are at Tesla. The Model 3 is in steady production; Model Y is months from launch. Tesla wants to enter the US pickup-truck market — by far the most profitable vehicle category in America (Ford F-Series alone generates ~$40B/year in revenue). The choice: build a conventional electric truck (clean styling, broad appeal, designed to look like an electrified F-150 or Ram) or commit to a radical design — angular, stainless-steel exterior, bulletproof glass — that signals the future and risks alienating mainstream truck buyers.\n\nFranz von Holzhausen and Elon Musk push for the radical version. The unveiling is set for the Tesla Design Studio in Hawthorne. Two demos are planned: a sledgehammer hits the door (proving the steel body), then a metal ball is thrown at the window (proving the 'armor glass'). The geometry is so polarizing that internal Tesla designers reportedly debated softening the lines for months.",
+    open_questions: [
+      "Conventional truck design (broader appeal, easier to ship) or radical stainless-steel angular design (polarizing but distinctive)?",
+      "How much to lean into the 'tough' demos at unveiling — sledgehammer + metal ball — when failure could turn the launch into a viral disaster?",
+      "Pricing — start at $40K (mass-market F-150 territory) or $70K+ (signal premium / luxury, smaller market)?",
+      "Take refundable $100 deposits at the unveiling (low-friction reservations) — will the polarizing design produce real demand or just press?",
+    ],
+    closing:
+      "Imagine you're at Tesla in early November 2019. The unveiling is two weeks out. The radical-design version has been chosen. The demos have been rehearsed.",
+    decision:
+      "Unveil the Cybertruck on November 21, 2019. Stainless-steel exterior, angular, no paint. Take $100 refundable reservations. The metal-ball demo fails — both windows shatter on stage in front of cameras. Musk laughs nervously, calls it 'a little room for improvement.' The image (Musk + von Holzhausen + cracked window) becomes the most-shared image of the unveiling. Within 5 days, Tesla announces 250,000 reservations. Within months, total reservations cross 1M+. The truck doesn't ship until November 2023 — four years late. By 2025, Cybertruck sales are well below initial projections, but the unveiling itself is widely considered one of the most-effective hardware announcements in tech-marketing history (regardless of the broken window).",
+    pullquote:
+      "The reason Cybertruck is so planar is that you can't stamp ultra-hard 30X steel, because it breaks the stamping press. The geometry is forced by the material — and the material is what makes it bulletproof.",
+    pullquote_attribution: "Elon Musk, Tesla CEO — paraphrased from public commentary at the Cybertruck unveiling, November 2019",
+    outcomes: [
+      { stat: "250,000 → 1M+", label: "reservations within 5 days, then 1M+ within months", accent: true },
+      { stat: "Both windows shattered", label: "during the on-stage 'armor glass' demo" },
+      { stat: "$100 refundable", label: "deposit — low-friction reservation = mostly press signal, not commitment" },
+      { stat: "4 years late", label: "Cybertruck shipped November 2023 (originally targeted late 2021)" },
+      { stat: "Polarizing design", label: "compared to 'doorstop, old Apple Mouse, SpongeBob's Flats the Flounder'" },
+    ],
+    tradeoffs: [
+      {
+        title: "Radical design vs. conventional pickup",
+        body:
+          "A conventional electric F-150 alternative would have appealed to millions of mainstream truck buyers. The Cybertruck design is polarizing — a much smaller fraction of truck buyers genuinely want it. Tesla chose the smaller-but-passionate market. The trade is real: Cybertruck sales are far below F-150 volume, but the brand differentiation is unmistakable in a way 'electric F-150' would never have been.",
+      },
+      {
+        title: "Live demo with failure risk vs. taped / safer demo",
+        body:
+          "Live on-stage demos of new technology are high-risk. The metal-ball demo could have been pre-recorded or done before the audience arrived. Doing it live created the risk that materialized — and turned out to be the most-shared moment of the launch. The 'failure' generated more PR than a clean demo would have.",
+      },
+      {
+        title: "$100 refundable reservation vs. real deposit",
+        body:
+          "$100 refundable is a press-friendly metric, not a commitment. Tesla learned to inflate reservation numbers (as a marketing tool) at the cost of conversion-rate trust later. Higher deposits ($1,000+) would have produced smaller numbers but more credible signal — the 1M+ Cybertruck reservations only converted to a fraction of actual purchases.",
+      },
+      {
+        title: "Ship the radical version vs. value-engineer to mainstream",
+        body:
+          "Once the unveiling locked in the design publicly, value-engineering toward a more mainstream version became impossible — Tesla had to ship something that matched the prototype shown on stage. That commitment cost ~4 years and significant manufacturing complexity. A more conservative unveil would have preserved the option to course-correct.",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Massive brand differentiation + reservation volume vs. mainstream truck-buyer appeal + conventional unit economics. Tesla chose differentiation and accepted multi-year manufacturing complexity, polarizing reception, and lower mass-market sales. The unveiling worked as marketing; the truck-as-business is more contested.",
+      user:
+        "Cybertruck buyers are not the F-150 mass market. They are a self-selecting cohort that wants the Cybertruck specifically — the design is the product. Tesla optimized for that cohort and accepted that the broader pickup market would mostly buy conventional EV trucks (Ford Lightning, Rivian, GM EV trucks).",
+      alt:
+        "A conventional electric pickup launched in 2021 would have hit the F-150 mainstream and outsold Cybertruck multiple times over. The opposite trade — and almost certainly the higher-revenue choice. Tesla chose brand over volume because the brand asset compounds across the company's entire valuation, while a conventional pickup would have been one product line among many.",
+      predict:
+        "Viral unveiling (metal ball failure becomes the moment), 1M+ reservations within months, ship date slips repeatedly, ship in late 2023, sales far below the headline reservation count, polarized owner community. Long-term: the Cybertruck becomes the canonical case in 'when polarizing design is the strategy, not the failure mode' — even when sales underperform expectations, the brand differentiation is durable.",
+    },
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Tesla Cybertruck — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Tesla_Cybertruck",
+        type: "article",
+      },
+      {
+        title: "Elon Musk explains why the Cybertruck's windows broke",
+        url: "https://www.cnn.com/2019/11/25/cars/elon-musk-tesla-cybertruck-window-glass-broke",
+        publisher: "CNN Business",
+        year: 2019,
+        type: "article",
+      },
+      {
+        title: "Tesla claimed its pickup truck was 'bulletproof' — then smashed its windows",
+        url: "https://www.cnbc.com/2019/11/22/tesla-smashes-bulletproof-pickup-trucks-windows-with-a-metal-ball.html",
+        publisher: "CNBC",
+        year: 2019,
+        type: "article",
+      },
+    ],
+    tags: { industry: "hardware", region: "us", decade: "2010s" },
+  },
+  {
+    id: "beats-by-dre-launch-2008",
+    type: "weekly",
+    iso_week: "",
+    company: "Beats Electronics",
+    era: "Mid-2006 – July 2008",
+    intro:
+      "It is 2006. You are at Beats Electronics — a brand-new headphone company founded by Jimmy Iovine (Interscope Records cofounder) and Dr. Dre. The premium-headphone market in 2006 is dominated by Bose, Sennheiser, and Sony — brands that compete on audiophile fidelity, sold at electronics stores, marketed via spec sheets (frequency response, impedance, driver size). The customer is the audiophile or the audio engineer — a small, technically literate, mostly-male cohort. The pitch is sound quality you can measure.\n\nIovine and Dre believe a much larger market exists: people who care about how music sounds because of the artist's emotional intent, not the spec sheet. They plan to launch Beats Studio at $300 — a dramatic price premium over Bose's similar models. The product won't beat Bose on measured fidelity. The audio-press review cycle will likely savage them. They have to find a different go-to-market.",
+    open_questions: [
+      "Compete with Bose / Sennheiser on sound quality (audio-press review cycle, audiophile reviews) or compete on something entirely different — fashion, status, artist credibility?",
+      "Pricing — $150 (compete with mainstream consumer headphones), $300 (premium, signal exclusivity), $500 (luxury accessory)?",
+      "Distribution — Best Buy, Apple Stores, music-instrument shops, fashion boutiques? Each channel sends a different brand signal.",
+      "Marketing — paid ads (audio-magazine spreads), product placement (music videos / sports), or hand-given to celebrities and athletes (organic product seeding)?",
+    ],
+    closing:
+      "Imagine you're with Iovine and Dre in early 2008. The Beats Studio is months from launch. The audio press will hate it. The music industry is watching.",
+    decision:
+      "Launch Beats Studio in July 2008 at $300. Skip the audiophile press entirely. Iovine sends pre-production pairs to LeBron James (asks for 15 more, distributes to the entire 2008 US Olympic basketball team — they wear Beats walking off the plane in Beijing). Beats become standard issue in Interscope's music videos (Lady Gaga, Miley Cyrus, Nicki Minaj) and on athlete sidelines (NFL, NBA). By 2014, Apple acquires Beats for $3B — Apple's largest acquisition ever at the time. The audiophile press never warms up. Doesn't matter — Beats has redefined headphones from 'audio gear' to 'fashion statement worn by the people you admire.'",
+    pullquote:
+      "It's not about how the headphones measure on a frequency-response chart. It's about whether you look at LeBron and want what he's wearing. We don't compete with Bose — we compete with sneakers.",
+    pullquote_attribution:
+      "Jimmy Iovine, Beats cofounder — paraphrased from public commentary on the Beats positioning",
+    outcomes: [
+      { stat: "$300", label: "launch price for Beats Studio (premium vs. Bose)", accent: true },
+      { stat: "2008 US Olympic team", label: "wore Beats walking off the plane in Beijing — orchestrated by Iovine personally" },
+      { stat: "Music videos", label: "Beats appeared in countless Interscope videos by Lady Gaga, Eminem, etc." },
+      { stat: "$3B", label: "Apple acquisition (2014) — Apple's largest ever at the time" },
+      { stat: "Audio press", label: "consistently negative on sound quality; commercially irrelevant" },
+    ],
+    tradeoffs: [
+      {
+        title: "Audiophile competition vs. fashion competition",
+        body:
+          "Competing on measured fidelity meant entering an audiophile market that was small, slow-growing, and brutal. Competing on fashion / cultural relevance meant entering a market 100x bigger but requiring totally different distribution and marketing. Beats chose the larger market, accepted the audio-press hostility, and won.",
+      },
+      {
+        title: "Premium pricing vs. mass-market pricing",
+        body:
+          "$300 is significantly above Bose's price. The premium signaled status (only people who care can spend $300 on headphones), generated higher margin, and reinforced the fashion-accessory positioning. A $99 launch would have been mass-market but would not have produced the cultural status that drove Beats's growth.",
+      },
+      {
+        title: "Celebrity / athlete seeding vs. paid ads",
+        body:
+          "Hand-distributing pre-production units to LeBron, the Olympic team, and Interscope artists was relatively cheap (free product) but required deep industry relationships only Iovine had. Paid ads would have been faster but would have signaled 'I'm an ad' rather than 'I'm an authentic part of the culture.' Beats chose the relationship-led path that only Iovine could execute.",
+      },
+      {
+        title: "Audio-press cycle vs. ignore audio press",
+        body:
+          "Engaging the audio press would have surfaced negative reviews and forced Beats to defend on dimensions it was deliberately not competing on. Ignoring the audio press meant the negative reviews existed but went mostly unread by the target customer (sports fans, music-video viewers, sneaker buyers).",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Audio fidelity (the standard category-defining metric) vs. cultural / status signaling (an entirely different consumer dimension). Beats chose the latter, paid the audio-press cost, and built the most valuable headphone brand of the decade. The audio establishment was dismissive throughout — and totally wrong about the market that was forming.",
+      user:
+        "Beats's customer was the basketball-fan-watching-LeBron, the music-video-viewer-noticing-Lady-Gaga's-headphones — not the audio-engineer-reading-spec-sheets. Repositioning headphones from 'audio equipment' to 'fashion accessory' opened a market 100x the audiophile base.",
+      alt:
+        "Competing on audio fidelity at $99 would have been the conventional path — and would have produced a forgettable mid-tier brand, not the cultural phenomenon. The opposite trade. Beats chose to redefine the category rather than compete inside it.",
+      predict:
+        "Negative audio-press reviews. Strong celebrity / athlete adoption. Best Buy reports surprising sales given the recession. Beats compounds through music-video presence and sports sidelines. By 2014 Apple acquires Beats for $3B for the brand and Apple Music team. Long-term: Beats becomes the canonical case in 'when redefining the category beats competing inside it' — and the playbook is studied across consumer-electronics and fashion.",
+    },
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Beats (brand) — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Beats_Electronics",
+        type: "article",
+      },
+      {
+        title: "Beats By Dre: The Secrets Behind a Headphone Empire",
+        url: "https://www.billboard.com/music/music-news/beats-by-dre-the-secrets-behind-a-headphone-empire-950594/",
+        publisher: "Billboard",
+        type: "article",
+      },
+      {
+        title: "Marrying Culture and Technology: The Story of Beats by Dr. Dre",
+        url: "https://www.highsnobiety.com/p/beats-dr-dre-brand-history/",
+        publisher: "Highsnobiety",
+        type: "article",
+      },
+    ],
+    tags: { industry: "hardware", region: "us", decade: "2000s" },
+  },
+  {
+    id: "amazon-kindle-launch-2007",
+    type: "weekly",
+    iso_week: "",
+    company: "Amazon",
+    era: "Mid-2007 – November 19, 2007",
+    intro:
+      "It is mid-2007. You are at Amazon, secretly building a hardware product for the first time in the company's history. Amazon is fundamentally a software-and-logistics company — it has never shipped a consumer device. Jeff Bezos personally champions the project: an electronic-paper reader called Kindle, with a built-in cellular modem (Whispernet, free 3G access from Sprint) so users can buy and download books anywhere. No Wi-Fi setup. No PC required.\n\nAt launch on November 19, 2007: the device is $399. The book selection is ~90,000 titles, including 101 of 112 current NYT bestsellers, all priced at $9.99 (well below the $25-30 hardback price). Publishers are nervous — $9.99 sets a price ceiling that will undercut hardback margins for years. Newsweek runs a cover story, but most of the tech press is skeptical (the device is ugly, the screen is grayscale e-ink, the price is high). Steve Jobs publicly dismisses e-readers in 2008 ('people don't read anymore').",
+    open_questions: [
+      "$399 price (premium signal, narrow market) or aggressive $199 launch (mass market, much harder unit economics)?",
+      "Built-in 3G with no contract (Whispernet) — the most differentiated feature, but adds $50+ in BOM cost. Skip it for cheaper hardware?",
+      "$9.99 e-book price — set a ceiling and force publishers to comply (long-term margin compression for them) or let publishers price freely (slower adoption)?",
+      "Hardware design — invest in beautiful industrial design (delays launch, costs more) or ship the functional-but-ugly device that's ready now (faster, ugly press)?",
+    ],
+    closing:
+      "Imagine you're with Bezos in October 2007. The Kindle launches in 4 weeks. Publishers are already grumbling about $9.99. Tech press will hate the design.",
+    decision:
+      "Launch the Kindle on November 19, 2007 at $399 with built-in Whispernet 3G (free, no contract). Set Kindle e-book price at $9.99 for new releases and bestsellers — significantly below hardback. Ship the functionally-correct-but-aesthetically-clunky first version. Newsweek puts Bezos on the cover ('Books Aren't Dead — They're Just Going Digital'). Kindle sells out within hours of launch. Publishers spend the next decade fighting Amazon over the $9.99 price point (eventually leading to the Apple-backed publisher 'agency model' lawsuits in 2012). By 2010, Kindle e-book sales overtake hardback sales on Amazon. Amazon never publicly discloses Kindle unit numbers — but the device defines the e-reader category and the e-book market for the next decade.",
+    pullquote:
+      "Our top design objective was for Kindle to disappear in your hands — to get out of the way — so you can enjoy your reading.",
+    pullquote_attribution: "Jeff Bezos, Amazon founder/CEO — Kindle launch press release, November 19, 2007",
+    outcomes: [
+      { stat: "$399", label: "launch price — premium pricing for an unproven category", accent: true },
+      { stat: "Sold out", label: "within hours of launch on Amazon.com" },
+      { stat: "$9.99", label: "ceiling price on new releases — fought by publishers for years" },
+      { stat: "Whispernet", label: "free 3G via Sprint, no contract — defining differentiation" },
+      { stat: "2010 milestone", label: "Kindle e-book sales overtook hardback sales on Amazon" },
+    ],
+    tradeoffs: [
+      {
+        title: "$399 premium vs. mass-market pricing",
+        body:
+          "$399 was high enough to make Kindle a serious purchase decision, signaling it as a real device, not a toy. A $199 launch would have moved more units but compressed margins on Amazon's first hardware bet. Bezos chose to validate the category at premium pricing first, then bring prices down (subsequent Kindles dropped to $79-99 within 3-4 years).",
+      },
+      {
+        title: "Built-in 3G vs. Wi-Fi-only",
+        body:
+          "Whispernet was the killer feature — buy a book anywhere, download in 60 seconds, no Wi-Fi setup, no PC sync. Free 3G data without contract was unprecedented. The BOM cost was real (~$50/device + ongoing Sprint fees) but the differentiation was structural — the Kindle didn't feel like a computer, it felt like a magic book delivery device.",
+      },
+      {
+        title: "$9.99 e-book ceiling vs. publisher-set pricing",
+        body:
+          "Setting $9.99 as the de facto ceiling for new-release e-books was a strategic move that locked publishers into a price tier well below print. Publishers fought it for a decade (the agency-model lawsuits, Apple antitrust case). Bezos was willing to absorb the long fight because the $9.99 price built Kindle adoption faster than publisher-set pricing would have.",
+      },
+      {
+        title: "Functional ugly hardware vs. delay for industrial design",
+        body:
+          "The original Kindle is widely described as 'ugly' — angular, beige, with a confusing keyboard layout. Amazon shipped it because waiting for beautiful industrial design would have lost the launch window. Subsequent Kindle generations (Paperwhite, Oasis) prioritized design once the category was established. The first version's job was 'be functionally correct,' not 'be pretty.'",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Premium price + built-in 3G + $9.99 e-book ceiling vs. mass-market pricing + standard Wi-Fi + publisher-friendly pricing. Amazon chose the more ambitious version on every dimension because launching a new device category requires demonstrating it's a serious product — and because Amazon's long-term play (own the e-book market) needed the price ceiling locked in early.",
+      user:
+        "The Kindle's audience was the heavy book reader — the 5%+ of consumers who buy 20+ books a year. That cohort was small but high-value, and the Kindle's premium positioning (price + 3G + book selection) matched their willingness to pay. Mass-market readers came later as prices dropped.",
+      alt:
+        "Launching at $199 with Wi-Fi and publisher-set e-book prices would have been the conservative path. The opposite trade. It would have produced more launch units but lost the strategic-positioning moment that Whispernet + $9.99 created. Amazon's e-book market dominance traces directly to those two decisions.",
+      predict:
+        "Sold out launch. Publishers furious about $9.99 (multi-year fights, eventual antitrust action). Tech press skeptical, then converted as e-ink + Whispernet prove themselves. Kindle defines the e-reader category for a decade. By 2010, e-book sales pass hardback. Long-term: the Kindle is Amazon's first hardware, the foundation for Echo and Fire later, and the canonical case in 'when premium-pricing a new category device is the right strategic call.'",
+    },
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Introducing Amazon Kindle",
+        url: "https://press.aboutamazon.com/2007/11/introducing-amazon-kindle",
+        publisher: "Amazon Press Center",
+        year: 2007,
+        type: "press-release",
+      },
+      {
+        title: "Amazon: Reinventing the Book",
+        url: "https://www.newsweek.com/amazon-reinventing-book-96909",
+        publisher: "Newsweek",
+        year: 2007,
+        type: "article",
+      },
+      {
+        title: "Amazon Kindle — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Amazon_Kindle",
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2000s" },
+  },
+  {
+    id: "tesla-model-3-reservations-2016",
+    type: "weekly",
+    iso_week: "",
+    company: "Tesla",
+    era: "March 31, 2016 — Model 3 reveal + reservation launch",
+    intro:
+      "It is early 2016. You are at Tesla. The Model S has been on the market since 2012 (~$70-100K). The Model X (~$80-130K) shipped in 2015. Tesla's mission has always been to bring EVs to mass-market scale — but the cars to date have been luxury vehicles. The Model 3 is the first 'mass-market' Tesla, targeted at $35K starting price. The reveal is set for March 31, 2016.\n\nThe leadership team is debating how to take reservations. Pre-orders for unreleased products are usually $50-100 fully refundable holds, treated as marketing-signal-not-revenue. For the Model 3, Tesla proposes a $1,000 fully refundable deposit — 10-20x the typical reservation amount. The car won't ship for 18+ months. The thesis: the high deposit will (a) signal confidence to investors, (b) generate working capital interest-free, (c) demonstrate real demand for EVs at the $35K price point, and (d) book a queue that locks in customers against competitors.",
+    open_questions: [
+      "Charge $1,000 (high friction, real signal) or $100 (low friction, more reservations)?",
+      "Allow reservations online only, or also in Tesla stores (creates lines, news cycles, higher physical conversion)?",
+      "Cap reservations or open them indefinitely — capping creates scarcity, opening signals confidence in production capacity?",
+      "How public to be about reservation numbers — share live updates (signal momentum, risk if numbers slow) or quarterly disclosure (less momentum but lower stakes)?",
+    ],
+    closing:
+      "Imagine you're with Musk in mid-March 2016. The reveal is days away. The reservation strategy is being finalized.",
+    decision:
+      "Open Model 3 reservations on March 31, 2016 at $1,000 refundable deposit. Allow online + in-store. No cap. Live-tweet reservation numbers throughout the weekend. By the time Musk takes the stage that night to unveil the car, 100,000+ deposits are already in. By Saturday: 276,000. Within a week: 325,000+ reservations representing potential sales of $14B+. Bloomberg calls it 'the single biggest one-week launch of any product ever.' Tesla earns interest on $325M+ in deposit float for the next ~18 months until first deliveries (July 2017).",
+    pullquote:
+      "More than 325,000 Model 3 reservations have been received. This is the biggest one-week launch of any product ever.",
+    pullquote_attribution: "Tesla — official statement on April 7, 2016 reservation update",
+    outcomes: [
+      { stat: "100,000+", label: "deposits before Musk took the stage to unveil the car", accent: true },
+      { stat: "325,000", label: "reservations within first week (~$325M in deposit float)" },
+      { stat: "$14B+", label: "potential sales locked in via reservation queue" },
+      { stat: "$1,000 refundable", label: "deposit — 10-20x typical pre-order amount" },
+      { stat: "Jul 2017", label: "first Model 3 deliveries — 16 months after reservations opened" },
+    ],
+    tradeoffs: [
+      {
+        title: "$1,000 deposit vs. $100 deposit",
+        body:
+          "$1,000 produced fewer reservations than $100 would have, but the signal value of each $1,000 deposit was much higher — investors and the press could believe demand was real because customers were putting up real money. $100 would have generated more headlines but less credible conviction.",
+      },
+      {
+        title: "Live-tweet reservations vs. delayed disclosure",
+        body:
+          "Live updates throughout reservation weekend created a 24-hour news cycle of growing numbers. Each successive number became a story. Delayed disclosure would have produced a single quarterly headline. Tesla chose maximum-momentum communication and accepted the risk that numbers might plateau publicly.",
+      },
+      {
+        title: "Open reservations indefinitely vs. cap for scarcity",
+        body:
+          "Capping at, say, 100,000 would have manufactured FOMO but would have looked artificial. Opening indefinitely signaled confidence in production capacity (which turned out to be hubris — Model 3 production hell delayed deliveries by years). The unbounded queue helped at the moment but became a multi-year operational liability.",
+      },
+      {
+        title: "Refundable deposits vs. non-refundable",
+        body:
+          "Refundable deposits are easier to take (no buyer reluctance) but produce a queue that can dissolve when buyers change their mind or competitors launch. Non-refundable would have been smaller but more committed. Tesla chose the larger, more press-friendly version and accepted the conversion-rate risk.",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Maximum press signal + $325M+ in interest-free working capital float vs. real conversion-rate risk + a multi-year operational backlog Tesla wasn't ready to fulfill. Tesla chose the press signal and the float, then spent 2017-2019 in 'production hell' trying to actually deliver the cars. The reservation move was a win; the production execution that followed was painful.",
+      user:
+        "The Model 3 reservation customer was the 'I want a Tesla but couldn't afford the Model S' cohort — middle-class enthusiasts with strong intent. The $1,000 deposit was real money for that cohort but psychologically tolerable as 'reserving the future.' Tesla converted that cohort's enthusiasm into both signal and capital.",
+      alt:
+        "$100 refundable deposits would have produced 5x more headline reservations but lower credibility per reservation. The opposite trade. Tesla's choice (high-deposit, high-signal) is now the template for hardware-launch reservations across the industry — Apple Vision Pro, Rivian, Polestar all run similar high-deposit reservation systems.",
+      predict:
+        "Massive reservation surge in week 1 (Bloomberg headlines). Reservation conversion rates lower than expected as production delays bite. Operational chaos through 2017-2019 ('production hell'). Eventually delivers ~1M+ Model 3s within 5 years. Long-term: the reservation launch becomes the canonical case in 'how to use a high-deposit pre-order to simultaneously generate working capital, validate demand, and build a public news cycle' — even when the production execution that follows is brutal.",
+    },
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Tesla Says It Received More Than 325,000 Model 3 Reservations",
+        url: "https://www.bloomberg.com/news/articles/2016-04-07/tesla-says-model-3-pre-orders-surge-to-325-000-in-first-week",
+        publisher: "Bloomberg",
+        year: 2016,
+        type: "article",
+      },
+      {
+        title: "Tesla has now over 325,000 Model 3 reservations",
+        url: "https://electrek.co/2016/04/03/tesla-model-3-reservations-timeline/",
+        publisher: "Electrek",
+        year: 2016,
+        type: "article",
+      },
+      {
+        title: "Tesla Model 3 — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Tesla_Model_3",
+        type: "article",
+      },
+    ],
+    tags: { industry: "hardware", region: "us", decade: "2010s" },
+  },
+  {
+    id: "microsoft-kin-shutdown-2010",
+    type: "weekly",
+    iso_week: "",
+    company: "Microsoft",
+    era: "May 13 – June 30, 2010",
+    intro:
+      "It is early 2010. You are at Microsoft, working on the Kin project — two smartphones (Kin One, Kin Two) targeted at teenagers and 20-somethings on Verizon Wireless. The phones are based on tech Microsoft acquired with Danger Inc. (the company behind T-Mobile Sidekick) in 2008. The pitch: a social-first phone with deep integration to Facebook, Twitter, MySpace — designed for users who text more than they call. The phones will run a custom Microsoft OS (not Windows Phone, which is also in development at the same time).\n\nVerizon insists Kin users sign up for the same data plan as a smartphone (~$30/month) plus a voice plan (~$40/month) — total ~$70/month. The competing iPhone ($199 with $30 data) and BlackBerry Curve are similarly priced. Steve Ballmer is publicly enthusiastic. Marketing budget: ~$1B. Launch: May 13, 2010 in the US.",
+    open_questions: [
+      "Push back on Verizon's $30 data plan (positioning Kin as a teen device that needs cheap data) — or accept the smartphone-tier pricing?",
+      "Launch with two products simultaneously (Kin One, Kin Two) or one focused product to clarify the positioning?",
+      "Run a Kin OS in parallel to Windows Phone (resource-split) or absorb into Windows Phone (delay launch but consolidate)?",
+      "What happens if sales miss expectations — quick kill, or invest more to course-correct?",
+    ],
+    closing:
+      "Imagine you're at Microsoft in late May 2010. Kin One and Kin Two are on Verizon shelves. The pricing is the same as iPhone and BlackBerry. Sales numbers are coming in.",
+    decision:
+      "Microsoft kills the Kin product line on June 30, 2010 — 48 days after the May 13 US launch. Reportedly fewer than 10,000 units sold. Microsoft says Verizon will continue to carry existing Kin inventory. The team is folded into the Windows Phone organization. Phil Spencer (then leading Microsoft Game Studios, later Xbox + Microsoft Gaming CEO) reportedly intervenes to save some of the talent. Kin becomes the shortest-lived product in Microsoft's 35-year history. Insider reporting later attributes the failure to a combination of Verizon's pricing (too expensive for teens), the iPhone's existing dominance of the smartphone-as-status-symbol category, and internal Microsoft conflict between Kin and Windows Phone teams competing for resources.",
+    pullquote:
+      "Microsoft has decided to focus on Windows Phone 7 as our smartphone platform. As such, we have decided to cancel further work on the Kin product line.",
+    pullquote_attribution: "Microsoft — official Kin discontinuation statement, June 30, 2010",
+    outcomes: [
+      { stat: "48 days", label: "from US launch (May 13, 2010) to discontinuation (June 30, 2010)", accent: true },
+      { stat: "<10,000", label: "estimated US Kin sales during the 48 days" },
+      { stat: "$1B", label: "rumored marketing budget against minimal sales" },
+      { stat: "Shortest-lived", label: "product in Microsoft's 35-year history" },
+      { stat: "Verizon-mandated", label: "$70/month plan pricing — same as iPhone, killing the teen pitch" },
+    ],
+    tradeoffs: [
+      {
+        title: "Accept Verizon's pricing vs. push back",
+        body:
+          "Verizon insisted on smartphone-tier data pricing for a teen-positioned device. Microsoft accepted to get carrier distribution. The pricing made the teen positioning incoherent — if Kin costs the same as an iPhone, why pick Kin? Pushing back would have risked the Verizon deal but preserved the product's positioning logic.",
+      },
+      {
+        title: "Two products simultaneously vs. one focused launch",
+        body:
+          "Launching Kin One AND Kin Two simultaneously diluted the message. Two phones meant double the marketing spend, double the inventory, double the press confusion. A single Kin would have produced a cleaner pitch. Microsoft chose splash; got confusion.",
+      },
+      {
+        title: "Kin OS parallel to Windows Phone vs. consolidate",
+        body:
+          "Running two mobile OSes in parallel (Kin OS + Windows Phone) split engineering resources and produced internal conflict over which was Microsoft's mobile future. Consolidating would have delayed Kin but produced one coherent mobile strategy. Microsoft tried to do both and was bad at both.",
+      },
+      {
+        title: "Quick kill vs. invest more",
+        body:
+          "Killing Kin in 48 days was decisive — Microsoft preserved engineering resources for Windows Phone 7 (launching November 2010) and stopped the bleeding. Investing more would have pushed Kin past Christmas 2010 with the same fundamental problems. The quick kill was operationally right but cemented the brand-cost as 'Microsoft can't ship consumer mobile.'",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Carrier distribution + dual-product marketing splash vs. coherent positioning + focused engineering investment. Microsoft compromised on every dimension: accepted Verizon's pricing that killed the teen pitch, launched two products that diluted the message, ran two mobile OSes in parallel that fought each other internally. The 48-day shutdown was the predictable conclusion.",
+      user:
+        "The teen target audience could have valued Kin if the pricing matched (cheap data plans, a phone designed for texting + social). At iPhone-tier pricing, the teen wanted the iPhone. Microsoft built the right product for the wrong price tier.",
+      alt:
+        "Killing Kin pre-launch and putting all the resources into Windows Phone 7 from the start would have been the cleaner strategic call. The opposite trade — and the resources Microsoft spent on Kin's brief life ($1B+ rumored) would have meaningfully accelerated WP7. The Kin launch is one of the canonical examples of 'shipping a product just because the team is too far along to kill it.'",
+      predict:
+        "Launch week reviews are mixed. Sales come in well below expectations within days. Internal conflict between Kin team and Windows Phone team escalates. Microsoft kills Kin within 6-8 weeks. Brand cost: 'Microsoft can't ship consumer mobile' becomes the durable narrative. Long-term: Kin is the canonical case in 'when to kill a product before the launch budget compounds the failure.'",
+    },
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Microsoft Kin (2010) | Ten of the Shortest-Lived Tech Products Ever",
+        url: "https://techland.time.com/2011/08/23/ten-of-the-shortest-lived-tech-products-ever/slide/microsoft-kin-2010/",
+        publisher: "TIME Techland",
+        year: 2011,
+        type: "article",
+      },
+      {
+        title: "Microsoft's KIN is dead, long live Windows Phone 7",
+        url: "https://www.theregister.com/2010/06/30/microsoft_kills_kin_phone/",
+        publisher: "The Register",
+        year: 2010,
+        type: "article",
+      },
+      {
+        title: "Microsoft Kin — Grokipedia",
+        url: "https://grokipedia.com/page/Microsoft_Kin",
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
   },
 ];
 
