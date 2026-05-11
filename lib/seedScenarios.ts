@@ -8381,6 +8381,234 @@ export const dailySeed: DailyScenario[] = [
     ],
     tags: { industry: "consumer-social", region: "us", decade: "2000s" },
   },
+  {
+    id: "stripe-elements-prebuilt-ui",
+    type: "daily",
+    scheduled_date: "",
+    company: "Stripe",
+    era: "April 2016 — Stripe Elements launch",
+    context:
+      "Building a checkout form pre-2016 means: 1500+ lines of HTML/CSS/JS, handling card-number validation, expiration validation, CVC, address autocomplete, error states, mobile keyboards, accessibility, internationalization. Most developers do it badly. Stripe ships 'Elements' in April 2016 — a library of pre-built, customizable checkout-form components that handle every edge case. Drop in one JavaScript snippet, get a production-ready card-input field that's PCI-compliant, mobile-optimized, accessible, internationalized. Customize fonts / colors / sizes via configuration; the underlying validation + Stripe integration is opinionated.",
+    prompt:
+      "Why ship opinionated UI components — when developer tools usually emphasize flexibility over opinionation?",
+    reveal_quote:
+      "Stripe Elements are pre-built UI components for collecting payments — handling the complex parts (PCI compliance, mobile keyboards, accessibility) so you can focus on your application. Customize the appearance to match your brand.",
+    reveal_quote_attribution: "Stripe — Elements launch announcement, April 2016",
+    reveal_note:
+      "What's easy to miss: opinionated UI components solve the same problem opinionated APIs solve — eliminating decisions for the developer. With raw Stripe.js, every merchant builds their own card-input field, makes inconsistent decisions about validation timing / error display / accessibility, and ships various-quality checkouts. With Elements, every Stripe-using merchant ships the same high-quality checkout UI by default. The compound effect on conversion is real — Elements-based checkouts have measurably higher conversion than custom-built ones. The trade: developers lose UI control. Most accept the trade because the alternative is reinventing PCI-compliant input fields. The lesson: in developer tools where the customer (developer) faces complex compliance / quality requirements, shipping opinionated solutions that handle the complexity is often more valuable than shipping flexible primitives that let developers build their own. Same pattern: Vercel's deployment defaults, Tailwind's design system, React's component patterns. Opinionation as developer-tool value proposition.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Stripe Elements — Stripe Docs",
+        url: "https://docs.stripe.com/stripe-js/elements",
+        publisher: "Stripe Docs",
+        type: "documentation",
+      },
+      {
+        title: "Stripe launches Elements",
+        url: "https://techcrunch.com/2016/04/26/stripe-elements/",
+        publisher: "TechCrunch",
+        year: 2016,
+        type: "article",
+      },
+      {
+        title: "How Stripe Elements works",
+        url: "https://stripe.com/blog/stripe-checkout-elements",
+        publisher: "Stripe Blog",
+        type: "blog",
+      },
+    ],
+    tags: { industry: "fintech", region: "us", decade: "2010s" },
+  },
+  {
+    id: "discord-server-roles-permissions",
+    type: "daily",
+    scheduled_date: "",
+    company: "Discord",
+    era: "2015+ — server roles + granular permissions",
+    context:
+      "Chat platforms in 2015 (Slack, IRC, Skype) have basic permission systems — usually 'admin' vs 'member.' Discord launches with much more granular permissions: each server can define unlimited custom 'roles' (Moderator, VIP, Subscriber, Color, Reaction Bot, etc.), each with its own set of permissions (can send messages, can manage emoji, can ban users, can read certain channels, etc.). Users can hold multiple roles. The granularity makes Discord workable for both small friend groups AND massive communities (1M+ member servers).",
+    prompt:
+      "Why ship 30+ granular permission flags from launch — when most chat products manage with 2-3 permission tiers?",
+    reveal_quote:
+      "Discord server roles let you organize members and control what they can do. Create roles with specific permissions — you can have moderators who can ban users, VIPs who have special colors, and bots that can manage channels.",
+    reveal_quote_attribution: "Discord — server roles documentation",
+    reveal_note:
+      "What's easy to miss: granular permissions are what let Discord serve both small communities (5 friends playing video games) AND large communities (1M+ member fan servers) on the same product. Slack's binary admin/member model works for small businesses; it would collapse if applied to a 1M-member fan community (you'd either give 1M users admin or have 1M users with read-only access). Discord's 30+ permission flags let server operators create custom hierarchies — Moderator, Trial Mod, VIP, Subscriber Tier 1, Subscriber Tier 2, Booster, etc. — that match the community's actual social structure. The complexity is real (setting up roles is hard for new server admins) but it's necessary for the breadth of community types Discord serves. Slack's permission model can't scale to large communities without breaking; Discord's model can. The lesson: permission models in social-product platforms are structural — they determine what kinds of communities can exist on the platform. Discord's granular model created the conditions for both intimate friend groups and massive fan communities to coexist on the same product, which Slack / Microsoft Teams / WhatsApp can't replicate.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Manage server roles — Discord Support",
+        url: "https://support.discord.com/hc/en-us/articles/214836687-Role-Management-101",
+        publisher: "Discord Support",
+        type: "documentation",
+      },
+      {
+        title: "Discord — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Discord",
+        type: "article",
+      },
+      {
+        title: "How Discord's permission system works",
+        url: "https://www.theverge.com/22384483/discord-server-administration-guide",
+        publisher: "The Verge",
+        type: "article",
+      },
+    ],
+    tags: { industry: "communication", region: "us", decade: "2010s" },
+  },
+  {
+    id: "apple-text-replacement-keyboard",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "September 2010 — iOS 4 Text Replacement / Shortcuts",
+    context:
+      "iPhone keyboard pre-2010 doesn't support text expansion — every time you type a long phrase ('On my way!' or your email address), you type the whole thing. Apple ships 'Text Replacement' (originally called 'Shortcuts') in iOS 4: define a short trigger ('omw' → 'On my way!'), and typing the trigger auto-expands to the full phrase. The feature is hidden deep in Settings (Settings > General > Keyboard > Text Replacement), most users never discover it. Power users set up dozens of expansions and save minutes per day.",
+    prompt:
+      "Why ship a powerful text-expansion feature buried 4 levels deep in Settings — and what does the hidden placement say about who the feature serves?",
+    reveal_quote:
+      "Text Replacement lets you type shortcuts that expand into full phrases. Define your own shortcuts in Settings > General > Keyboard > Text Replacement.",
+    reveal_quote_attribution: "Apple — Text Replacement documentation",
+    reveal_note:
+      "What's easy to miss: burying a feature in Settings is a power-user-targeting strategy. Most casual users never discover Text Replacement; the ones who do (knowledge workers, customer-service reps, frequent texters) save real time. The feature doesn't need to be discoverable to most users — discovery would actually be friction for casual users who don't need expansion. By being buried, the feature attracts only users who specifically search for it (typically because they've used text-expansion on other platforms like TextExpander) and serves them well. The lesson: not every feature needs broad discoverability. Power-user features can be buried — letting the user base self-select into discovery. The cost (most users never use it) is fine because most users don't need it. The benefit (users who do need it benefit fully) is preserved. Apple's calculator app shipping with a scientific-mode hidden in landscape orientation, Excel's keyboard shortcuts, Linear's Cmd+K — all use the same pattern. Power features for the cohort who'll find them.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Add or change keyboards on your iPhone — Text Replacement",
+        url: "https://support.apple.com/en-us/HT207525",
+        publisher: "Apple Support",
+        type: "documentation",
+      },
+      {
+        title: "iOS 4 — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/IOS_4",
+        type: "article",
+      },
+      {
+        title: "Text Replacement on iPhone — power user feature",
+        url: "https://www.macrumors.com/how-to/use-text-replacement-keyboard-shortcuts/",
+        publisher: "MacRumors",
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
+  {
+    id: "youtube-thumbnail-as-product",
+    type: "daily",
+    scheduled_date: "",
+    company: "YouTube (Google)",
+    era: "2010+ — custom thumbnails as content primitive",
+    context:
+      "YouTube videos through 2010 used auto-generated thumbnails — typically a screenshot from the 25%, 50%, or 75% point of the video. Many videos got unflattering or uninformative thumbnails (a blurred moment, a transition frame). Around 2010 YouTube introduces custom thumbnails: creators can upload any image as the video's thumbnail. By 2015 'thumbnail design' is a discipline — creators hire dedicated thumbnail designers; some channels spend more time on thumbnails than the videos themselves. Channels like MrBeast (Jimmy Donaldson) reportedly spend tens of thousands of dollars on thumbnail design per video.",
+    prompt:
+      "Why is video-thumbnail design a discipline — and what does the thumbnail's click-through-rate impact tell you about content discovery?",
+    reveal_quote:
+      "Custom thumbnails are one of the most important elements of YouTube content. A great thumbnail can dramatically increase your video's click-through rate from the algorithm.",
+    reveal_quote_attribution: "YouTube Creator Academy — paraphrased from creator documentation",
+    reveal_note:
+      "What's easy to miss: thumbnails are the entire shopfront for video content. The YouTube algorithm decides which videos to show users based on click-through rate (CTR) — and CTR is overwhelmingly determined by thumbnail design + title. A great video with a bad thumbnail gets ignored; a mediocre video with a great thumbnail gets watched. Thumbnail design has evolved into a specialized discipline: bright colors, big shocked faces, bold yellow / red text overlays, exaggerated expressions. MrBeast's creator economy (~$54M revenue in 2021) is heavily dependent on thumbnail / title optimization. The discipline now has its own A/B testing tools (TubeBuddy thumbnail tests, YouTube's official thumbnail experiments in 2022). The lesson: when an algorithmic feed determines content distribution, the surface that drives algorithmic ranking (thumbnail + title for YouTube, hook for TikTok, opening line for Twitter) becomes more important than the content itself. Content creators who optimize for algorithm-friendly surfaces beat creators who only optimize for content quality. The product implication: as recommendation algorithms become central, every creator-economy platform needs to expose tools for surface-level optimization.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Custom video thumbnails — YouTube Help",
+        url: "https://support.google.com/youtube/answer/72431",
+        publisher: "YouTube Help",
+        type: "documentation",
+      },
+      {
+        title: "How MrBeast spends on thumbnails",
+        url: "https://www.businessinsider.com/mrbeast-spends-thousands-on-thumbnail-design-2021-9",
+        publisher: "Business Insider",
+        year: 2021,
+        type: "article",
+      },
+      {
+        title: "YouTube thumbnail tests",
+        url: "https://blog.youtube/news-and-events/youtube-thumbnail-test-and-compare/",
+        publisher: "YouTube Blog",
+        year: 2023,
+        type: "blog",
+      },
+    ],
+    tags: { industry: "media", region: "us", decade: "2010s" },
+  },
+  {
+    id: "apple-find-my-network",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "April 2021 — Find My network for AirTag",
+    context:
+      "Bluetooth trackers (Tile, Chipolo, AirTag) only locate the device when it's within Bluetooth range of the owner's phone — ~30m. For wider-area tracking, the device would need cellular connectivity (expensive battery + subscription). Apple's AirTag (April 2021) uses a different solution: every iPhone, iPad, and Mac in the world participates in the 'Find My network.' When any Apple device passes within Bluetooth range of a missing AirTag, it anonymously relays the location to Apple's servers + the owner. The 'network' is ~1 billion Apple devices acting as anonymous relay nodes.",
+    prompt:
+      "Why use a billion-device anonymous-relay network for location tracking — and what does this design unlock that Tile / Chipolo can't replicate?",
+    reveal_quote:
+      "Find My uses crowdsourced signals from hundreds of millions of Apple devices worldwide. When an AirTag is far from its owner, nearby Apple devices help locate it — all anonymously and end-to-end encrypted.",
+    reveal_quote_attribution: "Apple — Find My network documentation",
+    reveal_note:
+      "What's easy to miss: the Find My network is a structural moat that Tile / Chipolo can't replicate. Tile relies on Tile-app users to detect Tile devices — there are millions of Tile users but ~1 billion Apple-device users. The network-effect difference is huge: an AirTag in Tokyo can be located within hours because Apple devices are everywhere; a Tile in Tokyo might never be detected because there are few Tile users in the area. Apple later opened the Find My network to third-party device makers (2021+) — Belkin, Chipolo, others can use Find My instead of building their own networks. This consolidates Apple's structural advantage: any third-party tracker now competes for Apple's network access. Tile remains independent but commercially marginal. The lesson: when the value of a product depends on network density (Bluetooth-relay networks, peer-to-peer payments, social graphs), the player with the largest user base structurally wins. Apple's billion-device install base is the asset; AirTag is just the product that monetizes the asset. Same dynamic underlies Apple Pay (every iPhone is a payment terminal), Continuity (every Apple device is a relay), and AirDrop (already in pool).",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Find My network — Apple",
+        url: "https://www.apple.com/icloud/find-my/",
+        publisher: "Apple",
+        type: "documentation",
+      },
+      {
+        title: "Apple Find My network — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Find_My",
+        type: "article",
+      },
+      {
+        title: "How Apple's Find My network works",
+        url: "https://www.theverge.com/22291641/apple-find-my-network-airtag-third-party-launch",
+        publisher: "The Verge",
+        year: 2021,
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2020s" },
+  },
+  {
+    id: "twitter-character-counter",
+    type: "daily",
+    scheduled_date: "",
+    company: "Twitter",
+    era: "2006+ — character counter on compose box",
+    context:
+      "Twitter's defining constraint is the 140-character limit (later 280, in pool as a weekly). The compose box has a small counter that updates as you type — initially showing remaining characters left, then turning yellow at low counts, red when you're over. The counter is small but always visible. Users develop entire writing-craft skills around making their thoughts fit; the counter is the constant feedback for that craft.",
+    prompt:
+      "Why is the live character counter on every Twitter compose box a critical UI element — and what does it do beyond just informing users about the limit?",
+    reveal_quote:
+      "The character counter shows you how many characters you have left as you type. Twitter's 140-character limit forces clarity and brevity in every message.",
+    reveal_quote_attribution: "Twitter — paraphrased from documentation",
+    reveal_note:
+      "What's easy to miss: the live counter is a real-time constraint feedback mechanism — it teaches users to compress their thoughts in real-time, character-by-character, as they type. Without the counter, users would write freely and only discover they're over the limit at submit time (frustration → rewrite → submit). With the counter, users prune as they go — making the constraint a creative collaborator, not a barrier. The counter's evolution (red warning, then 'over by N' showing how much to trim, eventually colored ring rather than numbers in 2017) tracks Twitter's design philosophy refinements. The lesson: when a product has a hard constraint, real-time feedback on the user's distance from the constraint is a critical UI design choice. Users who get continuous feedback adapt to the constraint quickly; users who only learn about the constraint at submit time experience friction. Same principle applies to file-size limits in upload boxes, time-remaining in video editors, percentage-complete bars in onboarding flows. Live constraint feedback is the difference between a constraint feeling generative vs. punishing.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Twitter — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Twitter",
+        type: "article",
+      },
+      {
+        title: "Twitter compose box design",
+        url: "https://blog.twitter.com/engineering/en_us/topics/insights/2017/Concise-and-Conversational-with-280-Characters",
+        publisher: "Twitter Engineering",
+        type: "blog",
+      },
+      {
+        title: "How Twitter's character counter evolved",
+        url: "https://design.twitter.com/services/character-counter",
+        publisher: "Twitter Design",
+        type: "blog",
+      },
+    ],
+    tags: { industry: "consumer-social", region: "us", decade: "2000s" },
+  },
 ];
 
 export const weeklySeed: WeeklyScenario[] = [
