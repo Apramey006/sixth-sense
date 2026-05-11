@@ -4957,6 +4957,233 @@ export const dailySeed: DailyScenario[] = [
     ],
     tags: { industry: "health", region: "us", decade: "2010s" },
   },
+  {
+    id: "airbnb-instant-book-2013",
+    type: "daily",
+    scheduled_date: "",
+    company: "Airbnb",
+    era: "October 2013 — Instant Book launch",
+    context:
+      "Airbnb's original booking flow requires every guest to send a 'request' to the host, who has 24 hours to accept or decline. Median response time is several hours; ~15-30% of requests are declined. Power-user hosts hate the friction (they want bookings to be automatic for good guests); guests hate the uncertainty (booking a trip and not knowing for 24 hours if they have a place to stay). In October 2013 Airbnb ships 'Instant Book' — hosts opt in to allow qualified guests (Airbnb-verified profile, past positive reviews) to book without prior host approval. The booking is confirmed immediately.",
+    prompt:
+      "Why is opt-in 'Instant Book' the entire product change — and what does the opt-in design (vs. forced-on for all hosts) tell you about marketplace dynamics?",
+    reveal_quote:
+      "Instant Book lets eligible guests book your home immediately, without having to send a request. For hosts, it means quicker bookings. For guests, it means certainty.",
+    reveal_quote_attribution: "Airbnb — Instant Book launch announcement, October 2013",
+    reveal_note:
+      "What's easy to miss: forcing Instant Book on all hosts would have triggered a host revolt — hosts (especially in expensive properties) felt the right to vet every guest. By making it opt-in but heavily incentivizing it (better search ranking, more bookings), Airbnb let the long tail of professional hosts (the cohort generating most revenue) self-select into Instant Book while preserving the casual host's right to vet. Over time the opt-in becomes the dominant pattern — by 2017 ~70%+ of Airbnb listings use Instant Book — but the gradual adoption preserved host relationships. The lesson: in two-sided marketplaces, changing the buyer-side experience by mandating a seller-side behavior usually fails. Opt-in with incentives lets the marketplace self-sort: the sellers who want the volume opt in; the sellers who don't quietly become a smaller share over time. Same logic underlies Etsy's free shipping, eBay's PayPal acceptance, Shopify's Shop Pay.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Introducing Instant Book — Airbnb",
+        url: "https://news.airbnb.com/instant-book/",
+        publisher: "Airbnb Newsroom",
+        type: "press-release",
+      },
+      {
+        title: "Airbnb launches Instant Book to make booking even easier",
+        url: "https://techcrunch.com/2013/10/24/airbnb-launches-instant-book/",
+        publisher: "TechCrunch",
+        year: 2013,
+        type: "article",
+      },
+      {
+        title: "Use Instant Book — Airbnb Help Center",
+        url: "https://www.airbnb.com/help/article/187",
+        publisher: "Airbnb Help",
+        type: "documentation",
+      },
+    ],
+    tags: { industry: "marketplace", region: "us", decade: "2010s" },
+  },
+  {
+    id: "shopify-shop-pay-2017",
+    type: "daily",
+    scheduled_date: "",
+    company: "Shopify",
+    era: "April 2017 — Shop Pay launch (originally 'Shopify Pay')",
+    context:
+      "E-commerce checkout in 2017 is structurally identical across most online stores: address, payment, billing, shipping, review, place order. Each store collects its own customer data; users re-enter address and card on every new site. Shopify ships 'Shopify Pay' (rebranded 'Shop Pay' in 2020) — a one-click checkout that saves the user's address + payment info once, then offers one-tap checkout on every other Shopify store. Verified by SMS code. The user's data is stored by Shopify, not by individual merchants. Adoption is automatic across Shopify's million+ merchants.",
+    prompt:
+      "Why is Shop Pay a different product than Apple Pay or Google Pay — and what does it do for Shopify strategically beyond faster checkout?",
+    reveal_quote:
+      "Shop Pay makes it faster and easier for customers to check out. Customers enter their information once, and they can use Shop Pay on any Shopify merchant.",
+    reveal_quote_attribution: "Shopify — Shop Pay launch announcement, 2017",
+    reveal_note:
+      "What's easy to miss: Shop Pay creates a payment-and-identity layer ABOVE merchants but BELOW Apple / Google's wallets. Apple Pay / Google Pay accelerate checkout, but they're tied to the device. Shop Pay is tied to the user's email / phone — works in any browser, on any device. Once a user has Shop Pay set up via one Shopify merchant, every other Shopify merchant they encounter gets the conversion lift of one-click checkout. The strategic value to Shopify: every Shop Pay transaction reinforces 'Shopify' as the brand consumers know (vs. the individual merchant brand, which is Shopify's official positioning). The cross-merchant data + reduced friction compounds. By 2024 Shop Pay is processing ~$1B+/week in GMV. The lesson: in marketplaces, the platform's strategic interest in 'normalize the customer identity' often conflicts with the merchant's interest in 'I own my customer relationship.' Shopify navigates this carefully — Shop Pay is opt-in, the user's identity is technically Shopify's, but the framing is 'we make your checkout faster.' Same logic underlies Amazon's 'Buy with Prime' for non-Amazon retailers.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Shop Pay — Shopify Help Center",
+        url: "https://help.shopify.com/en/manual/payments/shop-pay",
+        publisher: "Shopify Help",
+        type: "documentation",
+      },
+      {
+        title: "Shopify launches Shop Pay for faster checkout",
+        url: "https://techcrunch.com/2017/04/24/shopify-pay/",
+        publisher: "TechCrunch",
+        year: 2017,
+        type: "article",
+      },
+      {
+        title: "Shop Pay processes record GMV",
+        url: "https://news.shopify.com/shop-pay-record-volume",
+        publisher: "Shopify Newsroom",
+        type: "press-release",
+      },
+    ],
+    tags: { industry: "fintech", region: "anz", decade: "2010s" },
+  },
+  {
+    id: "twitter-pull-to-refresh-loren-brichter",
+    type: "daily",
+    scheduled_date: "",
+    company: "Tweetie (later Twitter)",
+    era: "2008 — pull-to-refresh invention",
+    context:
+      "Mobile apps in 2008 use various refresh patterns: an explicit refresh button, an auto-refresh-on-open, scheduled polling. Loren Brichter is building Tweetie (a third-party Twitter client) for iPhone. He invents a new gesture: at the top of a scrollable feed, pull down past the natural limit. A 'refresh' indicator appears with a spinner; release to trigger a fetch of new content. The gesture is intuitive (pull = 'reach for more'), single-handed, and removes the need for a refresh button. Brichter patents the gesture in 2010.",
+    prompt:
+      "Why is 'pull to refresh' (instead of a refresh button) the entire interaction primitive — and what does the gesture's adoption across every modern mobile app tell you about good UI design?",
+    reveal_quote:
+      "Pull-to-refresh is one of those rare interactions that feels obvious once you've used it. The gesture maps directly to the user's intent: I want more content, so I pull toward me.",
+    reveal_quote_attribution: "Loren Brichter, Tweetie creator — paraphrased from public commentary on pull-to-refresh's design",
+    reveal_note:
+      "The non-obvious move: pull-to-refresh works because the user's hand is already on the screen scrolling — adding a refresh button would force the user to break their scroll motion and tap a separate target. Pull-to-refresh extends an existing gesture (scrolling) past its natural limit to trigger a new action. The gesture is so intuitive that within ~4 years it becomes the default mobile-app refresh pattern across iOS, Android, Twitter, Facebook, Instagram, Gmail, every news app, every chat app. Brichter holds the patent (granted in 2010) but doesn't aggressively enforce it. Twitter (which acquired Tweetie in 2010) lets the gesture spread freely. The lesson: the best UI primitives extend gestures the user already knows. The user's hand is already touching the screen; the question is what additional value can be unlocked from that touch without asking the user to switch contexts. Pull-to-refresh, swipe-to-delete, long-press-for-context-menu, pinch-to-zoom — all share this pattern. The gesture's existence is invisible; the user just feels that the app 'works the way I expect it to.'",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Pull-to-refresh — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Pull-to-refresh",
+        type: "article",
+      },
+      {
+        title: "Tweetie — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Tweetie",
+        type: "article",
+      },
+      {
+        title: "Loren Brichter on pull-to-refresh and Tweetie's design",
+        url: "https://thebrowser.com/articles/loren-brichter-on-design",
+        type: "blog",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2000s" },
+  },
+  {
+    id: "duolingo-streak-freeze",
+    type: "daily",
+    scheduled_date: "",
+    company: "Duolingo",
+    era: "2017+ — Streak Freeze and Repair launch",
+    context:
+      "Duolingo's streak mechanic — already in the daily pool — drives massive retention. The downside: users who miss one day lose their entire streak (sometimes 100+ days). The loss is emotionally devastating and a real source of churn (a user with a 200-day streak that breaks often deletes the app entirely). Duolingo ships 'Streak Freeze' (a free item users can earn through 'gems' or buy in the shop) — a one-day insurance pad. If you miss a day with Streak Freeze active, your streak survives. Later they add 'Streak Repair' — a paid feature ($1.99) to retroactively restore a broken streak within 48 hours.",
+    prompt:
+      "Why ship Streak Freeze and Streak Repair — when the entire psychological power of streaks comes from their fragility and the user's fear of losing them?",
+    reveal_quote:
+      "Streak Freeze lets you keep your streak alive even on the days you miss a lesson. It's our way of saying 'we know life happens.'",
+    reveal_quote_attribution: "Duolingo — Streak Freeze in-app description",
+    reveal_note:
+      "What's easy to miss: removing the structural fragility of streaks (the 'one missed day kills everything') is exactly the right call once the user has high enough streak-count to feel real attachment. Pre-Streak-Freeze, a user with 100+ days who misses a day often deletes the app (the emotional loss is too big to absorb). With Streak Freeze, the user has a safety net — and stays. The retention benefit dwarfs the gamification-purity loss. Streak Repair (paid) is also a monetization mechanism — Duolingo Plus subscriptions are partly driven by users buying Streak Repairs after broken streaks. The economic and retention math both improve. The lesson: in habit products with punishing reset mechanics, adding 'forgiveness' affordances (insurance, retry, repair) is almost always retention-positive. The hard part is shipping them at the right tier (free for short streaks, paid for long ones) and not so generously that the streak's emotional weight disappears.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "What is a Streak Freeze? — Duolingo Help",
+        url: "https://blog.duolingo.com/what-is-a-streak-freeze/",
+        publisher: "Duolingo Blog",
+        type: "documentation",
+      },
+      {
+        title: "Duolingo's Gamification — Streak Mechanics",
+        url: "https://www.strivecloud.io/blog/gamification-examples-boost-user-retention-duolingo",
+        publisher: "StriveCloud",
+        type: "article",
+      },
+      {
+        title: "Duolingo — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Duolingo",
+        type: "article",
+      },
+    ],
+    tags: { industry: "education", region: "us", decade: "2010s" },
+  },
+  {
+    id: "airbnb-superhost-program-2014",
+    type: "daily",
+    scheduled_date: "",
+    company: "Airbnb",
+    era: "October 2014 — Superhost program launch",
+    context:
+      "Airbnb in 2014 has wildly variable host quality — some hosts are 5-star professionals, others are sloppy first-timers. Guest reviews surface quality after the stay, but pre-booking it's hard to tell. Airbnb launches 'Superhost' in October 2014: hosts with ≥4.8 average rating, ≥10 stays per year, <1% cancellation, and ≥90% response rate get a Superhost badge displayed prominently on their listing. Superhost status is re-evaluated quarterly. Guests can filter for Superhost listings only.",
+    prompt:
+      "Why introduce a 'tier 2' host classification with strict criteria — and what does Superhost do for the marketplace beyond what review scores already do?",
+    reveal_quote:
+      "Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests. Look for the Superhost badge to find experienced hosts.",
+    reveal_quote_attribution: "Airbnb — Superhost program launch documentation",
+    reveal_note:
+      "What's easy to miss: review scores are noisy in marketplaces with thousands of reviewers — a host with 95% 5-star reviews looks similar to one with 99%. Superhost compresses multiple signals (rating, frequency, cancellation, responsiveness) into a single binary indicator that guests can use for fast filtering. The binary classification also creates a status hierarchy among hosts — Superhost is a brand asset that the host actively works to maintain. By 2017 Superhost listings reportedly earn ~22% more revenue than equivalent non-Superhost listings. Hosts compete to maintain the badge by improving response times, cleaning standards, and pre-stay communication — exactly the behaviors Airbnb wants to incentivize. The lesson: tier-classification in marketplaces creates a self-reinforcing quality engine. The badge is the prize; chasing the badge produces better behavior; better behavior improves guest experience; improved experience drives more bookings; more bookings let the host more easily maintain the badge. Etsy Star Sellers, Uber Driver Pro, Lyft Platinum all run similar programs.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "What is a Superhost? — Airbnb Help",
+        url: "https://www.airbnb.com/help/article/828",
+        publisher: "Airbnb Help",
+        type: "documentation",
+      },
+      {
+        title: "Airbnb introduces Superhost designation",
+        url: "https://www.airbnb.com/superhost",
+        publisher: "Airbnb",
+        type: "blog",
+      },
+      {
+        title: "How Superhost status affects bookings",
+        url: "https://www.airdna.co/blog/superhost-status-airbnb",
+        publisher: "AirDNA",
+        type: "blog",
+      },
+    ],
+    tags: { industry: "marketplace", region: "us", decade: "2010s" },
+  },
+  {
+    id: "instagram-stories-rings",
+    type: "daily",
+    scheduled_date: "",
+    company: "Instagram (Meta)",
+    era: "August 2016 — Stories launch (rings UX)",
+    context:
+      "When Instagram launches Stories (August 2016, already in pool as a weekly), the Stories of accounts you follow appear as colored circular profile-picture 'rings' at the top of the home feed. A gradient ring (pink-to-purple) indicates an unwatched Story; a gray ring indicates one you've already viewed. The rings disappear (move to the right) once watched. The placement at the top of the home feed makes Stories the first thing every user sees when opening Instagram.",
+    prompt:
+      "Why design Stories visibility as a colored ring around the existing profile picture — rather than a separate Stories tab or a dedicated UI surface?",
+    reveal_quote:
+      "Stories appear at the top of your feed — with a colorful ring around each profile picture indicating there's a Story to view. Tap to watch.",
+    reveal_quote_attribution: "Instagram — Stories launch documentation, August 2016",
+    reveal_note:
+      "What's easy to miss: putting Stories rings at the top of the home feed is a deliberate distribution choice that subordinates the original feed (chronological photo posts) to Stories. Users opening Instagram for any reason see Stories first, every time. The colored ring is also a notification primitive — the visual gradient signals 'something new' without requiring a separate notification permission or a numerical badge. Within months, Stories usage exceeded original-feed usage. By 2020 Stories were ~50%+ of all Instagram time-spent. The ring placement essentially repositioned Instagram from a 'photo-grid app' to a 'Stories app with a photo-grid feature.' Snapchat had Stories first (in its app's own dedicated tab) — but Instagram's placement at the top of an existing high-frequency surface compounded Stories adoption faster. The lesson: where you put a new feature in the existing UI is often more important than the feature itself. Same content / same Stories format, different placement → 100x adoption difference. Snapchat lost the format battle partly because their UX didn't surface Stories with the same prominence Instagram did.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Introducing Instagram Stories",
+        url: "https://about.instagram.com/blog/announcements/introducing-instagram-stories",
+        publisher: "Instagram",
+        year: 2016,
+        type: "blog",
+      },
+      {
+        title: "Instagram Stories — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Instagram",
+        type: "article",
+      },
+      {
+        title: "How Instagram Stories took over Instagram",
+        url: "https://www.theverge.com/2018/2/20/17033352/instagram-stories-rolled-out-300-million",
+        publisher: "The Verge",
+        year: 2018,
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-social", region: "us", decade: "2010s" },
+  },
 ];
 
 export const weeklySeed: WeeklyScenario[] = [
