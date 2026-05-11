@@ -7921,6 +7921,236 @@ export const dailySeed: DailyScenario[] = [
     ],
     tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
   },
+  {
+    id: "supreme-weekly-drop",
+    type: "daily",
+    scheduled_date: "",
+    company: "Supreme",
+    era: "1994+ — weekly drop model",
+    context:
+      "Streetwear and fashion in the 1990s follow seasonal cycles — Spring/Summer and Fall/Winter collections released twice yearly. Supreme (founded 1994 in NYC) operates differently: every Thursday, the brand releases a small new collection — limited quantity, new graphics, often collaborations. Items sell out within minutes. The next Thursday brings entirely new items. The model is built around weekly scarcity rather than seasonal abundance.",
+    prompt:
+      "Why drop weekly small-batch collections — and what does the weekly scarcity create that seasonal abundance can't?",
+    reveal_quote:
+      "Supreme drops new collections every Thursday. Quantities are limited; once an item is sold out, it's gone. The model creates urgency and exclusivity around every release.",
+    reveal_quote_attribution: "Supreme — paraphrased from brand documentation",
+    reveal_note:
+      "What's easy to miss: weekly drops convert every Thursday into a customer engagement event. Customers check Supreme every week (52+ times per year vs. ~4 seasonal collection releases). The scarcity drives resale market value — items that sell at retail for $50 often resell at $200-500 on the secondary market. The weekly cadence creates a community of 'Supreme heads' who follow drops obsessively, building social-status hierarchy around 'got that drop / missed it.' Carlyle Group acquired ~50% of Supreme in 2017 at a $1B valuation; VF Corporation acquired Supreme outright in 2020 for $2.1B. The valuation is built on the weekly-drop business model — predictable customer engagement, scarcity-driven margins, brand devotion. The lesson: drop-based commerce (weekly / monthly limited releases) creates engagement loops that abundance-based commerce can't. Same playbook later adopted by Kith, Off-White, Palace, and even non-streetwear brands like Tesla (Cybertruck reservation drops, in pool as a weekly).",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Supreme (clothing brand) — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Supreme_(brand)",
+        type: "article",
+      },
+      {
+        title: "How Supreme's drop model works",
+        url: "https://www.gq.com/story/supreme-brand-history-business-model",
+        publisher: "GQ",
+        type: "article",
+      },
+      {
+        title: "VF acquires Supreme for $2.1B",
+        url: "https://www.cnbc.com/2020/11/09/vf-corp-to-acquire-supreme-brand-for-2point1-billion.html",
+        publisher: "CNBC",
+        year: 2020,
+        type: "article",
+      },
+    ],
+    tags: { industry: "ecommerce", region: "us", decade: "1990s" },
+  },
+  {
+    id: "ikea-flat-pack-assembly",
+    type: "daily",
+    scheduled_date: "",
+    company: "IKEA",
+    era: "1956 — flat-pack assembly invention",
+    context:
+      "Furniture in 1956 ships assembled — bulky, expensive to transport, expensive to store. IKEA designer Gillis Lundgren is loading a Lövet table into a car for delivery, the table won't fit, and he removes the legs to fit it in. The realization: ship furniture disassembled (flat-packed) — customer transports it home, customer assembles. IKEA standardizes flat-pack across the catalog over the following years. The economic effect compounds: flat-pack reduces shipping cost ~70%, eliminates assembly labor at the factory, lets customers walk out with furniture immediately.",
+    prompt:
+      "Why ship furniture disassembled and require the customer to build it — and what does the flat-pack model unlock for IKEA's business model?",
+    reveal_quote:
+      "Flat-pack design lets us reduce shipping costs, save on assembly labor, and pass the savings to the customer. Customers take the box home and assemble it themselves — and the IKEA experience includes that assembly.",
+    reveal_quote_attribution: "IKEA — paraphrased from brand documentation",
+    reveal_note:
+      "What's easy to miss: flat-pack converted IKEA from a furniture retailer into a logistics company. The labor of assembly — moved from factory to customer — saves IKEA enormously per piece. The 'IKEA effect' (psychology term coined later): customers value furniture they assemble themselves more highly than pre-assembled equivalents, because they invested labor in it. The customer's labor compensates for IKEA's lower assembly cost AND increases perceived value. The economic model is more efficient than any competitor's. By 2024 IKEA generates ~€47B in annual revenue, structurally because of flat-pack. Competitors (Wayfair, West Elm, regional furniture stores) face structural cost disadvantage — they have to assemble + ship assembled goods. The lesson: making the customer co-produce the product (assembly, configuration, customization) is a cost-shifting mechanism that also produces emotional ownership. Same logic underlies Tesla's 'Configure Your Own' car ordering (no dealer), Stitch Fix's customer questionnaire (customer co-curates), and many SaaS products' customer-led setup.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "IKEA — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/IKEA",
+        type: "article",
+      },
+      {
+        title: "The story of IKEA's flat-pack innovation",
+        url: "https://about.ikea.com/en/history/business-history",
+        publisher: "IKEA",
+        type: "blog",
+      },
+      {
+        title: "The IKEA effect — Harvard Business School",
+        url: "https://hbswk.hbs.edu/item/the-ikea-effect-when-labor-leads-to-love",
+        publisher: "Harvard Business School",
+        type: "article",
+      },
+    ],
+    tags: { industry: "ecommerce", region: "eu", decade: "1990s" },
+  },
+  {
+    id: "apple-iphone-rounded-corners",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "June 2007 — iPhone visual design",
+    context:
+      "Smartphone design in 2007 means rectangular screens with sharp corners — Treo, BlackBerry, Windows Mobile. Apple's iPhone (June 2007) introduces rounded screen corners that match the rounded physical corners of the phone itself. Every UI element (icons, dialog boxes, app windows) inside iOS uses radius-corner rectangles. The design is so distinctive Apple files multiple design patents on rounded-corner smartphones (USD670286S1, others). Samsung's 2011 Galaxy S phones with similar rounded corners trigger the multi-billion-dollar Apple-Samsung patent wars.",
+    prompt:
+      "Why patent rounded corners — and what does the patent enforcement tell you about visual-design IP in consumer hardware?",
+    reveal_quote:
+      "The rounded corners of the iPhone are not just aesthetic; they're a design element that reflects the device's physical form factor and creates a consistent visual language throughout iOS.",
+    reveal_quote_attribution: "Apple — paraphrased from design philosophy commentary",
+    reveal_note:
+      "What's easy to miss: Apple's design patents on rounded-corner rectangles are widely criticized as 'patenting an obvious shape' — but the legal protection is real and Apple has won billions in patent-infringement damages from Samsung for similar designs. The patents matter because hardware visual design is a brand asset: a phone that looks like an iPhone (rounded corners, edge-to-edge glass, specific button placement) competes for the iPhone customer at a perceptual level. The patent litigation costs Apple + Samsung tens of millions in legal fees — but the precedent (visual design IS protectable IP) shapes how every smartphone competitor designs hardware. Google's Pixel, Samsung's Galaxy, Xiaomi, OnePlus all carefully differentiate their hardware design to avoid Apple's specific patent claims. The lesson: in commoditized hardware categories (smartphones are visually similar), design IP protection becomes a meaningful competitive moat. The legal strategy compounds with brand strategy: Apple's iPhone is recognizable from across a room because of design choices that are also legally protected.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Apple Inc. v. Samsung Electronics Co. — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Apple_Inc._v._Samsung_Electronics_Co.",
+        type: "article",
+      },
+      {
+        title: "Apple's iPhone design patents",
+        url: "https://www.wired.com/2012/08/apple-samsung-trial-patents/",
+        publisher: "Wired",
+        year: 2012,
+        type: "article",
+      },
+      {
+        title: "Apple wins $539M Samsung patent verdict",
+        url: "https://www.theverge.com/2018/5/24/17390104/apple-samsung-patent-trial-iphone-design-verdict",
+        publisher: "The Verge",
+        year: 2018,
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2000s" },
+  },
+  {
+    id: "robinhood-no-mutual-fund-fees",
+    type: "daily",
+    scheduled_date: "",
+    company: "Robinhood",
+    era: "2018+ — fractional shares + zero account minimums",
+    context:
+      "Brokerages in 2017-2018 require minimum balances ($1,000+ at most) and charge commissions ($4.95-9.99 per trade). Buying a share of Amazon ($1,500+) requires $1,500. Robinhood ships fractional shares in December 2019: any user can buy $1 of any stock. Combined with zero commissions (Robinhood's original product, already in pool), this means a college student with $5 can buy 0.003 shares of Amazon. The fractional-share + zero-commission combination opens stock investing to people previously excluded by capital requirements.",
+    prompt:
+      "Why offer fractional shares — and what does the combination of zero commissions + fractional shares do to brokerage market positioning?",
+    reveal_quote:
+      "Fractional shares let you invest in any company you want, starting with as little as $1. No more 'can't afford that stock' — any amount of capital can build a portfolio.",
+    reveal_quote_attribution: "Robinhood — fractional shares launch announcement, December 2019",
+    reveal_note:
+      "What's easy to miss: fractional shares structurally lower the barrier-to-entry for investing from 'have at least $100s' to 'have at least $1.' Combined with zero commissions, the friction of investing approaches zero. The expansion in addressable market is enormous — by 2021 Robinhood reports ~30%+ of users opened their first investing account ever on Robinhood (most of them with sub-$100 starting capital). Schwab, Fidelity, E*Trade all eventually offer fractional shares (2020-2021) as defensive moves against Robinhood. The lesson: in financial-services categories where minimum-balance requirements have historically gated access, removing those minimums + removing transaction fees opens market segments incumbents structurally couldn't serve. Robinhood's customer base (Gen Z, lower-income, first-time investors) is structurally different from Schwab's (older, higher-balance, established). The fractional-shares + zero-commission combination is the entire reason these two customer bases now exist.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Fractional shares — Robinhood",
+        url: "https://robinhood.com/us/en/support/articles/fractional-shares/",
+        publisher: "Robinhood",
+        type: "documentation",
+      },
+      {
+        title: "Robinhood launches fractional shares",
+        url: "https://techcrunch.com/2019/12/12/robinhood-fractional-shares/",
+        publisher: "TechCrunch",
+        year: 2019,
+        type: "article",
+      },
+      {
+        title: "How Robinhood changed investing",
+        url: "https://www.bloomberg.com/news/articles/2021-07-31/robinhood-ipo-democratized-investing",
+        publisher: "Bloomberg",
+        year: 2021,
+        type: "article",
+      },
+    ],
+    tags: { industry: "fintech", region: "us", decade: "2010s" },
+  },
+  {
+    id: "apple-vision-pro-eyesight",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "February 2024 — Apple Vision Pro 'EyeSight' feature",
+    context:
+      "VR / AR headsets through 2023 (Meta Quest, Valve Index, HoloLens) have opaque external surfaces — the wearer's eyes are hidden from observers. The social effect: the wearer is visibly cut off from the room. Apple Vision Pro (February 2024) ships with 'EyeSight' — an external OLED display on the front of the headset that shows the wearer's eyes to people around them, captured by inward-facing cameras and rendered in real-time on the outward-facing screen. When the wearer is in immersive mode (deep VR), the EyeSight display shows abstract patterns instead.",
+    prompt:
+      "Why include outward-facing 'eyes' on a VR headset — when every other VR product treats the wearer's isolation as acceptable?",
+    reveal_quote:
+      "EyeSight reveals your eyes when someone is nearby, making it easy for you to connect with others while wearing Vision Pro. When you're fully immersed in an experience, EyeSight indicates this to others around you.",
+    reveal_quote_attribution: "Apple — Vision Pro EyeSight documentation",
+    reveal_note:
+      "What's easy to miss: EyeSight is Apple's bet that AR / VR will be socially integrated, not isolating. The feature signals a fundamentally different product positioning than Meta Quest (which has accepted that VR users look weird and antisocial). EyeSight is technically expensive (an entire OLED display + cameras + rendering pipeline just for outward-facing eyes), reportedly the device's most costly individual subsystem. The bet: AR / VR products that look socially-acceptable will eventually mass-market; products that look isolating will stay niche. The bet's success is contested — Vision Pro hasn't been a commercial hit (covered in the weekly pool), and reviewers are mixed on EyeSight (some call it 'ghostly' / 'uncanny'). The feature might be discontinued in future Vision Pro generations. But the design philosophy is the canonical case in 'when a product category has accepted social-isolation as a tradeoff, the company that designs for social acceptance has the best long-term position.' Whether Apple's bet pays off depends on whether AR / VR mass-markets in the next decade — but EyeSight is a strategically defensible investment regardless of Vision Pro's commercial fate.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Apple Vision Pro EyeSight — Apple",
+        url: "https://www.apple.com/apple-vision-pro/",
+        publisher: "Apple",
+        type: "documentation",
+      },
+      {
+        title: "Apple Vision Pro — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Apple_Vision_Pro",
+        type: "article",
+      },
+      {
+        title: "Why Apple Vision Pro shows your eyes",
+        url: "https://www.theverge.com/24054862/apple-vision-pro-eyesight-feature-explained",
+        publisher: "The Verge",
+        year: 2024,
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2020s" },
+  },
+  {
+    id: "instagram-stories-disappear-24-hours",
+    type: "daily",
+    scheduled_date: "",
+    company: "Snapchat (later Instagram)",
+    era: "October 2013 — Snapchat Stories 24-hour expiration",
+    context:
+      "Social-network content through 2013 is permanent — posts on Facebook / Twitter / Instagram persist forever. Snapchat had already established disappearing photos (Snaps, 2011). In October 2013 Snapchat launches 'Stories' — photos / videos that expire after 24 hours, but unlike individual Snaps which disappear after viewing, Stories are visible to all your friends for the full 24-hour window. Each new Story replaces the previous in the user's profile, with a colored ring indicating unviewed content.",
+    prompt:
+      "Why is the 24-hour expiration the entire product design — and what does temporary content unlock that permanent content can't?",
+    reveal_quote:
+      "Snapchat Stories are visible for 24 hours. After that, they disappear. You can post as many as you want each day — the impermanence is the entire point.",
+    reveal_quote_attribution: "Snapchat — Stories launch documentation, October 2013",
+    reveal_note:
+      "What's easy to miss: 24-hour expiration creates a lower-friction content-posting pattern. Permanent content (Instagram posts, tweets) requires the user to decide 'is this worth being on my profile forever?' — a high-stakes decision that filters out most spontaneous moments. 24-hour expiration removes that filter; users post mundane / candid moments because they'll disappear anyway. The result: Stories generate ~10x more content per user than permanent-post platforms. Instagram clones the format in August 2016 (already in pool as a weekly), and Stories becomes Instagram's dominant surface. Facebook, WhatsApp, LinkedIn, YouTube, Spotify all eventually add Stories. The 24-hour expiration is now a category-defining content format. The lesson: temporal scarcity (content disappears) and reduced posting friction work together. Lowering the stakes of each post compounds posting frequency, which compounds engagement, which compounds platform value. The same dynamic underlies Twitter Fleets (later killed), Instagram Notes (text status), and BeReal's daily window (different from Stories but similar friction logic). Permanence is a structural barrier to spontaneous sharing.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Snapchat Stories — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Snapchat",
+        type: "article",
+      },
+      {
+        title: "Snapchat introduces Stories",
+        url: "https://blog.snapchat.com/2013/10/03/surprise/",
+        publisher: "Snapchat Blog",
+        year: 2013,
+        type: "blog",
+      },
+      {
+        title: "How disappearing content changed social media",
+        url: "https://www.theatlantic.com/technology/archive/2014/01/disappearing-content-snapchat-instagram/356985/",
+        publisher: "The Atlantic",
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-social", region: "us", decade: "2010s" },
+  },
 ];
 
 export const weeklySeed: WeeklyScenario[] = [
