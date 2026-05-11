@@ -6555,6 +6555,238 @@ export const dailySeed: DailyScenario[] = [
     ],
     tags: { industry: "ecommerce", region: "us", decade: "2010s" },
   },
+  {
+    id: "google-search-autocomplete",
+    type: "daily",
+    scheduled_date: "",
+    company: "Google",
+    era: "2008+ — Google Suggest / Autocomplete",
+    context:
+      "Search queries pre-2008 require the user to fully formulate and type their query before submitting. Google ships 'Google Suggest' (later renamed Autocomplete) in 2008: as you type, a dropdown shows the most-likely completions based on what other users have searched. Type 'how to make' and see 'how to make pancakes,' 'how to make a paper airplane,' 'how to make slime.' The suggestions update with every keystroke. By 2010 autocomplete is the default search behavior.",
+    prompt:
+      "Why is showing search-as-you-type suggestions structurally different from showing search results — and what does it do for the user's search behavior?",
+    reveal_quote:
+      "Autocomplete predicts what you might be searching for as you type, displaying suggestions in a dropdown below the search box. It helps you complete a search faster and discover new queries.",
+    reveal_quote_attribution: "Google — paraphrased from Search Autocomplete documentation",
+    reveal_note:
+      "What's easy to miss: autocomplete is a query-formation tool, not a results-faster tool. Users often start typing without fully knowing what they want to search for. The dropdown suggestions help users discover the 'right' query — sometimes one they wouldn't have formulated on their own. Autocomplete also creates feedback loops: popular queries become more suggested, which makes them even more popular. The suggestions themselves are a form of recommendation; Google has had to manually suppress problematic autocomplete suggestions (defamatory queries, politically charged completions). The lesson: in search products, the input experience is as important as the results. Autocomplete reduces query-formation friction; predictions help less-confident searchers; popular-query bias compounds engagement. Same principle underlies Spotify's search-as-you-type, ChatGPT's prompt-suggestions, GitHub's repo-name autocomplete.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Autocomplete predictions in Search — Google",
+        url: "https://support.google.com/websearch/answer/106230",
+        publisher: "Google Search Help",
+        type: "documentation",
+      },
+      {
+        title: "Google Suggest launches — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Autocomplete",
+        type: "article",
+      },
+      {
+        title: "How Google's Autocomplete works",
+        url: "https://blog.google/products/search/how-google-autocomplete-works-search/",
+        publisher: "Google Blog",
+        type: "blog",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2000s" },
+  },
+  {
+    id: "netflix-tudum-sound",
+    type: "daily",
+    scheduled_date: "",
+    company: "Netflix",
+    era: "October 2015 — 'tudum' sound launch",
+    context:
+      "When Netflix's logo appears at the start of any Netflix Original show or movie, a distinctive two-note 'tudum' sound plays — a low-pitched rumble followed by a slightly higher note. The sound was launched in October 2015 with Marvel's 'Daredevil' and 'House of Cards' Season 3. Netflix had previously used a stock sting at the start of originals; the 'tudum' was custom-composed by Lon Bender with Netflix's sound team to be instantly recognizable. By 2020 the sound is one of the most-recognized brand audio cues in entertainment.",
+    prompt:
+      "Why invest in a custom 1.5-second audio signature for every Netflix Original — and what does the sound do beyond brand recall?",
+    reveal_quote:
+      "The 'tudum' lets you know you're about to watch something special. It's our way of telling you: this is a Netflix Original, made for you.",
+    reveal_quote_attribution: "Netflix — paraphrased from public commentary on the tudum sound design",
+    reveal_note:
+      "What's easy to miss: the tudum sound is Pavlovian conditioning at scale. Every time it plays, the viewer is about to consume Netflix content — usually a show they've chosen, in a moment they've planned. Over hundreds of hours of content, the sound becomes a trigger for the emotional anticipation of 'I'm about to watch something I picked.' Studies of brand-audio identifiers (Intel chime, McDonald's 'I'm Lovin' It,' THX sound) show that sustained audio branding creates stronger emotional brand-memory than visual branding alone. Netflix's tudum has been parodied, ringtoned, and tweeted thousands of times — every reference reinforces the association. By 2024 Netflix even launched 'Tudum' (the website, tudum.com) as their fan / news portal — naming the entire content-discovery surface after the sound. The lesson: branded audio signatures cost almost nothing to produce but compound emotional brand-recognition over millions of repetitions. Most B2C brands miss the audio dimension entirely; the few that invest (Netflix, Apple iPhone unlock, ESPN SportsCenter da-da-da) build distinctive recall.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "The 'Tudum' sound on Netflix — How it was created",
+        url: "https://www.tudum.com/articles/how-netflix-tudum-sound-was-created",
+        publisher: "Tudum (Netflix)",
+        type: "blog",
+      },
+      {
+        title: "Netflix launches branded sound for Originals",
+        url: "https://variety.com/2015/digital/news/netflix-tudum-sound-1201608947/",
+        publisher: "Variety",
+        year: 2015,
+        type: "article",
+      },
+      {
+        title: "Netflix's 'tudum' is now iconic",
+        url: "https://www.theverge.com/22643015/netflix-tudum-fan-event",
+        publisher: "The Verge",
+        year: 2021,
+        type: "article",
+      },
+    ],
+    tags: { industry: "media", region: "us", decade: "2010s" },
+  },
+  {
+    id: "calendly-meeting-types-only",
+    type: "daily",
+    scheduled_date: "",
+    company: "Calendly",
+    era: "2013+ — meeting-type-driven scheduling",
+    context:
+      "Scheduling tools in 2013 (Doodle, ScheduleOnce) ask users to set up scheduling links per individual meeting — every new context requires a new setup. Calendly takes a different design: users set up named 'Meeting Types' (15-minute intro, 30-minute coffee, 60-minute deep dive, etc.), each with its own duration, buffer time, eligible time slots, and questions for the booker. The same Meeting Type can be shared dozens of times. Calendly's link format is also fixed (calendly.com/yourname/15min) — the URL is the brand.",
+    prompt:
+      "Why design scheduling around named Meeting Types — vs. ad-hoc per-meeting setup like Doodle?",
+    reveal_quote:
+      "Meeting Types let you set up scheduling once and reuse it forever. Define your availability, your buffer time, and the questions you want answered upfront — then share the link.",
+    reveal_quote_attribution: "Calendly — Meeting Types documentation",
+    reveal_note:
+      "What's easy to miss: Meeting Types convert scheduling from per-event setup into a reusable workflow. A salesperson with 'Discovery Call' (15min), 'Demo' (30min), 'Deep Dive' (60min) Meeting Types can use the same three links for hundreds of bookings, without ever re-configuring. The compounding effect: power users have 5-10 Meeting Types, each shared across their email signature, LinkedIn, business cards. Every time someone books one, Calendly handles the timezone math, buffer enforcement, and post-booking integration with the user's calendar / video conferencing. The user's behavior changes: 'I'll send you my Calendly' becomes a verb. The lesson: workflow-shaped products (vs. ad-hoc-task products) compound usage. The user invests in setup once; the product pays back for every subsequent use. Same logic underlies templates in Notion, snippets in Slack, saved searches in Gmail.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Calendly Meeting Types",
+        url: "https://help.calendly.com/hc/en-us/articles/223193288",
+        publisher: "Calendly Help",
+        type: "documentation",
+      },
+      {
+        title: "Calendly — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Calendly",
+        type: "article",
+      },
+      {
+        title: "How Calendly's product works",
+        url: "https://blog.calendly.com/scheduling-strategies",
+        publisher: "Calendly Blog",
+        type: "blog",
+      },
+    ],
+    tags: { industry: "productivity", region: "us", decade: "2010s" },
+  },
+  {
+    id: "facebook-tag-friends-in-photos",
+    type: "daily",
+    scheduled_date: "",
+    company: "Facebook",
+    era: "August 2006 — photo tagging launch",
+    context:
+      "Photos on Facebook through mid-2006 are individual posts — uploaded by one user, viewed by their friends. There's no way to identify other people in the photo. In August 2006 Facebook launches photo tagging — click on a face in a photo, type the friend's name, and the friend is 'tagged.' The tagged friend gets a notification, the photo appears on their profile, and clicking the tag jumps to that person's profile. By 2010 photo tagging is one of Facebook's highest-engagement actions; multiple billion photos are tagged per year.",
+    prompt:
+      "Why launch photo tagging as a public, multi-user feature — and what does cross-user content tagging do for engagement that single-user photos can't?",
+    reveal_quote:
+      "Tag friends in your photos so they can see them too. Once you've tagged someone, the photo will show up in their photos collection — and their friends can see it too.",
+    reveal_quote_attribution: "Facebook — photo tagging launch documentation, August 2006",
+    reveal_note:
+      "What's easy to miss: photo tagging is a multi-user notification engine disguised as a feature. Every time you tag a friend, they get a notification, which brings them back to the app. The tagged friend's friends see the photo in their newsfeed — which exposes the original photo to potentially hundreds of new viewers per tag. The network-effect amplification is enormous. Photo tagging also creates a public-by-default identity layer — if you're tagged in a photo, it appears on your profile (unless you untag yourself), making Facebook the de facto identity-photo database. Facebook's facial-recognition (DeepFace, 2014) builds on tagged-photo training data — billions of human-confirmed face-name pairs. By 2019 Facebook removes the auto-suggest-friend-tags from facial recognition (privacy concerns) but the underlying tag-graph remains a foundational data asset. The lesson: features that turn single-user actions (uploading a photo) into multi-user notifications (everyone tagged gets notified, their friends see it) compound engagement at a structurally different rate. Photo tagging was one of the most-impactful single features in social-network history.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Facebook Photo Tagging launches",
+        url: "https://www.facebook.com/notes/facebook/photos-finally-uploaded/2207870197/",
+        publisher: "Facebook",
+        year: 2006,
+        type: "blog",
+      },
+      {
+        title: "Photo tagging — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Tag_(metadata)",
+        type: "article",
+      },
+      {
+        title: "Facebook photo tagging at 10 years",
+        url: "https://about.fb.com/news/2016/08/facebook-tags-photos-anniversary/",
+        publisher: "Facebook Newsroom",
+        year: 2016,
+        type: "press-release",
+      },
+    ],
+    tags: { industry: "consumer-social", region: "us", decade: "2000s" },
+  },
+  {
+    id: "youtube-autoplay-default",
+    type: "daily",
+    scheduled_date: "",
+    company: "YouTube (Google)",
+    era: "2015 — Autoplay default on",
+    context:
+      "YouTube through 2014 plays the video you clicked, then shows recommended videos. The user has to actively click the next video. In 2015 YouTube enables 'Autoplay' by default — when one video ends, the next recommended video auto-starts after a short countdown. The user can cancel the autoplay with a click, but most don't. The result: viewers stay on YouTube significantly longer per session, watching multiple recommended videos in a sitting that would previously have ended after one.",
+    prompt:
+      "Why default Autoplay to ON — when it's structurally a 'time-suck' feature users actively report disliking?",
+    reveal_quote:
+      "Autoplay automatically plays a recommended video after the one you've just watched. You can turn it off at any time.",
+    reveal_quote_attribution: "YouTube — Autoplay documentation",
+    reveal_note:
+      "What's easy to miss: defaulting Autoplay to ON converts YouTube's average session time from ~10 minutes per session to ~30+ minutes. The user complaints ('I sat down for one video and watched five hours') are simultaneously the engagement-metric success. YouTube's ad revenue scales directly with watch-time; Autoplay-on is one of the highest-ROI engagement-design decisions in the platform's history. YouTube does provide an off-switch for Autoplay (in user settings) — but most users don't change defaults. By 2018-2020, Autoplay is broadly criticized as exploitative engagement design; YouTube responds by adding 'Take a Break' reminders and screen-time tools. The lesson: defaults that compound platform engagement vs. user wellbeing produce significant ethical and regulatory pressure. Same pattern repeats with Instagram infinite scroll, TikTok For You feed, Netflix 'Next Episode' countdown — all variants of 'don't make the user choose; auto-feed them more.' These features work for engagement metrics; they're increasingly regulated and criticized for their externalities on user attention.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Turn Autoplay on or off — YouTube",
+        url: "https://support.google.com/youtube/answer/9268191",
+        publisher: "YouTube Help",
+        type: "documentation",
+      },
+      {
+        title: "YouTube Autoplay design criticisms",
+        url: "https://www.theverge.com/2018/8/1/17636088/youtube-autoplay-screen-time-tools-control-design",
+        publisher: "The Verge",
+        year: 2018,
+        type: "article",
+      },
+      {
+        title: "How YouTube keeps you watching",
+        url: "https://www.nytimes.com/2019/06/08/technology/youtube-radical.html",
+        publisher: "New York Times",
+        year: 2019,
+        type: "article",
+      },
+    ],
+    tags: { industry: "media", region: "us", decade: "2010s" },
+  },
+  {
+    id: "iphone-airpods-pro-noise-cancel",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "October 28, 2019 — AirPods Pro launch",
+    context:
+      "Wireless earbuds in 2019 are passive — they play audio but don't actively cancel ambient noise. Active noise cancellation (ANC) is the domain of large over-ear headphones (Bose QuietComfort, Sony WH-1000XM). Apple ships AirPods Pro on October 28, 2019 with ANC in tiny in-ear form factor — using inward + outward microphones to detect ambient sound and generate inverse waveforms. Press the stem to toggle between Noise Cancellation (block out the world) and Transparency Mode (amplify ambient sound to hear surroundings). Both modes were industry-first in true-wireless earbuds at the time.",
+    prompt:
+      "Why ship active noise cancellation in a true-wireless earbud — a technical challenge that requires custom audio chips + multiple microphones + advanced DSP — when most users had never used ANC before?",
+    reveal_quote:
+      "AirPods Pro feature Active Noise Cancellation, which silences the world around you so you can focus on what's important. Transparency mode lets you hear and connect with the world around you.",
+    reveal_quote_attribution: "Apple — AirPods Pro launch announcement, October 2019",
+    reveal_note:
+      "What's easy to miss: ANC + Transparency in true-wireless earbuds opens an entirely new category of use case. Pre-AirPods-Pro, ANC was for flights / commutes / open offices — situations where you're stationary and don't need ambient awareness. AirPods Pro's Transparency Mode (amplify ambient sound) means you can wear ANC earbuds while walking, having conversations, biking. The two modes capture two different relationships with the ambient world: 'block it' (ANC) and 'engage with it more' (Transparency). The category expands beyond just commuters to anyone wanting audio-environment control during normal activities. AirPods Pro becomes Apple's most successful AirPods product, with each subsequent generation refining the ANC + Transparency capabilities. Competitors (Sony WF-1000XM4, Samsung Galaxy Buds Pro) eventually match the feature set. The lesson: shipping seemingly-niche technical features (multi-microphone ANC in earbuds) can open entirely new product categories when the feature unlocks a different relationship with the environment. The technical work is real; the market expansion is much bigger than 'better earbuds.'",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Apple announces AirPods Pro",
+        url: "https://www.apple.com/newsroom/2019/10/apple-announces-airpods-pro/",
+        publisher: "Apple Newsroom",
+        year: 2019,
+        type: "press-release",
+      },
+      {
+        title: "AirPods Pro review",
+        url: "https://www.theverge.com/2019/10/30/20940731/apple-airpods-pro-review-noise-cancellation-microphone",
+        publisher: "The Verge",
+        year: 2019,
+        type: "article",
+      },
+      {
+        title: "AirPods Pro — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/AirPods_Pro",
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
 ];
 
 export const weeklySeed: WeeklyScenario[] = [
