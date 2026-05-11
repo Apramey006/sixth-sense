@@ -25,6 +25,37 @@ export const supabaseConfig = {
   anonKey: anonKey ?? "",
 };
 
+// Metadata shared by every scenario. Required so the validation pipeline can
+// run source-presence and diversity checks against the full pool.
+export type ScenarioSource = {
+  title: string;
+  url: string;
+  publisher?: string;
+  year?: number;
+  type:
+    | "interview"
+    | "podcast"
+    | "article"
+    | "book"
+    | "blog"
+    | "talk"
+    | "filing"
+    | "tweet"
+    | "video"
+    | "documentation"
+    | "press-release";
+};
+
+export type ScenarioRegion = "us" | "uk" | "eu" | "asia" | "latam" | "africa" | "anz" | "global";
+export type ScenarioDecade = "1990s" | "2000s" | "2010s" | "2020s";
+
+export type ScenarioTags = {
+  // Free string against an allowlist enforced by scripts/validate-scenarios.ts.
+  industry: string;
+  region: ScenarioRegion;
+  decade: ScenarioDecade;
+};
+
 export type DailyScenario = {
   id: string;
   type: "daily";
@@ -36,6 +67,9 @@ export type DailyScenario = {
   reveal_quote: string;
   reveal_quote_attribution: string;
   reveal_note: string;
+  quote_type: "verbatim" | "paraphrased";
+  sources: ScenarioSource[];
+  tags: ScenarioTags;
 };
 
 export type WeeklyScenario = {
@@ -53,4 +87,7 @@ export type WeeklyScenario = {
   outcomes: { stat: string; label: string; accent?: boolean }[];
   tradeoffs: { title: string; body: string }[];
   per_dimension_truth: { tradeoff: string; user: string; alt: string; predict: string };
+  quote_type: "verbatim" | "paraphrased";
+  sources: ScenarioSource[];
+  tags: ScenarioTags;
 };
