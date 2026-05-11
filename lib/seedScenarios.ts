@@ -4423,6 +4423,275 @@ export const dailySeed: DailyScenario[] = [
     ],
     tags: { industry: "media", region: "us", decade: "2010s" },
   },
+  {
+    id: "perplexity-citation-first-search",
+    type: "daily",
+    scheduled_date: "",
+    company: "Perplexity AI",
+    era: "December 2022 — Perplexity launch",
+    context:
+      "ChatGPT (Nov 2022) generates fluent answers but no sources — users can't verify what's accurate vs. hallucinated. Google Search returns sources but not answers. Perplexity launches in December 2022 as 'an answer engine, not a search engine': type a question, get a 1-2 paragraph AI-generated answer with inline numbered citations [1] [2] [3] pointing to the web pages the answer was synthesized from. The citations are clickable, scrollable, and visible alongside the answer. Hallucinations still happen but the citation system gives users a path to verify.",
+    prompt:
+      "Why anchor the entire product on inline citations — when ChatGPT's hallucination problem could theoretically be solved by better models alone?",
+    reveal_quote:
+      "Perplexity is an answer engine that provides accurate, trusted, and real-time answers to any question. Every response includes citations so you can verify and explore further.",
+    reveal_quote_attribution: "Perplexity AI — Perplexity launch page, December 2022",
+    reveal_note:
+      "What's easy to miss: citations are the entire product trust mechanism. ChatGPT's biggest weakness in 2022-2024 isn't intelligence — it's that users can't tell what's real vs. fabricated. Perplexity's bet: rather than promising 'we'll fix hallucination eventually,' ship a UX that lets users verify any claim instantly. The citations also create a structural revenue model: Perplexity has to crawl and index the web (like a search engine), which positions it as competition to Google Search rather than just a ChatGPT clone. By 2024, Perplexity has ~10M weekly users and a $1B+ valuation — built almost entirely on the trust-via-citations positioning that ChatGPT initially refused to ship. ChatGPT eventually added 'Browse' (web access with citations) in 2023, then SearchGPT (a dedicated search-mode) in 2024 — explicitly copying Perplexity's framing. The lesson: when a category's dominant player has a structural weakness (hallucination), a competitor can win durable ground by shipping the UX that makes the weakness visible and inspectable. Trust is the product.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Perplexity AI — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Perplexity_AI",
+        type: "article",
+      },
+      {
+        title: "Perplexity is changing how people search the web with AI",
+        url: "https://techcrunch.com/2024/04/23/perplexity-is-raising-250m-at-2-5-3b-valuation-ai-search-sources-say/",
+        publisher: "TechCrunch",
+        year: 2024,
+        type: "article",
+      },
+      {
+        title: "Perplexity AI — How It Works",
+        url: "https://www.perplexity.ai/hub",
+        publisher: "Perplexity",
+        type: "documentation",
+      },
+    ],
+    tags: { industry: "ai-tools", region: "us", decade: "2020s" },
+  },
+  {
+    id: "apple-true-tone-display-2016",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "March 2016 — iPad Pro 9.7\" True Tone introduction",
+    context:
+      "Screens through 2015 display at a fixed color temperature regardless of ambient light. A phone screen looks blue-white outdoors at noon and the same blue-white indoors at night. The mismatch with surrounding light causes eye strain. Apple ships True Tone display on the iPad Pro 9.7' (March 2016): four ambient-light sensors measure the room's color temperature and the iPad shifts its display warmer or cooler to match. The change is subtle — most users don't notice it's happening — but the result is that the screen feels 'like paper' in any lighting.",
+    prompt:
+      "Why ship a feature that most users won't consciously notice — and what does True Tone tell you about the role of unnoticed-but-felt features in premium product design?",
+    reveal_quote:
+      "True Tone uses advanced four-channel ambient light sensors to adjust the white balance of the display to match the light around you. It looks more like paper.",
+    reveal_quote_attribution: "Apple — True Tone display launch announcement, March 2016",
+    reveal_note:
+      "The non-obvious move: features users don't notice but feel are some of the most defensible premium-positioning investments. Most users never know True Tone is on; they just experience that 'the screen feels comfortable.' If you turn True Tone off (Settings), the screen suddenly looks cold and harsh — and the user immediately feels it without being able to articulate why. The feature works precisely because it's invisible. Competing tablets and phones eventually add similar features (Samsung's Eye Comfort Shield, Google's Adaptive Display), but Apple's earlier shipping date and tighter integration with their displays produced years of consumer-perception advantage. The lesson: ambient features (True Tone, adaptive refresh rate, automatic dark mode) work because the user's nervous system perceives them even when their conscious mind doesn't. Premium product brands often differentiate on these invisible-felt qualities. Reviewers don't write about them; users don't list them; but switching away from them feels like a downgrade.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "About True Tone display",
+        url: "https://support.apple.com/en-us/HT208909",
+        publisher: "Apple Support",
+        type: "documentation",
+      },
+      {
+        title: "Apple's iPad Pro 9.7-inch — Tipster",
+        url: "https://www.apple.com/newsroom/2016/03/21Apple-Introduces-9-7-inch-iPad-Pro/",
+        publisher: "Apple Newsroom",
+        year: 2016,
+        type: "press-release",
+      },
+      {
+        title: "What is True Tone display?",
+        url: "https://www.macworld.com/article/671456/true-tone-display-explained.html",
+        publisher: "Macworld",
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
+  {
+    id: "instagram-saved-posts-2016",
+    type: "daily",
+    scheduled_date: "",
+    company: "Instagram (Meta)",
+    era: "December 2016 — Saved Posts launch",
+    context:
+      "Instagram in 2016 has likes, comments, and DMs — three engagement primitives, all public. There's no way to bookmark a post for later (recipe, outfit inspiration, restaurant) without explicitly liking it (which is a public statement) or screenshotting (which feels weird). In December 2016 Instagram ships 'Saved Posts' — a private bookmark feature. Tap the bookmark icon on any post; it's saved to a private collection on your profile that only you can see. Posts can be organized into named collections (Recipes, Wedding, Travel, etc.).",
+    prompt:
+      "Why introduce a private-by-default save feature when Instagram's entire product is built on public engagement?",
+    reveal_quote:
+      "Now you can privately save posts you want to see again. Tap the new bookmark icon under a post — only you can see what you've saved.",
+    reveal_quote_attribution: "Instagram — Saved Posts launch announcement, December 2016",
+    reveal_note:
+      "What's easy to miss: private save isn't a niche feature — it's solving a real behavior that was previously friction-laden (screenshots cluttering camera roll). By making saves private, Instagram unlocks a use case (research, planning, inspiration-gathering) that the public engagement model couldn't serve. Saves also feed Instagram's recommendation algorithm — a post being saved is high-intent signal that's structurally cleaner than likes (people often like posts socially / out of obligation; saves are pure preference). Pinterest, Twitter, TikTok, YouTube all ship equivalent private-save features in subsequent years. The lesson: every social product has both public-performance engagement (likes, shares, comments) and private-curation engagement (saves, bookmarks, lists). Adding the private layer doesn't cannibalize the public layer; it captures a different behavior. The public engagement metrics are what the platform shows externally; the private engagement is often where the real preference signal lives.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Introducing Saved Posts on Instagram",
+        url: "https://about.instagram.com/blog/announcements/introducing-saved-posts",
+        publisher: "Instagram",
+        year: 2016,
+        type: "blog",
+      },
+      {
+        title: "Instagram launches Saved Posts feature",
+        url: "https://techcrunch.com/2016/12/14/instagram-saved-posts/",
+        publisher: "TechCrunch",
+        year: 2016,
+        type: "article",
+      },
+      {
+        title: "Save posts and Reels to private collections on Instagram",
+        url: "https://help.instagram.com/319270217884133",
+        publisher: "Instagram Help",
+        type: "documentation",
+      },
+    ],
+    tags: { industry: "consumer-social", region: "us", decade: "2010s" },
+  },
+  {
+    id: "iphone-x-animated-emoji-keyboard",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "Through iOS history — emoji keyboard evolution",
+    context:
+      "Apple's emoji keyboard launched as a hidden feature in iPhone OS 2.2 (2008) for Japanese users only — a Unicode-based set of pictographs. In iOS 5 (2011) the keyboard becomes available globally. Through subsequent iOS releases, Apple ships increasingly visible emoji additions: Frequently Used row, emoji search, predictive emoji in autocomplete, skin-tone variants (iOS 8.3, 2015), gender variants (iOS 10), Animoji + Memoji (iOS 11+, 2017+), expanded family / occupational / accessibility representations (every major iOS release). Each addition is a deliberate inclusivity / representation decision discussed publicly by Apple at launch.",
+    prompt:
+      "Why does Apple invest in ongoing emoji updates — when emoji are technically a Unicode standard that any vendor can ship, not Apple proprietary?",
+    reveal_quote:
+      "Apple believes in inclusion and diversity, and that emoji should reflect the world we live in. We're continually expanding our emoji library to represent a wider range of identities and experiences.",
+    reveal_quote_attribution: "Apple — paraphrased from public commentary on emoji updates, recurring through 2015-2024",
+    reveal_note:
+      "What's easy to miss: emoji are Unicode standards — every vendor (Apple, Google, Microsoft, Samsung) can render the same emoji codepoint in their own visual style. But Apple's visual style is what most users see (~50%+ of smartphone users globally are on iOS) and Apple's update timeline drives what 'feels current.' By investing heavily in inclusive representation (skin tones, gender, family compositions, accessibility), Apple makes emoji a brand surface — every emoji a user picks is a tiny Apple-designed pictogram. Google, Microsoft, and Samsung respond competitively each year by shipping their own updates, but Apple's visual style is the cultural default. The lesson: standards (Unicode) don't preclude differentiation. Even when a feature is technically commodity (every vendor can ship the same emoji), the visual design, update cadence, and inclusivity decisions become brand signals. Apple has used this consistently — fonts (San Francisco), typography, animations, sound design — all things that other vendors could theoretically match but functionally don't because the cumulative investment compounds.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Emoji on iPhone — History",
+        url: "https://en.wikipedia.org/wiki/Apple_Color_Emoji",
+        type: "article",
+      },
+      {
+        title: "Apple celebrates World Emoji Day with new emoji previews",
+        url: "https://www.apple.com/newsroom/2020/07/apple-celebrates-world-emoji-day-with-new-emoji-coming-this-fall/",
+        publisher: "Apple Newsroom",
+        year: 2020,
+        type: "press-release",
+      },
+      {
+        title: "Unicode Emoji",
+        url: "https://unicode.org/emoji/",
+        publisher: "Unicode Consortium",
+        type: "documentation",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
+  {
+    id: "iphone-airdrop-2011",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "October 2011 — AirDrop launch (Mac) / 2013 (iOS 7)",
+    context:
+      "File transfer between phones in 2011 means email-attaching, MMS (broken on most carriers), Bluetooth (slow + finicky), or some third-party app. Apple ships AirDrop on Mac in October 2011 and on iOS in iOS 7 (September 2013). Tap a Share button on any photo, video, document, or URL; AirDrop discovers nearby Apple devices via Bluetooth and transfers the file via direct Wi-Fi. No setup, no pairing, no internet required. The transfer is encrypted end-to-end. Recipients see a popup asking to accept; senders see who's nearby in the share sheet.",
+    prompt:
+      "Why bundle a custom peer-to-peer file-transfer protocol into iOS — when Bluetooth Object Push and email exist as standards?",
+    reveal_quote:
+      "AirDrop is an ad hoc service that uses Bluetooth Low Energy for discovery and peer-to-peer Wi-Fi for file transfer, without using internet connections.",
+    reveal_quote_attribution: "Apple — paraphrased from AirDrop technical documentation",
+    reveal_note:
+      "What's easy to miss: AirDrop's speed (Wi-Fi direct, not Bluetooth) makes it a fundamentally different product than Bluetooth Object Push. Photos transfer in seconds, not minutes. The instant speed converts file-sharing from 'I'll send this when I get home' to 'tap this person's name and the photo's on their device before I finish saying goodbye.' The behavior change compounds: AirDrop becomes a teenage social ritual (handing out memes at school, group photos from events), a business-meeting transfer pattern (presentation files between Apple-using colleagues), and a viral-content amplifier (memes at protests, weather warnings during emergencies). The peer-to-peer nature also means no telemetry — Apple doesn't see what users share, unlike email or cloud services. The lesson: proprietary protocols that solve a real friction (Bluetooth's slowness) better than the open alternatives can create durable ecosystem moats. AirDrop only works between Apple devices; that exclusivity has been a meaningful switching-cost driver for years.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "AirDrop — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/AirDrop",
+        type: "article",
+      },
+      {
+        title: "Use AirDrop on iPhone to send items to nearby Apple devices",
+        url: "https://support.apple.com/guide/iphone/use-airdrop-iphcd8b9f0af/ios",
+        publisher: "Apple Support",
+        type: "documentation",
+      },
+      {
+        title: "Apple Platform Security — AirDrop",
+        url: "https://support.apple.com/guide/security/airdrop-security-sec2261183f4/web",
+        publisher: "Apple Platform Security Guide",
+        type: "documentation",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
+  {
+    id: "apple-live-photos-default",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "September 2015 — iPhone 6s Live Photos launch",
+    context:
+      "Photo capture before 2015 produces a single still frame. iPhone 6s ships with Live Photos: every photo also captures 1.5 seconds of video before AND after the press of the shutter button. The result is a 3-second video clip with a designated still 'cover' frame. By default, Live Photos is ON for every photo (turned off only via the Camera app's icon). The user doesn't have to decide 'should I take a live photo' — they're taking one whether they wanted to or not, and they can decide later.",
+    prompt:
+      "Why default Live Photos to on — meaning every photo costs ~10x the file size of a still photo — and what does the default-on choice tell you about feature adoption?",
+    reveal_quote:
+      "With Live Photos, your iPhone records what happens 1.5 seconds before and after you take a picture. It's not just a great photo — it's a moment captured with movement and sound.",
+    reveal_quote_attribution: "Apple — Live Photos launch announcement, September 2015",
+    reveal_note:
+      "The non-obvious move: defaulting Live Photos to on, despite the storage cost (~10MB per Live Photo vs. ~1MB per still), forces users to discover the feature through their existing photo-taking behavior. Most users would never have turned it on if it were opt-in. With the default-on, users accidentally capture Live Photos for months, then one day notice the photo moves when they press-and-hold — and from that moment forward, the feature becomes their preferred capture mode. The storage tradeoff is Apple's bet — they want users to upgrade iCloud storage (Apple monetizes that), so larger photo files actually align with Apple's incentive. Live Photos also feeds into 'Memories' (Apple Photos' automatic curated retrospectives), which depend on having short video clips, not just stills. The lesson: defaults shape product behavior more than settings do. When the strategic intent is for a feature to be the universal capture mode, defaulting it on (and forcing users to discover it through use) is more effective than asking them to enable it.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Apple Introduces iPhone 6s & iPhone 6s Plus",
+        url: "https://www.apple.com/newsroom/2015/09/09Apple-Introduces-iPhone-6s-iPhone-6s-Plus/",
+        publisher: "Apple Newsroom",
+        year: 2015,
+        type: "press-release",
+      },
+      {
+        title: "Live Photos — Apple Support",
+        url: "https://support.apple.com/en-us/HT207310",
+        publisher: "Apple Support",
+        type: "documentation",
+      },
+      {
+        title: "Live Photos: How they work",
+        url: "https://www.macrumors.com/how-to/use-live-photos/",
+        publisher: "MacRumors",
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
+  {
+    id: "apple-watch-fall-detection",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "September 2018 — Apple Watch Series 4 fall detection",
+    context:
+      "Apple Watch Series 4 (September 2018) ships with a new accelerometer + gyroscope capable of detecting motion patterns characteristic of human falls. If the Watch detects a fall AND the user is immobile for ~60 seconds, the Watch automatically calls emergency services and sends the user's location + emergency-contact information. For users 65 and older, fall detection is enabled by default; for younger users it's opt-in.",
+    prompt:
+      "Why ship fall-detection as a default-on safety feature for older users — and what does the differentiated default (on for 65+, opt-in for younger) tell you about Apple's product philosophy?",
+    reveal_quote:
+      "If Apple Watch detects a hard fall and you've been immobile for about a minute, it will automatically call emergency services and send a message to your emergency contacts.",
+    reveal_quote_attribution: "Apple — Watch Series 4 fall detection announcement, September 2018",
+    reveal_note:
+      "What's easy to miss: the age-differentiated default is Apple deliberately calibrating risk-vs.-disruption. Younger users are more likely to set off false-positives (during sports, dancing, jumping) — opt-in is the right default because the cost of false-alarms (annoying calls to emergency services) outweighs the modest benefit of fall protection. Older users have higher fall-injury risk and fewer false-positive scenarios; on-by-default is correct because the modest false-alarm cost is outweighed by the genuine risk of an undetected fall. This is medical-device thinking applied to consumer hardware: defaults calibrated to actuarial risk, not 'one size for all users.' The lesson: when a feature's value vs. friction depends materially on user characteristics, age-aware or context-aware defaults are often the right design — even if they introduce setup complexity. Apple Watch fall detection has been credited in news stories with saving lives (~hundreds of confirmed cases of automatic emergency calls leading to rescue) — a real public-health outcome from a single product-default decision.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Use fall detection with Apple Watch",
+        url: "https://support.apple.com/HT208944",
+        publisher: "Apple Support",
+        type: "documentation",
+      },
+      {
+        title: "Apple Watch Series 4 — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Apple_Watch_Series_4",
+        type: "article",
+      },
+      {
+        title: "Apple Watch fall detection saves lives — case studies",
+        url: "https://www.cnbc.com/2019/01/29/apple-watch-fall-detection-saved-a-life.html",
+        publisher: "CNBC",
+        year: 2019,
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
 ];
 
 export const weeklySeed: WeeklyScenario[] = [
