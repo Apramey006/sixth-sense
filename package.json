@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "gen:seed": "tsx scripts/gen-seed-sql.ts"
+    "gen:seed": "tsx scripts/gen-seed-sql.ts",
+    "validate:scenarios": "tsx scripts/validate-scenarios.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.10.2",
