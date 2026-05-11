@@ -6324,6 +6324,237 @@ export const dailySeed: DailyScenario[] = [
     ],
     tags: { industry: "ecommerce", region: "us", decade: "2000s" },
   },
+  {
+    id: "facebook-like-button-2009",
+    type: "daily",
+    scheduled_date: "",
+    company: "Facebook (Meta)",
+    era: "February 2009 — Facebook Like button launch",
+    context:
+      "Facebook through 2008 has comments and shares but no lightweight reaction primitive. Users either type a reply ('cool!' 'lol') or scroll past. Internal debates at Facebook through 2007-2008 about a single-tap reaction: 'Awesome' button? 'Sweet'? 'Like'? Final choice: Like. Launched February 9, 2009. Eventually extended to a full reactions set in 2016 (Love, Haha, Wow, Sad, Angry). The Like button also gets embedded as a JavaScript widget on third-party websites (April 2010) — meaning every Like across the web flows back into Facebook's social graph.",
+    prompt:
+      "Why is the single-tap Like button — vs. a multi-option reaction set — the right primitive at launch, and what does the web-embedded Like widget unlock?",
+    reveal_quote:
+      "The Like button gives people a simple, easy way to express that something resonates with them — without having to comment. And by embedding it on other sites, every web page becomes part of Facebook's social graph.",
+    reveal_quote_attribution: "Facebook — Like button launch documentation, 2009",
+    reveal_note:
+      "What's easy to miss: the Like button was originally going to be 'Awesome' button — Mark Zuckerberg pushed for the more positive framing, while others wanted something more neutral. The choice of 'Like' (simple, unambiguous) over 'Awesome' or 'Cool' compounded into a category-defining UX primitive copied across every social product since. The third-party Like widget was the deeper strategic move — by 2012 the Like button was embedded on ~3M websites globally, and every external Like flowed back into Facebook's recommendation engine. Facebook's data advantage compounded enormously. By 2016 Facebook expanded to multiple reactions (Love, Haha, etc.) — partly because users wanted more nuance, partly because the data signal of differentiated reactions is more valuable than a single Like. The lesson: a single-tap reaction primitive at the right cultural moment can compound into a multi-billion-dollar data infrastructure. The Like button's name choice (Mark's call), its web-embedding, and its multi-year evolution into Reactions are the canonical case study of social-product engagement primitives.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Facebook Like button — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Facebook_like_button",
+        type: "article",
+      },
+      {
+        title: "I Like This",
+        url: "https://www.facebook.com/notes/facebook/i-like-this/53024537130",
+        publisher: "Facebook",
+        year: 2009,
+        type: "blog",
+      },
+      {
+        title: "Facebook expands Like to Reactions",
+        url: "https://newsroom.fb.com/news/2016/02/reactions-now-available-globally/",
+        publisher: "Facebook Newsroom",
+        year: 2016,
+        type: "press-release",
+      },
+    ],
+    tags: { industry: "consumer-social", region: "us", decade: "2000s" },
+  },
+  {
+    id: "google-photos-unlimited-2015",
+    type: "daily",
+    scheduled_date: "",
+    company: "Google",
+    era: "May 2015 — Google Photos launch with unlimited free storage",
+    context:
+      "Photo storage in 2015 means either pay-per-GB cloud (iCloud Photos at $0.99/month per 50GB) or device-only storage that fills up. Google Photos launches at I/O 2015 with an unprecedented offer: unlimited free photo and video storage forever, as long as photos are compressed to 'High Quality' (16MP photos, 1080p video). Original-quality storage counts against your Google account quota; compressed storage is free and uncapped. The compression is barely noticeable visually but meaningfully reduces file sizes — Google's servers store photos at fractions of the original size.",
+    prompt:
+      "Why offer unlimited free photo storage — and what does Google get from a multi-petabyte-photo-archive that justifies the storage cost?",
+    reveal_quote:
+      "Google Photos lets you back up unlimited photos and videos for free — at high quality, with no storage limits. It's a place for memories, automatically organized by Google's machine learning.",
+    reveal_quote_attribution: "Google — Google Photos launch announcement at I/O, May 2015",
+    reveal_note:
+      "What's easy to miss: free unlimited storage trades operational cost (massive storage + bandwidth) for ML training data + lock-in. Every photo a user uploads becomes training data for Google's image-recognition models — faces, places, objects, scenes. By 2020 Google Photos can search 'dog at the beach' or 'pictures of mom' across an entire library because the ML models trained on billions of user-uploaded photos. The lock-in compounds: by year 3-5, users have thousands of memories in Google Photos that are nearly impossible to migrate elsewhere. In November 2020, Google ends unlimited free storage (effective June 2021) — by then the strategic data + lock-in is achieved, and the operational cost is no longer sustainable at hyperscale. The lesson: 'free' offerings in cloud services are often investments in long-term data leverage, not consumer-friendliness. The user gets short-term value; the platform gets multi-year data infrastructure. Google ended free unlimited Photos once their ML / training-data goals were achieved.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Google Photos — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Google_Photos",
+        type: "article",
+      },
+      {
+        title: "Introducing Google Photos",
+        url: "https://blog.google/products/photos/introducing-google-photos/",
+        publisher: "Google Blog",
+        year: 2015,
+        type: "blog",
+      },
+      {
+        title: "Google ends unlimited free photo storage",
+        url: "https://blog.google/products/photos/storage-policy-update/",
+        publisher: "Google Blog",
+        year: 2020,
+        type: "blog",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
+  {
+    id: "apple-watch-rings-three",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "April 2015 — Apple Watch Activity Rings launch",
+    context:
+      "Fitness trackers pre-2015 (Fitbit, Jawbone) measure metrics in raw numbers — steps, calories, active minutes. Apple Watch launches with a different visualization: three concentric Activity Rings — Move (red, calories burned), Exercise (green, minutes of brisk activity), Stand (blue, hours where you stood for a minute). The goal is to 'close all three rings' every day. Each ring fills as you progress; the dial dramatically completes when all three close.",
+    prompt:
+      "Why represent fitness as three concentric closed rings — vs. a single metric or a more detailed dashboard?",
+    reveal_quote:
+      "Apple Watch is designed to help people lead a more active life. The Activity rings represent the day at a glance — Move, Exercise, and Stand. Close all three every day and you'll see results.",
+    reveal_quote_attribution: "Apple — Activity Rings documentation",
+    reveal_note:
+      "What's easy to miss: closing rings is psychologically more compelling than 'reach 10,000 steps.' The visual completeness of a closed ring vs. 99% closed ring is the entire engagement mechanism — users go for a 5-minute walk at 11pm specifically to close their Move ring. The three-ring design is also a daily goal-stacking system: Move (calories), Exercise (intensity), Stand (sedentary breaks) capture three different fitness dimensions that don't substitute for each other. By 2020 Apple Watch's 'streaks of closed rings' becomes its own engagement primitive — users obsess over not breaking 100+ day ring streaks. Studies show users with Apple Watches walk meaningfully more after wearing them — directly attributable to the ring-closing motivation. The lesson: visualizing progress as visually-complete vs. incomplete states (rings, gauges, hexagons) is structurally more motivating than numbers alone. Same principle underlies Duolingo's owl + streak emoji, Strava's segment leaderboards, GitHub's commit-streak grid. Completeness-states drive behavior in ways numerical metrics don't.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "About the Activity app on Apple Watch",
+        url: "https://support.apple.com/en-us/HT204517",
+        publisher: "Apple Support",
+        type: "documentation",
+      },
+      {
+        title: "Apple Watch Activity Rings — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Apple_Watch",
+        type: "article",
+      },
+      {
+        title: "How Apple Watch's three rings get you moving",
+        url: "https://www.theverge.com/2017/9/17/16320126/apple-watch-fitness-rings-design-meaning",
+        publisher: "The Verge",
+        year: 2017,
+        type: "article",
+      },
+    ],
+    tags: { industry: "health", region: "us", decade: "2010s" },
+  },
+  {
+    id: "github-stars-as-currency",
+    type: "daily",
+    scheduled_date: "",
+    company: "GitHub (Microsoft)",
+    era: "2008+ — GitHub Stars as social currency",
+    context:
+      "Open-source project popularity pre-GitHub is hard to measure — number of downloads, blog mentions, mailing-list subscribers, all noisy signals. GitHub launches in 2008 with a 'Star' feature — any GitHub user can star any public repo with one click. Stars are aggregated publicly on the repo page. By 2014, GitHub Stars become the de facto popularity metric for open-source projects. Job interviews ask candidates about their GitHub stars; recruiters scout high-starred repos; investors evaluate developer-tools companies partly by their library's star count.",
+    prompt:
+      "Why does a simple 'star this repo' feature become the universal popularity metric for open-source — and what does the metric being public + simple do for the platform?",
+    reveal_quote:
+      "Star a repository to keep track of it and show appreciation for its work. Starring a repository also makes it easier to find later, and shows the project's authors that you appreciate their work.",
+    reveal_quote_attribution: "GitHub — Stars documentation",
+    reveal_note:
+      "What's easy to miss: GitHub Stars are not just a bookmarking mechanism — they're a public-facing social currency. The number on a repo page is the entire reputation signal for open-source projects. Maintainers compete for stars; users use star count as a heuristic for 'is this library worth using.' The simplicity (one click, no rating, no review) is what makes Stars work at scale — every developer can star, no friction, no spam protection needed beyond rate-limiting. The metric does have known weaknesses (star-buying for inflated counts, gaming via viral marketing) but the broad signal-to-noise ratio is high enough that the metric persists. GitHub has resisted adding more nuanced reputation signals (no 'unstar weight,' no 'star-from-major-contributor weight') — keeping the count simple keeps it legible. The lesson: in social-platform features, the simplest public-counter metric often becomes the most-cited reputation signal. Twitter follower counts, Reddit karma, Wikipedia article edit counts, Stack Overflow reputation, Spotify follower counts — all follow this pattern. The metric is reductive; the metric is widely cited; the platform's reputation game is shaped by the metric.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "About stars — GitHub Docs",
+        url: "https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars",
+        publisher: "GitHub Docs",
+        type: "documentation",
+      },
+      {
+        title: "Why we star repos on GitHub",
+        url: "https://github.blog/news-insights/the-library/why-we-star-on-github/",
+        publisher: "GitHub Blog",
+        type: "blog",
+      },
+      {
+        title: "GitHub stars as developer reputation",
+        url: "https://thenewstack.io/github-stars-developer-reputation/",
+        publisher: "The New Stack",
+        type: "article",
+      },
+    ],
+    tags: { industry: "devtools", region: "us", decade: "2000s" },
+  },
+  {
+    id: "stripe-test-mode-toggle",
+    type: "daily",
+    scheduled_date: "",
+    company: "Stripe",
+    era: "2011+ — Test Mode / Live Mode dashboard toggle",
+    context:
+      "Payment APIs in 2010 require either a separate sandbox endpoint URL (different domain, separate auth) or running a local mock server. Both approaches fragment the developer experience: production code is structurally different from test code. Stripe ships from launch with a 'Test Mode' toggle in the dashboard — switch between test mode (uses test API keys, accepts fake card numbers like 4242 4242 4242 4242) and live mode (real money, real cards). All API endpoints work identically across modes; only the keys + the response (real charges vs. simulated) differ.",
+    prompt:
+      "Why ship a single endpoint + toggle for test vs. live — instead of separate URLs and configurations like every other payment processor in 2010?",
+    reveal_quote:
+      "Test Mode uses the same API and the same code as Live Mode. You write your integration once. Switching from test to live just means swapping API keys.",
+    reveal_quote_attribution: "Stripe — paraphrased from developer documentation on Test Mode",
+    reveal_note:
+      "What's easy to miss: same-API-different-keys is a developer-experience design choice that eliminates entire categories of bugs. With separate test / production URLs (the legacy pattern), developers shipped working test code that failed in production because of subtle API differences. With Stripe's same-API-different-keys approach, the test code IS the production code. The only environmental difference is the API key. This is what gives Stripe its 'just works' reputation — developers can develop confidently, ship to production, and the code behaves predictably. Same pattern is now widely copied (Twilio test credentials, AWS sandbox accounts, Plaid sandbox). The lesson: in developer tools, removing structural differences between test and production environments compounds developer confidence. Test environments that 'behave like production but with fake data' beat test environments that 'are a separate product with separate behavior.' The smallest difference between dev / prod is the best developer experience.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Test mode — Stripe Docs",
+        url: "https://docs.stripe.com/test-mode",
+        publisher: "Stripe Docs",
+        type: "documentation",
+      },
+      {
+        title: "Stripe's developer experience",
+        url: "https://stripe.com/blog/developer-experience",
+        publisher: "Stripe Blog",
+        type: "blog",
+      },
+      {
+        title: "How Stripe wins on developer experience",
+        url: "https://commoncog.com/stripe-developer-experience/",
+        publisher: "Commoncog",
+        type: "blog",
+      },
+    ],
+    tags: { industry: "fintech", region: "us", decade: "2010s" },
+  },
+  {
+    id: "amazon-dash-button",
+    type: "daily",
+    scheduled_date: "",
+    company: "Amazon",
+    era: "March 2015 — Dash Button launch (discontinued 2019)",
+    context:
+      "Amazon launches Dash Buttons in March 2015 — small physical Wi-Fi-connected buttons ($4.99 each) branded with specific products (Tide, Charmin, Bounty, etc.). Stick the button on your washing machine; press it; Amazon ships a new order of Tide to your house. The button has no screen, no setup beyond initial Wi-Fi pairing. The pitch is friction-free reordering for household staples. Amazon initially launches with ~18 brands, expanding to ~300+ over the following years. In February 2019 Amazon discontinues Dash Buttons after ~4 years.",
+    prompt:
+      "Why ship Dash Buttons — physical-hardware single-purpose ordering devices — and what does their eventual failure tell you about the limits of hardware-as-UX?",
+    reveal_quote:
+      "Dash Button is a Wi-Fi connected device that reorders your favorite product with the press of a button. With Dash Button, household items are now just a tap away — no need to go to a store or even open the Amazon app.",
+    reveal_quote_attribution: "Amazon — Dash Button launch announcement, March 2015",
+    reveal_note:
+      "What's easy to miss: Dash Buttons were initially mocked ('Amazon thinks I need a $5 button to buy detergent?') but were genuinely used by some customers — Amazon never published numbers but estimates suggested millions of devices were sold. The failure mode wasn't lack of use — it was that the use case (one-tap reorder of a specific product) became obsolete when Amazon shipped Alexa-enabled Echo devices ('Alexa, order more Tide') and improved Subscribe & Save (automatic recurring delivery). The button's narrow use case was absorbed by more general products. By 2019 Amazon discontinues the hardware and replaces it with 'virtual Dash Buttons' in the app — same functionality, no physical device. The lesson: single-purpose hardware products can find product-market fit but are structurally fragile — once a more general product can serve the same use case, the single-purpose device becomes redundant. Same dynamic applies to Logitech Harmony remotes (replaced by phone apps), Garmin standalone GPS units (replaced by smartphones), and many other 2010s hardware product categories.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Amazon Dash — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Amazon_Dash",
+        type: "article",
+      },
+      {
+        title: "Amazon discontinues physical Dash Buttons",
+        url: "https://techcrunch.com/2019/02/28/amazon-discontinues-physical-dash-buttons/",
+        publisher: "TechCrunch",
+        year: 2019,
+        type: "article",
+      },
+      {
+        title: "Amazon Dash Button launch coverage",
+        url: "https://www.theverge.com/2015/3/31/8316417/amazon-dash-button-press-physical-shop",
+        publisher: "The Verge",
+        year: 2015,
+        type: "article",
+      },
+    ],
+    tags: { industry: "ecommerce", region: "us", decade: "2010s" },
+  },
 ];
 
 export const weeklySeed: WeeklyScenario[] = [
