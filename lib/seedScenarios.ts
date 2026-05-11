@@ -7015,6 +7015,228 @@ export const dailySeed: DailyScenario[] = [
     ],
     tags: { industry: "media", region: "us", decade: "2010s" },
   },
+  {
+    id: "skype-p2p-architecture",
+    type: "daily",
+    scheduled_date: "",
+    company: "Skype (Estonia → eBay → Microsoft)",
+    era: "August 2003 — Skype launch with P2P architecture",
+    context:
+      "Voice-over-IP (VoIP) services in 2003 require centralized server infrastructure — every call routes through company-owned servers, requiring massive bandwidth + uptime investment. Skype launches in August 2003 with a different architecture: P2P (peer-to-peer). The Skype client (running on every user's PC) routes calls directly between users; some 'super nodes' (high-bandwidth users) help relay calls when needed. Skype's central infrastructure is minimal — mostly user directory + authentication. Calls scale almost free as the network grows.",
+    prompt:
+      "Why build Skype on a P2P architecture — when every other VoIP product uses centralized servers?",
+    reveal_quote:
+      "Skype was built on the P2P architecture that the founders had developed for KaZaA, allowing the service to scale without large infrastructure investment. The clients handle the calls themselves.",
+    reveal_quote_attribution: "Skype — paraphrased from technical documentation",
+    reveal_note:
+      "What's easy to miss: P2P architecture meant Skype could offer free PC-to-PC calls globally with negligible operating cost. Centralized competitors (Vonage, Net2Phone) had to invest tens of millions in server infrastructure. Skype's growth from 0 → 100M users (2003-2006) happened with operating costs per user near zero. The bet was technical: P2P over consumer broadband (which was just becoming common via DSL / cable). Microsoft acquires Skype for $8.5B in 2011 (in pool as a weekly) and rebuilds Skype on centralized server architecture by 2013 — partly for surveillance / compliance reasons, partly because mobile-first usage broke the P2P model (mobile devices aren't reliable super nodes). The lesson: novel technical architectures can be massive go-to-market advantages when they collapse a competitor's operating-cost moat. Skype's P2P was technically clever, business-strategically transformative, and eventually obsolete — but it powered the growth that made Skype a multi-billion-dollar acquisition.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Skype protocol — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Skype_protocol",
+        type: "article",
+      },
+      {
+        title: "Skype — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Skype",
+        type: "article",
+      },
+      {
+        title: "How Skype's P2P network worked",
+        url: "https://www.h-online.com/security/news/item/Skype-trojan-affects-Bavarian-court-1208781.html",
+        publisher: "The H Online",
+        type: "article",
+      },
+    ],
+    tags: { industry: "communication", region: "eu", decade: "2000s" },
+  },
+  {
+    id: "spotify-family-plan-address-rule",
+    type: "daily",
+    scheduled_date: "",
+    company: "Spotify",
+    era: "2018 — Spotify Family Plan address verification rollout",
+    context:
+      "Spotify Family Plan ($14.99/month for 6 users) launches in 2014, offering 6 individual Premium accounts at a deeply discounted total price (~$2.50/user vs. $9.99 each). The pitch: families share. By 2018 Spotify notices many 'Family' subscriptions are actually unrelated friends pooling money to game the price — splitting across multiple cities, different countries. Spotify rolls out 'family address verification' in 2018: family members must confirm they live at the same address, periodically re-verifying via GPS / IP location.",
+    prompt:
+      "Why introduce friction (address verification) on a feature users love — and accept the user backlash from broken-up friend groups?",
+    reveal_quote:
+      "Family plans are for families living at the same address. We periodically verify the location of family members to ensure the plan is being used as intended.",
+    reveal_quote_attribution: "Spotify — Family Plan policy documentation, 2018",
+    reveal_note:
+      "What's easy to miss: Spotify's enforcement of 'family' boundaries is a deliberate ARPU recovery move. A friend-pool of 6 unrelated users on a Family Plan generates $2.50/user; if they have to subscribe individually, that's $9.99/user — 4x more. Spotify's margin per user is thin; tolerating Family-Plan abuse compounds against profitability. The trade: brand cost (users hate enforcement, friend-pools break up) vs. revenue (ARPU lift). Spotify chose enforcement and absorbed the brand cost. Netflix's password-sharing crackdown (May 2023, in pool as a weekly) is the same playbook 5 years later. The lesson: in subscription products where 'shareable' plans become a vector for revenue leakage, enforcement is structurally rational even when users protest. The brand cost is bounded (a few weeks of complaints); the revenue compound is permanent.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Spotify Premium Family — Spotify",
+        url: "https://www.spotify.com/us/premium/family/",
+        publisher: "Spotify",
+        type: "documentation",
+      },
+      {
+        title: "Spotify cracks down on shared Family Plans",
+        url: "https://techcrunch.com/2019/09/03/spotify-family-plan-address-verification/",
+        publisher: "TechCrunch",
+        year: 2019,
+        type: "article",
+      },
+      {
+        title: "Spotify Family Plan rules",
+        url: "https://support.spotify.com/us/article/premium-family/",
+        publisher: "Spotify Support",
+        type: "documentation",
+      },
+    ],
+    tags: { industry: "media", region: "eu", decade: "2010s" },
+  },
+  {
+    id: "tencent-wechat-pay-red-envelopes",
+    type: "daily",
+    scheduled_date: "",
+    company: "Tencent (WeChat Pay)",
+    era: "January 2014 — WeChat red envelopes (红包) launch",
+    context:
+      "Lunar New Year tradition in China includes giving 'red envelopes' (hongbao) — small monetary gifts to children, employees, friends. The traditional version is physical: cash in a red paper envelope. In January 2014 WeChat ships 'Lucky Money' / digital red envelopes — send a fixed amount divided randomly among recipients, or send a specific amount to one person, via WeChat Pay. Recipients open their phone, tap to claim, and the money lands in their WeChat wallet. Within days, 5M users sent ~20M red envelopes; by 2015 Lunar New Year, ~1B red envelopes exchanged in one night.",
+    prompt:
+      "Why digitize a cultural tradition (red envelopes) — and what does the digital version do for WeChat Pay adoption?",
+    reveal_quote:
+      "Digital red envelopes turned the Lunar New Year tradition into a viral social game. Friends sent each other money for fun; everyone needed WeChat Pay set up to claim it.",
+    reveal_quote_attribution: "Tencent — paraphrased from public commentary on red envelopes launch",
+    reveal_note:
+      "What's easy to miss: digital red envelopes were the trigger that converted China from cash-based to mobile-payments in a single year. Pre-2014, only ~5% of Chinese users had WeChat Pay linked to a bank account. To claim a red envelope, you had to set up payment — and during Lunar New Year, everyone wanted to claim. Within weeks, payment-setup rate jumped to ~30%+. WeChat Pay went from a sideproject to the dominant Chinese mobile payment method within months. Alibaba (Alipay's parent) was furious — Alipay had dominated payments for a decade; WeChat Pay used a cultural tradition to leapfrog them. Subsequent Lunar New Years saw 'red envelope wars' between WeChat and Alipay, each spending billions on incentivized red-envelope distribution. The lesson: piggybacking on cultural traditions (Lunar New Year, Christmas, Mother's Day) is an unbelievably effective customer-acquisition mechanism for products that need behavior change. The behavior (giving money to family) is already happening; converting the medium (cash → digital) is a much smaller ask than 'try a new payment app.'",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Red envelope — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Red_envelope#Digital_versions",
+        type: "article",
+      },
+      {
+        title: "How WeChat's red envelopes transformed mobile payments",
+        url: "https://www.scmp.com/tech/apps-social/article/3024748/how-wechats-red-envelopes-overtook-alipay-china",
+        publisher: "South China Morning Post",
+        type: "article",
+      },
+      {
+        title: "Tencent's WeChat red envelope feature",
+        url: "https://chinatechscope.com/wechat-red-envelopes/",
+        publisher: "ChinaTechScope",
+        type: "article",
+      },
+    ],
+    tags: { industry: "fintech", region: "asia", decade: "2010s" },
+  },
+  {
+    id: "deliveroo-rider-bag-design",
+    type: "daily",
+    scheduled_date: "",
+    company: "Deliveroo",
+    era: "2013+ — kangaroo-bag branding",
+    context:
+      "Food-delivery services in 2013 use generic backpacks or insulated bags — branded but visually unmemorable. Deliveroo launches in London in 2013 with a distinctive teal/cyan kangaroo-logo insulated bag worn by every rider. The bag is huge, cube-shaped, instantly recognizable. Within months, Deliveroo riders on bikes / mopeds become a visible part of London street life — every restaurant district has teal kangaroos moving through it at lunch and dinner.",
+    prompt:
+      "Why invest heavily in distinctive rider-bag branding — and what does the visual identity do for Deliveroo beyond just identifying riders?",
+    reveal_quote:
+      "The Deliveroo rider bag is designed to be visible from across the street. Wherever you are in the city, you see Deliveroo at work — and you know food delivery is happening.",
+    reveal_quote_attribution: "Deliveroo — paraphrased from brand documentation",
+    reveal_note:
+      "What's easy to miss: the rider bag isn't just rider branding — it's free city-wide marketing for the product. Every Deliveroo rider on a bike is a moving billboard that signals 'food delivery is happening here.' Pedestrians, drivers, restaurant patrons all see Deliveroo branding throughout the day, building category-awareness Deliveroo doesn't pay for. The same dynamic applied to Uber Eats (later) and other geographically-anchored delivery services. The size + color visibility of the kangaroo bag was deliberately maximized — competitors with smaller / less-distinctive bags get a fraction of the ambient brand visibility. The lesson: physical-world delivery / logistics services have a 'free ambient marketing' surface (the worker themselves, the vehicle, the bag) that digital-only services don't. Investing in distinctive visual identity for the field worker is one of the highest-ROI brand investments for category-defining gig-economy products. Same principle underlies Lyft's pink mustache (already in pool), AmazonFlex driver badges, USPS uniforms.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Deliveroo — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Deliveroo",
+        type: "article",
+      },
+      {
+        title: "Deliveroo's brand evolution",
+        url: "https://www.designweek.co.uk/issues/october-2016/deliveroo-brand-identity/",
+        publisher: "Design Week",
+        type: "article",
+      },
+      {
+        title: "How Deliveroo conquered London",
+        url: "https://www.businessinsider.com/deliveroo-london-history-2017-3",
+        publisher: "Business Insider",
+        type: "article",
+      },
+    ],
+    tags: { industry: "food-delivery", region: "uk", decade: "2010s" },
+  },
+  {
+    id: "naver-knowledge-iN",
+    type: "daily",
+    scheduled_date: "",
+    company: "Naver (Korea)",
+    era: "October 2002 — Knowledge iN (지식iN) launch",
+    context:
+      "Internet search in Korea in 2002 — like everywhere else — surfaces web pages, but Korean web content is sparse. Most Korean information lives in books, expert minds, and personal experience rather than indexed web pages. Naver (Korea's dominant search engine) launches 'Knowledge iN' (지식iN) — a Q&A platform where users post questions and other users earn 'knowledge points' for answers. By 2007, Korean internet users go to Knowledge iN first for any non-trivial question — recipes, medical advice, legal questions, technical problems. Naver Search uses Knowledge iN answers as primary results.",
+    prompt:
+      "Why build a user-generated Q&A platform — and what does Knowledge iN do for Naver's competitive position vs. Google in Korea?",
+    reveal_quote:
+      "Knowledge iN lets Koreans ask any question and get answers from the community. The platform has accumulated millions of question-answer pairs that capture knowledge that doesn't exist on the web anywhere else.",
+    reveal_quote_attribution: "Naver — paraphrased from Knowledge iN documentation",
+    reveal_note:
+      "What's easy to miss: Knowledge iN created Korea-specific content that Google can't replicate. Google's search advantage in most countries depends on indexing existing web content. In Korea, the most valuable answers live in Knowledge iN's archive (owned by Naver). Naver's search shows Knowledge iN results prominently; Google can't index Knowledge iN as effectively (and Naver actively walls it off). The result: Google has ~5% market share in Korean search even in 2025 — vs. ~95% in most other markets. Naver's strategy is the canonical case of 'create content you own, then surface it in your search results' — combining a content platform with a search platform creates a flywheel that pure-search products can't easily compete with. Yahoo Answers, Quora, Stack Overflow follow similar Q&A-platform patterns but never integrated as deeply with a dominant search engine. The lesson: vertical integration of content-creation + content-discovery is structurally defensible against pure-search competitors. Korea is the canonical example.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Naver — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Naver",
+        type: "article",
+      },
+      {
+        title: "Knowledge iN — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Knowledge_iN",
+        type: "article",
+      },
+      {
+        title: "Why Google lost in Korea",
+        url: "https://thediplomat.com/2018/12/why-google-lost-in-korea/",
+        publisher: "The Diplomat",
+        type: "article",
+      },
+    ],
+    tags: { industry: "search", region: "asia", decade: "2000s" },
+  },
+  {
+    id: "rakuten-points-loyalty",
+    type: "daily",
+    scheduled_date: "",
+    company: "Rakuten (Japan)",
+    era: "1997+ — Rakuten Super Points loyalty system",
+    context:
+      "Rakuten is Japan's dominant e-commerce platform (~$70B in GMV by 2024). Its core differentiator vs. Amazon Japan: 'Rakuten Super Points,' a unified loyalty currency. Customers earn points (typically 1% of purchase value) at Rakuten Ichiba (the marketplace), plus bonus points from merchant promotions, Rakuten Card (credit card), Rakuten Travel, Rakuten Mobile (telco). Points are redeemable across the entire Rakuten ecosystem — buy groceries with points, pay phone bill with points, book a flight with points. By 2024 ~100M+ Japanese consumers participate in Rakuten Points.",
+    prompt:
+      "Why build a unified loyalty currency across a sprawling ecosystem of e-commerce, banking, travel, telecom, etc. — and what does the unified currency do that per-product loyalty programs can't?",
+    reveal_quote:
+      "Rakuten Super Points let you earn points everywhere in the Rakuten ecosystem and spend them anywhere. The more services you use, the more points you accumulate — and the more reason to keep using Rakuten for everything.",
+    reveal_quote_attribution: "Rakuten — paraphrased from loyalty program documentation",
+    reveal_note:
+      "What's easy to miss: a unified loyalty currency creates cross-product lock-in. A customer who earns points on Rakuten Ichiba purchases has a strong incentive to use Rakuten Travel for their next flight (so they can spend the points). Once they're using Rakuten Travel, they accumulate more points, which incentivize Rakuten Mobile, which incentivize Rakuten Card. The flywheel compounds across an ecosystem of 70+ services. Amazon Japan can't match this — Amazon doesn't have a banking / mobile / travel ecosystem on the same scale. Rakuten's loyalty advantage compounds for decades. Similar models: Alibaba's Ant Group loyalty in China, Naver's NPay in Korea, Shopify Pay's cross-merchant identity in the West. The lesson: unified loyalty currencies are structural moats for diversified ecosystems. The economic value isn't in the points (~1% of purchase value — small) — it's in the cross-product retention compound. Single-product loyalty programs (airline miles, hotel points) are much weaker because there's no cross-product spend reason.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Rakuten — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Rakuten",
+        type: "article",
+      },
+      {
+        title: "Rakuten Super Points — Documentation",
+        url: "https://global.rakuten.com/corp/about/business/internet/marketing/",
+        publisher: "Rakuten",
+        type: "documentation",
+      },
+      {
+        title: "How Rakuten's loyalty ecosystem works",
+        url: "https://www.forbes.com/sites/forbestechcouncil/2020/08/19/the-rakuten-ecosystem-japans-answer-to-amazon/",
+        publisher: "Forbes",
+        type: "article",
+      },
+    ],
+    tags: { industry: "ecommerce", region: "asia", decade: "1990s" },
+  },
 ];
 
 export const weeklySeed: WeeklyScenario[] = [
