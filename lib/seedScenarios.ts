@@ -4156,6 +4156,273 @@ export const dailySeed: DailyScenario[] = [
     ],
     tags: { industry: "productivity", region: "us", decade: "2010s" },
   },
+  {
+    id: "wechat-mini-programs-2017",
+    type: "daily",
+    scheduled_date: "",
+    company: "Tencent (WeChat)",
+    era: "January 9, 2017 — WeChat Mini Programs launch",
+    context:
+      "Apps in 2017 mean: download from App Store / Google Play, install, take up phone storage, manage updates. WeChat ships 'Mini Programs' (小程序) in January 2017 — sub-applications that live inside WeChat itself. No installation needed. Open WeChat, scan a QR code or tap a link, and the mini-program loads instantly (<1 second). Use it, close it, forget about it. Mini-programs are written in a WeChat-specific framework (similar to React) and execute inside WeChat's runtime. By 2024 there are millions of Mini Programs, including from McDonald's, Starbucks, Tesla, and most large Chinese retailers.",
+    prompt:
+      "Why ship a platform-within-a-platform (apps inside WeChat) — and what does the QR-code-as-app-launcher do to the typical app-install funnel?",
+    reveal_quote:
+      "Mini Programs are 'apps' that don't need to be downloaded or installed. The user can find and use them from within WeChat. We want to enable a new model of light service delivery that doesn't require app-install commitment.",
+    reveal_quote_attribution:
+      "Allen Zhang, WeChat creator — paraphrased from public commentary on Mini Programs launch, 2017",
+    reveal_note:
+      "What's easy to miss: Mini Programs are not a feature, they are a parallel app ecosystem under Tencent's control — bypassing Apple's and Google's app stores entirely for the Chinese market. The 30% commission Apple takes from iOS apps doesn't apply to Mini Programs (they're 'within WeChat,' which is a single iOS app). Tencent can run its own commerce / advertising layer through Mini Programs, capturing economics Apple would otherwise take from native apps. Tencent's WeChat Pay integration makes Mini Program checkout near-frictionless. The lesson: when an existing platform owns the user-graph and the engagement loop at sufficient scale, building a platform-within-the-platform is an entire new economic surface that the underlying OS (iOS / Android) can't easily disintermediate. Apple has spent years considering whether to crack down on Mini Programs vs. similar sub-app platforms; the politics are complex and Apple has largely tolerated them.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "WeChat Mini Program — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/WeChat_Mini_Program",
+        type: "article",
+      },
+      {
+        title: "WeChat Mini Programs launch is a quiet revolution",
+        url: "https://www.scmp.com/tech/china-tech/article/2061049/wechat-mini-programs-launch-quiet-revolution",
+        publisher: "South China Morning Post",
+        year: 2017,
+        type: "article",
+      },
+      {
+        title: "Tencent's WeChat Mini Programs",
+        url: "https://www.cnbc.com/2018/02/05/tencents-wechat-mini-programs-explained.html",
+        publisher: "CNBC",
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-social", region: "asia", decade: "2010s" },
+  },
+  {
+    id: "line-stickers-monetization",
+    type: "daily",
+    scheduled_date: "",
+    company: "LINE Corporation",
+    era: "April 2011 — LINE launch + stickers",
+    context:
+      "LINE launches in Japan in March 2011 — just after the Tōhoku earthquake / tsunami, when Japan's telecom infrastructure is unreliable. The app is free, internet-based messaging (similar to WhatsApp). Within months LINE differentiates itself with a single feature: large, illustrated 'stickers' — full-screen cartoon characters with emotional expressions, available in themed sets (Brown the bear, Cony the bunny, etc.). The basic sticker set is free; additional sticker packs ($1.99 each) are paid. Within 2 years, LINE Stickers become Japan's most lucrative virtual goods market — generating tens of millions of dollars per quarter.",
+    prompt:
+      "Why is selling cartoon stickers at $1.99 a pack the entire business model — and what does paid-sticker design tell you about cultural product-market fit?",
+    reveal_quote:
+      "Stickers are big cartoon expressions that pack a lot of emotion into one tap. People use them when text isn't enough — when they want to send a hug, a laugh, a 'good morning' that feels personal.",
+    reveal_quote_attribution: "LINE — paraphrased from public commentary on sticker design, ~2012",
+    reveal_note:
+      "What's easy to miss: stickers are not emoji — they're a different category of digital expression specific to Japanese / East Asian texting culture. The cultural context: in Japan, in-person communication relies heavily on subtle emotional signaling that's hard to encode in text. Stickers fill that gap. Western messaging apps tried to copy stickers (WhatsApp 2018, iMessage Stickers 2016) but Western texting culture doesn't have the same emotional-signal need — Western stickers stay marginal. LINE's stickers generate hundreds of millions of dollars annually because they solve a culturally-specific communication problem. The lesson: virtual-goods monetization works when the goods solve a real expressive need in the user's cultural context. Generic 'paid emoji' is a feature without product-market fit; culturally-specific stickers in Japan are a multi-hundred-million-dollar business. PMs designing for non-Western markets should pay attention to what cultural-communication needs already exist that text alone can't fulfill.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "LINE (software) — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Line_(software)",
+        type: "article",
+      },
+      {
+        title: "How LINE became Japan's most popular messaging app",
+        url: "https://www.cnet.com/tech/services-and-software/how-line-became-japans-most-popular-messaging-app/",
+        publisher: "CNET",
+        type: "article",
+      },
+      {
+        title: "LINE Stickers: How They Built a Billion-Dollar Business",
+        url: "https://lineforbusiness.com/case-study/sticker-business",
+        publisher: "LINE for Business",
+        type: "blog",
+      },
+    ],
+    tags: { industry: "communication", region: "asia", decade: "2010s" },
+  },
+  {
+    id: "kakaotalk-free-sms",
+    type: "daily",
+    scheduled_date: "",
+    company: "Kakao Corporation",
+    era: "March 18, 2010 — KakaoTalk launch",
+    context:
+      "Mobile texting in Korea in 2010 means SMS — KRW 30-50 per text (~$0.03-0.05). Heavy users pay tens of thousands of won per month for texting plans. Kim Beom-su (a Korean tech entrepreneur) launches KakaoTalk in March 2010 — internet-based messaging, free, no per-message charge. The app spreads through Korean smartphone users almost immediately; within 6 months KakaoTalk has 10M users — equivalent to ~20% of Korea's population. By 2012, ~60% of Koreans use KakaoTalk for daily communication. The Korean telecom industry's per-SMS revenue collapses.",
+    prompt:
+      "Why is replacing per-message SMS with free internet messaging the entire product — and what does the Korean telecom-industry collapse tell you about platform-shift moments?",
+    reveal_quote:
+      "We didn't invent texting. We made it free. Once it's free, every conversation that previously had a per-message cost is now uncapped — and the behavior changes accordingly.",
+    reveal_quote_attribution:
+      "Kim Beom-su, Kakao founder — paraphrased from public retellings of KakaoTalk's origin",
+    reveal_note:
+      "The non-obvious move: free-replaces-paid is not a feature — it's a behavioral unlock. When SMS costs money per message, users send terse, infrequent texts. When messaging is free, users send hundreds of messages per day, with photos, voice notes, and stickers. The behavior shift compounds — texting becomes the dominant social-graph artifact (not phone calls or in-person), and KakaoTalk owns that graph. Korean telcos (SKT, KT, LG U+) lost ~$10B+ in SMS revenue over the decade after KakaoTalk's launch. They couldn't respond because lowering SMS prices to compete with free is structurally impossible — and shipping their own free-messaging app would have explicitly admitted the SMS business was dead. Similar dynamics played out globally (WhatsApp vs. SMS, LINE in Japan, WeChat in China). The lesson: when a category's incumbent revenue model is per-unit pricing and an OTT alternative can deliver the same service at zero marginal cost, the incumbent is structurally doomed — but the same dynamic compounds new behavior the incumbents couldn't have predicted.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "KakaoTalk — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/KakaoTalk",
+        type: "article",
+      },
+      {
+        title: "Kakao Corp — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Kakao",
+        type: "article",
+      },
+      {
+        title: "How KakaoTalk revolutionized messaging in Korea",
+        url: "https://english.hankyung.com/article/202112305196r",
+        publisher: "Hankyung",
+        type: "article",
+      },
+    ],
+    tags: { industry: "communication", region: "asia", decade: "2010s" },
+  },
+  {
+    id: "naver-webtoon-vertical-scroll",
+    type: "daily",
+    scheduled_date: "",
+    company: "Naver (Naver Webtoon)",
+    era: "2004 — Naver Webtoon launch",
+    context:
+      "Comics in 2004 are read in fixed page-based layouts — Japanese manga in right-to-left bound volumes, Western comics in left-to-right grid pages. The format is print-native. Korean portal Naver launches Naver Webtoon in 2004 as a mobile-and-web-native comic platform. The format breaks from print: each 'episode' is a single long vertical scroll, designed to be read by swiping down on a phone. Panels stack vertically without page breaks. The reading rhythm is paced by scroll speed, not page-turn. The format becomes 'Webtoons' — a global category-defining new comic medium.",
+    prompt:
+      "Why design comics for vertical scroll instead of pages — and what does the format change unlock that printed comics couldn't?",
+    reveal_quote:
+      "Vertical scroll lets the artist control pacing through the page itself. A long blank space between panels becomes a beat — a moment of anticipation. The scroll IS the storytelling.",
+    reveal_quote_attribution:
+      "Naver Webtoon design philosophy — paraphrased from public commentary on the format's invention",
+    reveal_note:
+      "The non-obvious move: matching the format to the reader's device matters more than preserving the legacy format's conventions. Western and Japanese publishers shipping mobile manga apps in the late 2000s used pinch-to-zoom and page-turn navigation — the print conventions transplanted directly to mobile. The experience was awful (panels too small, navigation fiddly). Naver Webtoon abandoned print's grid layout entirely and built for mobile from scratch. The format compounds — by 2020, K-webtoons are exporting globally (Tower of God, Solo Leveling, Lookism), and Western platforms (Webtoon, Tapas) adopt the vertical-scroll format. Disney, Marvel, and Manga publishers eventually launch their own vertical-scroll formats decades after Naver's. The lesson: new mediums require native formats. Trying to port a legacy format into a new medium (print comics to mobile) almost always produces worse user experience than redesigning the format for the medium's strengths (scroll, swipe, infinite vertical space).",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Webtoon — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Webtoon",
+        type: "article",
+      },
+      {
+        title: "Naver Webtoon — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Naver_Webtoon",
+        type: "article",
+      },
+      {
+        title: "How Naver Webtoon revolutionized comics",
+        url: "https://en.yna.co.kr/view/AEN20210507005000315",
+        publisher: "Yonhap News",
+        type: "article",
+      },
+    ],
+    tags: { industry: "media", region: "asia", decade: "2000s" },
+  },
+  {
+    id: "alipay-qr-code-payments",
+    type: "daily",
+    scheduled_date: "",
+    company: "Ant Group (Alipay)",
+    era: "2014–2016 — Alipay QR code payments mainstream adoption in China",
+    context:
+      "Mobile payments in 2014 in most countries require NFC hardware in phones + payment terminals + bank-card tokenization (Apple Pay's stack). The hardware investment is enormous on both sides. Alipay (China's dominant payments app, owned by Ant Group / Alibaba) takes a different path: pay by scanning a QR code. The merchant prints a QR code on paper (no hardware required) and the customer scans it with Alipay or WeChat Pay. Payment confirms in <2 seconds. By 2016, ~90% of Chinese retail transactions in urban areas use QR-code mobile payments. Street vendors selling vegetables accept Alipay; tuk-tuk drivers accept WeChat Pay.",
+    prompt:
+      "Why use QR codes (a 1990s Japanese invention) for payments in 2014 — when the rest of the world is investing billions in NFC infrastructure?",
+    reveal_quote:
+      "A QR code on paper costs nothing. A $300 NFC terminal is a barrier most small Chinese merchants would never have paid for. The QR code made every shop, every vendor, every taxi able to accept mobile payments overnight.",
+    reveal_quote_attribution:
+      "Alipay product team — paraphrased from public commentary on QR-code payment strategy",
+    reveal_note:
+      "What's easy to miss: QR codes are a 'lower-tech' solution that works structurally better than NFC for a market where merchant capital is constrained. NFC requires every merchant to buy a $300 terminal — that's a $300 barrier to entry for every restaurant, vendor, and small business. QR codes require literal paper. In urban China where merchants couldn't afford NFC infrastructure, QR-code payments scaled to ~$50 trillion in annual transactions by 2024 — larger than the combined transaction volume of Visa + Mastercard + American Express + JCB. Apple Pay's NFC approach (designed for the US / European market where merchants have terminals) is structurally a poor fit for emerging markets. India's UPI (launched 2016) explicitly copied the QR-code-on-paper model. The lesson: 'higher tech' isn't always the right choice. Local market constraints (in this case, merchant terminal capital) should drive the technology selection. China's mobile payments are the most-developed in the world precisely because they didn't copy the West's NFC stack.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Alipay — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Alipay",
+        type: "article",
+      },
+      {
+        title: "QR Code Payments in China",
+        url: "https://www.scmp.com/business/article/2104867/how-china-s-mobile-payment-revolution-took-world-storm",
+        publisher: "South China Morning Post",
+        type: "article",
+      },
+      {
+        title: "Mobile payment — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Mobile_payment",
+        type: "article",
+      },
+    ],
+    tags: { industry: "fintech", region: "asia", decade: "2010s" },
+  },
+  {
+    id: "notion-ai-inline-slash",
+    type: "daily",
+    scheduled_date: "",
+    company: "Notion",
+    era: "February 22, 2023 — Notion AI GA launch",
+    context:
+      "Notion ships Notion AI on February 22, 2023 — an AI assistant integrated directly into the Notion editor. The trigger: type `/AI` (or hit Space at the start of a new line), and an AI prompt appears inline. Ask it to summarize the document, generate a draft, translate, change tone, brainstorm, write a meeting agenda. The output appears in the same document, in-place — no chat sidebar, no separate window. Pricing: $10/user/month add-on (built deliberately to mirror Notion's analysis that AI assistance is most valuable when adjacent to where users are already writing, not in a separate ChatGPT tab).",
+    prompt:
+      "Why ship Notion AI as an inline editor command (`/AI`) rather than as a chat sidebar — and what does the inline placement do for both adoption and unit-economics?",
+    reveal_quote:
+      "Notion AI is an assistant that thinks beside you in your workspace. Type /AI anywhere and ask for what you need — a summary, a translation, a brainstorm — and the output appears in your document, ready to edit.",
+    reveal_quote_attribution: "Notion — Notion AI launch announcement, February 2023",
+    reveal_note:
+      "What's easy to miss: putting AI inline in the editor (not in a chat panel) bets that the user is already writing — and AI's job is to augment that writing in-place, not to be a separate conversation. The inline placement means every Notion user has AI access in their normal workflow without context-switching. The unit economics work because (a) Notion users are already paying for the workspace and (b) Notion can bundle AI as an add-on rather than competing with ChatGPT's $20/mo standalone subscription. By 2024 Notion AI is reportedly Notion's fastest-growing revenue line. The lesson: when AI is embedded in a workflow product (rather than standalone), the inline / contextual integration beats chat-driven interaction because the user doesn't have to leave the document they're editing. Same principle as Gmail Smart Compose, GitHub Copilot inline, Cursor inline. The chat sidebar (Notion AI did eventually add one) is the secondary surface — inline is primary.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Introducing Notion AI",
+        url: "https://www.notion.com/blog/notion-ai-launch",
+        publisher: "Notion Blog",
+        year: 2023,
+        type: "blog",
+      },
+      {
+        title: "Notion AI is now generally available",
+        url: "https://techcrunch.com/2023/02/22/notion-ai-is-generally-available/",
+        publisher: "TechCrunch",
+        year: 2023,
+        type: "article",
+      },
+      {
+        title: "Notion AI — Notion Help Center",
+        url: "https://www.notion.com/help/guides/category/ai",
+        publisher: "Notion Help",
+        type: "documentation",
+      },
+    ],
+    tags: { industry: "ai-tools", region: "us", decade: "2020s" },
+  },
+  {
+    id: "apple-music-replay-2019",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "December 2019 — Apple Music Replay launch",
+    context:
+      "Spotify Wrapped (launched 2016) becomes a December cultural phenomenon — billions of social media impressions every year. Apple has Apple Music with ~60M paid subscribers but no equivalent annual recap. In December 2019 Apple ships Apple Music Replay: a yearly personalized playlist of the user's top songs, shareable cards, year-end stats. The product is functionally identical to Spotify Wrapped — same idea, same December timing, similar design language. Apple is openly playing catch-up to a competitor's annual ritual.",
+    prompt:
+      "Why ship a direct Spotify Wrapped clone — and what does Apple's willingness to copy here vs. its historical refusal to copy in other categories tell you about competitive strategy?",
+    reveal_quote:
+      "Apple Music Replay is a new way for subscribers to revisit their year in music. Each year, your top songs and artists are gathered into a personalized playlist that you can share with friends.",
+    reveal_quote_attribution: "Apple — Apple Music Replay launch announcement, December 2019",
+    reveal_note:
+      "What's easy to miss: when a competitor's product becomes a cultural ritual that drives signups (Spotify Wrapped does this), copying it isn't optional — refusing to ship an equivalent is ceding the December acquisition window entirely. Apple's general stance is to not copy competitors, but rituals like Wrapped are too valuable not to match. By 2024, every major music-streaming service has an annual recap (YouTube Music Recap, Tidal Year-End Wrapped, Amazon Music Recap, Spotify Wrapped, Apple Music Replay). The recap is now a category convention, not a Spotify differentiator. The lesson: when a competitor's marketing surface becomes culturally expected, you have to ship something equivalent — even if it dilutes your 'we don't copy' brand positioning. The cost of being absent during the cultural moment is higher than the brand cost of copying. Same logic applies to Instagram Stories (clone of Snapchat), Threads (clone of Twitter), Reels (clone of TikTok) — all category-convention copies that the platform couldn't afford to skip.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Apple Music Replay revisits your year of music",
+        url: "https://www.apple.com/newsroom/2019/12/apple-music-replay-revisits-your-year-of-music/",
+        publisher: "Apple Newsroom",
+        year: 2019,
+        type: "press-release",
+      },
+      {
+        title: "Apple Music Replay 2024",
+        url: "https://support.apple.com/en-us/HT209862",
+        publisher: "Apple Support",
+        type: "documentation",
+      },
+      {
+        title: "Apple finally launches Spotify Wrapped competitor",
+        url: "https://www.theverge.com/2019/11/26/20985166/apple-music-replay-2019-playlist-feature",
+        publisher: "The Verge",
+        year: 2019,
+        type: "article",
+      },
+    ],
+    tags: { industry: "media", region: "us", decade: "2010s" },
+  },
 ];
 
 export const weeklySeed: WeeklyScenario[] = [
