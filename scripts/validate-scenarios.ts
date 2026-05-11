@@ -70,10 +70,13 @@ const SOURCE_TYPE_ALLOWLIST = new Set([
 // ─── thresholds ──────────────────────────────────────────────────────────────
 
 // Any single industry / region / decade above this share triggers a warning.
+// US-heavy and 2010s/2020s-heavy is the editorial preference — most relevant
+// product-decisions the audience will encounter happen there. Diversity is a
+// floor (some non-US, some pre-2010s for foundational examples), not a ceiling.
 const DIVERSITY_MAX_SHARE = {
   industry: 0.35,
-  region: 0.7, // English-speaking dominance is expected; flag only at high concentration.
-  decade: 0.55,
+  region: 0.9,
+  decade: 0.85,
 };
 
 // Field length bounds. Tight enough to catch slop, loose enough not to thrash.
