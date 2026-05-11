@@ -1046,6 +1046,241 @@ export const dailySeed: DailyScenario[] = [
     ],
     tags: { industry: "productivity", region: "us", decade: "2010s" },
   },
+  {
+    id: "spotify-discover-weekly-2015",
+    type: "daily",
+    scheduled_date: "",
+    company: "Spotify",
+    era: "July 2015 — Discover Weekly launch",
+    context:
+      "Spotify in 2015 is at ~100M monthly users. The product has every song, the social-import features, and the playlists. What it doesn't have — that Pandora has — is the feeling that the service knows you. Pandora's bet (one-station-from-one-seed-song) is structurally great at this. Spotify's library-everything model is structurally bad at it. A small team led by Matthew Ogle ships Discover Weekly: every Monday, a personalized 30-track playlist labeled like a mixtape, built from collaborative filtering + audio analysis. No interactivity. No feedback button at launch. It just appears.",
+    prompt:
+      "Why ship personalization as a fixed weekly artifact rather than an interactive on-demand recommendation surface — and what is the Monday-morning timing doing?",
+    reveal_quote:
+      "The original brief was: make something that feels like your best friend made you a mixtape, labeled 'music you should check out,' every single week. The mixtape framing was the entire product.",
+    reveal_quote_attribution:
+      "Matthew Ogle, Spotify Director of Discovery / Discover Weekly lead — paraphrased from public interviews and Spotify Engineering posts",
+    reveal_note:
+      "The choice that's easy to miss: framing personalization as a 'gift' (a curated weekly mixtape) rather than a 'tool' (a tunable recommendation slider) created an emotional contract between user and product that interactive recommenders cannot match. The Monday-morning cadence converts the algorithm's output into a ritual. The fixed 30-track length signals 'this was made for you with effort,' even though it was made by software. Within 18 months, Discover Weekly was used by ~40M users and credited as the single biggest driver of Spotify's retention advantage over Apple Music. The lesson: in ML-driven products, the wrapper (timing, framing, ritual) often does more work than the model.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "What made Discover Weekly one of our most successful feature launches to date?",
+        url: "https://engineering.atspotify.com/2015/11/what-made-discover-weekly-one-of-our-most-successful-feature-launches-to-date",
+        publisher: "Spotify Engineering",
+        year: 2015,
+        type: "blog",
+      },
+      {
+        title: "The Little Hack That Could: The Story of Spotify's 'Discover Weekly' Recommendation Engine",
+        url: "https://spectrum.ieee.org/the-little-hack-that-could-the-story-of-spotifys-discover-weekly-recommendation-engine",
+        publisher: "IEEE Spectrum",
+        type: "article",
+      },
+      {
+        title: "Humans + Machines: A Look Behind the Playlists Powered by Spotify's Algotorial Technology",
+        url: "https://engineering.atspotify.com/2023/04/humans-machines-a-look-behind-spotifys-algotorial-playlists",
+        publisher: "Spotify Engineering",
+        year: 2023,
+        type: "blog",
+      },
+    ],
+    tags: { industry: "media", region: "eu", decade: "2010s" },
+  },
+  {
+    id: "glossier-blog-first-brand",
+    type: "daily",
+    scheduled_date: "",
+    company: "Glossier",
+    era: "2010–2014 — Into the Gloss to brand launch",
+    context:
+      "In 2010, Emily Weiss — then a Vogue intern — starts a beauty blog called Into the Gloss. The blog's signature is in-depth interviews with women about their actual skincare and makeup routines, in their own words. By 2013 it's pulling ~10M monthly views. The traditional play for someone with that audience is brand partnerships and ad-supported scale. Weiss does the opposite: she spends four years using the blog as a research lab — DM-ing readers, asking what they actually want, what's broken in their bathroom — then launches Glossier in October 2014 with four products, all named and designed against the most-frequent reader complaints.",
+    prompt:
+      "Why spend four years running a blog before shipping a single product — and what does the blog give Glossier that a great launch campaign couldn't?",
+    reveal_quote:
+      "By the time we shipped Glossier, we'd had hundreds of thousands of conversations with women about what they actually wanted in their bathroom. The brand wasn't a launch — it was the inevitable result of four years of listening at scale.",
+    reveal_quote_attribution:
+      "Emily Weiss, Glossier founder/CEO — paraphrased from the Business of Fashion profile and the Into the Gloss 'Introducing Glossier' essay (2014)",
+    reveal_note:
+      "The non-obvious move: most consumer brands build the product, then build the audience. Glossier did the opposite — the audience generated the product specification. By the time the brand launched, every product had a built-in pre-customer audience that had effectively co-written the brief. The blog wasn't a marketing channel; it was a four-year customer-discovery exercise that produced a brand whose first-day customer base felt like co-authors, not buyers. The lesson: when the audience is your design partner, the launch is a thank-you, not a pitch.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Introducing Glossier",
+        url: "https://intothegloss.com/2014/10/emily-weiss-glossier",
+        publisher: "Into the Gloss",
+        year: 2014,
+        type: "blog",
+      },
+      {
+        title: "Emily Weiss: Blogger to Social Brand Builder",
+        url: "https://www.businessoffashion.com/articles/beauty/glossier-into-the-gloss-beauty-brand-emily-weiss/",
+        publisher: "Business of Fashion",
+        type: "article",
+      },
+      {
+        title: "Glossier — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Glossier",
+        type: "article",
+      },
+    ],
+    tags: { industry: "ecommerce", region: "us", decade: "2010s" },
+  },
+  {
+    id: "allbirds-single-sku-launch",
+    type: "daily",
+    scheduled_date: "",
+    company: "Allbirds",
+    era: "March 2016 — Wool Runner launch",
+    context:
+      "Allbirds launches with one shoe. One silhouette, one material (merino wool), a handful of muted colors. No men's vs. women's variations beyond sizing. The Wool Runner stays the only Allbirds product for 14 months — no seasonal drops, no expansions, no collaborations. Tim Brown, the founder and ex-pro-soccer player, has a background in design and explicitly rejects the standard footwear-launch playbook of multiple SKUs to A/B test demand.",
+    prompt:
+      "Why launch a footwear brand with one shoe and refuse to expand for over a year — and what does the single-SKU constraint actually enable?",
+    reveal_quote:
+      "The discipline of one shoe meant we never explained ourselves badly. Every conversation about Allbirds was about the same product, the same materials, the same story. You can't muddle a single sentence.",
+    reveal_quote_attribution:
+      "Tim Brown, Allbirds cofounder — paraphrased from public commentary on the early Allbirds positioning",
+    reveal_note:
+      "The choice that's easy to miss: a single SKU is a positioning instrument, not a manufacturing constraint. With one product, every press article, every customer review, every social post reinforces the same association — 'comfort, wool, sustainable, simple.' Adding a second SKU pre-launch dilutes that association even before it's been established. Allbirds' growth in the first 18 months was driven almost entirely by word-of-mouth, which only works if the conversation is about one specific thing. Casper, launched two years earlier, ran the same playbook with mattresses. The deeper lesson: in crowded categories with a strong incumbent (Nike, Tempur-Pedic), single-product launches force category-redefinition rather than feature-comparison.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Our Story",
+        url: "https://www.allbirds.com/pages/our-story",
+        publisher: "Allbirds",
+        type: "blog",
+      },
+      {
+        title: "Allbirds — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Allbirds",
+        type: "article",
+      },
+      {
+        title: "How Allbirds Co-Founder Tim Brown Went from Pro Sports to Sustainable Shoes",
+        url: "https://canadianbusiness.com/people/allbirds-co-founder-ceo-tim-brown/",
+        publisher: "Canadian Business",
+        type: "article",
+      },
+    ],
+    tags: { industry: "ecommerce", region: "anz", decade: "2010s" },
+  },
+  {
+    id: "casper-bed-in-a-box",
+    type: "daily",
+    scheduled_date: "",
+    company: "Casper",
+    era: "April 22, 2014 — launch",
+    context:
+      "Mattresses in 2014 are sold one way: a salesperson commission-driven floor at a Mattress Firm or Sleepy's, with 100+ SKUs, opaque pricing, and 200–400% markups. The industry's structural moat is that mattresses are too big to ship cheaply via UPS. Casper's founders compress a queen-size memory foam mattress into a box about the size of a small filing cabinet and ship it via standard parcel for ~$50. One product (originally), one price ($850 for a queen), free shipping, 100-day return window. They explicitly position the brand as 'the Warby Parker of mattresses.'",
+    prompt:
+      "Why is shipping a $850 mattress in a small box the entire business model — and what does the compressed-shipping unlock that prior DTC mattress attempts didn't have?",
+    reveal_quote:
+      "The shoebox-sized package wasn't a marketing trick. It was the only thing that made the mattress economy a parcel economy. Once shipping is a UPS label instead of a flatbed truck with two people, the entire showroom model becomes a tax the customer pays to a middleman who isn't necessary.",
+    reveal_quote_attribution:
+      "Philip Krim, Casper cofounder/CEO — paraphrased from public interviews about the founding insight",
+    reveal_note:
+      "What's easy to miss: 'bed in a box' is not a feature, it is the unlock that lets you skip the retail layer. Without compression, mattresses require freight shipping, which kills the unit economics of a DTC model. Compression turns mattress retail from a high-touch in-store experience into a one-click checkout. The 100-day trial isn't a generous return policy; it's the substitute for the in-store 'try it' that the box replaces. Casper sold its entire first six-week inventory in a single day and was on track to hit a $1.8M year-one projection in 60 days. Within five years, every mattress incumbent (Tempur-Pedic, Serta) had a competing bed-in-a-box brand. The product innovation was logistics, dressed as a consumer story.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Casper: How a Mattress in a Box Became a Breakout Brand",
+        url: "https://fortune.com/2017/08/23/casper-mattress-philip-krim/",
+        publisher: "Fortune",
+        year: 2017,
+        type: "article",
+      },
+      {
+        title: "Casper Sleep — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Casper_Sleep",
+        type: "article",
+      },
+      {
+        title: "CEO of 'bed in a box' start-up Casper on going from zero to a $500 million+ company in 4 years",
+        url: "https://www.cnbc.com/2017/06/14/casper-ceo-philip-krim-on-becoming-a-500-million-company.html",
+        publisher: "CNBC",
+        year: 2017,
+        type: "interview",
+      },
+    ],
+    tags: { industry: "ecommerce", region: "us", decade: "2010s" },
+  },
+  {
+    id: "cursor-vscode-fork",
+    type: "daily",
+    scheduled_date: "",
+    company: "Cursor (Anysphere)",
+    era: "2023–2024 — launch and early growth",
+    context:
+      "GitHub Copilot launches in 2021 as a VS Code plugin — an autocomplete layer that sits inside the existing editor. It works well enough that Microsoft positions it as the canonical AI coding tool. Anysphere (a YC-backed team) ships Cursor instead as a complete fork of VS Code's open-source codebase, with AI baked into the core (multi-line edits, repo-wide context, agentic actions) rather than added through a plugin. They charge $20/month, the same as Copilot. Most observers wonder why they didn't just build a better plugin.",
+    prompt:
+      "Why fork the entire IDE rather than ship a smarter Copilot competitor as a VS Code extension — and what does owning the editor allow that an extension can't?",
+    reveal_quote:
+      "An extension can only ever sit inside the surfaces VS Code gives it. Forking the editor means we control every keystroke, every panel, every diff view — every place AI could change how code gets written. The plugin layer is a ceiling we couldn't accept.",
+    reveal_quote_attribution:
+      "Anysphere / Cursor team — paraphrased from public commentary on the architectural choice",
+    reveal_note:
+      "The non-obvious move: a plugin lives inside someone else's product roadmap. If Microsoft ships its own AI features into VS Code core, every extension becomes redundant overnight. Forking sidesteps that platform risk entirely — Cursor controls its own UI, its own context model, its own update cadence. The cost is real: maintaining a VS Code fork is engineering-heavy, and Cursor inherits every bug Microsoft fixes upstream (or doesn't). The benefit is also real: by mid-2025 Cursor hit ~$500M ARR and by early 2026 ~$2B ARR — a Copilot-equivalent product impossible to build as a plugin. The lesson: when AI is the product, owning the editor matters more than reusing the editor.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Cursor (code editor) — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Cursor_(code_editor)",
+        type: "article",
+      },
+      {
+        title: "An honest Anysphere review (2025): The truth about the $9b AI coding tool",
+        url: "https://www.eesel.ai/blog/anysphere-review",
+        publisher: "eesel AI",
+        year: 2025,
+        type: "blog",
+      },
+      {
+        title: "Cursor vs. VS Code: Which One Is Right for You?",
+        url: "https://www.datacamp.com/blog/cursor-vs-vs-code",
+        publisher: "DataCamp",
+        type: "article",
+      },
+    ],
+    tags: { industry: "ai-tools", region: "us", decade: "2020s" },
+  },
+  {
+    id: "brex-no-personal-guarantee",
+    type: "daily",
+    scheduled_date: "",
+    company: "Brex",
+    era: "2017–2018 — founding through launch",
+    context:
+      "Corporate credit cards in 2017 require a personal guarantee — meaning the founder, as an individual, is liable if the company fails to pay. American Express and Chase have spent decades treating the founder's personal FICO score as the underwriting signal, regardless of company financials. Brex founders Henrique Dubugras and Pedro Franceschi (both Brazilian, both ex-Pagar.me ~$160M founders, both ~20 years old) build a corporate card that underwrites against the company's cash balance, not the founder's personal credit. No personal guarantee, ever. Credit limits ~10–20x higher than incumbents.",
+    prompt:
+      "Why is removing the personal guarantee actually the entire product — and what changes structurally about who can run a company once cards are underwritten against company cash?",
+    reveal_quote:
+      "We had just gotten through US immigration and had no credit history. We couldn't get an Amex. The personal guarantee was a tax on people who didn't already have personal balance sheets — exactly the people building the most ambitious startups.",
+    reveal_quote_attribution:
+      "Henrique Dubugras / Pedro Franceschi, Brex cofounders — paraphrased from public interviews on the founding insight",
+    reveal_note:
+      "The choice that's easy to miss: a personal-guarantee requirement is structurally exclusionary. Immigrants, first-generation founders, people without inherited wealth, and people without years of US credit history all start a startup with a worse corporate-card option than someone with the same business who already has a thick FICO file. Removing the guarantee converts the corporate card into a meritocratic instrument: companies with more cash get more credit; founders' personal histories don't gate it. Brex's growth — 1 in 3 venture-backed US startups within five years — came from being the only corporate card a 19-year-old founder fresh off a YC W19 batch could actually use. The deeper lesson: financial-product UX is rarely about UI. It's about who the underwriting math lets in.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Brex for startups",
+        url: "https://www.brex.com/solutions/startups",
+        publisher: "Brex",
+        type: "blog",
+      },
+      {
+        title: "Brex Business Credit Card Doesn't Require a Personal Guarantee",
+        url: "https://www.nerdwallet.com/business/credit-cards/learn/brex-card",
+        publisher: "NerdWallet",
+        type: "article",
+      },
+      {
+        title: "The Complete Guide to Brex: A Masterclass for High-Growth Companies",
+        url: "https://www.swipesum.com/insights/the-complete-guide-to-brex-a-masterclass-for-high-growth-companies",
+        type: "blog",
+      },
+    ],
+    tags: { industry: "fintech", region: "us", decade: "2010s" },
+  },
 ];
 
 export const weeklySeed: WeeklyScenario[] = [
@@ -2938,6 +3173,441 @@ export const weeklySeed: WeeklyScenario[] = [
       },
     ],
     tags: { industry: "saas", region: "us", decade: "2010s" },
+  },
+  {
+    id: "wework-ipo-collapse-2019",
+    type: "weekly",
+    iso_week: "",
+    company: "WeWork",
+    era: "August–October 2019",
+    intro:
+      "It is August 14, 2019. You are a senior strategy executive at WeWork. The company has spent the last decade raising ~$12.8B at valuations climbing to $47B — largely from SoftBank's Vision Fund. The S-1 has just been filed publicly in preparation for an IPO targeted for September. Adam Neumann is CEO. The company has 7,000+ employees, real estate commitments in dozens of countries, and a $1.9B loss on $1.8B in revenue last year. The S-1 contains revelations almost immediately: Neumann owns and leases real estate to WeWork (conflicts of interest), holds super-voting stock that gives him personal control even at <10% economic ownership, has been paid $5.9M for the trademark 'We' by the company he runs, and uses chartered private jets for purposes that include trips with marijuana on board.\n\nWithin two weeks of the filing, the press coverage is uniformly negative. Wall Street's whisper-valuation drops from $47B to $20B to $10B. SoftBank is now publicly conflicted — Masayoshi Son has personally championed the company and pushed Neumann to be 'crazier.' The IPO date is two weeks out. You need to advise leadership.",
+    open_questions: [
+      "Postpone the IPO and re-negotiate governance terms, or push through at a depressed valuation to avoid the optics of failure?",
+      "Replace Adam Neumann pre-IPO (severe trust signal but optics of decisive action), or after IPO?",
+      "What's SoftBank's leverage actually worth if they have $10B+ at stake and Neumann's super-voting shares mean he can refuse to be replaced?",
+      "If the IPO fails entirely — does WeWork survive on the cash runway it has, or does it need an emergency SoftBank bailout?",
+    ],
+    closing:
+      "Imagine you're in the leadership conversations at WeWork in early September 2019. Roadshow meetings have collapsed. The bankers are signaling a $10B valuation at most. Neumann is refusing to step down voluntarily.",
+    decision:
+      "Withdraw the S-1 on September 30, 2019 — IPO formally postponed. The board (heavily influenced by SoftBank) demands Neumann's resignation. He resists; SoftBank threatens to withdraw funding. On September 24, Neumann resigns as CEO and surrenders majority voting control. Artie Minson and Sebastian Gunningham named co-CEOs. SoftBank pays Neumann a ~$1.7B exit package — $970M for his shares, $185M consulting fee, $500M loan repayment. SoftBank then commits an additional ~$9.5B bailout, taking ~80% ownership. WeWork eventually IPOs via SPAC in October 2021 at a $9B valuation — vs. $47B private valuation. Files for bankruptcy in 2023.",
+    pullquote:
+      "While we have made significant progress over the past year, this is the right thing to do for our team, our members, our investors, and the future of WeWork.",
+    pullquote_attribution: "Adam Neumann, WeWork cofounder/CEO — resignation statement, September 24, 2019",
+    outcomes: [
+      { stat: "$47B → $10B", label: "private valuation collapsed in 6 weeks", accent: true },
+      { stat: "$1.7B", label: "Neumann's exit package from SoftBank" },
+      { stat: "~$9.5B", label: "SoftBank emergency bailout to keep WeWork solvent" },
+      { stat: "Oct 2021", label: "eventual SPAC merger at $9B valuation — 2 years late, 80% lower" },
+      { stat: "Nov 2023", label: "WeWork files for Chapter 11 bankruptcy" },
+    ],
+    tradeoffs: [
+      {
+        title: "Push the IPO through vs. withdraw",
+        body:
+          "A $10B IPO would have raised capital and signaled survival, even at a fraction of the private valuation. Withdrawing locked WeWork into a multi-year private workout with SoftBank as forced majority owner. Withdrawal was the legally and operationally safer choice; it also guaranteed SoftBank's dominance over the company's future.",
+      },
+      {
+        title: "Replace the founder vs. preserve continuity",
+        body:
+          "Neumann was the company's culture, brand, and majority voter. Removing him required SoftBank's leverage + a $1.7B payout. The cost: a permanently weakened CEO seat (multiple subsequent CEOs in the next four years). The benefit: any chance of public-market credibility required him gone.",
+      },
+      {
+        title: "Public transparency vs. quiet workout",
+        body:
+          "The S-1's disclosures — once public — were unwithdrawable. A private re-IPO 18 months later carried the baggage of every flagged conflict in the original document. WeWork's brand never recovered from the S-1's specific lines about Neumann's trademark payment and private-jet usage.",
+      },
+      {
+        title: "SoftBank's $9.5B bailout vs. bankruptcy in 2019",
+        body:
+          "SoftBank could have walked. A 2019 bankruptcy would have cost SoftBank ~$10B already invested but stopped the bleeding. Doubling down meant ~$20B+ exposure with a path to maybe recover some of it. They doubled down. By 2023 they wrote it down to ~$0.",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Going public at a 'humiliating' $10B valuation vs. accepting a multi-year private workout fully dependent on SoftBank's continued funding. WeWork chose the workout; it preserved the company's appearance of viability for two more years and ultimately ended in bankruptcy anyway.",
+      user:
+        "The S-1 was written for retail and institutional public-market investors. It treated them as the buyer. Once those investors revolted, the only remaining buyer was SoftBank — already invested, structurally unable to walk away, with terms that effectively forced ongoing capital injections.",
+      alt:
+        "A clean withdrawal + structured governance reform + a 2021 IPO at a clean $15–20B valuation was the case-for-restraint path. Instead, WeWork went through with the SPAC at $9B in panic mode. The opposite trade — patience + governance — was technically available but politically impossible given Neumann's voting structure.",
+      predict:
+        "Short-term: founder ouster, SoftBank bailout, brand collapse, $1.7B exit package generates years of public outrage. Medium-term: leadership churn, real estate retrenchment, multiple capital injections. Long-term: bankruptcy + Adam Neumann starts a new company (Flow) at a billion-dollar valuation with the same investors. The case study becomes the canonical 'why founder-control + private-market over-valuation breaks at the IPO door.'",
+    },
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "WeWork pulls IPO filing",
+        url: "https://www.cnbc.com/2019/09/30/wework-says-it-will-file-request-to-withdraw-its-ipo-prospectus-after-roadshow-management-turmoil.html",
+        publisher: "CNBC",
+        year: 2019,
+        type: "article",
+      },
+      {
+        title: "WeWork CEO Adam Neumann Steps Down Amid Stalled IPO",
+        url: "https://www.npr.org/2019/09/24/763913318/wework-ceo-steps-down-as-ipo-stalls",
+        publisher: "NPR",
+        year: 2019,
+        type: "article",
+      },
+      {
+        title: "WeWork — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/WeWork",
+        type: "article",
+      },
+      {
+        title: "Adam Neumann — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Adam_Neumann",
+        type: "article",
+      },
+    ],
+    tags: { industry: "marketplace", region: "us", decade: "2010s" },
+  },
+  {
+    id: "coinbase-direct-listing-2021",
+    type: "weekly",
+    iso_week: "",
+    company: "Coinbase",
+    era: "Early 2021 — April 14, 2021 NASDAQ direct listing",
+    intro:
+      "It is early 2021. You are a senior PM at Coinbase. Bitcoin is at all-time highs (~$60K). Coinbase is the largest US-regulated cryptocurrency exchange — ~$1.8B revenue in 2020, sharply profitable, and growing fast. The company has been preparing to go public for over a year. The standard path for a profitable, cash-rich tech company is a traditional IPO with major investment-bank underwriters and a 'roadshow' priced book-build.\n\nBrian Armstrong and the leadership team are debating direct listing instead. Direct listings cut out underwriting fees and the IPO 'pop,' let existing shareholders sell directly to the public, and don't raise new capital. Coinbase doesn't need capital — it generated >$300M in operating income in Q4 2020 alone. The investment banks Coinbase is talking to have spent two decades building IPO-as-a-product; they will discourage the direct-listing path, and almost no profitable crypto company has gone public before.",
+    open_questions: [
+      "Direct listing or IPO? Direct listing saves ~$100M+ in underwriting fees but removes the institutional-anchor base a traditional IPO builds.",
+      "Without a roadshow + bank-set 'IPO price,' how does the market price the stock on day one — and what's the downside if Bitcoin sells off the morning of?",
+      "How do you handle the regulatory framing — crypto is mid-controversy at the SEC level; does going public via direct listing signal confidence or evasion?",
+      "Is the moment to go right now (peak crypto sentiment) or wait for a more mature regulatory environment that may never come?",
+    ],
+    closing:
+      "Imagine you're with Armstrong in early April 2021. The reference price is being set this week. Bitcoin is volatile. Nasdaq is preparing the listing.",
+    decision:
+      "Direct list on Nasdaq under ticker 'COIN' on April 14, 2021. Reference price: $250 (set by Nasdaq, not banks). First trade prints at $381 — a ~52% pop. Stock closes day one at $328 — implied market cap ~$85.8B fully diluted (briefly hit $100B+ intraday). No primary capital raised. No underwriting fees. Brian Armstrong's stake is worth ~$13B at the close. Crypto-skeptic media call it the 'top signal' for the cycle.",
+    pullquote:
+      "We are going public because we believe everyone should have access to financial freedom — and we want everyone to be able to participate in this opportunity by owning a piece of Coinbase.",
+    pullquote_attribution:
+      "Brian Armstrong, Coinbase cofounder/CEO — paraphrased from his public commentary around the direct listing",
+    outcomes: [
+      { stat: "$85.8B", label: "fully diluted market cap on day-one close" },
+      { stat: "$250 → $381", label: "reference price → first trade — market-set, not bank-set", accent: true },
+      { stat: "~$100M+", label: "estimated underwriting fees avoided" },
+      { stat: "$13B", label: "Brian Armstrong's stake value on the close" },
+      { stat: "−85%", label: "from peak by end of 2022 in crypto-winter drawdown" },
+    ],
+    tradeoffs: [
+      {
+        title: "Direct listing vs. traditional IPO",
+        body:
+          "Direct listing saved ~$100M+ in fees but skipped the anchor-investor relationships a roadshow builds. Coinbase didn't need the capital, but the absence of long-only institutional shareholders made the stock structurally more volatile post-listing. Slack and Spotify had run this playbook earlier; Coinbase was the first crypto company at scale to use it.",
+      },
+      {
+        title: "Go now (peak sentiment) vs. wait for regulatory clarity",
+        body:
+          "Crypto sentiment in April 2021 was the highest it had ever been. A 2022 listing would have hit during crypto winter at a fraction of the valuation. Going at peak was almost certainly optimal for existing-shareholder liquidity — and almost certainly the top signal for the cycle. Both can be true.",
+      },
+      {
+        title: "Public-company transparency vs. crypto-native flexibility",
+        body:
+          "Going public meant Coinbase took on quarterly earnings, disclosure obligations, and securities-law constraints that crypto-native competitors (Binance) refused. The cost: less operational agility, more legal overhead. The benefit: regulatory credibility that would matter through every subsequent SEC enforcement wave.",
+      },
+      {
+        title: "Founder identity vs. company identity",
+        body:
+          "Armstrong personally became a $13B billionaire on day one, in public, with cap-table disclosures. That made him a target — both for regulatory pressure and for shareholder activism. A more typical pre-IPO would have spread liquidity over a 6-month lockup; direct listing made every executive's wealth visible the moment the bell rang.",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Fee savings + speed + market-set pricing vs. anchor-investor stability + traditional-IPO halo. Coinbase had the financials to make the trade and picked the moment when crypto sentiment was at all-time highs. The decision was right on its own terms; the timing was inadvertently the top of the cycle.",
+      user:
+        "Coinbase's existing employees and pre-public investors who wanted clean liquidity, not the broader public market generally. The direct listing optimized for the cap table that already existed — not for distributing shares to fund managers via a coordinated allocation.",
+      alt:
+        "A traditional IPO would have raised ~$1B+ of fresh capital and locked in major institutional anchor holders. Coinbase didn't need the capital. Waiting for crypto-winter clarity would have meant listing at perhaps $20B vs. $86B. Both alternatives had clearer downside than the path chosen.",
+      predict:
+        "Successful day one with a big print, immediate price volatility (no anchor base), 2022 crypto-winter drawdown that takes the stock down 85%, ongoing SEC enforcement actions, and a multi-year regime where 'COIN' becomes the public-market proxy for the crypto cycle. Long-term: direct listings become a standard option for profitable companies that don't need primary capital.",
+    },
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Coinbase stock debuts on Nasdaq in direct listing",
+        url: "https://www.cnbc.com/2021/04/14/coinbase-to-debut-on-nasdaq-in-direct-listing.html",
+        publisher: "CNBC",
+        year: 2021,
+        type: "article",
+      },
+      {
+        title: "Coinbase goes public with a nearly $100 billion valuation",
+        url: "https://www.cnn.com/2021/04/14/investing/coinbase-stock-direct-listing",
+        publisher: "CNN",
+        year: 2021,
+        type: "article",
+      },
+      {
+        title: "Coinbase Direct Listing Gets $100B+ Valuation as Share Price Jumps in Nasdaq Debut",
+        url: "https://www.coindesk.com/markets/2021/04/14/coinbase-direct-listing-gets-100b-valuation-as-share-price-jumps-in-nasdaq-debut",
+        publisher: "CoinDesk",
+        year: 2021,
+        type: "article",
+      },
+    ],
+    tags: { industry: "fintech", region: "us", decade: "2020s" },
+  },
+  {
+    id: "amazon-buys-whole-foods-2017",
+    type: "weekly",
+    iso_week: "",
+    company: "Amazon",
+    era: "Mid-2017 — June 16, 2017 announcement",
+    intro:
+      "It is mid-2017. You are a corporate strategy executive at Amazon. Amazon has dominated e-commerce for two decades. The one massive consumer-spending category it has structurally failed to crack is groceries — perishables, cold-chain logistics, and the 'I need it now' purchasing pattern all break Amazon's standard fulfillment model. Amazon Fresh (the company's grocery delivery service) has been live since 2007 in select cities and has barely moved the needle. Whole Foods, meanwhile, has 460+ premium-grocery stores in the US, an upmarket customer base, and a struggling stock (down ~40% over 18 months) after activist investor Jana Partners pushed for a sale.\n\nBezos is debating whether to acquire Whole Foods outright — Amazon's largest acquisition ever — to anchor a brick-and-mortar grocery footprint, or to keep building Amazon Fresh from scratch. The price floats around $13.7B. The deal is structured as cash. Wall Street expects either a tech-sector premium acquisition or another year of incremental e-commerce growth. Almost nobody expects Amazon to suddenly own physical stores.",
+    open_questions: [
+      "Buy Whole Foods or keep building Amazon Fresh + Amazon Go? Building is cheaper but ~5–10 years behind a national footprint.",
+      "If buy — at what price? $13.7B is a 27% premium; activist pressure has the stock already partially priced in.",
+      "What's the integration model — absorb Whole Foods into Amazon's brand (likely brand-damaging) or preserve it as an upscale grocery chain (slower synergies)?",
+      "How will the existing Whole Foods customer base react to 'Amazon now owns my organic grocery store' — and how do you protect the brand premium during a tech-company integration?",
+    ],
+    closing:
+      "Imagine you're in the Amazon corporate development room in May 2017. The deal is two weeks from announcement. Whole Foods's John Mackey is on board. The grocery industry is unaware.",
+    decision:
+      "Announce the acquisition on June 16, 2017 for $13.7B all-cash at $42/share. Whole Foods's John Mackey remains CEO; the brand stays distinct. Within 9 months Amazon cuts Whole Foods prices ~30% on staple items, adds Amazon Prime member discounts in-store, and uses Whole Foods locations as Amazon delivery pickup points. The grocery industry stock-market reaction is immediate: Kroger drops ~9%, Walmart drops ~5%, Target drops ~5%, Costco drops ~7% in a single day, wiping ~$30B off competitor market caps. Five years later, Whole Foods has Amazon-branded shelves, Amazon Fresh delivery integration, and serves as the physical foothold for Amazon's grocery push.",
+    pullquote:
+      "Millions of people love Whole Foods Market because they offer the best natural and organic foods, and they make it fun to eat healthy.",
+    pullquote_attribution: "Jeff Bezos, Amazon founder/CEO — acquisition announcement, June 16, 2017",
+    outcomes: [
+      { stat: "$13.7B", label: "all-cash acquisition — Amazon's largest at the time", accent: true },
+      { stat: "27%", label: "premium to Whole Foods's pre-deal share price" },
+      { stat: "~$30B", label: "one-day market-cap loss across Kroger, Walmart, Target, Costco" },
+      { stat: "~30%", label: "Whole Foods staple-item price cuts within 9 months of close" },
+      { stat: "460+", label: "physical grocery stores added to Amazon's footprint overnight" },
+    ],
+    tradeoffs: [
+      {
+        title: "Buy vs. build",
+        body:
+          "Building Amazon Fresh into a national grocery presence would have taken 5–10 years and required physical real estate Amazon didn't own. Buying Whole Foods compressed that timeline to one transaction. The premium ($13.7B for ~$16B revenue) was the cost of skipping a decade of slow growth.",
+      },
+      {
+        title: "Premium brand preservation vs. Amazon integration",
+        body:
+          "Whole Foods's brand premium ('upscale, organic, premium pricing') was an asset that could be damaged by Amazon's discount-retailer DNA. Preserving Mackey, the brand, and the in-store experience protected that premium; cutting prices 30% on staples broadcast Amazon's intent without destroying the upmarket positioning entirely.",
+      },
+      {
+        title: "Physical-retail learning curve vs. e-commerce confidence",
+        body:
+          "Amazon had no large-scale grocery retail experience. Acquiring Whole Foods bought 460 stores' worth of operational knowledge — supply chains, perishables logistics, store manager networks. The cost was real (Amazon's culture is software-first; absorbing physical retail processes is slow).",
+      },
+      {
+        title: "Defensive move (vs. Walmart) vs. offensive expansion",
+        body:
+          "Walmart had spent $3B acquiring Jet.com in 2016 to build e-commerce muscle. Amazon's Whole Foods move was the mirror response — building physical-grocery muscle to keep Walmart from owning the omni-channel category. Framed externally as expansion, framed internally as defense against Walmart's e-commerce build-out.",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Premium price + integration complexity vs. building a national grocery footprint from scratch over a decade. Amazon paid the premium because the alternative (slow build) gave Walmart a chance to win the omni-channel category. Defensive M&A framed as expansion.",
+      user:
+        "The customer Amazon really wanted was the Whole Foods shopper — an affluent, urban, health-conscious household that under-indexed on Amazon spending. Acquiring their physical-grocery purchase decision created a Prime upsell flywheel that pure e-commerce expansion couldn't have produced.",
+      alt:
+        "Continuing to build Amazon Fresh + Amazon Go would have been cheaper and more aligned with Amazon's DNA. It would also have ceded the omni-channel category to Walmart, which had the existing physical footprint. Amazon explicitly chose the harder integration over the slow build.",
+      predict:
+        "Massive market reaction on announcement (and grocery-retailer market-cap loss). 6–12 months of integration friction and brand identity questions. 3–5 years of slow grocery synergies + Prime upsell. Long-term: Whole Foods becomes the physical anchor for Amazon's grocery story, and the deal becomes the case study in 'acquire to compress a decade of build into a single transaction.'",
+    },
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Amazon to Acquire Whole Foods Market",
+        url: "https://media.wholefoodsmarket.com/amazon-to-acquire-whole-foods-market/",
+        publisher: "Whole Foods Market",
+        year: 2017,
+        type: "press-release",
+      },
+      {
+        title: "Amazon to Acquire Whole Foods for $13.7 Billion",
+        url: "https://www.bloomberg.com/news/articles/2017-06-16/amazon-to-acquire-whole-foods-in-13-7-billion-bet-on-groceries",
+        publisher: "Bloomberg",
+        year: 2017,
+        type: "article",
+      },
+      {
+        title: "Amazon Buys Whole Foods — Case",
+        url: "https://www.hbs.edu/faculty/Pages/item.aspx?num=53656",
+        publisher: "Harvard Business School",
+        type: "article",
+      },
+    ],
+    tags: { industry: "ecommerce", region: "us", decade: "2010s" },
+  },
+  {
+    id: "facebook-buys-instagram-2012",
+    type: "weekly",
+    iso_week: "",
+    company: "Facebook (Meta)",
+    era: "April 2012",
+    intro:
+      "It is early April 2012. You are an executive at Facebook. The company is days away from filing its S-1 for an IPO targeted at a ~$100B valuation. Mark Zuckerberg has been watching Instagram closely — a 13-person company with ~30M users, no revenue, and a product (mobile-native photo sharing) that exposes Facebook's biggest strategic weakness: Facebook is still primarily a desktop product, and mobile usage is exploding. Instagram's Android version launched a week earlier and added 1M users in 24 hours.\n\nZuckerberg has been having direct conversations with Kevin Systrom for months. The negotiated price is ~$1B in cash and stock — Facebook's largest acquisition ever, completed in one weekend at Zuckerberg's house, without Facebook's board approval until after the deal was done.",
+    open_questions: [
+      "Buy Instagram or build a mobile-native photo product inside Facebook? Building is slower and arguably impossible given Facebook's culture/codebase momentum.",
+      "What price is defensible for a 13-person, zero-revenue startup with the largest mobile-photo audience?",
+      "Preserve Instagram as a distinct product (preserve audience and brand) or absorb into Facebook (extract synergies)?",
+      "How do you negotiate with a founder whose company has the leverage of being the structural answer to your IPO's biggest weakness?",
+    ],
+    closing:
+      "Imagine you're with Zuckerberg over the weekend of April 8, 2012. Negotiations have been ongoing privately. The IPO filing is days away.",
+    decision:
+      "Acquire Instagram for ~$1B in cash and stock on April 9, 2012. Zuckerberg negotiates the deal personally with Systrom over a weekend at his home. The acquisition is announced before Facebook's board has formally voted. Instagram remains an independent product line with Systrom and Krieger staying as cofounders. Brand stays. Product stays separate from Facebook proper. By 2018 — when Systrom and Krieger leave — Instagram has ~1B users and is widely considered the most strategic acquisition in tech history. By 2020 internal Facebook documents (later leaked) estimate Instagram represents 30%+ of Facebook's revenue and 100%+ of its growth.",
+    pullquote:
+      "This is an important milestone for us because it's the first time we've ever acquired a product and company with so many users. We don't plan on doing many more of these, if any at all.",
+    pullquote_attribution: "Mark Zuckerberg, Facebook CEO — blog post announcing the acquisition, April 9, 2012",
+    outcomes: [
+      { stat: "$1B", label: "cash + stock — Facebook's largest acquisition at the time" },
+      { stat: "~30M", label: "Instagram users at acquisition (no revenue)" },
+      { stat: "13", label: "Instagram employees", accent: true },
+      { stat: "1B+", label: "Instagram users by 2018; 2B+ by 2020s" },
+      { stat: "~30%+", label: "of Meta's revenue from Instagram by 2020 (leaked internal estimates)" },
+    ],
+    tradeoffs: [
+      {
+        title: "Buy vs. build (mobile-photo edition)",
+        body:
+          "Facebook had Camera and Messenger and was about to ship Facebook Camera (a Camera+ competitor). Internal builds were slower than Instagram's existing trajectory; competitive cloning would have lost ~6–12 months at exactly the moment Facebook was filing an IPO that bet on mobile.",
+      },
+      {
+        title: "Premium price vs. wait-and-watch",
+        body:
+          "$1B for a 13-person zero-revenue company felt insane to most observers in April 2012 (Facebook's IPO valuation was being doubted on similar grounds). The premium was the price of removing a strategic threat at the moment Facebook was most vulnerable. With hindsight, $1B looks like one of the cheapest acquisitions in tech history.",
+      },
+      {
+        title: "Preserve Instagram independence vs. absorb",
+        body:
+          "Keeping Instagram a distinct product preserved the brand and the audience. The cost was slower revenue-synergy realization. The benefit was that Instagram could continue growing under its original brand and design DNA, eventually becoming a 2B-user product without ever feeling like 'Facebook's photo app.'",
+      },
+      {
+        title: "CEO direct deal vs. board process",
+        body:
+          "Zuckerberg negotiated the deal at his home over a weekend with limited board involvement. The speed prevented leaks and competing offers (Twitter had also been interested) but bypassed normal acquisition diligence. Subsequent Facebook acquisitions (WhatsApp $19B, Oculus $2B) used similar founder-to-founder direct negotiation.",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Massive premium + bypassed board process vs. losing the mobile-photo category to an independent competitor entering Facebook's IPO window. Zuckerberg paid the premium because the strategic threat was existential at IPO time, not because Instagram looked like a $1B business on traditional financials.",
+      user:
+        "Younger users (mobile-native) who used Instagram primarily and Facebook secondarily. Acquiring Instagram kept that audience inside Facebook's ad ecosystem rather than letting it migrate to an independent mobile-photo platform that Facebook couldn't monetize.",
+      alt:
+        "Building Facebook Camera and outcompeting Instagram on mobile would have cost less cash but more time. Facebook had cash and was racing the IPO clock — buying the audience was faster than building it. The opposite trade (build) would likely have lost the mobile-photo category permanently to Instagram or Snapchat.",
+      predict:
+        "Short-term: press skepticism on price, regulatory scrutiny (FTC reviews the deal and approves it; this would later be reopened in 2020 antitrust complaints). Medium-term: Instagram absorbs Snapchat's Stories format and becomes Facebook's growth engine. Long-term: the acquisition becomes the canonical case in 'pay the premium when the strategic threat is real at IPO timing, even when financial analysts call you crazy.'",
+    },
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Facebook to Acquire Instagram",
+        url: "https://about.fb.com/news/2012/04/facebook-to-acquire-instagram/",
+        publisher: "Meta Newsroom",
+        year: 2012,
+        type: "press-release",
+      },
+      {
+        title: "Facebook Buys Instagram For $1 Billion",
+        url: "https://techcrunch.com/2012/04/09/facebook-to-acquire-instagram-for-1-billion/",
+        publisher: "TechCrunch",
+        year: 2012,
+        type: "article",
+      },
+      {
+        title: "The Inside Story of How Facebook Acquired Instagram",
+        url: "https://onezero.medium.com/the-inside-story-of-how-facebook-acquired-instagram-318f244f1283",
+        publisher: "Sarah Frier / OneZero",
+        type: "blog",
+      },
+    ],
+    tags: { industry: "consumer-social", region: "us", decade: "2010s" },
+  },
+  {
+    id: "microsoft-activision-2022",
+    type: "weekly",
+    iso_week: "",
+    company: "Microsoft",
+    era: "January 2022 – October 2023",
+    intro:
+      "It is January 2022. You are a corporate-strategy executive at Microsoft. Game Pass — Microsoft's gaming-subscription product — has been growing rapidly and is becoming Microsoft's central bet in gaming, but it lacks consistently great exclusive content. Sony's PlayStation has stronger first-party studios. Activision Blizzard — owner of Call of Duty, World of Warcraft, Diablo, Candy Crush, Overwatch — is in active corporate turmoil after the California DFEH filed a major workplace-harassment lawsuit in July 2021; CEO Bobby Kotick is under fire; the stock has dropped ~40%. The board is open to a sale.\n\nMicrosoft proposes $95/share in cash — a $68.7B all-cash deal, the largest in gaming industry history and one of the largest tech acquisitions ever. The deal will trigger antitrust scrutiny in the US (FTC), UK (CMA), and EU. Closing is far from guaranteed; the FTC under Lina Khan has signaled an aggressive stance on tech-platform M&A. Termination fee if the deal collapses: $3B.",
+    open_questions: [
+      "Pay $68.7B for Activision Blizzard or build / acquire smaller studios over time?",
+      "How aggressive is the antitrust risk — and is the $3B break fee worth it as a hedge against regulator blocks?",
+      "If the deal closes, what's the cross-platform commitment on Call of Duty — keep it on PlayStation (defuses Sony's antitrust complaint) or pull exclusivity (maximize Xbox value)?",
+      "How does the workplace-culture crisis at Activision get handled post-close — preserve Bobby Kotick or remove him?",
+    ],
+    closing:
+      "Imagine you're at Microsoft headquarters in early 2022. The deal has been negotiated. The FTC is already signaling concern. Sony is publicly opposing it.",
+    decision:
+      "Announce the $68.7B acquisition on January 18, 2022. Make 10-year contractual commitments to keep Call of Duty on PlayStation and bring it to Nintendo Switch — defusing the biggest competitive-foreclosure argument. Fight the FTC's preliminary injunction; win Judge Jacqueline Scott Corley's July 2023 ruling. UK CMA initially blocks the deal; Microsoft restructures to sell Activision's cloud-gaming rights to Ubisoft globally. Deal closes October 13, 2023 — 21 months after announcement, total cost ~$75.4B including debt. FTC continues case post-close; drops it in May 2025. Bobby Kotick remains CEO through close, then exits in late 2023.",
+    pullquote:
+      "Gaming is the most dynamic and exciting category in entertainment across all platforms today and will play a key role in the development of metaverse platforms.",
+    pullquote_attribution: "Satya Nadella, Microsoft CEO — acquisition announcement, January 18, 2022",
+    outcomes: [
+      { stat: "$68.7B", label: "all-cash deal value at announcement (became $75.4B at close)", accent: true },
+      { stat: "21 months", label: "from announcement to close — regulatory fight" },
+      { stat: "10 years", label: "binding Call of Duty PlayStation commitment used to win regulator approval" },
+      { stat: "$3B", label: "termination fee Microsoft would have paid if the deal collapsed" },
+      { stat: "FTC dropped", label: "the post-close challenge in May 2025 — fully unblocked" },
+    ],
+    tradeoffs: [
+      {
+        title: "Acquire Activision vs. build content organically",
+        body:
+          "Microsoft could have spent $68B on smaller studios over a decade. Activision delivered a content portfolio (Call of Duty especially) that's a top-3 gaming franchise overnight. Buying compressed a 10-year build into a single transaction, at the cost of ~2 years of regulatory war.",
+      },
+      {
+        title: "Fight regulators vs. accept conditions",
+        body:
+          "Microsoft fought the FTC's preliminary injunction openly and won. Accepting an early settlement would have been quieter but would have set precedent for future tech M&A scrutiny. Microsoft's legal team treated the case as precedent-setting, which it was — the ruling made the FTC's broader 'platform-aggregation' theory much harder to apply to future deals.",
+      },
+      {
+        title: "Cross-platform commitments vs. exclusivity-first integration",
+        body:
+          "Keeping Call of Duty on PlayStation for 10 years is the single most expensive concession Microsoft made. It cost real Xbox-exclusivity value. The benefit: it defused Sony's main antitrust argument and convinced regulators the deal wouldn't foreclose competition. The cost-benefit math made sense; preserving Microsoft's gaming brand as 'pro-cross-platform' became a strategic asset, not just a regulatory cost.",
+      },
+      {
+        title: "Keep Bobby Kotick vs. force a leadership change pre-close",
+        body:
+          "Kotick was the architect of Activision's workplace-culture crisis. Removing him pre-close would have signaled accountability but slowed the transaction. Microsoft chose to keep him through close, then quietly exited him afterward. The choice maximized deal-completion probability at the cost of a slower workplace-culture reset.",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Regulatory war + Call-of-Duty cross-platform commitment + $68.7B in cash vs. building gaming content organically over a decade. Microsoft chose to pay the premium and accept the regulatory war; both bets paid off (deal closed, FTC case dropped, gaming content portfolio acquired in months not decades).",
+      user:
+        "Game Pass subscribers — Microsoft's central gaming-subscription customer — are the user this acquisition serves. They get Activision's content in their subscription, immediately and without paying per-title. The acquisition is structurally a Game Pass content-pipeline investment, framed as a corporate M&A.",
+      alt:
+        "Settling with the FTC early (accepting more restrictive concessions) would have closed the deal faster but set precedent for future tech-M&A reviews to demand similar concessions. The opposite trade — and Microsoft's legal team made the deliberate decision to fight, knowing the ruling would shape M&A law for the next decade.",
+      predict:
+        "Short-term: regulatory chaos, UK CMA blocks the deal, Microsoft restructures to satisfy CMA, the FTC loses its preliminary injunction. Medium-term: deal closes, Activision IP moves to Game Pass, Sony switches from antagonist to participating partner under the CoD agreement. Long-term: the case becomes the canonical 'how to fight US/UK regulators over a tech mega-deal and win' study; Microsoft's M&A playbook in 2025+ is shaped by it.",
+    },
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Acquisition of Activision Blizzard by Microsoft — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Acquisition_of_Activision_Blizzard_by_Microsoft",
+        type: "article",
+      },
+      {
+        title: "Microsoft just closed its mega $69 billion acquisition of Activision Blizzard",
+        url: "https://fortune.com/2023/10/13/microsoft-69-billion-activision-blizzard-acquisition-ftc-lina-khan-antitrust-video-games/",
+        publisher: "Fortune",
+        year: 2023,
+        type: "article",
+      },
+      {
+        title: "It's official: Microsoft closes $68.7B Activision Blizzard acquisition",
+        url: "https://techcrunch.com/2023/10/12/microsofts-68-7b-activision-acquisition-clears-final-hurdle-as-uk-approves-restructured-deal/",
+        publisher: "TechCrunch",
+        year: 2023,
+        type: "article",
+      },
+      {
+        title: "FTC v. Microsoft — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/FTC_v._Microsoft",
+        type: "article",
+      },
+    ],
+    tags: { industry: "gaming", region: "us", decade: "2020s" },
   },
 ];
 
