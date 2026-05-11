@@ -2682,6 +2682,246 @@ export const dailySeed: DailyScenario[] = [
     ],
     tags: { industry: "consumer-mobile", region: "us", decade: "2000s" },
   },
+  {
+    id: "snapchat-lenses-launch",
+    type: "daily",
+    scheduled_date: "",
+    company: "Snapchat",
+    era: "September 2015 — Lenses launch via Looksery acquisition",
+    context:
+      "Snapchat in mid-2015 has filters — date stamps, geofilters tied to a location, color overlays. They're decorative. In September 2015 Snap acquires Looksery — a Ukrainian face-tracking computer-vision team — for ~$150M. Within weeks Snap ships 'Lenses': real-time AR overlays that detect a face in the camera viewfinder and warp it (rainbow vomit, dog ears, face swap). Open the camera, hold on a face, swipe through Lenses. The interaction is immediate, joyful, and the social-share unlock is instant.",
+    prompt:
+      "Why is buying a face-tracking computer-vision team and shipping AR Lenses 6 weeks later a different product than 'better filters' — and what kind of behavior does the AR primitive unlock?",
+    reveal_quote:
+      "The Looksery team gave us face-tracking that runs in real-time on phone hardware. That capability turned the camera from a tool for capturing photos into a tool for transforming yourself. The AR primitive is the entire shift.",
+    reveal_quote_attribution:
+      "Snapchat product team — paraphrased from public commentary on the Lenses launch and the Looksery acquisition",
+    reveal_note:
+      "What's easy to miss: Lenses are not a filter feature, they are a creator tool. A static filter (date stamp, color overlay) decorates a moment that was going to happen anyway. A Lens (puppy-face, rainbow-vomit) creates a moment — the user holds the camera up specifically to see what the Lens does, then sends it. That conversion of the camera from passive capture to active transformation is what made Snapchat the dominant teen-camera app for years and what TikTok later cloned wholesale (TikTok 'Effects' = Snap Lenses with a creator marketplace). Buying Looksery's face-tracking tech compressed years of internal R&D into one transaction. The lesson: when a capability (here: real-time on-device computer vision) unlocks a fundamentally new user behavior, acquiring the capability instead of building it can collapse the time-to-impact from years to weeks. Same logic Apple used buying PA Semi (2008) for chip design and Beats (2014) for headphones / Apple Music staff.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Snapchat Acquires Looksery To Power Its Animated Lenses",
+        url: "https://techcrunch.com/2015/09/15/snapchat-looksery/",
+        publisher: "TechCrunch",
+        year: 2015,
+        type: "article",
+      },
+      {
+        title: "The Brief History of Social Media AR Filters",
+        url: "https://www.indestry.com/blog/the-brief-history-of-social-media-ar-filters",
+        publisher: "INDE",
+        type: "blog",
+      },
+      {
+        title: "Looksery — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Looksery",
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-social", region: "us", decade: "2010s" },
+  },
+  {
+    id: "strava-segments-koms",
+    type: "daily",
+    scheduled_date: "",
+    company: "Strava",
+    era: "2009+ — segments + KOM/QOM design",
+    context:
+      "Fitness tracking apps in the late 2000s (Nike+, MapMyRun, Endomondo) record runs and rides as private logs. Each session sits in your own history; comparison to others is via aggregate distance / time leaderboards at best. Strava ships a different primitive: 'segments.' Any user can mark a stretch of road or trail as a named segment (a hill climb, a sprint section, a famous loop). Every Strava user who rides or runs through that segment gets ranked against everyone else who's done it. The fastest person ever holds the KOM (King of the Mountain) or QOM (Queen). Local Legend goes to whoever's done the segment most often in a 90-day window.",
+    prompt:
+      "Why turn private fitness tracking into geo-anchored leaderboards — and what kind of behavior does the segment + KOM design produce that aggregate stats don't?",
+    reveal_quote:
+      "Strava has built the best gamification element of all fitness apps available. KOMs convert a solo activity into a competitive game played against everyone who's ever moved through the same physical space.",
+    reveal_quote_attribution:
+      "Strava community / fitness press — paraphrased from public commentary on Strava's segment design",
+    reveal_note:
+      "The non-obvious move: segments + KOMs convert a solitary activity (riding, running) into an asynchronous social game without requiring users to be in the same place at the same time. You ride your usual loop; you discover, after upload, that you're 5th on the local hill segment, 12 seconds behind KOM. That comparison creates a specific motivation (chase the KOM next time) that aggregate distance leaderboards can't produce — because aggregate stats reward time-spent, while segments reward intensity and skill. Local Legend (added later) handles the consistency-not-speed cohort. The combination produced one of the most-engaged consumer fitness communities ever built — Strava's retention and engagement materially outperform every competitor's. The lesson: when you can geo-anchor a competitive primitive to specific physical locations, you compound the value of every user's data into a public good (the segment leaderboard) that becomes the reason the next user joins.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "What's a segment?",
+        url: "https://support.strava.com/hc/en-us/articles/216917137-What-s-a-segment",
+        publisher: "Strava Support",
+        type: "documentation",
+      },
+      {
+        title: "Strava Segments",
+        url: "https://support.strava.com/hc/en-us/articles/216918167-Strava-Segments",
+        publisher: "Strava Support",
+        type: "documentation",
+      },
+      {
+        title: "Strava Riding & Gamification",
+        url: "https://iceboxskiandbike.medium.com/level-up-with-every-ride-650898cc2961",
+        publisher: "Medium",
+        type: "blog",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
+  {
+    id: "airtag-anti-stalking",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "April 30, 2021 — AirTag launch",
+    context:
+      "Bluetooth trackers (Tile, Chipolo) have existed for years — small tags you attach to keys / wallets to find them with your phone. Apple ships AirTag in April 2021 with a critical structural difference: AirTags piggyback on the entire Find My network — every iPhone, iPad, and Mac in the world acts as an anonymous relay node. That means an AirTag can be located anywhere a Find My device passes within Bluetooth range — no more 'last seen near home' problem. The capability also unlocks the obvious risk: AirTags can be slipped into a stranger's bag or car, then tracked anywhere in the world. Apple ships safety features at launch: any iPhone that detects an AirTag traveling with it (not its owner) for an extended time pops a 'this AirTag may be tracking you' alert. AirTags also play a sound when separated from their owner.",
+    prompt:
+      "Why design the privacy alerts simultaneously with the tracking capability — when most consumer devices ship safety features later (only after the inevitable misuse stories)?",
+    reveal_quote:
+      "AirTag is designed to discourage unwanted tracking. If someone else's AirTag finds its way into your stuff, your iPhone will notice it's traveling with you and send you an alert. After a while, if you still haven't found it, the AirTag will start playing a sound to let you know it's there.",
+    reveal_quote_attribution: "Apple — official AirTag privacy and safety announcement, April 2021",
+    reveal_note:
+      "What's easy to miss: shipping safety features at launch is a recognition that the product has dual-use risk. Most tracking products (Tile, Chipolo) shipped without anti-stalking features and added them later only after well-reported abuse cases. Apple's choice to ship them at launch reduced the early-adopter abuse window — but the safety features were calibrated for iPhone users, not Android users (Android users had to install a separate app to get the equivalent alert), which became a multi-year point of regulatory and press criticism. Apple eventually shipped Android compatibility (jointly with Google in 2024). The lesson: when your product enables a behavior with foreseeable misuse, shipping the safety mechanism in v1 is materially cheaper (in brand and regulatory cost) than shipping it after the inevitable harm stories surface. The cost of building safety in v1 is small; the cost of retrofitting safety after a crisis is huge.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "An update on AirTag and unwanted tracking",
+        url: "https://www.apple.com/newsroom/2022/02/an-update-on-airtag-and-unwanted-tracking/",
+        publisher: "Apple Newsroom",
+        year: 2022,
+        type: "press-release",
+      },
+      {
+        title: "Apple AirTag has built-in anti-stalking tech",
+        url: "https://www.popsci.com/story/technology/apple-airtag-anti-stalking-privacy-tech/",
+        publisher: "Popular Science",
+        type: "article",
+      },
+      {
+        title: "Privacy Alert for Unknown AirTag Triggers When a User Returns Home",
+        url: "https://www.macrumors.com/2021/04/30/airtag-privacy-alert-trigger-arriving-home/",
+        publisher: "MacRumors",
+        year: 2021,
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2020s" },
+  },
+  {
+    id: "gmail-tabs-2013",
+    type: "daily",
+    scheduled_date: "",
+    company: "Google (Gmail)",
+    era: "May 29, 2013 — tabbed inbox launch",
+    context:
+      "Email in 2013 is dominated by the 'flat inbox' — every message arrives in one chronological stream, regardless of whether it's from a friend, a marketing newsletter, a Facebook notification, or an Amazon receipt. The result is overwhelming, especially in personal Gmail accounts where ~70% of incoming volume is automated. Gmail ships a tabbed inbox: messages auto-categorized into Primary (people), Social (Facebook/Twitter/etc), Promotions (marketing newsletters, deals), Updates (receipts, bills, confirmations), and Forums (mailing lists, message boards). Algorithmic categorization, no user training required. Marketers panic — Promotions tab visibility is dramatically lower than inbox visibility, threatening every email campaign they've built.",
+    prompt:
+      "Why algorithmically demote 70% of inbox volume into auto-categorized tabs — when the user could have simply filtered or labeled email themselves with rules?",
+    reveal_quote:
+      "Most users never set up email rules — that's a power-user behavior. Tabs gave the categorization benefit without requiring any user effort. The 'Primary' tab is what email is supposed to feel like: messages from people you care about, not the marketing pile.",
+    reveal_quote_attribution:
+      "Gmail product team — paraphrased from public commentary on the tabbed-inbox launch",
+    reveal_note:
+      "The choice that's easy to miss: Gmail tabs are a default-applied filter that almost no user would have built themselves. Email rules / filters have existed since Outlook in the 90s; ~5% of email users actually set them up. Tabs converted that 5%-power-user behavior into 100%-everyone-by-default, simply by making categorization the platform's job, not the user's. The marketer pushback was loud and (mostly) correct — Promotions visibility dropped sharply. But Gmail's user-engagement metrics improved meaningfully because the Primary tab became scannable in a way the flat inbox wasn't. The trade — 70% reduction in marketer reach for a measurable improvement in user-perceived inbox quality — was an alignment statement: Gmail is for users, not for the senders advertising to them. The lesson: defaults applied at scale do work that user-configurable settings never accomplish, because most users don't configure anything. When a power-user behavior is universally beneficial, making it default may be more impactful than teaching everyone how to set it up.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Big Gmail overhaul adds tabs for social updates, bills",
+        url: "https://mynews13.com/fl/orlando/news/2013/5/30/big_gmail_overhaul_a",
+        publisher: "MyNews13",
+        year: 2013,
+        type: "article",
+      },
+      {
+        title: "Embracing Gmail's Promotions Tab",
+        url: "https://inboxmonster.com/blog/gmail-promotions-tab-inbox-placement",
+        publisher: "Inbox Monster",
+        type: "article",
+      },
+      {
+        title: "Organize your emails into categories",
+        url: "https://support.google.com/mail/answer/3094499?hl=en&co=GENIE.Platform%3DDesktop",
+        publisher: "Gmail Help",
+        type: "documentation",
+      },
+    ],
+    tags: { industry: "productivity", region: "us", decade: "2010s" },
+  },
+  {
+    id: "discord-stage-channels",
+    type: "daily",
+    scheduled_date: "",
+    company: "Discord",
+    era: "March 2021 — Stage Channels launch",
+    context:
+      "Clubhouse explodes in early 2021 — invite-only audio rooms become the most-talked-about consumer-app launch since TikTok. Every social platform scrambles to ship a competitor: Twitter Spaces, Facebook Live Audio Rooms, Spotify Greenroom. Discord — already the dominant persistent voice-rooms platform for gaming communities — ships 'Stage Channels' on March 31, 2021. The format mirrors Clubhouse: structured audio rooms with speakers + listeners, raise-hand-to-speak, moderator controls. The key Discord-specific advantage: Stage Channels live inside existing Discord servers (communities the user already belongs to), and ship to all platforms simultaneously (web, iOS, Android, desktop) — versus Clubhouse, which is iOS-only at launch and standalone-app-only.",
+    prompt:
+      "Why ship a Clubhouse clone INSIDE existing Discord servers (rather than as a standalone app) — and what does the in-server placement actually do that a standalone audio app can't?",
+    reveal_quote:
+      "Stage Channels are specific to community servers. The audio event isn't a separate app you have to download — it's a kind of channel inside a community you already belong to. The community is the discovery mechanism.",
+    reveal_quote_attribution:
+      "Discord — paraphrased from official Stage Channels documentation and launch commentary, 2021",
+    reveal_note:
+      "What's easy to miss: Stage Channels' positioning isn't 'compete with Clubhouse on audio quality' — it's 'embed the audio format inside an existing community context.' Clubhouse's structural problem was that every audio room was discovered cold (you had to know it was happening); Discord rooms inherit the audience of an existing server. A book-club server hosts a Stage; the 5,000 members of that server already get notified. That structural difference made Discord Stage Channels more durable than Clubhouse — Clubhouse's audience peaked in mid-2021 and collapsed to <10% of peak by 2023. Discord's audio infrastructure quietly outlasted the entire Clubhouse-clone wave. The lesson: when an existing platform has the user-graph + the engagement loop, a feature embedded inside that platform usually beats a standalone competitor. Twitter Spaces' similar embedding into Twitter likewise outlasted Clubhouse-the-app.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Discord is launching new Clubhouse-like channels for audio events",
+        url: "https://techcrunch.com/2021/03/31/discord-stage-channels-voice-events/",
+        publisher: "TechCrunch",
+        year: 2021,
+        type: "article",
+      },
+      {
+        title: "Discord launches Stage Channels, its version of Clubhouse audio rooms",
+        url: "https://www.xda-developers.com/discord-stage-channels-clubhouse-audio-rooms/",
+        publisher: "XDA Developers",
+        year: 2021,
+        type: "article",
+      },
+      {
+        title: "Clubhouse vs. Discord: Two Apps for Audio-Based Connection",
+        url: "https://amt-lab.org/podcasts-interviews/2021/4/clubhouse-vs-discord",
+        publisher: "Arts Management & Technology Lab",
+        year: 2021,
+        type: "article",
+      },
+    ],
+    tags: { industry: "communication", region: "us", decade: "2020s" },
+  },
+  {
+    id: "chatgpt-memory-feature",
+    type: "daily",
+    scheduled_date: "",
+    company: "OpenAI",
+    era: "February 2024 — Memory rollout",
+    context:
+      "ChatGPT had Custom Instructions since July 2023 — visible text boxes where users explicitly write 'what to know about me' and 'how to respond.' Useful for power users who took the time to fill them in, but most users don't. In February 2024 OpenAI ships 'Memory' — an automatic, opt-in capability where ChatGPT silently learns and stores facts about the user across sessions. Tell ChatGPT in March that you have a 7-year-old daughter named Lily; in October it remembers (without you reminding it). Memory entries are inspectable, editable, and toggleable. The product is shipped on top of the existing Custom Instructions feature, not as a replacement.",
+    prompt:
+      "Why ship Memory (an invisible, automatic personalization layer) on top of the existing Custom Instructions (visible, explicit personalization) — and what is the dual-system actually doing for different users?",
+    reveal_quote:
+      "ChatGPT will consider your custom instructions for every conversation going forward — and Memory makes future chats more helpful by letting ChatGPT remember details across conversations. You can see what information helped personalize a response and make edits if something is no longer relevant.",
+    reveal_quote_attribution: "OpenAI — official Memory feature announcement, February 2024",
+    reveal_note:
+      "The non-obvious move: shipping Memory and keeping Custom Instructions creates two parallel personalization systems that solve different problems. Custom Instructions captures user-explicit preferences ('always reply in Markdown,' 'I'm a teacher'); Memory captures incidental facts ChatGPT picks up across conversations ('user's daughter is named Lily,' 'user works at a fintech company'). Most consumer products would have shipped one or the other — Memory feels like the 'smarter' AI version. OpenAI shipped both because they answer different questions: Custom Instructions is 'how do I want this AI to feel,' Memory is 'what does this AI know about my context.' The lesson: when invisible-AI personalization and visible-user-preferences serve genuinely different jobs, two systems is the right answer — even though it duplicates UI surface area. The simpler-feeling 'just one personalization system' is often the wrong design for a product that has to handle both first-time-user agency and long-term-user accumulation of context.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Memory and new controls for ChatGPT",
+        url: "https://openai.com/index/memory-and-new-controls-for-chatgpt/",
+        publisher: "OpenAI",
+        year: 2024,
+        type: "blog",
+      },
+      {
+        title: "Memory FAQ",
+        url: "https://help.openai.com/en/articles/8590148-memory-faq",
+        publisher: "OpenAI Help Center",
+        type: "documentation",
+      },
+      {
+        title: "OpenAI upgrades ChatGPT with persistent memory and temporary chat",
+        url: "https://venturebeat.com/ai/openai-upgrades-chatgpt-with-persistent-memory-and-temporary-chat",
+        publisher: "VentureBeat",
+        year: 2024,
+        type: "article",
+      },
+    ],
+    tags: { industry: "ai-tools", region: "us", decade: "2020s" },
+  },
 ];
 
 export const weeklySeed: WeeklyScenario[] = [
@@ -7561,6 +7801,438 @@ export const weeklySeed: WeeklyScenario[] = [
       },
     ],
     tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
+  {
+    id: "iphone-original-launch-2007",
+    type: "weekly",
+    iso_week: "",
+    company: "Apple",
+    era: "2005 – January 9, 2007 — iPhone reveal",
+    intro:
+      "It is mid-2006. You are inside Project Purple at Apple. Steve Jobs has spent the last 2.5 years personally championing a smartphone — a category Apple has no presence in. The market is dominated by BlackBerry (corporate, physical keyboard) and Nokia (consumer, button-driven). Touch-screen smartphones exist (Treo, Windows Mobile devices) and are universally considered too laggy and complicated to be mass-market. Internally, the iPhone has gone through two parallel design tracks: a P1 prototype based on a scrolled iPod and a P2 prototype based on a multitouch screen. Jobs picks P2.\n\nThe device that's about to be revealed has no physical keyboard, no stylus, can't run third-party apps (only Apple's), and costs $499 (4GB) or $599 (8GB) — 2-3x the price of a typical phone. The Macworld 2007 keynote is set for January 9. Jobs will frame the device not as a phone, but as 'three products in one' — an iPod, a phone, and an internet communicator.",
+    open_questions: [
+      "Frame as 'three products in one' (positions iPhone as a category-redefining device) or as 'a better smartphone' (cleaner pitch, smaller ambition)?",
+      "Touch-only vs. include physical keyboard — the entire industry assumes serious phones need physical keys; Jobs is betting the opposite?",
+      "$499/$599 pricing — premium signal but 2-3x typical phone prices; carriers (AT&T) want it cheaper to drive plan attach?",
+      "Allow third-party apps at launch (carrier risk, security risk, brand-quality risk) or lock to Apple's apps (control + trust at the cost of 'computer in your pocket' positioning)?",
+    ],
+    closing:
+      "Imagine you're with Jobs at Apple in late 2006. The keynote is two weeks out. The device is a multi-billion-dollar bet against the entire phone industry's playbook.",
+    decision:
+      "Reveal the iPhone on January 9, 2007 at Macworld. Frame it explicitly as 'three revolutionary products' in one device. No physical keyboard. No third-party apps at launch (App Store ships 18 months later, in July 2008). $499 / $599 with a required AT&T plan ($59/mo+). The keynote becomes the most-watched product reveal in tech history. iPhone ships June 29, 2007. Jobs's claim — 'iPhone is a revolutionary and magical product that is literally five years ahead of any other mobile phone' — is widely mocked as marketing hyperbole. With hindsight, the gap turns out to be closer to a decade. Within 18 months iPhone defines the entire smartphone category; BlackBerry and Nokia's collapse begins.",
+    pullquote:
+      "Today, Apple is going to reinvent the phone. An iPod, a phone, and an internet communicator — these are not three separate devices. This is one device. And we are calling it iPhone.",
+    pullquote_attribution: "Steve Jobs, Apple CEO — Macworld keynote, January 9, 2007",
+    outcomes: [
+      { stat: "$499 / $599", label: "launch pricing — 2-3x typical smartphone of the era", accent: true },
+      { stat: "0", label: "third-party apps allowed at launch (App Store ships July 2008)" },
+      { stat: "0", label: "physical keyboard — touch-only against the entire industry's design language" },
+      { stat: "Jun 29, 2007", label: "ship date — ~6 months after the reveal" },
+      { stat: "Defined the category", label: "BlackBerry, Nokia, Palm collapse begins within 18 months" },
+    ],
+    tradeoffs: [
+      {
+        title: "'Three products in one' framing vs. 'better smartphone'",
+        body:
+          "Framing iPhone as 'iPod + phone + internet communicator' redefined the category instead of competing inside it. Calling it 'a better smartphone' would have invited feature comparisons (no keyboard? no apps? no MMS?). The category-redefinition framing made the missing features less central to the conversation; the bigger story was 'a new kind of device.'",
+      },
+      {
+        title: "Touch-only vs. physical keyboard",
+        body:
+          "Every serious smartphone in 2007 had a physical keyboard. Going touch-only required betting that an autocorrect-aware software keyboard could match physical typing speed. Jobs accepted the early-adopter friction because keeping a keyboard would have capped the screen at sub-edge-to-edge for years. The decision defined the entire smartphone form factor for the next two decades.",
+      },
+      {
+        title: "No third-party apps at launch vs. open platform from day one",
+        body:
+          "Locking iPhone to Apple's apps at launch (no App Store) was unpopular with developers and lost ground to Android's openness in early years. Jobs's reasoning was control of the experience and security; the real reason was probably 'we couldn't ship App Store and the OS in the same window.' App Store launched 18 months later. The decision cost Apple ~18 months of platform momentum but preserved the brand-quality of v1.",
+      },
+      {
+        title: "$499/$599 + AT&T exclusive vs. lower price + open carrier",
+        body:
+          "The required AT&T contract + premium pricing positioned iPhone as a luxury / status device — not a mass-market phone. The exclusivity locked Apple into a multi-year US carrier deal that constrained sales. Apple chose the premium-with-exclusivity model because it preserved the brand-positioning the keynote established; the multi-carrier expansion came later (Verizon 2011).",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Category redefinition + premium pricing + locked v1 ecosystem vs. mass-market accessibility + open platform from launch. Apple chose maximum-control v1 and absorbed the early-adopter limitations. The brand-defining nature of the launch + the ecosystem's eventual opening (App Store, multi-carrier) compounded into iPhone owning ~50% of the smartphone profit pool a decade later.",
+      user:
+        "iPhone v1's customer was the early-adopter willing to pay $499 + AT&T contract for a phone that didn't have apps. Mass-market customers came in waves — first via App Store (2008), then via Verizon (2011), then via cheaper iPhone models (5C in 2013, SE in 2016). The launch positioning was deliberately exclusive to give the category time to settle.",
+      alt:
+        "Launching with a physical keyboard, third-party apps, and $299 pricing on multiple carriers would have produced a different product — closer to a 'better Treo.' The opposite trade. It would have sold more units in year one but probably wouldn't have redefined the category. Jobs took the harder path because the category-redefinition is what compounded.",
+      predict:
+        "Most-watched product reveal in tech history. Mixed early reviews (the 'this isn't a real smartphone — no keyboard, no apps' critique). Strong sales in the early-adopter market. App Store launches ~18 months later and unlocks the platform. By 2010 iPhone has redefined what a 'smartphone' means; BlackBerry and Nokia begin collapsing. Long-term: the iPhone launch is the canonical case in 'category-redefining product launches' — and the keynote itself becomes a teaching artifact studied for decades.",
+    },
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Apple Reinvents the Phone with iPhone",
+        url: "https://www.apple.com/newsroom/2007/01/09Apple-Reinvents-the-Phone-with-iPhone/",
+        publisher: "Apple Newsroom",
+        year: 2007,
+        type: "press-release",
+      },
+      {
+        title: "iPhone (1st generation) — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/IPhone_(1st_generation)",
+        type: "article",
+      },
+      {
+        title: "Watch Steve Jobs Launch the iPhone at Apple's 2007 Keynote",
+        url: "https://time.com/4628515/steve-jobs-iphone-launch-keynote-2007/",
+        publisher: "TIME",
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2000s" },
+  },
+  {
+    id: "microsoft-surface-launch-2012",
+    type: "weekly",
+    iso_week: "",
+    company: "Microsoft",
+    era: "October 26, 2012 — Surface RT launch with Windows 8",
+    intro:
+      "It is mid-2012. You are inside Microsoft's Windows division under Steven Sinofsky. The iPad has been on the market for 2.5 years and is reshaping consumer computing. Microsoft's traditional OEM partners (Dell, HP, Lenovo, Acer) have shipped a series of 'Windows tablets' — almost all bad. Sinofsky believes Microsoft has to make its own hardware to ship a credible tablet competitor. This is unprecedented: Microsoft has shipped peripherals (mice, keyboards, Xbox) but has never built a flagship PC.\n\nSinofsky quietly assembles a Surface team. Two products: Surface RT (ARM-based, runs a stripped-down Windows RT — only Microsoft Store apps), and Surface Pro (Intel-based, runs full Windows 8). RT is launched first, on October 26, 2012, alongside Windows 8 itself. Pricing starts at $499 (similar to iPad). The hardware (kickstand, Type Cover) is genuinely inventive. The OS (Windows RT) is not — it can't run any of the millions of existing Windows desktop applications. OEM partners are publicly furious that Microsoft has become their competitor.",
+    open_questions: [
+      "Ship Surface RT (ARM, locked to Microsoft Store) alongside Windows 8 — or wait for Surface Pro (Intel, full Windows compatibility)?",
+      "How aggressively to compete against OEM partners (Dell, HP, Lenovo) — risk destroying the partner ecosystem that Windows depends on?",
+      "Position Surface as 'tablet that's also a laptop' (broader appeal, confusing pitch) or 'iPad alternative' (clearer, narrower)?",
+      "What's the right pricing — $499 (match iPad and absorb margin pressure) or $799 (premium, signal differentiation)?",
+    ],
+    closing:
+      "Imagine you're with Sinofsky at Microsoft in summer 2012. The Surface RT launch is months away. OEMs are demanding to know why Microsoft is competing with them.",
+    decision:
+      "Launch Surface RT on October 26, 2012 at $499 (32GB) / $599 (64GB) alongside Windows 8. Sinofsky publicly defends Surface as 'the best tablet, the best laptop' he's ever used. Sales are immediately weak — confusion over what Windows RT is, no native apps, OEM partner hostility undermines distribution. Sinofsky departs Microsoft 2 weeks after launch (November 12, 2012). In July 2013 Microsoft takes a $900M writedown on Surface RT inventory. Surface Pro (Intel-based, full Windows) ships February 2013 to better reception. Surface eventually becomes a viable hardware line over years — but Surface RT is killed off by 2015 and the Windows RT branch is abandoned. Microsoft has been making first-party PCs ever since, but the launch itself is the canonical 'rocky start' for Microsoft hardware.",
+    pullquote:
+      "Surface is the best tablet, the best laptop. We've been working on this for almost three years. We've reinvented the way you think about a PC.",
+    pullquote_attribution: "Steven Sinofsky, Microsoft Windows President — Surface RT launch event, October 25, 2012",
+    outcomes: [
+      { stat: "Oct 26, 2012", label: "Surface RT launch + Windows 8 GA", accent: true },
+      { stat: "$900M", label: "writedown on Surface RT inventory (July 2013)" },
+      { stat: "Nov 12, 2012", label: "Sinofsky resigns from Microsoft 2 weeks after launch" },
+      { stat: "Windows RT", label: "branch abandoned by 2015 — no apps, no developer commitment" },
+      { stat: "Surface Pro", label: "(Feb 2013, Intel) eventually built into a real product line" },
+    ],
+    tradeoffs: [
+      {
+        title: "Ship Surface RT vs. wait for Surface Pro",
+        body:
+          "Surface RT shipped first to coincide with Windows 8 launch. The decision was strategic (tie hardware to OS) but operationally bad (Windows RT had no app ecosystem). Waiting for Surface Pro (Intel, full Windows) would have produced a less-confusing first impression but separated the hardware launch from the OS launch.",
+      },
+      {
+        title: "Compete with OEMs vs. preserve partner ecosystem",
+        body:
+          "By making Surface, Microsoft became a competitor to its own ecosystem partners. OEMs (Dell, HP, Lenovo) responded by reducing their Windows-tablet investment and shifting attention to Chromebooks and Android. Microsoft accepted the partner damage to demonstrate what Windows tablets could be. The damage was real and durable — OEMs never fully invested in Windows tablets again.",
+      },
+      {
+        title: "Windows RT (locked to Microsoft Store) vs. Full Windows",
+        body:
+          "Windows RT was a stripped-down OS that couldn't run any of the millions of legacy Windows applications. The decision was driven by ARM chip constraints and battery-life goals. The cost was severe: nobody understood what Windows RT was, developers wouldn't build for it, and customers expected 'Windows on a tablet' to mean their existing Windows software would work.",
+      },
+      {
+        title: "Sinofsky stays vs. departs post-launch",
+        body:
+          "Sinofsky's 2-week-post-launch departure compounded the Surface narrative — 'even Microsoft's own Windows president couldn't survive this.' Whether Sinofsky was pushed (over the launch's poor reception, internal conflicts) or chose to leave (frustration with the post-launch trajectory) is debated, but the timing made the launch story worse.",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Strategic ambition (Microsoft as a hardware company, end-to-end control) vs. operational reality (Windows RT was confusing, OEM partners were alienated, Surface RT had no apps). Microsoft made the strategic right call — they had to make hardware to compete with iPad — but executed poorly on the first attempt. The eventual Surface line (Surface Pro 3 onward) recovered the strategic intent.",
+      user:
+        "Surface RT's audience was supposed to be the 'iPad alternative for productivity' user. The audience didn't materialize because Surface RT couldn't actually run Microsoft Office (Word, Excel, PowerPoint were stripped-down Office RT versions) or any legacy Windows software. The promised user couldn't actually use the device for the use cases Microsoft pitched.",
+      alt:
+        "Skipping Surface RT and only shipping Surface Pro (Intel, full Windows) in early 2013 would have been clearer, more useful, and avoided the $900M writedown. The opposite trade. Microsoft chose the simultaneous-launch path because Windows 8 needed a 'flagship' tablet at GA — but the flagship turned out to be the wrong product.",
+      predict:
+        "Mixed reviews at launch (strong hardware praise, weak software / app ecosystem criticism). Sales come in below expectations within weeks. Sinofsky departs. $900M writedown by mid-2013. Surface Pro ships and gets better reception. Surface RT killed by 2015. Long-term: Microsoft's first-party hardware line is now a real business, but the Surface RT launch is taught as the canonical 'launch the wrong SKU first' case study.",
+    },
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Steven Sinofsky: Surface Launch",
+        url: "https://news.microsoft.com/2012/10/25/steven-sinofsky-surface-launch/",
+        publisher: "Microsoft News",
+        year: 2012,
+        type: "press-release",
+      },
+      {
+        title: "Microsoft Surface — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Microsoft_Surface",
+        type: "article",
+      },
+      {
+        title: "Sinofsky: Surface 'best tablet, best laptop' he's ever used",
+        url: "https://www.theregister.com/2012/10/25/sinofsky_surface_launch/",
+        publisher: "The Register",
+        year: 2012,
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
+  {
+    id: "quibi-launch-shutdown-2020",
+    type: "weekly",
+    iso_week: "",
+    company: "Quibi",
+    era: "April – December 2020",
+    intro:
+      "It is 2018. You are at NewTV (later renamed Quibi), a startup founded by Jeffrey Katzenberg (DreamWorks cofounder, ex-Disney chairman) and run by Meg Whitman (ex-CEO of HP and eBay). The thesis: short-form premium video content (10-minute episodes called 'quick bites') designed exclusively for mobile phones. High-budget Hollywood production values, but bite-sized for commuter / micro-moment viewing. The bet is that Netflix and TikTok have left a gap — premium short-form on mobile.\n\nThey raise $1.75B from investors (Disney, Sony, Lionsgate, MGM, NBCUniversal, Alibaba — every major media company). Sign A-list talent. Build a custom mobile-first video player with a 'Turnstyle' feature that switches between portrait and landscape mid-video. Launch April 6, 2020 at $4.99/month (with ads) or $7.99 (ad-free). The launch coincides with the start of COVID lockdowns — when nobody is commuting and nobody needs '10-minute mobile videos for the in-between moments.'",
+    open_questions: [
+      "Mobile-only at launch (focus, signal premium) or also on TV / cast (broader access, dilutes positioning)?",
+      "$4.99-$7.99 monthly pricing (premium signal, fewer subs) or freemium-with-ads (lower friction, slower revenue)?",
+      "Launch during COVID lockdowns (the 'commute moment' Quibi was designed for has evaporated) — delay 6 months, or proceed and hope?",
+      "Custom mobile-first features (Turnstyle, no screenshots) vs. industry-standard video player (broader compatibility)?",
+    ],
+    closing:
+      "Imagine you're at Quibi in February 2020. Launch is 6 weeks out. COVID is starting to lock down US cities. The 'commute use case' Quibi was designed for is about to disappear.",
+    decision:
+      "Launch Quibi as planned on April 6, 2020. Mobile-only at launch (no TV / cast support). Custom Turnstyle player. $4.99 / $7.99 pricing. Massive marketing budget ($400M+). The launch lands in the middle of US COVID lockdowns. 'Quick bites for the moments in between' is exactly the wrong pitch when there are no in-between moments — everyone is at home, on the couch, watching long-form Netflix on a TV. By Q2 2020, Quibi has ~500K paying subscribers vs. millions projected. By October 21, 2020 — ~6 months after launch — Katzenberg and Whitman announce the shutdown. The library is sold to Roku in January 2021 for less than $100M. Total capital lost: ~$1.75B.",
+    pullquote:
+      "We feel that we've exhausted all our options. As a result we've reluctantly come to the difficult decision to wind down the business, return cash to our shareholders, and say goodbye to our talented colleagues with grace.",
+    pullquote_attribution: "Jeffrey Katzenberg + Meg Whitman, Quibi cofounders — shutdown announcement, October 21, 2020",
+    outcomes: [
+      { stat: "$1.75B raised", label: "from Disney, Sony, Lionsgate, MGM, NBCUniversal, Alibaba", accent: true },
+      { stat: "~500K", label: "paying subscribers at peak (vs. millions projected)" },
+      { stat: "Apr 6 → Oct 21", label: "launch to shutdown announcement = ~6.5 months" },
+      { stat: "<$100M", label: "Roku acquisition of Quibi's content library (Jan 2021)" },
+      { stat: "Mobile-only", label: "at launch + COVID lockdown = wrong product, wrong moment" },
+    ],
+    tradeoffs: [
+      {
+        title: "Mobile-only at launch vs. multi-device",
+        body:
+          "Mobile-only was a focus play (signal that Quibi was a different product than Netflix). Multi-device would have diluted the positioning but expanded usage to home contexts. During COVID lockdowns, mobile-only meant Quibi was unusable for the audience that was actually consuming video (people on couches with TVs).",
+      },
+      {
+        title: "Launch during COVID vs. delay",
+        body:
+          "Delaying the launch 6 months would have lost momentum, missed talent commitments, and burned more cash. Launching as planned hit the worst possible moment — Quibi's product-market fit assumed commutes that no longer existed. The leadership chose to ship rather than delay; both options had costs.",
+      },
+      {
+        title: "Premium pricing vs. freemium-with-ads",
+        body:
+          "$4.99-$7.99 monthly was high enough to limit experimentation. Freemium would have generated more trial users but slower revenue. Quibi chose premium, which compounded the slow-start problem — high friction for users to even try the product.",
+      },
+      {
+        title: "Custom mobile-first features vs. standard video",
+        body:
+          "Turnstyle (rotate-mid-video format) and no-screenshot lockdowns were innovative but added engineering / production cost and limited content portability. Users couldn't share clips on social media — every Quibi video was trapped inside the app, killing the viral loop that TikTok was simultaneously dominating.",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Premium production + custom mobile-first format + premium pricing vs. broad-availability + viral-friendly + freemium. Quibi made the harder, more-distinctive bet on every dimension. Each individual choice was defensible; the combination produced a product that was simultaneously expensive, mobile-locked, premium-priced, and shipped during a lockdown that eliminated the use case. Every layer of the bet compounded against Quibi.",
+      user:
+        "Quibi's target user — the commuting professional with 10-minute gaps in their day — disappeared during COVID. The actual at-home audience wanted long-form on a TV (Netflix, Disney+) or short-form viral on TikTok. Quibi served neither.",
+      alt:
+        "Delaying the launch + adding TV / cast support + dropping pricing to $1.99 / freemium would have given Quibi a chance to find PMF post-COVID. The opposite trade — and impossible to execute given the talent commitments and burn rate. Quibi was structurally locked into the premium-mobile bet.",
+      predict:
+        "Strong launch buzz (massive marketing, A-list talent). Subscribers come in well below projections within weeks. The mobile-only / commute-moment positioning becomes the punchline once COVID lockdowns make it absurd. Shutdown within 6-7 months. Library sold to Roku for cents on the dollar. Long-term: Quibi becomes the canonical case in 'when product-market-fit assumptions are violated by an external shock that eliminates the use case' — and a permanent reference point for Hollywood's misunderstanding of mobile-native consumer behavior.",
+    },
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Quibi officially announces it's shutting down",
+        url: "https://www.cnbc.com/2020/10/21/quibi-to-shut-down-after-just-6-months.html",
+        publisher: "CNBC",
+        year: 2020,
+        type: "article",
+      },
+      {
+        title: "Quibi Streaming Service Is Shutting Down About 6 Months After Launch",
+        url: "https://www.npr.org/2020/10/21/926396526/quibi-short-form-streaming-service-shutting-down",
+        publisher: "NPR",
+        year: 2020,
+        type: "article",
+      },
+      {
+        title: "Quibi — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Quibi",
+        type: "article",
+      },
+      {
+        title: "A look at why Quibi failed so soon after launching",
+        url: "https://www.nbcnews.com/business/business-news/look-why-quibi-failed-so-soon-after-launching-n1244312",
+        publisher: "NBC News",
+        year: 2020,
+        type: "article",
+      },
+    ],
+    tags: { industry: "media", region: "us", decade: "2020s" },
+  },
+  {
+    id: "amazon-fire-phone-2014",
+    type: "weekly",
+    iso_week: "",
+    company: "Amazon",
+    era: "June 18, 2014 — Fire Phone launch",
+    intro:
+      "It is 2013-2014. You are at Amazon, working on a hardware bet Jeff Bezos has personally championed: a smartphone. Amazon already ships Kindle (e-readers) and Fire tablets — both have struggled commercially against the iPad / iPhone but have Amazon-specific use cases (reading, shopping). Bezos's pitch for the Fire Phone is more ambitious: a 4.7' smartphone with four front-facing cameras enabling 'Dynamic Perspective' (a 3D-ish parallax effect that responds to head movement), a 'Firefly' object-recognition button (point at any product, see the Amazon listing), and exclusive Mayday tech support (one-tap connection to a live Amazon agent on your screen).\n\nAT&T-exclusive at launch, $199 with a 2-year contract or $649 unlocked — same pricing as iPhone. Bezos personally unveils the device in Seattle on June 18, 2014. Reviews are mixed-to-negative (gimmicky 3D effect, weak app ecosystem since Fire Phone uses Amazon's forked Android-derivative 'Fire OS'). Within weeks sales are clearly disastrous.",
+    open_questions: [
+      "Pricing — $199 with contract (matches iPhone, signals premium) vs. $99 with contract (mass-market, lower brand)?",
+      "Carrier exclusive (AT&T) for launch capital vs. multi-carrier (broader distribution)?",
+      "Fire OS (Amazon's Android fork, no Google services) vs. real Android (full app store but less Amazon control)?",
+      "Lead with 'Dynamic Perspective' and 'Firefly' (differentiated features) or as 'a phone optimized for Amazon shopping' (clearer pitch)?",
+    ],
+    closing:
+      "Imagine you're at Amazon in October 2014. Fire Phone has been on sale for 4 months. Returns are high. Inventory is piling up. The Q3 earnings report is days away.",
+    decision:
+      "Cut Fire Phone price from $199 to $0.99 with contract within 2 months of launch (a desperate move that signals the failure publicly). Take a $170M writedown on unsold Fire Phone inventory in Q3 2014. Bezos publicly defends the project as a 'bold bet,' frames the failure as part of Amazon's experimental DNA, and points out that the Fire Phone team's work eventually contributed to the development of Alexa and the Echo (which DOES become an enormous success in 2014-2015). The Fire Phone is quietly discontinued in 2015. Bezos's explicit lesson: 'If you think that's a big failure, we're working on much bigger failures right now — and I am not kidding.'",
+    pullquote:
+      "If you think that's a big failure, we're working on much bigger failures right now — and I am not kidding. Some of them are going to make the Fire Phone look like a tiny little blip.",
+    pullquote_attribution: "Jeff Bezos, Amazon CEO — Business Insider Ignition Conference, December 2014",
+    outcomes: [
+      { stat: "$170M", label: "writedown on unsold Fire Phone inventory (Q3 2014)", accent: true },
+      { stat: "$199 → $0.99", label: "price cut with contract, within ~2 months of launch — public failure signal" },
+      { stat: "Echo / Alexa", label: "Fire Phone team's work contributed to the Echo (launched Nov 2014, ~5 months after Fire Phone)" },
+      { stat: "AT&T exclusive", label: "limited launch distribution, compounded the sales failure" },
+      { stat: "2015 EOL", label: "Fire Phone quietly discontinued ~18 months after launch" },
+    ],
+    tradeoffs: [
+      {
+        title: "Differentiated 'gimmick' features vs. focused Amazon-shopping phone",
+        body:
+          "Dynamic Perspective and Firefly were headline-friendly but added complexity (4 front cameras, custom hardware, custom software). A simpler 'Amazon-shopping-optimized phone' would have been a cleaner pitch and lower BOM cost. Amazon chose the differentiation path; the gimmicks generated press but didn't drive purchases.",
+      },
+      {
+        title: "Fire OS (Amazon control) vs. real Android",
+        body:
+          "Fire OS gave Amazon control over the app store (no Google Play, all Amazon storefront) and the user data. The cost was severe — no Gmail, no Google Maps, no YouTube, no most apps users expected. Real Android with Google services would have made the phone a credible smartphone but ceded the ecosystem control Amazon wanted.",
+      },
+      {
+        title: "iPhone-tier pricing vs. mass-market pricing",
+        body:
+          "Pricing the Fire Phone at $199 with contract (same as iPhone) signaled premium positioning that the product couldn't deliver on. A $99 launch would have signaled 'this is for Amazon shoppers, not iPhone competitors.' Amazon overestimated what the Fire Phone could charge and was forced into the public $0.99 fire-sale within weeks.",
+      },
+      {
+        title: "Fail loudly vs. quietly de-emphasize",
+        body:
+          "Bezos publicly named the Fire Phone failure as part of Amazon's experimental culture, framing failures as the cost of innovation. The transparency turned what could have been a quiet brand wound into a leadership lesson. The framing didn't undo the $170M loss but converted the brand cost into a brand asset (Bezos as the 'I'll bet big and lose big' founder).",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Hardware ambition + differentiated features + iPhone-tier pricing vs. focused Amazon-shopping device + lower price + Fire OS realism. Amazon went big on every dimension and produced a phone that competed against iPhone on price without competing on capability. The failure was operationally ugly but spawned the team that built Alexa — which became a multi-billion-dollar product line within 5 years.",
+      user:
+        "The Fire Phone's intended user — the heavy Amazon shopper who wanted Firefly product-recognition + one-tap Amazon checkout — wasn't enough of a market. The iPhone user wasn't switching because of Firefly. The Android user wasn't switching to a no-Google-services Fire OS device. The product fell into a no-customer middle.",
+      alt:
+        "Skipping the Fire Phone entirely and putting the engineering investment directly into Alexa / Echo would have produced the same eventual win without the $170M writedown. The opposite trade. With hindsight, this is what should have happened — but Bezos's culture explicitly tolerated failure as the cost of taking shots, and the Fire Phone failure compounded into the Echo's success in ways a 'skip the Fire Phone' counterfactual wouldn't have.",
+      predict:
+        "Mixed-to-negative reviews. Sales come in well below projections within weeks. Public price cut to $0.99 with contract. $170M writedown by Q3. Bezos publicly owns the failure. Fire Phone discontinued by 2015. Echo launches November 2014 and slowly becomes Amazon's most successful new product category since Kindle. Long-term: the Fire Phone is the canonical case in 'failed hardware launch that still produced organizational learning' — and Bezos's public framing of failure becomes Amazon's cultural template for permission to take big bets.",
+    },
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Fire Phone — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Fire_Phone",
+        type: "article",
+      },
+      {
+        title: "Amazon Takes $170 Million Writedown on Weak Fire Phone Sales",
+        url: "https://www.recode.net/2014/10/23/11632220/amazon-takes-170-million-writedown-on-weak-fire-phone-sales",
+        publisher: "Recode",
+        year: 2014,
+        type: "article",
+      },
+      {
+        title: "The Inside Story Of Jeff Bezos's Fire Phone Debacle",
+        url: "https://www.fastcompany.com/3039887/under-fire",
+        publisher: "Fast Company",
+        type: "article",
+      },
+      {
+        title: "Amazon CEO Jeff Bezos: 'I've made billions of dollars of failures'",
+        url: "https://fortune.com/2014/12/02/amazon-ceo-jeff-bezos-failure/",
+        publisher: "Fortune",
+        year: 2014,
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
+  {
+    id: "pebble-kickstarter-2012",
+    type: "weekly",
+    iso_week: "",
+    company: "Pebble Technology",
+    era: "April 11 – May 18, 2012 — Kickstarter campaign",
+    intro:
+      "It is early 2012. You are Eric Migicovsky, a recent University of Waterloo grad who has been building smartwatches for years (the inPulse, sold ~1500 units). You've shipped a working Pebble prototype that pairs with iPhone and Android via Bluetooth, displays notifications, and lets users install custom watch faces. You've been rejected by every major VC — they don't believe consumer hardware works for a small team. You decide to launch on Kickstarter with a $100,000 goal — enough to fund the first production run.\n\nThe campaign launches on April 11, 2012. Within 2 hours: $100K (goal hit). Within 6 days: $4.7M (most-funded Kickstarter project ever, with 30 days still left). By campaign close on May 18, 2012: $10.27M raised from ~69,000 backers — each pre-ordering a Pebble for $99-$125. The campaign is the moment crowdfunding goes mainstream as a hardware-launch mechanism.",
+    open_questions: [
+      "Set the Kickstarter goal at $100K (low, builds momentum) vs. $1M+ (matches actual production cost, less risky if you under-raise)?",
+      "Cap the campaign at a fixed number of units (preserves quality, limits funding) vs. uncapped (unlimited revenue, unlimited operational risk)?",
+      "Pricing $99 (mass-market signal, thin margin) vs. $199+ (premium, higher margin, less viral)?",
+      "Compatible with iPhone AND Android (broader reach, harder engineering) vs. iPhone-only (smaller market, simpler)?",
+    ],
+    closing:
+      "Imagine you're Migicovsky in early 2012. You've been rejected by every VC. Kickstarter is your last option. The campaign launches in days.",
+    decision:
+      "Launch the Kickstarter on April 11, 2012 with a $100K goal. Uncapped. $99-$125 pricing for the watch. iPhone + Android compatibility. The campaign ends 5.5 weeks later with $10.27M raised — 100x the original goal — from ~69,000 pre-orders. Pebble ships the first units in January 2013 (later than promised; backers are tolerant). Pebble becomes the most-funded Kickstarter project ever, eventually dethroned in August 2014 by the Coolest Cooler. Pebble runs as an independent smartwatch company until 2016, when it's acquired by Fitbit (later folded into Google) for ~$23M — far below the company's peak valuation. The Kickstarter campaign itself is the moment that legitimizes crowdfunding as a hardware-launch primitive.",
+    pullquote:
+      "Pebble is going to be the most fun, the most useful, and the most beautiful thing you've worn. We had no idea Kickstarter would let us connect with so many people who wanted what we were building.",
+    pullquote_attribution:
+      "Eric Migicovsky, Pebble founder — paraphrased from public Kickstarter campaign and post-campaign interviews",
+    outcomes: [
+      { stat: "$10.27M", label: "raised on Kickstarter — 100x the $100K goal", accent: true },
+      { stat: "~69,000", label: "Kickstarter backers, each pre-ordering a Pebble" },
+      { stat: "2 hours", label: "to hit the $100K goal" },
+      { stat: "Most-funded ever", label: "until dethroned by Coolest Cooler in August 2014" },
+      { stat: "$23M", label: "Fitbit acquisition (Dec 2016) — well below peak valuation" },
+    ],
+    tradeoffs: [
+      {
+        title: "$100K goal vs. realistic $1M+ goal",
+        body:
+          "A low goal ($100K) compounded virally — every milestone ('100x funded! 200x funded!') generated press. A more realistic $1M goal would have looked credible but produced fewer headlines per dollar. Migicovsky chose the small goal for the viral moment and accepted the operational risk that came with raising 100x more than planned.",
+      },
+      {
+        title: "Uncapped campaign vs. fixed unit cap",
+        body:
+          "Going uncapped meant unlimited demand to fulfill — 69,000 watches, all custom hardware, all to ship within months. A unit cap (say, 25,000 units) would have produced a manageable production run but limited fundraising. Migicovsky took the unlimited revenue and absorbed the multi-month production delay that resulted.",
+      },
+      {
+        title: "iPhone + Android vs. iPhone-only",
+        body:
+          "Supporting both platforms doubled the engineering effort but doubled the addressable market. For a single-product startup with limited engineering, the parallel platforms were a real cost. The decision turned out to be right — Android backers were a meaningful share of the campaign's success.",
+      },
+      {
+        title: "Mass-market pricing ($99) vs. premium ($199+)",
+        body:
+          "$99 made the Pebble feel like a mass-market consumer product — 'a smartwatch for everyone' — and was the right price for the Kickstarter audience. Premium pricing would have meant fewer backers, more margin, and a different customer cohort. Migicovsky chose mass-market because the Kickstarter mechanic rewards volume.",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Maximum viral campaign + unlimited revenue + mass-market pricing vs. operational manageability + premium positioning + lower fundraising. Migicovsky chose the campaign-maximizing version on every dimension. The Kickstarter was an unqualified success; the multi-year operational follow-through was harder, and Pebble eventually got squeezed between Apple Watch and Android Wear and sold to Fitbit for a fraction of peak.",
+      user:
+        "The Kickstarter audience — early-adopters willing to pre-pay $99-125 for a watch that would ship 9 months later — was a self-selecting cohort that Pebble served very well. The post-campaign mass-market expansion turned out to be harder; once Apple shipped the Apple Watch (April 2015), the smartwatch category professionalized and Pebble's hardware-economics couldn't compete.",
+      alt:
+        "Capping the campaign at $1M and 10K units would have been operationally cleaner but would have lost the viral moment. The opposite trade. Pebble chose the bigger number; the operational headaches were the cost of the cultural moment, and the moment is what the company is remembered for even after Fitbit's acquisition.",
+      predict:
+        "Massive Kickstarter campaign — most-funded ever, viral press cycle, every milestone is a story. Production delays push first deliveries past the original promised date. Backers are mostly tolerant. Pebble becomes a real company with real customers. Apple Watch ships in 2015, and the smartwatch category professionalizes; Pebble can't compete on hardware economics. Acquisition by Fitbit in late 2016 at a fraction of peak valuation. Long-term: the Kickstarter campaign is the canonical case in 'crowdfunding as a hardware launch primitive' — and Pebble becomes a permanent reference for 'great campaign, hard follow-through.'",
+    },
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Pebble (watch) — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Pebble_(watch)",
+        type: "article",
+      },
+      {
+        title: "$1M in 49 minutes: Waterloo grad sets Kickstarter record",
+        url: "https://uwaterloo.ca/news/1m-49-minutes-waterloo-grad-sets-kickstarter-record",
+        publisher: "Waterloo News",
+        year: 2012,
+        type: "article",
+      },
+      {
+        title: "Success and Failure at Pebble",
+        url: "https://medium.com/@ericmigi/why-pebble-failed-d7be937c6232",
+        publisher: "Eric Migicovsky / Medium",
+        type: "blog",
+      },
+    ],
+    tags: { industry: "hardware", region: "us", decade: "2010s" },
   },
 ];
 
