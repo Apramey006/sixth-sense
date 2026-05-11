@@ -1743,6 +1743,238 @@ export const dailySeed: DailyScenario[] = [
     ],
     tags: { industry: "devtools", region: "us", decade: "2010s" },
   },
+  {
+    id: "tinder-swipe-gesture",
+    type: "daily",
+    scheduled_date: "",
+    company: "Tinder",
+    era: "September 2012 — launch",
+    context:
+      "Online dating in 2012 means OkCupid, Match, and eHarmony — long-form text profiles, lengthy compatibility questionnaires, and message inboxes full of unwanted attention (mostly for women). Tinder ships with the opposite product: one photo at a time, age, distance, and 'about me' if you bother. The interaction primitive is a swipe — right means yes, left means no. Sean Rad and Jonathan Badeen prototype it by literally shuffling physical playing cards, noting that their natural instinct is to throw the top card sideways. They build the entire app around that gesture.",
+    prompt:
+      "Why is the swipe gesture (vs. a 'like' button or 'next' button) the entire product — and what does the physical-card metaphor change about how users feel during the decision?",
+    reveal_quote:
+      "We watched ourselves play with the cards. The thing nobody did was tap them. They picked the top one up and flung it across the table. The gesture was already in the user's hand before we built the app.",
+    reveal_quote_attribution:
+      "Sean Rad / Jonathan Badeen, Tinder cofounders — paraphrased from public retellings of the swipe gesture's origin",
+    reveal_note:
+      "What's easy to miss: the swipe is not a faster button — it is a physical metaphor that converts evaluation into instinct. Buttons require deliberation ('do I like this person enough to click yes'); a swipe lets the body decide before the brain catches up. The metaphor also reframes the entire experience: cards-in-a-deck is a known fun pattern, while inbox-with-messages is a known unpleasant pattern. Tinder didn't speed up online dating, they changed its emotional category from 'effortful evaluation' to 'playful discovery.' The lesson: the interaction primitive you pick at launch defines the emotional shape of every session a user has with the product. Swap the swipe for a tap, and the dopamine curve flattens.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Tinder (app) — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Tinder_(app)",
+        type: "article",
+      },
+      {
+        title: "Sean Rad — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Sean_Rad",
+        type: "article",
+      },
+      {
+        title: "Tinder's Founders On Dating and How They Created Their Addictive App",
+        url: "https://time.com/4837/tinder-meet-the-guys-who-turned-dating-into-an-addiction/",
+        publisher: "TIME",
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-social", region: "us", decade: "2010s" },
+  },
+  {
+    id: "ios7-flat-design",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "June 2013 — iOS 7 WWDC reveal",
+    context:
+      "Apple's iOS through iOS 6 is defined by skeuomorphism — software that imitates physical materials. The Notes app looks like a yellow legal pad. iBook has wooden bookshelves. The compass app has machined metal. Calendar has leather stitching. The design language was Steve Jobs and Scott Forstall's signature — visually rich, instantly understandable for first-time iPhone users. Jobs is gone. Forstall has been pushed out in late 2012. Jony Ive is given full control of software design. He responds with iOS 7: a complete flat-design overhaul — no shadows, no textures, no skeuomorphic cues. Translucent panels, hairline fonts, primary colors. Reviewers split — half praise it, half call it 'amateurish.'",
+    prompt:
+      "Why throw out six years of established skeuomorphic design — when first-time users have always relied on those physical metaphors to understand the interface?",
+    reveal_quote:
+      "People had already become comfortable with touching glass. They didn't need physical buttons. They understood the benefits. So there was an incredible liberty in not having to reference the physical world so literally. It got design out of the way.",
+    reveal_quote_attribution: "Jony Ive, Apple Chief Design Officer — USA Today interview, 2013",
+    reveal_note:
+      "The non-obvious move: skeuomorphism was scaffolding, not a style. Its job in 2007 was to teach a population that had never touched a touchscreen that this rectangle is a 'notepad' you can write on. By 2013 that lesson was over — a generation of iPhone users had internalized that swipes, taps, and pinches were just how phones worked. Flat design wasn't an aesthetic choice; it was the admission that the training wheels could come off. Removing the metaphors freed pixels to communicate content rather than imitate materials, and the new visual language influenced Google Material, Microsoft Fluent, and almost every consumer-software design system that followed. The lesson: design metaphors have shelf lives tied to user literacy. The right time to remove them is uncomfortable because it always feels too soon to some users — but waiting too long traps the product in a visual language that was for a previous generation.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Apple unveils iOS 7 user interface design by Jonathan Ive at WWDC",
+        url: "https://www.dezeen.com/2013/06/10/new-apple-ios-software-flat-design-jonathan-ive-wwdc/",
+        publisher: "Dezeen",
+        year: 2013,
+        type: "article",
+      },
+      {
+        title: "Jony Ive killed skeuomorphic design with iOS 7 ten years ago — and he was right to",
+        url: "https://www.imore.com/ios/ios-7/jony-ive-killed-skeuomorphic-design-with-ios-7-ten-years-ago-and-he-was-right-to",
+        publisher: "iMore",
+        type: "article",
+      },
+      {
+        title: "Remembering the controversial iOS 7 introduction",
+        url: "https://9to5mac.com/2025/05/30/remembering-the-controversial-ios-7-introduction/",
+        publisher: "9to5Mac",
+        year: 2025,
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
+  {
+    id: "snapchat-camera-default",
+    type: "daily",
+    scheduled_date: "",
+    company: "Snapchat",
+    era: "2011 — launch (as Picaboo)",
+    context:
+      "Every photo-sharing app at the time — Instagram, Facebook, Flickr — opens to a feed. You see other people's content first; if you want to post, you tap a small camera icon. Snapchat (then 'Picaboo') ships in July 2011 with the opposite default: the app opens directly to the camera, your camera, viewfinder live. To see friends' content, you swipe; the feed is a secondary surface, not the homepage. The choice is described internally as 'Snapchat is a camera company, not a social-feed company.'",
+    prompt:
+      "Why open to the camera instead of the feed — and what does that single decision do to the kind of content the platform produces?",
+    reveal_quote:
+      "Snapchat isn't about capturing the traditional Kodak moment. It's about communicating with the full range of human emotion — not just what appears to be pretty or perfect. The camera is the start of the message, not a feature.",
+    reveal_quote_attribution: "Evan Spiegel, Snap CEO — first Snapchat blog post, May 9, 2012",
+    reveal_note:
+      "The choice that's easy to miss: defaults shape behavior more than features do. Opening to the feed (Instagram, Facebook) makes consumption the primary action — the user is a viewer first, a creator second. Opening to the camera (Snapchat) inverts it — the user is a creator first, every session begins with a question 'what should I send?' That question generates vastly more low-stakes, in-the-moment content than 'what should I post?' does. Years later, when Instagram launched Stories and TikTok launched its app, both copied the open-to-camera (or open-to-creation) default. The lesson: the screen that loads when the app opens is the entire product strategy. Where you put the cursor on first launch is more important than any feature you'll ship for the next two years.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Snapchat: The App That Won by Disappearing",
+        url: "https://wealthz.substack.com/p/snapchat-the-app-that-won-by-disappearing",
+        type: "blog",
+      },
+      {
+        title: "Snapchat — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Snapchat",
+        type: "article",
+      },
+      {
+        title: "History of Snapchat & Future of Disappearing Photos",
+        url: "https://frozenfire.com/history-of-snapchat/",
+        publisher: "Frozen Fire",
+        type: "blog",
+      },
+    ],
+    tags: { industry: "consumer-social", region: "us", decade: "2010s" },
+  },
+  {
+    id: "spotify-wrapped-2016",
+    type: "daily",
+    scheduled_date: "",
+    company: "Spotify",
+    era: "December 2016 — first Spotify Wrapped",
+    context:
+      "Spotify in 2016 has ~100M monthly users and is fighting Apple Music for retention. Most music apps push 'new releases' or 'discover' features — forward-looking, expensive to produce content for. In December 2016, Spotify launches 'Wrapped' — a personalized 'year in music' microsite for every user: most-played songs, total listening minutes, top artists, in shareable card formats designed to be screenshotted and posted to Instagram and Twitter. The feature is built by a small team in a few months; the underlying data was already being collected for recommendation purposes.",
+    prompt:
+      "Why turn user data into a December social-share ritual — and what is Wrapped actually doing that traditional retention features don't?",
+    reveal_quote:
+      "Wrapped is one of the best moments of the year. It's authentic — it's not Spotify telling you what's cool, it's Spotify showing you what was true about your own year. That's something a competitor can't copy without your data.",
+    reveal_quote_attribution:
+      "Spotify marketing leadership — paraphrased from Movable Ink case study and public commentary on the Wrapped campaign",
+    reveal_note:
+      "What's easy to miss: Wrapped is not a marketing campaign — it is a user-acquisition channel disguised as a year-end recap. Every shared Wrapped card is an ad for Spotify, posted to a feed by a real user with no edit. Most retention features (notifications, recommendations) work inside the app; Wrapped explicitly leaks outside the app, into Instagram, Twitter, and group chats where non-Spotify users see Spotify branding next to their friend's authentic data story. The 1.2B+ earned impressions cost Spotify almost nothing — the campaign is built on data Spotify already had. The lesson: features that turn user data into a shareable artifact (especially seasonally) are simultaneously a retention loop AND a user-acquisition loop, and the cost is one-tenth what equivalent paid marketing would cost. Strava, Duolingo, Headspace, Reddit, and many others have since cloned the Wrapped formula.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Spotify Wrapped — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Spotify_Wrapped",
+        type: "article",
+      },
+      {
+        title: "The Original Year-in-Review: How Spotify Drives Massive Annual Success",
+        url: "https://movableink.com/blog/the-original-year-in-review-how-spotify-drives-massive-annual-success",
+        publisher: "Movable Ink",
+        type: "blog",
+      },
+      {
+        title: "Spotify | 2016 Wrapped",
+        url: "https://www.oneclub.org/awards/adcawards/-award/27360/2016-wrapped/",
+        publisher: "The One Club",
+        year: 2016,
+        type: "article",
+      },
+    ],
+    tags: { industry: "media", region: "eu", decade: "2010s" },
+  },
+  {
+    id: "slackbot-onboarding",
+    type: "daily",
+    scheduled_date: "",
+    company: "Slack",
+    era: "2014 — onboarding design",
+    context:
+      "Enterprise SaaS onboarding in 2014 is dominated by feature tours — modal popups, arrow tooltips, 'click here next' overlays. Most have ~30% completion rates. Slack ships onboarding through a different mechanism entirely: a chatbot named Slackbot that messages every new user inside the actual app, asks them questions, and walks them through setup conversationally. Slackbot has personality. It says 'just a bot.' It uses humor. New users feel like they're chatting with a coworker, not running a tutorial.",
+    prompt:
+      "Why ship onboarding as a conversation with a bot inside the product — instead of using the standard feature-tour modals?",
+    reveal_quote:
+      "If the product is conversation, then the onboarding has to be a conversation too. A modal popup tells the user 'you are not yet in the product.' A message from Slackbot tells the user 'you are already using Slack, this is what it feels like, and here's the first thing it asks of you.'",
+    reveal_quote_attribution:
+      "Slack design team — paraphrased from public commentary on Slack's onboarding approach",
+    reveal_note:
+      "The non-obvious move: Slackbot's onboarding is not a tutorial — it is the first session of the product. Every Slackbot prompt is a real message in a real channel. The user's first action in Slack is responding to a message, which is the exact behavior the product wants them to do forever. Modal feature tours teach 'where the buttons are'; Slackbot teaches 'how the product feels.' That difference is what produces Slack's famously high onboarding completion and second-week retention rates — the user has built a habit (responding to messages) before they're aware they're being onboarded. The lesson: onboarding that uses the product's native interaction primitive (messages, in Slack's case) compounds with the product itself. Onboarding that introduces a separate primitive (modals, overlays) fights it.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Complete guide to launching Slackbot",
+        url: "https://slack.com/resources/slack-for-admins/slackbot-launch-guide",
+        publisher: "Slack",
+        type: "documentation",
+      },
+      {
+        title: "Slack kills at onboarding customers: Here's how",
+        url: "https://www.zendesk.com/blog/customer-service/support/slack-customer-onboarding/",
+        publisher: "Zendesk",
+        type: "blog",
+      },
+      {
+        title: "Slack Bot Onboarding — Lessons learned",
+        url: "https://medium.com/slack-developer-blog/slack-bot-onboarding-3b4c979de374",
+        publisher: "Slack Platform Blog",
+        type: "blog",
+      },
+    ],
+    tags: { industry: "saas", region: "us", decade: "2010s" },
+  },
+  {
+    id: "chatgpt-custom-instructions",
+    type: "daily",
+    scheduled_date: "",
+    company: "OpenAI",
+    era: "July 20, 2023 — Custom Instructions launch",
+    context:
+      "ChatGPT in mid-2023 has tens of millions of weekly users. The product's biggest UX problem: every conversation starts from zero. A teacher rewriting 'I teach 3rd grade science' at the top of every chat. A developer specifying 'I prefer Go, not Python' for the fiftieth time. A vegetarian saying 'no meat in recipes please' every meal. The standard ML/personalization play is to silently train a per-user model — invisible, no UI. OpenAI instead ships 'Custom Instructions': two visible text boxes (1,500 chars each) where users explicitly write 'what you should know about me' and 'how I want you to respond.' ChatGPT considers them on every reply.",
+    prompt:
+      "Why ship personalization as two visible, user-editable text boxes — when most consumer AI products treat personalization as an invisible ML model?",
+    reveal_quote:
+      "ChatGPT will consider your custom instructions for every conversation going forward, so you won't have to repeat your preferences or information in every conversation.",
+    reveal_quote_attribution: "OpenAI — official Custom Instructions launch announcement, July 20, 2023",
+    reveal_note:
+      "The choice that's easy to miss: visible personalization is a trust instrument that invisible ML personalization can't replicate. With invisible personalization, the user wonders 'why is it answering this way?' and has no way to fix it. With Custom Instructions, the user wrote the instruction themselves — there's nothing to suspect. The cost: the feature looks low-tech. The benefit: it ships in a week (no model training), works for every model OpenAI ever launches forever (the text is a prompt prefix), and gives the user agency that builds trust. Two months later OpenAI launches Memory, an ML-based version of the same idea. But Custom Instructions remains in the product — because the visible-user-authored version solves a different problem (control + transparency) that ML can't. The lesson: 'low-tech' UI for an ML product is often the right answer when the user needs agency more than they need magic.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Custom instructions for ChatGPT",
+        url: "https://openai.com/index/custom-instructions-for-chatgpt/",
+        publisher: "OpenAI",
+        year: 2023,
+        type: "blog",
+      },
+      {
+        title: "OpenAI launches customized instructions for ChatGPT",
+        url: "https://techcrunch.com/2023/07/20/openai-launches-customized-instructions-for-chatgpt/",
+        publisher: "TechCrunch",
+        year: 2023,
+        type: "article",
+      },
+      {
+        title: "OpenAI Personalizes ChatGPT With New Custom Instructions Feature",
+        url: "https://voicebot.ai/2023/07/20/openai-personalizes-chatgpt-with-new-custom-instructions-feature/",
+        publisher: "Voicebot.ai",
+        year: 2023,
+        type: "article",
+      },
+    ],
+    tags: { industry: "ai-tools", region: "us", decade: "2020s" },
+  },
 ];
 
 export const weeklySeed: WeeklyScenario[] = [
@@ -4935,6 +5167,431 @@ export const weeklySeed: WeeklyScenario[] = [
       },
     ],
     tags: { industry: "gaming", region: "us", decade: "2020s" },
+  },
+  {
+    id: "netflix-password-sharing-2023",
+    type: "weekly",
+    iso_week: "",
+    company: "Netflix",
+    era: "Early 2023 — May 23, 2023 US rollout",
+    intro:
+      "It is early 2023. You are a senior PM at Netflix. The company has ~230M paid subscribers. Roughly 100M households globally are believed to be using shared passwords — accounts where someone outside the paying household is consuming the service. For a decade Netflix has tolerated this; Reed Hastings publicly called password sharing 'a positive thing' in 2016. But subscriber growth has flatlined, the company missed Q1 2022 estimates (the first quarterly subscriber loss in over a decade), and Wall Street is no longer giving Netflix the growth multiple it used to.\n\nNetflix's leadership is debating a paid-sharing rollout. Under the new rules: an account is allowed only within a 'household' (defined by IP/devices). Users outside that household must be added as 'extra members' at $7.99/month — about half a regular subscription. The change would be globally controversial; early tests in Latin America in 2022 produced viral 'how to game the system' threads and significant user backlash. Internal modeling suggests ~10% of password-sharers will pay; the rest will leave or trade down. Net effect uncertain.",
+    open_questions: [
+      "Roll out paid sharing globally now (signal aggressive monetization) or wait for the ad-supported tier to fully ramp (lower-risk path to the same revenue)?",
+      "How to define 'household' — IP address (technically blunt, false positives), explicit user invitation (less enforceable), or hybrid?",
+      "Price the extra-member tier — $4.99 (low friction, lower revenue), $7.99 (margins), or higher (signal premium)?",
+      "How to handle the inevitable PR cycle and 'Netflix is greedy' narrative?",
+    ],
+    closing:
+      "Imagine you're in the Netflix leadership room in March 2023. The Latin America test data is in (mixed). The US rollout is set for May. The communications plan is being finalized.",
+    decision:
+      "Roll out paid sharing in the US, UK, Australia, and 100+ other countries on May 23, 2023. Define household as devices that share an IP regularly. Charge $7.99/mo for extra members outside the household. Communicate via in-app prompts + a public 'how it works' page rather than splashy press. Absorb the PR cycle. Subscriber count surges — Netflix adds 9.33M net new subscribers in Q3 2023 alone (largest quarter since the pandemic). The 'crackdown' becomes one of the most successful re-pricings in subscription-software history.",
+    pullquote:
+      "A Netflix account is for use by one household. Everyone living in that household can use Netflix wherever they are.",
+    pullquote_attribution: "Netflix — public 'how it works' page on the password-sharing policy, May 23, 2023",
+    outcomes: [
+      { stat: "9.33M", label: "net new subscribers in Q3 2023 — largest quarter since the pandemic", accent: true },
+      { stat: "100M", label: "households estimated to be sharing passwords pre-rollout" },
+      { stat: "$7.99", label: "extra-member price (~half a regular subscription)" },
+      { stat: "Latin Am.", label: "earlier 2022 test showed mixed signal — Netflix shipped globally anyway" },
+      { stat: "Net positive", label: "majority of password-sharers chose to start their own account, not cancel" },
+    ],
+    tradeoffs: [
+      {
+        title: "Ship now vs. wait for the ad tier",
+        body:
+          "Netflix could have ramped its ad tier first, then layered paid sharing on top. Shipping both in parallel was higher-risk but maximized the revenue-uplift window. The bet: don't let competitors (Disney+, Max) preempt the move; absorb both PR cycles at once.",
+      },
+      {
+        title: "IP-based 'household' vs. explicit user invitation",
+        body:
+          "IP-based detection is technically blunt (frequent travelers, students, families with multiple homes all trigger false positives). Explicit invitation would have been cleaner UX but unenforceable. Netflix chose the blunt-but-enforceable option and ate the false-positive PR (people on Twitter sharing 'I can't watch at my hotel') because the revenue math required it.",
+      },
+      {
+        title: "Splashy press vs. in-app only",
+        body:
+          "Netflix could have done a major press launch with executive interviews. Instead the rollout was almost entirely in-app prompts — most users learned about it when they got the prompt. That choice avoided amplifying the PR cycle and let the policy become normal background noise inside weeks rather than a months-long news story.",
+      },
+      {
+        title: "Trust the model vs. trust the test",
+        body:
+          "The Latin America test in 2022 produced mixed signals — significant cancellations alongside revenue uplift. Internal modeling predicted the US/UK/AU markets would behave differently (less sensitivity to price, more 'will pay if forced'). Netflix bet on the model over the more pessimistic interpretation of the test data — and won the bet.",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Short-term PR pain + customer-trust damage vs. converting ~10% of the ~100M password-sharing households into paying customers. Netflix took the bet and got the revenue uplift; the brand cost was real (Netflix is often used as the canonical 'tech company gets greedy' example) but absorbed inside ~6 months.",
+      user:
+        "The audience Netflix optimized for was the heavy-engagement password-sharer who would convert rather than cancel. The crackdown was structurally hostile to the secondary user (the friend / family member who'd been getting free Netflix) but mostly preserved the primary subscriber's value proposition.",
+      alt:
+        "Continuing to tolerate password sharing would have preserved customer goodwill but conceded a structural ~$2-3B/year revenue opportunity. The opposite trade — and the public-markets pressure on subscriber growth made the opposite trade increasingly untenable. Netflix had been 'tolerating' for a decade; the moment had come.",
+      predict:
+        "Short-term: viral 'Netflix is greedy' news cycle, cancellations spike briefly, the trust-and-safety / customer-support cost surges. Medium-term: most password-sharers convert to extra-member or their own account; subscriber growth re-accelerates dramatically. Long-term: the move becomes the template for other streaming services (Disney+ rolls out a similar policy in 2024) and the canonical case in 'when to monetize a tolerated leak.' The bet's success makes it easier for subsequent platforms to do the same.",
+    },
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Netflix password-sharing crackdown rolls out in the U.S.",
+        url: "https://www.cnbc.com/2023/05/23/netflix-password-sharing-crackdown.html",
+        publisher: "CNBC",
+        year: 2023,
+        type: "article",
+      },
+      {
+        title: "Netflix has officially begun its plan to make users pay extra for password sharing",
+        url: "https://www.npr.org/2023/05/24/1177848004/netflix-password-sharing",
+        publisher: "NPR",
+        year: 2023,
+        type: "article",
+      },
+      {
+        title: "Netflix's Password Sharing Crackdown Drives 9.33 Million New Subscribers",
+        url: "https://nerdist.com/article/netflix-stopping-password-sharing-with-price-increases/",
+        publisher: "Nerdist",
+        year: 2023,
+        type: "article",
+      },
+    ],
+    tags: { industry: "media", region: "us", decade: "2020s" },
+  },
+  {
+    id: "apple-headphone-jack-2016",
+    type: "weekly",
+    iso_week: "",
+    company: "Apple",
+    era: "September 7, 2016 — iPhone 7 launch",
+    intro:
+      "It is mid-2016. You are a senior PM at Apple. The iPhone 7 is shipping in September. Internal debates have been raging for over a year on a single hardware question: keep the 3.5mm headphone jack, or remove it. The jack has been a standard since the 1960s. Every pair of consumer headphones on earth uses it. Apple's own EarPods that ship with every iPhone connect through it. Removing it forces users to either (a) use Lightning-connected headphones (none on the market in volume), (b) use a Lightning-to-3.5mm dongle (annoying), or (c) buy wireless headphones (Apple is launching AirPods alongside the iPhone 7).\n\nThe internal champions argue removing the jack frees ~1mm of internal space (battery, taptic engine, water resistance) and accelerates the wireless-audio transition Apple is positioned to win with AirPods + W1 chip. The internal skeptics argue this is the most pro-customer-cost decision in Apple history — and that 'we're forcing them to buy AirPods' is a brand risk.",
+    open_questions: [
+      "Remove the jack now (iPhone 7) or wait one cycle (iPhone 7s/8) for wireless headphones to mature?",
+      "How aggressive to be in marketing — call it 'courage' (Phil Schiller's framing) and own the controversy, or quietly downplay?",
+      "Pricing for AirPods — at $159, they're expensive enough to feel like a real purchase but cheap enough that someone replacing $40 EarPods will consider them. Is that right?",
+      "Include the Lightning dongle in the box (eats margin, defuses critics) or sell separately (signals 'this is the new normal')?",
+    ],
+    closing:
+      "Imagine you're at Apple in mid-2016. The iPhone 7 is two months out. The decision has been made internally; the September keynote is the public reveal.",
+    decision:
+      "Remove the 3.5mm headphone jack on iPhone 7. Include a Lightning-to-3.5mm adapter in the box. Launch AirPods alongside ($159, shipping in October). Phil Schiller frames the decision on stage as requiring 'courage.' The Internet erupts — #courage trends as mockery; tech press splits between 'bold' and 'cynical.' Within 3 years AirPods become a ~$10B/year product line. Within 5 years almost every Android flagship has also removed the jack. Within 8 years Apple itself walks the philosophy back partially (USB-C ports return to iPhones, Mac mini/etc) — but the AirPods bet pays off massively.",
+    pullquote:
+      "It comes down to one word: courage. The courage to move on and do something new that betters all of us.",
+    pullquote_attribution: "Phil Schiller, Apple SVP Worldwide Marketing — iPhone 7 launch keynote, September 7, 2016",
+    outcomes: [
+      { stat: "$159", label: "AirPods launch price; ~$10B/year revenue line within 3 years", accent: true },
+      { stat: "#courage", label: "trended as mockery within hours of the keynote" },
+      { stat: "~1mm", label: "internal space freed by removing the jack (taptic engine, battery, water seal)" },
+      { stat: "5 years", label: "for Android flagships to follow Apple's lead" },
+      { stat: "Walked back", label: "USB-C / button restoration on later devices — partial reversal" },
+    ],
+    tradeoffs: [
+      {
+        title: "Remove now vs. wait one cycle",
+        body:
+          "Waiting one cycle (iPhone 8) would have shipped wireless-headphone maturity alongside the removal — less customer friction. But it would have given Samsung, LG, and HTC a year-long marketing window of 'we still have the jack, Apple doesn't yet.' Apple chose to absorb the customer-friction cost in exchange for forcing the entire industry to follow.",
+      },
+      {
+        title: "Courage framing vs. quiet removal",
+        body:
+          "Schiller's 'courage' framing was widely mocked. A quieter 'we're transitioning to wireless audio, here's how' would have absorbed less mockery. The 'courage' framing was deliberate — it conceded that the move would be painful, named the trade-off out loud, and made the launch a values statement (we lead, others follow). The brand cost of the mockery was real; the brand benefit of the values statement was longer-tail.",
+      },
+      {
+        title: "Bundle dongle vs. sell separately",
+        body:
+          "Including the Lightning-to-3.5mm adapter in the box ate margin and undermined the 'this is the new normal' message. Selling separately would have been a clean stance but maximally hostile to existing customers. Apple chose the customer-friendly compromise; the dongle was eventually removed from later iPhone boxes once wireless had won.",
+      },
+      {
+        title: "AirPods bundling vs. accessory pricing",
+        body:
+          "Bundling AirPods with iPhone 7 would have eliminated the friction entirely but cost Apple ~$200B in subsequent AirPods sales (assuming attach rate gets to 50%+). Selling them separately at $159 was the right call commercially — and made AirPods feel like a real purchase rather than a giveaway, which arguably helped them become a status symbol.",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Customer friction + mockery cycle vs. ~1mm of internal space + AirPods as the wireless-audio standard + a multi-year force-the-industry move. Apple took the friction and the mockery, and the AirPods bet alone validated the decision financially. The 'courage' framing was simultaneously the funniest moment of the keynote and the most strategically honest.",
+      user:
+        "The iPhone 7 buyer was the audience for the bundled dongle (friction softener); the AirPods buyer was the audience the bet was actually for (early-adopter willing to pay $159 to feel ahead). The mass-market customer was acceptable collateral damage in the first year; by year three, every iPhone buyer was choosing AirPods naturally.",
+      alt:
+        "Keeping the jack on iPhone 7 and shipping wireless earbuds as a separate product would have been customer-friendly but would have lost the 'force the industry' moment. The opposite trade — and probably AirPods would still have happened, but with less category-defining momentum. Apple chose the harder, costlier, longer path because the strategic benefit was multi-year.",
+      predict:
+        "Short-term: mockery, dongle jokes, customer complaints, late-night TV bits. Medium-term: AirPods become a cultural phenomenon, the industry follows, the controversy fades. Long-term: the headphone-jack removal becomes the textbook case in 'when forcing a transition through customer friction is worth it (and when the 'courage' framing is actually correct).' The partial walk-back on USB-C is a separate, later concession to ecosystem demands.",
+    },
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Why Did Apple Remove the Headphone Jack? 'Courage'",
+        url: "https://www.theringer.com/2016/09/07/tech/why-did-apple-remove-the-headphone-jack-courage-592a412412b5",
+        publisher: "The Ringer",
+        year: 2016,
+        type: "article",
+      },
+      {
+        title: "Apple's Phil Schiller says removing iPhone 7 headphone jack comes down to one word: 'courage'",
+        url: "https://www.fastcompany.com/4018651/apples-phil-schiller-removing-iphone-7-headphone-jack-comes-down-to-one-word-courage",
+        publisher: "Fast Company",
+        year: 2016,
+        type: "article",
+      },
+      {
+        title: "Apple iPhone 7: No more headphone jack",
+        url: "https://money.cnn.com/2016/09/07/technology/apple-iphone-headphone-jack/",
+        publisher: "CNN Money",
+        year: 2016,
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
+  {
+    id: "iphone-x-home-button-2017",
+    type: "weekly",
+    iso_week: "",
+    company: "Apple",
+    era: "September 12, 2017 — iPhone X reveal",
+    intro:
+      "It is mid-2017. You are a senior PM at Apple working on the iPhone X. The home button has been on every iPhone since 2007 — single most-used UI element on the most successful consumer product in history. Users press it to wake the phone, unlock it (Touch ID), return home, multitask, summon Siri, take screenshots. Removing it for a phone with edge-to-edge OLED display means rewriting every single one of those interactions: a new swipe-up-from-bottom gesture for home, a swipe-and-pause for multitasking, side-button-and-volume for screenshots, Face ID for biometric unlock.\n\nThe debate inside Apple is over how aggressively to push the gesture-based future. The conservative path keeps the home button on the iPhone 8 (also shipping fall 2017) for users who prefer it; the aggressive path makes the iPhone X gesture-only and stops shipping home-button iPhones within a few years. Jony Ive's design team is championing the aggressive path. Apple's accessibility team raises real concerns about users with motor disabilities who relied on the home button as a single physical anchor point.",
+    open_questions: [
+      "Remove the home button on the iPhone X — but keep it on the iPhone 8 (parallel SKU) or commit fully?",
+      "Face ID vs. under-display Touch ID — which biometric replaces the home button's authentication role, and what happens to the users (motor-disabled, masked-wearing) for whom Face ID is worse?",
+      "How aggressive on the new gestures — swipes for home, multitasking, control center — or maintain some legacy interactions?",
+      "What's the right price for the iPhone X — $999 (signals 'premium, optional' alongside the cheaper iPhone 8) or lower (signals 'this is the future, everyone gets it')?",
+    ],
+    closing:
+      "Imagine you're at Apple in summer 2017. The iPhone X is months from reveal. The home button has been the company's most-used UI element for a decade.",
+    decision:
+      "Remove the home button on the iPhone X. Ship Face ID (no Touch ID). Introduce 6+ new gestures: swipe-up for home, swipe-up-and-hold for multitasking, swipe-down-from-right-corner for Control Center, etc. Keep the iPhone 8/8 Plus shipping in parallel as a home-button option for one more cycle (then phase out by iPhone XS in 2018). Price iPhone X at $999. Wall Street and tech reviewers split (love the design, worried about Face ID); customer adoption ramps fast. By 2020, every iPhone except SE has removed the home button — Touch ID lives on only in Mac/iPad lineups.",
+    pullquote:
+      "I actually think the path of holding onto features that have been effective, the path of holding onto those whatever the cost, is a path that leads to failure.",
+    pullquote_attribution: "Jony Ive, Apple Chief Design Officer — TIME interview, November 2017",
+    outcomes: [
+      { stat: "$999", label: "iPhone X launch price — first $1,000 iPhone", accent: true },
+      { stat: "6+", label: "new gestures introduced to replace home-button actions" },
+      { stat: "Face ID", label: "replaces Touch ID; no fingerprint sensor on iPhone X" },
+      { stat: "2018", label: "iPhone 8 (home-button) phased out one year later by iPhone XS" },
+      { stat: "Industry copied", label: "edge-to-edge + gesture nav across Android within 18 months" },
+    ],
+    tradeoffs: [
+      {
+        title: "Remove the home button vs. preserve it",
+        body:
+          "The home button was the iPhone's most-used UI element for 10 years. Removing it required teaching every iPhone user a new motor pattern. Ive's argument was that keeping it would have meant capping the display at sub-edge-to-edge for years. The cost was real (user retraining, accessibility concerns); the benefit was a phone-as-glass-rectangle form factor that defined a decade of smartphone design.",
+      },
+      {
+        title: "Face ID vs. under-display Touch ID",
+        body:
+          "Under-display fingerprint sensors weren't quite mature in 2017 (Samsung shipped them later with mixed success). Face ID was a bet on a different biometric entirely — convenient when it worked, frustrating when it didn't (masks, sunglasses, dim light). The bet: most authentications happen face-up in daylight, and the convenience there outweighed the edge-case friction.",
+      },
+      {
+        title: "$999 premium vs. mass-market price",
+        body:
+          "Pricing iPhone X at $999 made it a premium option alongside the cheaper iPhone 8 — letting Apple test the gesture-first design with early adopters before mass rollout. A lower price would have forced mass adoption but at the cost of margin and brand-premium signal. Apple chose the dual-SKU year to absorb the transition risk.",
+      },
+      {
+        title: "Aggressive gesture set vs. preserve some legacy",
+        body:
+          "Apple introduced 6+ new gestures simultaneously. A more conservative redesign would have replaced fewer interactions, easing user retraining. The aggressive path made the iPhone X feel like a new product, which justified the $999 price and the design language for the next decade of iPhones.",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "User retraining cost + accessibility regression + Face ID's edge-case friction vs. an edge-to-edge form factor that defined the smartphone for a decade. Apple absorbed the customer-retraining cost and won the long-term design language; the home-button removal is now the canonical phone form factor.",
+      user:
+        "The early-adopter willing to pay $999 was the audience for iPhone X year one. The mass-market user got the home-button iPhone 8 in parallel and migrated naturally to the gesture-based iPhone over the following 2-3 years. Apple bought transition time by running the two SKUs in parallel.",
+      alt:
+        "Keeping the home button on iPhone X (with a notched edge-to-edge display) was the conservative path — easier user transition but a less coherent design statement. The opposite trade — and likely would have meant Apple stayed in a hybrid home-button-plus-gesture world for another 4-5 years. Apple chose the cleaner, scarier path.",
+      predict:
+        "Short-term: $999 price-shock headlines, Face ID mishap demos, customer complaints about gesture retraining. Medium-term: iPhone X sells well, iPhone 8 phases out gracefully, Face ID matures. Long-term: edge-to-edge gesture-based design becomes the industry standard within 18 months. The decision is the canonical case in 'when to remove the most-used UI element in your product because the next decade of design depends on it.'",
+    },
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Apple's Jony Ive Talks to TIME About Designing the iPhone X",
+        url: "https://time.com/5025887/apple-jony-ive-iphone-x/",
+        publisher: "TIME",
+        year: 2017,
+        type: "interview",
+      },
+      {
+        title: "Jony Ive Discusses The iPhone X And Apple's Decision To Remove The Home Button",
+        url: "https://www.bgr.com/tech/iphone-x-design-home-button-jony-ive-explains-new-gestures/",
+        publisher: "BGR",
+        year: 2017,
+        type: "article",
+      },
+      {
+        title: "Apple designer Jony Ive defends ditching home button",
+        url: "https://appleinsider.com/articles/17/11/16/apple-designer-jony-ive-defends-ditching-home-button-other-tech-in-interview-about-iphone-x",
+        publisher: "AppleInsider",
+        year: 2017,
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
+  {
+    id: "slack-threads-2017",
+    type: "weekly",
+    iso_week: "",
+    company: "Slack",
+    era: "January 2017",
+    intro:
+      "It is late 2016. You are a senior PM at Slack. The product has been a runaway success — millions of users, fastest-growing enterprise software ever. There's one universal complaint from power users: when a channel gets busy, conversations interleave. Someone asks a question; before anyone answers, three other discussions have buried it. Email had threading; Slack does not. Adding threading is the single most-requested feature.\n\nThe internal debate is intense. Threading is structurally hard: every threading model (Twitter-style reply trees, Reddit-style nested comments, Gmail-style flat threads) breaks something else. Power users want it. Casual users get confused by threads they can't see. Stewart Butterfield personally wants threading done 'right' — gentle, optional, never forcing the user to decide whether to thread or reply in-channel. The team has been iterating on the design for over a year. Some Slack-internal channels are vehemently anti-threads, arguing it would 'destroy the conversational flow that makes Slack what it is.'",
+    open_questions: [
+      "Ship threading at all — or maintain the deliberate single-channel-stream design that defines Slack?",
+      "If ship — how prominent in the UI (default visible vs. opt-in), and what's the threading model (nested vs. flat)?",
+      "Optional or default — does threading appear automatically for replies, or only when a user explicitly chooses 'reply in thread'?",
+      "How aggressive to be on the launch — top-of-app prominent feature, or quiet rollout with documentation only?",
+    ],
+    closing:
+      "Imagine you're with Butterfield in late 2016. The design has been iterating for over a year. The decision is now or 2018. Power users are demanding it.",
+    decision:
+      "Ship threaded messages on January 18, 2017 — explicitly opt-in. Replies happen in the main channel by default; threading requires hovering over a message and clicking 'reply.' Threads appear in a right-side panel, not inline. The launch is deliberately gentle: a blog post, a short product announcement, no flashy marketing. Within 6 months, threads become the dominant pattern for any conversation longer than a few back-and-forth messages. Within 2 years, every Slack competitor (Microsoft Teams, Discord, Google Chat) has cloned the model.",
+    pullquote:
+      "We didn't want threading to feel like a different mode you have to consciously choose. We wanted it to feel like a natural extension of the conversation — there when you needed it, invisible when you didn't.",
+    pullquote_attribution:
+      "Stewart Butterfield, Slack cofounder/CEO — paraphrased from his Lenny's Newsletter interview on Slack's product principles",
+    outcomes: [
+      { stat: "Jan 18, 2017", label: "threaded messages ship — most-requested feature delivered", accent: true },
+      { stat: "1+ yr", label: "of internal iteration before launch" },
+      { stat: "Opt-in only", label: "design — replies stay in-channel by default" },
+      { stat: "Right panel", label: "thread display — not inline (preserves channel flow)" },
+      { stat: "All competitors", label: "Teams, Discord, Google Chat — cloned the same model" },
+    ],
+    tradeoffs: [
+      {
+        title: "Ship threading vs. hold the single-stream philosophy",
+        body:
+          "Slack's foundational design was 'the channel is a single flowing conversation.' Threading explicitly broke that philosophy. Holding the line would have preserved design purity but lost the power-user cohort to Microsoft Teams or to threading-native alternatives. Butterfield chose to evolve the philosophy rather than die on it.",
+      },
+      {
+        title: "Opt-in vs. default threading",
+        body:
+          "Default-on threading would have transformed every channel into a thread-tree (Reddit-style) overnight, which would have alienated casual users. Opt-in let power users adopt and casual users ignore — a slower spread but a softer impact on existing habits. Slack chose the gentler default.",
+      },
+      {
+        title: "Right-panel vs. inline display",
+        body:
+          "Threads in a right-side panel preserve the main channel's vertical flow but make threads feel slightly disconnected. Inline threading would have integrated more naturally but cluttered busy channels. The right-panel choice preserved Slack's signature scannable single-column channel view — a deliberate aesthetic-and-usability trade.",
+      },
+      {
+        title: "Loud launch vs. quiet rollout",
+        body:
+          "A flagship-feature launch (keynotes, press) would have signaled 'Slack is now a different product.' A quiet rollout signaled 'Slack just got slightly better at the thing you were already doing.' Butterfield's instinct was that threading was an evolution, not a revolution — and the quiet rollout matched that framing.",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Slack's foundational single-stream design philosophy vs. the most-requested feature from power users + competitive risk if Microsoft Teams shipped it first. Slack evolved the philosophy with maximum design care — over a year of iteration — to preserve the brand's design-thoughtfulness signal. The launch was widely praised by power users; the casual cohort didn't notice.",
+      user:
+        "The audience the feature targeted was the heavy-use power-user inside busy channels at large companies — the cohort whose retention mattered most for enterprise expansion. Casual users in small teams (where conversations don't interleave) wouldn't see threading much in the wild and weren't expected to adopt it.",
+      alt:
+        "Default-on threading would have produced faster adoption but more user disruption. The opposite trade — and would have made Slack look more like Reddit, which Slack-the-brand explicitly didn't want to be. Slack accepted slower adoption for cleaner aesthetic alignment.",
+      predict:
+        "Quick adoption among power users (within 6 months), gradual spread to casual users, no major brand disruption, and a feature pattern that competitors copy almost wholesale within 2 years. Long-term: threading becomes a standard chat-product feature; Slack's careful approach becomes the canonical case in 'how to ship a foundational-philosophy-breaking feature without breaking the brand.'",
+    },
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Slack founder: Mental models for building products people love ft. Stewart Butterfield",
+        url: "https://www.lennysnewsletter.com/p/slack-founder-stewart-butterfield",
+        publisher: "Lenny's Newsletter",
+        type: "podcast",
+      },
+      {
+        title: "The History Of Slack & Its Impact On Business Communication",
+        url: "https://www.m.io/blog/history-of-slack",
+        type: "blog",
+      },
+      {
+        title: "Stewart Butterfield — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Stewart_Butterfield",
+        type: "article",
+      },
+    ],
+    tags: { industry: "saas", region: "us", decade: "2010s" },
+  },
+  {
+    id: "instagram-reels-launch-2020",
+    type: "weekly",
+    iso_week: "",
+    company: "Instagram (Meta)",
+    era: "Mid-2020 — August 5, 2020 US launch",
+    intro:
+      "It is mid-2020. You are a senior PM at Instagram. TikTok has exploded — particularly with users under 25, where Instagram's growth has slowed. The format (15-60 second vertical video with sound, algorithmic For You feed) is one Instagram doesn't have a real answer to. Meta's first attempt — Lasso (2018-19) — failed and was discontinued. Stories has been Instagram's primary defense against Snapchat, but Stories aren't an answer to TikTok's format. Trump is publicly threatening to ban TikTok over national security concerns; the moment is open.\n\nAdam Mosseri and team have been building Reels for ~18 months — a short-form video product that can live inside the Instagram app rather than as a standalone (like Lasso was). The launch decision: ship Reels embedded deep inside Instagram (a tab inside Explore), or commit to a more prominent placement that makes Reels feel like a first-class surface alongside Feed and Stories?",
+    open_questions: [
+      "Ship as a standalone app (clean brand, slow growth) or embed inside Instagram (faster adoption, brand confusion)?",
+      "If embedded — what placement, and what does that signal about the feature's importance?",
+      "Time the launch to the Trump-TikTok-ban moment (opportunistic, may misfire if TikTok survives) or stay product-driven?",
+      "How explicit to be about the TikTok-clone framing — own it (Stories playbook from 2016) or position as differentiated?",
+    ],
+    closing:
+      "Imagine you're at Instagram in late July 2020. The launch is days away. The Trump TikTok threat is loud. The product is ready.",
+    decision:
+      "Launch Reels in the US on August 5, 2020 — embedded inside Instagram as a tab inside the Explore feed (not a standalone app, not a top-nav tab). Adam Mosseri openly acknowledges TikTok as the inspiration: 'TikTok gets all the credit for pioneering the space.' Within 18 months, Reels is moved to its own dedicated bottom-nav tab, becomes the highest-engagement surface on Instagram, and dominates ~50%+ of time spent. By 2024, Mosseri is calling TikTok 'probably the most formidable competitor we've ever seen' — and Reels has saved Meta's ability to compete in short-form video.",
+    pullquote:
+      "TikTok gets all the credit for pioneering the space. This isn't about who invented something. It's about whether we can serve our community well in this format.",
+    pullquote_attribution: "Adam Mosseri, Head of Instagram — interviews around Reels launch, August 2020",
+    outcomes: [
+      { stat: "Aug 5, 2020", label: "Reels launches inside Instagram (US)", accent: true },
+      { stat: "Tab in Explore", label: "initial placement — deliberately not a top-nav surface" },
+      { stat: "Dedicated tab", label: "by 2022 — Reels promoted to bottom-nav after engagement grew" },
+      { stat: "~50%+", label: "of time spent on Instagram by 2023 happens in Reels" },
+      { stat: "TikTok rivalry", label: "the defining product battle for both companies through 2025" },
+    ],
+    tradeoffs: [
+      {
+        title: "Embed inside Instagram vs. standalone app",
+        body:
+          "Embedding got Reels in front of Instagram's 1B+ existing users immediately. Standalone (the Lasso 2018 model) would have produced cleaner brand and slower growth. Lasso failed; Stories' 2016 embedded-inside-Instagram playbook had won. Instagram applied the same playbook: distribution beats brand purity.",
+      },
+      {
+        title: "Acknowledge the clone vs. position as different",
+        body:
+          "Mosseri publicly credited TikTok — same playbook Kevin Systrom used in 2016 with Stories crediting Snap. Owning the clone defuses the 'shameless copy' criticism. Positioning Reels as differentiated would have invited unfavorable feature comparisons and looked dishonest.",
+      },
+      {
+        title: "Time-the-launch to TikTok ban threat vs. stay product-driven",
+        body:
+          "Launching during the Trump-TikTok-ban moment maximized news-cycle attention but tied Reels' framing to political circumstance. Staying product-driven would have produced cleaner narrative but missed the news window. Instagram took the news window and absorbed the 'opportunistic' framing.",
+      },
+      {
+        title: "Tab in Explore vs. top-nav placement",
+        body:
+          "Starting in Explore was deliberate — it let Reels grow organically without forcing existing users to see a new tab on every screen. The promotion to dedicated bottom-nav tab in 2022 was earned by engagement data, not announced at launch. The staged rollout reduced launch-week brand disruption and let the algorithm find the audience before forcing visibility.",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Defending Instagram's relevance with younger users + matching the format-of-the-moment vs. the brand cost of being seen as a TikTok clone + dilution of Stories. Meta chose to embed, openly credit the inspiration, and absorb the brand cost in exchange for distribution speed. Same trade Instagram Stories made in 2016 — and it worked again.",
+      user:
+        "The target user was under-25, the cohort that had been drifting to TikTok. Embedding Reels inside Instagram meant that audience didn't have to download a new app to get short-form video — reducing the friction that had previously favored TikTok.",
+      alt:
+        "A standalone Reels app would have produced a cleaner brand statement but almost certainly failed (Lasso proved this). The opposite trade — and the strategic loss would have been ceding short-form video to TikTok permanently. Instagram took the easier-distribution, harder-brand path because the alternative had already failed once.",
+      predict:
+        "Reels launches with moderate initial engagement (the audience isn't sure why this is in Instagram). Algorithm tunes over 12-18 months; engagement compounds. Reels gets a dedicated tab and becomes the highest-engagement surface on Instagram. TikTok continues to grow but no longer owns the format unchallenged. Long-term: short-form vertical video becomes the dominant content format across all social products; the decision to ship Reels inside Instagram saves Meta's relevance in the format.",
+    },
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Instagram's Adam Mosseri confirms ads are coming to Reels",
+        url: "https://www.cnbc.com/2020/11/12/instagram-head-adam-mosseri-on-reels-ads-e-commerce-2020-election.html",
+        publisher: "CNBC",
+        year: 2020,
+        type: "interview",
+      },
+      {
+        title: "Facebook readies global launch of its TikTok competitor",
+        url: "https://www.nbcnews.com/tech/tech-news/facebook-readies-global-launch-its-tiktok-competitor-n1234013",
+        publisher: "NBC News",
+        year: 2020,
+        type: "article",
+      },
+      {
+        title: "TikTok 'most formidable competitor', says Instagram CEO Adam Mosseri",
+        url: "https://www.deccanherald.com/business/tiktok-most-formidable-competitor-says-instagram-ceo-adam-mosseri-926065.html",
+        publisher: "Deccan Herald",
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-social", region: "us", decade: "2020s" },
   },
 ];
 
