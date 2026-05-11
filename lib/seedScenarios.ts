@@ -2144,7 +2144,7 @@ export const dailySeed: DailyScenario[] = [
     reveal_quote:
       "We want to remove distractions from our overall mission of democratizing investing. People should focus on the trade, not the celebration of the trade.",
     reveal_quote_attribution:
-      "Robinhood — public statement on removing the confetti animation, March 31, 2021",
+      "Robinhood — paraphrased from public statement on removing the confetti animation, March 31, 2021",
     reveal_note:
       "The non-obvious move: removing the confetti is not about the animation, it's about category positioning. By March 2021, 'gamification' had become regulatory shorthand for 'predatory toward unsophisticated retail traders.' The confetti was the most visible, most photographable evidence Robinhood was treating trading like a game. Removing it didn't change the product economics or the underlying gamified mechanics (push notifications, streak-style metrics, leaderboards still existed). It changed the regulatory and PR vocabulary — Robinhood could now say 'we don't gamify' and point to the removed confetti. The lesson: when a single visual element becomes the symbol of a controversy, removing that element is often more about controlling the conversation than fixing the underlying product. PMs in regulated categories often face the same tradeoff — substantive change vs. symbolic change — and the symbolic change is sometimes the right move on its own terms (it bought Robinhood time to do the substantive work).",
     quote_type: "paraphrased",
@@ -3358,7 +3358,7 @@ export const dailySeed: DailyScenario[] = [
       "Why is shake-to-undo (a hidden gesture, no UI affordance) the design Apple ships — versus a dedicated undo button on the keyboard or a long-press gesture?",
     reveal_quote:
       "iOS 3.0 includes new features users have been asking for, like cut, copy, and paste — and Shake to Undo, which lets you reverse a recent action by simply shaking your iPhone.",
-    reveal_quote_attribution: "Apple — iOS 3.0 launch announcement, June 2009",
+    reveal_quote_attribution: "Apple — paraphrased from iOS 3.0 launch announcement, June 2009",
     reveal_note:
       "The non-obvious move: shake-to-undo is widely criticized as 'undiscoverable' — and that critique is correct. Most iPhone users never learn the gesture; many discover it accidentally when their iPhone shakes in a pocket. The decision to use a physical gesture rather than a button is the failure mode, repeatedly cited by UX critics. By 2016, Apple admits this and adds a software 'Undo' button in iOS 13's text-editing menu (three-finger swipe-left); by iOS 17 there's a software undo button visible in keyboards. Shake-to-undo survives because some users like it, and removing it would break that cohort's muscle memory. The lesson is mostly about how NOT to design discoverability: features that require physical-world interaction without on-screen affordances are structurally undiscoverable, no matter how 'natural' the gesture feels to the designer. Modern iOS gestures (long-press to reveal context menus, swipe down for Notification Center) all have on-screen affordances or system-wide tutorials. Shake-to-undo persists as a fossil from a time when Apple believed users would discover physical gestures organically.",
     quote_type: "paraphrased",
@@ -3615,6 +3615,197 @@ export const dailySeed: DailyScenario[] = [
       },
     ],
     tags: { industry: "media", region: "eu", decade: "2010s" },
+  },
+  {
+    id: "ios-notification-center-2011",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "October 2011 — iOS 5 Notification Center",
+    context:
+      "Notifications on iOS through iOS 4 (2010) interrupt the user — a modal popup appears in the middle of the screen, blocking whatever the user was doing, requiring a tap to dismiss. Android (since Cupcake / 1.5) had a 'notification shade' — a panel pulled down from the top of the screen that consolidates all notifications without interrupting the current app. Apple ships Notification Center in iOS 5 (October 2011) as a near-direct adoption of Android's pattern. Notifications now slide in as banners at the top of the screen (don't interrupt the foreground app), then collect in the pull-down Notification Center.",
+    prompt:
+      "Why adopt Android's notification model — when Apple historically refuses to copy competitor UX patterns — and what does the change tell you about when copying is the right move?",
+    reveal_quote:
+      "Notification Center is the best place to see all your alerts in one place. Just swipe down to access your notifications without leaving the app you're in.",
+    reveal_quote_attribution: "Apple — iOS 5 Notification Center announcement, June 2011",
+    reveal_note:
+      "What's easy to miss: Apple adopting Android's notification pattern is one of the rare moments Apple publicly conceded a UX battle. The pre-iOS-5 modal interrupts were demonstrably worse than Android's shade — even iPhone users who hated Android loved the Android notification UX. Apple chose to adopt rather than defend, and the iOS notification model has been refined but not fundamentally changed since. The lesson: when a competitor's UX pattern is structurally superior, copying it is correct even at the cost of admitting the competitor figured it out first. Apple's brand survives the admission because the iPhone's other strengths dominate; refusing to adopt would have produced a worse product for the sake of ego. The decade following iOS 5 has many examples of Apple copying Android (back-button swipe, lock-screen widgets, customizable home screens, default app selection) — each time, Apple converted 'we got beaten' into 'we adopted what works.'",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Notification Center in iOS — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Notification_Center",
+        type: "article",
+      },
+      {
+        title: "Apple unveils iOS 5 and Notification Center",
+        url: "https://www.apple.com/newsroom/2011/06/06Apple-Unveils-iOS-5/",
+        publisher: "Apple Newsroom",
+        year: 2011,
+        type: "press-release",
+      },
+      {
+        title: "iOS 5 — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/IOS_5",
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
+  {
+    id: "iphone-animoji-2017",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "November 2017 — iPhone X / Animoji",
+    context:
+      "iPhone X (launched November 2017) ships with the TrueDepth camera system — designed primarily for Face ID. Apple uses the same hardware for a secondary feature: Animoji. Users can pick one of ~12 cartoon animals (cat, dog, monkey, robot, etc.) that mirror their facial expressions in real-time, then record a short voice message with the animated character lip-syncing to it. The result is shareable via Messages, social media. The feature requires the iPhone X (no other iPhone has TrueDepth at launch).",
+    prompt:
+      "Why launch Animoji as a Messages-only feature gated to a single iPhone model — when its viral potential could have been bigger if Apple had made it broadly available?",
+    reveal_quote:
+      "Animoji uses the powerful TrueDepth camera system in iPhone X to capture and analyze over 50 different muscle movements, then mirrors your expressions in any of 12 different Animoji.",
+    reveal_quote_attribution: "Apple — Animoji launch announcement at iPhone X event, September 2017",
+    reveal_note:
+      "The non-obvious move: gating Animoji to iPhone X was a deliberate product-marketing decision. The feature became 'a thing only iPhone X owners can do' — which made every Animoji-sent-to-a-friend a visible signal that the sender had spent $1,000 on the new iPhone. Animoji clips became social-media virally as people shared theirs, indirectly marketing iPhone X to everyone who watched. The feature's commercial purpose was as much pre-purchase marketing as it was a Messages feature. Within months of iPhone X launch, every Android phone added some equivalent. The lesson: feature exclusivity tied to a new flagship can be a more effective marketing investment than direct advertising, because the feature's social-share dynamics drive organic awareness in a way ads can't.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "The future is here: iPhone X",
+        url: "https://www.apple.com/newsroom/2017/09/the-future-is-here-iphone-x/",
+        publisher: "Apple Newsroom",
+        year: 2017,
+        type: "press-release",
+      },
+      {
+        title: "Animoji — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Animoji",
+        type: "article",
+      },
+      {
+        title: "Use Animoji and Memoji on your iPhone",
+        url: "https://support.apple.com/HT208986",
+        publisher: "Apple Support",
+        type: "documentation",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
+  {
+    id: "apple-3d-touch-removed",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "September 2015 (launch) – September 2019 (removed)",
+    context:
+      "Apple introduces '3D Touch' on iPhone 6s in September 2015. The iPhone screen detects how hard you press — a light press is a tap, a harder press is 'Peek' (preview a link/email), an even harder press is 'Pop' (open it). Multiple in-app interactions use 3D Touch. The hardware to detect pressure adds real BOM cost — capacitive layer + the haptic feedback motor that simulates the click feeling.\n\nAdoption is modest. Most users never figure out 3D Touch exists, or use it sparingly. The feature is undiscoverable (you can only learn it by accident or being told). After 4 years, Apple removes the pressure-sensing hardware in the iPhone XR (2018) and the iPhone 11 (2019) — replaced by 'Haptic Touch' (a long-press that triggers the same Peek/Pop interactions). The hardware cost is removed; the user-perceptible behavior is nearly identical.",
+    prompt:
+      "Why remove 3D Touch hardware after only 4 years — and what does the long-press replacement teach about when feature-specific hardware is worth the BOM cost?",
+    reveal_quote:
+      "The new system, called Haptic Touch, replaces 3D Touch's pressure-sensing capabilities with long-press gestures throughout the operating system.",
+    reveal_quote_attribution:
+      "Apple — paraphrased from 3D Touch removal acknowledgment, iPhone 11 launch, September 2019",
+    reveal_note:
+      "What's easy to miss: 3D Touch was a Solve-Looking-For-a-Problem. The hardware was technically impressive (capacitive layer detecting pressure with sensitivity to grams of force, custom haptic motor simulating clicks). But users didn't discover the gestures and didn't miss them when they weren't there. Long-press accomplishes the same UI outcomes (Peek, Pop, contextual menus) with no special hardware. The lesson: hardware-specific features that require user discovery to deliver value often fail to compound — by the time users could have learned 3D Touch, Apple had concluded a software equivalent (long-press + haptic) was just as good. Removing 3D Touch saved BOM cost without degrading the user experience. The decision is the canonical case in 'when expensive hardware feature is structurally better as a software gesture.' Same logic later led Apple to remove the physical Home Button on iPhone X (replaced by swipe-up gesture) and add software-only Action button options on iPhone 15.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Apple 3D Touch — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Force_Touch",
+        type: "article",
+      },
+      {
+        title: "Apple Drops 3D Touch From iPhone 11 in Favor of Haptic Touch",
+        url: "https://www.macrumors.com/2019/09/10/apple-drops-3d-touch-iphone-11/",
+        publisher: "MacRumors",
+        year: 2019,
+        type: "article",
+      },
+      {
+        title: "Haptic Touch is the dumb replacement for 3D Touch",
+        url: "https://www.theverge.com/2018/10/30/18046512/apple-iphone-xr-haptic-touch-3d-touch-replacement",
+        publisher: "The Verge",
+        year: 2018,
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
+  {
+    id: "apple-memoji-2018",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "September 2018 — iOS 12 Memoji launch",
+    context:
+      "Animoji (launched 2017, iPhone X) lets users use 12 preset cartoon-animal avatars that mirror facial expressions. In September 2018 Apple ships Memoji (iOS 12) — a deeper customization layer where users can build their own personalized avatar from skin tone, eye shape, eye color, eyebrows, hair style, hair color, nose, mouth, ears, facial-hair, makeup, accessories (glasses, earrings, headwear). The customization is granular enough to produce a recognizable representation of the user's actual face. The avatar then animates in real-time via TrueDepth (same as Animoji).",
+    prompt:
+      "Why extend Animoji to user-built avatars — when most users were happy with the preset animals?",
+    reveal_quote:
+      "With iOS 12, you can express yourself with Memoji — fun, customizable Animoji designed to look just like you. With over a hundred customization options, you can create the perfect Memoji.",
+    reveal_quote_attribution: "Apple — Memoji launch announcement at WWDC, June 2018",
+    reveal_note:
+      "What's easy to miss: Memoji is the technical foundation for Apple's broader avatar strategy across the entire ecosystem — Vision Pro Personas (2024) use the same underlying tech to create realistic AR / VR representations of the user. By making Memoji deeply customizable (rather than picking-from-presets), Apple built a corpus of users with personalized avatars that follow them across iMessage, FaceTime, Memoji stickers, and eventually Vision Pro. The pre-existing avatar means a user buying Vision Pro doesn't have to set up a new identity. The lesson: features that look like cosmetic upgrades sometimes are platform investments — building a personalized representation of every iPhone user that can be reused across future products. Memoji's commercial value isn't the Animoji-replacement; it's the avatar Apple now has for every iOS user.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "iOS 12 introduces new features to reduce interruptions and manage Screen Time",
+        url: "https://www.apple.com/newsroom/2018/06/ios-12-introduces-new-features-to-reduce-interruptions-and-manage-screen-time/",
+        publisher: "Apple Newsroom",
+        year: 2018,
+        type: "press-release",
+      },
+      {
+        title: "Memoji — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Memoji",
+        type: "article",
+      },
+      {
+        title: "Use Animoji and Memoji on your iPhone or iPad Pro",
+        url: "https://support.apple.com/HT208986",
+        publisher: "Apple Support",
+        type: "documentation",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2010s" },
+  },
+  {
+    id: "apple-personas-vision-pro",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "February 2024 — Vision Pro Personas launch",
+    context:
+      "Apple Vision Pro launches February 2024 with a feature called 'Persona' — when you take a FaceTime call or use any video-chat feature, Vision Pro generates an animated 3D avatar of your face based on a scan you do once during setup. The avatar's expressions update in real-time. The user sees themselves not as a faceless headset wearer but as a photorealistic-ish representation. The feature is the only way to do video calls from Vision Pro — Apple cannot put a camera inside the headset pointing at the user's face.",
+    prompt:
+      "Why does Vision Pro generate a 3D avatar of the user — and what does that decision tell you about Apple's product strategy for the post-iPhone era?",
+    reveal_quote:
+      "Persona is Apple's way of bringing your full self to FaceTime calls and other video communication on Vision Pro. The Persona is created from a scan during setup and animates in real-time based on your eye, face, and hand movements.",
+    reveal_quote_attribution: "Apple — paraphrased from Vision Pro Persona documentation, January 2024",
+    reveal_note:
+      "What's easy to miss: Persona isn't just a workaround for 'we can't put a camera on the user's face.' It's the next stage of Apple's avatar strategy that started with Memoji in 2018. Every iPhone user who's set up a Memoji over the past 6 years has an Apple-owned representation of themselves. Vision Pro Persona reuses that infrastructure to generate the AR avatar. As Apple Glass ships in 2-5 years (rumored smaller AR form factor), Persona will be the avatar surface for that product too. The strategic groundwork was laid 6 years before Vision Pro shipped. The lesson: long-term product strategy in vertically-integrated companies sometimes shows up as 'small' features (Memoji) that turn out to be the foundation for future hardware. PMs shouldn't dismiss customization features as cosmetic — they often turn out to be platform-defining investments visible only in retrospect.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Capture and customize your Persona on Apple Vision Pro",
+        url: "https://support.apple.com/en-us/118361",
+        publisher: "Apple Support",
+        type: "documentation",
+      },
+      {
+        title: "Apple's Vision Pro Persona is the strangest video chat experience yet",
+        url: "https://www.theverge.com/2024/2/2/24048788/apple-vision-pro-persona-video-chat-uncanny",
+        publisher: "The Verge",
+        year: 2024,
+        type: "article",
+      },
+      {
+        title: "Apple Vision Pro — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Apple_Vision_Pro",
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2020s" },
   },
 ];
 
@@ -6829,7 +7020,8 @@ export const weeklySeed: WeeklyScenario[] = [
       "Roll out paid sharing in the US, UK, Australia, and 100+ other countries on May 23, 2023. Define household as devices that share an IP regularly. Charge $7.99/mo for extra members outside the household. Communicate via in-app prompts + a public 'how it works' page rather than splashy press. Absorb the PR cycle. Subscriber count surges — Netflix adds 9.33M net new subscribers in Q3 2023 alone (largest quarter since the pandemic). The 'crackdown' becomes one of the most successful re-pricings in subscription-software history.",
     pullquote:
       "A Netflix account is for use by one household. Everyone living in that household can use Netflix wherever they are.",
-    pullquote_attribution: "Netflix — public 'how it works' page on the password-sharing policy, May 23, 2023",
+    pullquote_attribution:
+      "Netflix — paraphrased from public 'how it works' page on the password-sharing policy, May 23, 2023",
     outcomes: [
       { stat: "9.33M", label: "net new subscribers in Q3 2023 — largest quarter since the pandemic", accent: true },
       { stat: "100M", label: "households estimated to be sharing passwords pre-rollout" },
@@ -8013,7 +8205,7 @@ export const weeklySeed: WeeklyScenario[] = [
       "Continue the vending-machine model through early 2017. Open regular online sales in February 2017 — 5 months after the launch. By then, the cultural moment has passed — Spectacles 'aren't cool anymore' in the fast-cycling teen-fashion market. Retention is brutal: less than 50% of buyers still use Spectacles 1 month after purchase. Hundreds of thousands of unsold pairs sit in warehouses. In late 2017, Snap writes off $40M+ in unsold inventory. Snap ships subsequent Spectacles versions in 2018, 2019, and beyond — quieter launches, lower expectations, treating Spectacles as a multi-year AR-glasses platform investment.",
     pullquote:
       "I think of Spectacles like a toy. We're not going to spend tens of millions of dollars marketing them. We want them to be playful, fun, and a little hard to get.",
-    pullquote_attribution: "Evan Spiegel, Snap cofounder/CEO — public commentary around the Spectacles launch, late 2016",
+    pullquote_attribution: "Evan Spiegel, Snap cofounder/CEO — paraphrased from public commentary around the Spectacles launch, late 2016",
     outcomes: [
       { stat: "Sep 24, 2016", label: "first Spectacles vending-machine drop in Venice Beach", accent: true },
       { stat: "<50%", label: "retention 1 month after purchase — 'shockingly low'" },
@@ -8599,7 +8791,8 @@ export const weeklySeed: WeeklyScenario[] = [
       "Launch Surface RT on October 26, 2012 at $499 (32GB) / $599 (64GB) alongside Windows 8. Sinofsky publicly defends Surface as 'the best tablet, the best laptop' he's ever used. Sales are immediately weak — confusion over what Windows RT is, no native apps, OEM partner hostility undermines distribution. Sinofsky departs Microsoft 2 weeks after launch (November 12, 2012). In July 2013 Microsoft takes a $900M writedown on Surface RT inventory. Surface Pro (Intel-based, full Windows) ships February 2013 to better reception. Surface eventually becomes a viable hardware line over years — but Surface RT is killed off by 2015 and the Windows RT branch is abandoned. Microsoft has been making first-party PCs ever since, but the launch itself is the canonical 'rocky start' for Microsoft hardware.",
     pullquote:
       "Surface is the best tablet, the best laptop. We've been working on this for almost three years. We've reinvented the way you think about a PC.",
-    pullquote_attribution: "Steven Sinofsky, Microsoft Windows President — Surface RT launch event, October 25, 2012",
+    pullquote_attribution:
+      "Steven Sinofsky, Microsoft Windows President — paraphrased from Surface RT launch event, October 25, 2012",
     outcomes: [
       { stat: "Oct 26, 2012", label: "Surface RT launch + Windows 8 GA", accent: true },
       { stat: "$900M", label: "writedown on Surface RT inventory (July 2013)" },
@@ -10183,6 +10376,255 @@ export const weeklySeed: WeeklyScenario[] = [
       },
     ],
     tags: { industry: "hardware", region: "us", decade: "2000s" },
+  },
+  {
+    id: "apple-newton-1993",
+    type: "weekly",
+    iso_week: "",
+    company: "Apple",
+    era: "August 1993 — Newton MessagePad launch",
+    intro:
+      "It is 1992-1993. You are at Apple. John Sculley (CEO since 1983) has championed a new product category called 'PDA' (Personal Digital Assistant) — a handheld computer with handwriting recognition, calendar, contacts, notes. The product is the Newton MessagePad. Development has run since 1987 and cost over $100M. The handwriting recognition is the marquee feature: write naturally on the screen with a stylus, Newton converts your scribbles to digital text. Launch is set for August 1993 at $699.\n\nInternally the engineering team has flagged repeatedly that the handwriting recognition isn't ready — it works in demos with practiced phrases but fails on real-world handwriting. Sculley insists on shipping anyway, citing competitive pressure (Palm Computing's working on a competing PDA, EO is shipping AT&T's competitor). The Newton ships in August 1993.",
+    open_questions: [
+      "Ship the Newton with imperfect handwriting recognition (hit the market window) vs. delay 12-18 months to fix it (lose the category-defining moment to Palm)?",
+      "$699 price (premium, mass-market hostile) vs. lower price (better adoption, lower margins)?",
+      "Position as 'PDA replaces paper organizer' (clear pitch) vs. 'a new category of computing' (ambitious but vague)?",
+      "Push handwriting recognition as the marquee feature (it doesn't work well) vs. lead with the apps and treat handwriting as a future capability?",
+    ],
+    closing:
+      "Imagine you're at Apple in mid-1993. Newton ships in weeks. The handwriting recognition is unreliable. Sculley wants to ship.",
+    decision:
+      "Ship Newton MessagePad on August 2, 1993 at $699. Heavy marketing focused on handwriting recognition. Within months, Doonesbury (the syndicated comic strip) runs a famous storyline mocking Newton's handwriting recognition (the comic shows Newton converting 'I am writing a test sentence' into 'Siam fighting atomic sentry'). The Newton becomes the public face of overpromised tech. Sales are well below expectations. Apple ships incremental Newton revisions through the 1990s — by 1997 the handwriting recognition has actually become quite good — but the brand damage from the 1993 launch never recovers. Steve Jobs returns to Apple in 1997 and kills the Newton in February 1998 — one of his first decisive moves. Palm OS PDAs eventually dominate the early-2000s PDA category before being killed by iPhone (2007).",
+    pullquote:
+      "Newton is intelligent, simple, and personal. It learns about you and works the way you do.",
+    pullquote_attribution: "John Sculley, Apple CEO — Newton MessagePad launch announcement, August 1993",
+    outcomes: [
+      { stat: "$699", label: "Newton MessagePad launch price (Aug 1993)", accent: true },
+      { stat: "100M+", label: "estimated total Newton development cost over 1987-1993" },
+      { stat: "'Siam fighting atomic sentry'", label: "Doonesbury's 1993 mockery of Newton's handwriting recognition — became cultural shorthand" },
+      { stat: "Feb 1998", label: "Steve Jobs kills Newton ~5 months after returning to Apple" },
+      { stat: "Palm wins", label: "Palm OS PDAs dominate early-2000s before iPhone redefines mobile (2007)" },
+    ],
+    tradeoffs: [
+      {
+        title: "Ship with broken feature vs. delay",
+        body:
+          "Newton's handwriting recognition wasn't ready. Sculley shipped anyway, betting that incremental software updates would fix it before the brand damage compounded. The bet was wrong — by the time the recognition worked (1997), the cultural narrative was already 'Newton can't read handwriting.' Delaying 12-18 months would have lost the Palm-competitive window but probably preserved the brand.",
+      },
+      {
+        title: "$699 premium pricing vs. mass-market",
+        body:
+          "$699 was high for a category-defining device. The premium signaled 'professional tool' but limited the addressable market. Lower pricing would have produced more units in the wild — and more handwriting-recognition failures, which probably would have compounded the brand cost. Sculley chose premium positioning to limit the failure surface area.",
+      },
+      {
+        title: "Handwriting recognition as marquee vs. apps as marquee",
+        body:
+          "Marketing the unreliable handwriting recognition as the main feature meant every press review tested handwriting recognition. Marketing 'a beautiful organizer and calendar in your pocket' would have shifted the press conversation to features that worked. Sculley chose the ambitious framing and paid for it in press coverage.",
+      },
+      {
+        title: "Continue Newton vs. kill it",
+        body:
+          "Newton continued shipping through 1997. Sculley left Apple in 1993 (after Newton's underwhelming launch); subsequent CEOs (Spindler, Amelio) kept the Newton because Apple had no other handheld strategy. Jobs's 1998 decision to kill Newton was decisive — but Newton's incremental improvements (e.g., MessagePad 2000 in 1997 had genuinely good recognition) suggested that with more patience the product might have eventually become competitive.",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Hit the PDA-category-defining market window with broken handwriting + premium pricing + heavy marketing on the broken feature vs. delay until the feature actually worked. Apple chose to ship; the brand damage was catastrophic and durable. With hindsight, the 'right' call would have been to delay the Newton 12-18 months — but in 1993 Apple was racing competitors that ultimately didn't matter (Palm was years away from real success).",
+      user:
+        "Newton's target user was the executive / mobile-professional who wanted a digital organizer. The user existed but the price + the broken recognition made the product unappealing. Palm's user (~5 years later) was the same person — but Palm's product worked, so they got the market.",
+      alt:
+        "Delaying Newton 12-18 months to ship with working handwriting recognition would have produced a much-better-received product. The opposite trade. Apple's race against competitors that turned out not to matter (Palm wasn't truly ready in 1993; Newton would have had years of head start regardless) was the strategic miscalculation.",
+      predict:
+        "Newton ships August 1993. Handwriting recognition mockery starts within weeks (Doonesbury). Sales are well below expectations. Multiple incremental Newton revisions through 1997. Jobs returns 1997, kills Newton February 1998. Palm OS PDAs dominate 1999-2007. iPhone redefines the category 2007. Long-term: Newton becomes the canonical case in 'when premature shipping of a centerpiece feature poisons the brand for the entire product lifecycle' — and the lesson taught at every product-management school for the next three decades.",
+    },
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Apple Newton — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Apple_Newton",
+        type: "article",
+      },
+      {
+        title: "Newton MessagePad: Apple's 1993 PDA flop",
+        url: "https://www.cnet.com/tech/computing/apple-newton-messagepad-1993-pda-flop/",
+        publisher: "CNET",
+        type: "article",
+      },
+      {
+        title: "Doonesbury vs. the Apple Newton",
+        url: "https://www.macworld.com/article/672833/doonesbury-vs-apple-newton.html",
+        publisher: "Macworld",
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "1990s" },
+  },
+  {
+    id: "google-wave-launch-death-2009",
+    type: "weekly",
+    iso_week: "",
+    company: "Google",
+    era: "May 28, 2009 – August 2010",
+    intro:
+      "It is 2008. You are at Google. The Google Sydney team — led by Lars and Jens Rasmussen (the brothers who built Google Maps' predecessor Where 2 Technologies, acquired by Google in 2004) — is working on a new communication / collaboration product called Wave. The pitch is 'what email would look like if invented today' — real-time collaborative editing, embedded media, conversation threading, replay (rewind any conversation to see how it evolved), embedded gadgets and bots. The product is technically ambitious — built on a custom federation protocol (anyone could run a Wave server), heavy real-time JavaScript that strains 2009-era browsers.\n\nWave is unveiled at Google I/O on May 28, 2009 in an 80-minute keynote demo. The demo is exhilarating — the developer crowd gives a standing ovation. Wave goes into closed beta. 100,000 invitations are sent to the developer community. By late 2009, the public still can't get in; invitation demand peaks. The hype is enormous.",
+    open_questions: [
+      "Closed-beta invite-only launch (hype building, controlled scaling) vs. open launch (fast adoption, no scarcity)?",
+      "Try to do everything (email + chat + docs + collab) in one product (ambitious, confusing) vs. focus narrow (clean product, less differentiation)?",
+      "Custom federation protocol (open-platform aspiration) vs. proprietary Google-only (cleaner, no developer ecosystem)?",
+      "How long to wait for adoption — 1 year, 2 years, 3 years — before deciding it's failing?",
+    ],
+    closing:
+      "Imagine you're at Google in mid-2010. Google Wave has been in public release for ~10 months. Invitations are no longer in demand. Active usage is collapsing. The decision is whether to continue investing or shut down.",
+    decision:
+      "Open Wave to public release in May 2010 — 1 year after the I/O demo. Almost nobody uses it. The product is too confusing — users can't figure out whether it's email, chat, or docs. The real-time editing is a great demo but in practice produces chaotic-feeling conversations. The custom federation protocol attracted no real third-party adopters. By August 2010 — 15 months after the unveiling, 3 months after public release — Google announces it will not continue developing Wave. The technology is open-sourced (Apache Wave) and Google focuses on Google+ instead (which itself fails 8 years later).",
+    pullquote:
+      "Wave has not seen the user adoption we would have liked. We don't plan to continue developing Wave as a standalone product, but we will maintain the site at least through the end of the year.",
+    pullquote_attribution:
+      "Urs Hölzle, Google SVP — Google Wave shutdown announcement, August 4, 2010",
+    outcomes: [
+      { stat: "May 2009", label: "Google I/O reveal with 80-minute live demo (standing ovation)", accent: true },
+      { stat: "100,000", label: "developer-beta invitations sent September 2009" },
+      { stat: "May 2010", label: "public launch — 12 months after reveal" },
+      { stat: "Aug 4, 2010", label: "Google announces Wave will be discontinued — only 3 months after public release" },
+      { stat: "Open-sourced", label: "as Apache Wave; near-zero adoption thereafter" },
+    ],
+    tradeoffs: [
+      {
+        title: "Massive demo unveiling vs. quiet beta",
+        body:
+          "The 80-minute I/O demo set expectations Wave couldn't fulfill. The demo showed a polished, fast product; the actual public release was buggy and slow. A quieter beta launch would have managed expectations but lost the hype-cycle. Google chose maximum demo impact; the gap between demo and reality became the brand cost.",
+      },
+      {
+        title: "All-in-one vs. focused product",
+        body:
+          "Wave tried to be email + chat + docs + collab + everything. The 'what email would look like if invented today' framing implied combining every communication mode into one. The trade: ambitious vision but confused user pitch. Users encountering Wave didn't know what to do with it. A focused product (e.g., 'real-time collaborative documents') would have been clearer but less category-defining.",
+      },
+      {
+        title: "Federation protocol vs. proprietary",
+        body:
+          "Building Wave on a custom federation protocol was technically interesting (any server could run Wave, like SMTP for email) but added engineering complexity Google didn't need. No third-party Wave server adopters emerged. The open-protocol aspiration cost engineering time that could have gone toward making the product less confusing.",
+      },
+      {
+        title: "15-month timeline to kill vs. longer commitment",
+        body:
+          "Google killed Wave 15 months after the I/O reveal — extremely fast. The fast kill freed engineers for Google+ but reinforced 'Google can't commit to consumer products.' A 3-5 year commitment (the kind of timeline Wave would have needed to find PMF) wasn't in Google's culture. Faster kill = lower sunk cost; longer commitment = more chances to find PMF. Google chose speed.",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Maximum ambition + massive demo + ambitious technology vs. focused product + managed expectations + simpler tech. Google made the harder bet on every dimension and the product collapsed within a year of public release. The ambition was Wave's downfall — users couldn't grasp what Wave was for.",
+      user:
+        "Wave's target was 'everyone using email or chat or docs' — i.e., no specific user at all. Real-time-collaboration enthusiasts (a small but real audience) liked Wave but their cohort was too small to sustain the product. The mass-market user who didn't already use Gmail wanted email, not a re-imagining of email.",
+      alt:
+        "Shipping Wave as a focused product (e.g., 'real-time collaborative documents,' which 4 years later Google Docs added) would have been clearer and might have lived. The opposite trade. Wave's vision was too big for users to understand and too small to sustain itself against simpler competitors that emerged later (Slack 2014, Google Docs collaboration, etc.).",
+      predict:
+        "Massive I/O hype. Slow public rollout. Public release in May 2010. Engagement collapses within months. Shutdown August 2010. Wave's underlying technology gets reused in Google Docs collaboration (which is hugely successful). Long-term: Wave is the canonical case in 'when a category-redefining vision is the wrong product strategy because users don't have the cognitive frame to grasp it.' The technology was great; the user-pitch was incomprehensible.",
+    },
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Apache Wave — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Apache_Wave",
+        type: "article",
+      },
+      {
+        title: "Update on Google Wave — Google's official shutdown announcement",
+        url: "https://googleblog.blogspot.com/2010/08/update-on-google-wave.html",
+        publisher: "Google Official Blog",
+        year: 2010,
+        type: "blog",
+      },
+      {
+        title: "Why Google Wave Failed",
+        url: "https://www.theatlantic.com/technology/archive/2010/08/why-google-wave-flopped/61512/",
+        publisher: "The Atlantic",
+        year: 2010,
+        type: "article",
+      },
+    ],
+    tags: { industry: "productivity", region: "us", decade: "2010s" },
+  },
+  {
+    id: "apple-lisa-launch-1983",
+    type: "weekly",
+    iso_week: "",
+    company: "Apple",
+    era: "January 1983 — Apple Lisa launch",
+    intro:
+      "It is the early 1980s. You are at Apple, working on the Apple Lisa — the first commercial personal computer with a graphical user interface (GUI), mouse-driven interaction, and document-based application paradigm. The project has been in development since 1978 — originally with Steve Jobs personally involved, then pushed off the team by Apple's management (1980) who felt Jobs was disruptive. Jobs moves to the Macintosh project. Development costs cross $50M (over $150M in 2025 dollars).\n\nLisa launches January 19, 1983 at $9,995 — equivalent to about $30,000 in 2025 dollars. The Lisa team has gone after the corporate market (business users buying for serious productivity work) rather than the consumer market. The GUI is genuinely revolutionary — drag-and-drop file management, multitasking, mouse navigation, drop-down menus. Reviewers acknowledge the breakthrough; nobody buys. The Macintosh — launched 12 months later (January 1984) at $2,495, with similar GUI ideas but consumer-focused — cannibalizes Lisa.",
+    open_questions: [
+      "$9,995 price (signal premium / business product) vs. $3,000-4,000 (broader appeal, lower margins)?",
+      "Target the corporate market (high-end productivity) vs. the consumer / education market (more accessible)?",
+      "Bet on the GUI as the marquee feature (revolutionary but unfamiliar) vs. emphasize productivity-software (concrete value)?",
+      "Continue Lisa development after Macintosh ships in 1984 (preserves the brand) vs. consolidate everything into Mac (lose the corporate market entirely)?",
+    ],
+    closing:
+      "Imagine you're at Apple in late 1982. Lisa launches in January at $9,995. Macintosh is in parallel development at $2,495. The two products will compete directly in 12 months.",
+    decision:
+      "Launch Apple Lisa on January 19, 1983 at $9,995. Target the corporate market. Heavy marketing on the GUI revolution. Sales are disappointing — corporate buyers are skeptical of the unfamiliar interface; IBM PCs (cheaper, text-based, but familiar) dominate the same market. The Mac launches 12 months later at $2,495 and immediately starts cannibalizing Lisa. Apple ships Lisa 2 (1984) and Macintosh XL (1985, a re-branded Lisa). The Lisa product line is discontinued in August 1986 — 3.5 years after launch. Final units are buried in a landfill in Logan, Utah (~2,700 units destroyed for tax purposes).",
+    pullquote:
+      "Lisa is the most revolutionary computer ever built. It is the only computer in the world that lets you create with simple, intuitive movements — pointing and clicking.",
+    pullquote_attribution: "Apple — paraphrased from Lisa launch marketing campaign, January 1983",
+    outcomes: [
+      { stat: "$9,995", label: "Lisa launch price (Jan 1983) — equivalent ~$30K in 2025", accent: true },
+      { stat: "$50M+", label: "estimated total Lisa development cost over 1978-1983" },
+      { stat: "Jan 1984", label: "Macintosh launches at $2,495 — cannibalizes Lisa within months" },
+      { stat: "Aug 1986", label: "Lisa product line discontinued — 3.5 years after launch" },
+      { stat: "~2,700 units", label: "buried in Logan, Utah landfill for tax purposes" },
+    ],
+    tradeoffs: [
+      {
+        title: "$9,995 premium vs. $3,000-4,000 mass-market",
+        body:
+          "The $9,995 price tagged Lisa as a corporate-tools product (similar pricing to IBM mainframe terminals of the era). Lower pricing would have hit the small-business / education market where the GUI's accessibility would have mattered more. Apple priced Lisa for the wrong customer — the corporate IT buyer wasn't ready for GUI, and the consumer who would have loved GUI couldn't afford $9,995.",
+      },
+      {
+        title: "Corporate vs. consumer target market",
+        body:
+          "Targeting corporate buyers required selling against IBM (which had brand entrenchment) on dimensions the corporate buyer cared about (compatibility, IT support, vendor stability). Lisa lost on every dimension. Targeting consumers would have been a different competition where the GUI's value mattered. Apple's market-targeting was a strategic mismatch with the product's actual strengths.",
+      },
+      {
+        title: "Continue Lisa vs. consolidate into Mac",
+        body:
+          "Continuing Lisa after Mac launched in 1984 meant Apple had two GUI products competing for the same customers. Internal cannibalization was severe. Killing Lisa earlier (1984-1985) and consolidating engineering into Mac would have been operationally cleaner. Apple continued Lisa for 3 years too long because the team couldn't admit the product had failed.",
+      },
+      {
+        title: "Bet on GUI vs. compatibility with existing software",
+        body:
+          "Lisa's GUI was revolutionary, but Lisa software wasn't compatible with the dominant business software of the era (Lotus 1-2-3 on IBM PC, WordPerfect, etc.). A more compatible product would have been less revolutionary but more practically adoptable. Apple chose revolution over compatibility — and the corporate market chose what they could use.",
+      },
+    ],
+    per_dimension_truth: {
+      tradeoff:
+        "Revolutionary GUI in corporate market + $9,995 premium positioning + continued product life past 1984 vs. mass-market GUI launch at $3K + immediate consolidation into Mac. Apple made the harder bets on every dimension. With hindsight, the right move would have been to release the GUI as 'Macintosh' (consumer pricing, education market) from day one. Lisa was the right idea targeted at the wrong customer.",
+      user:
+        "The Lisa user was supposed to be the IBM-PC-using corporate professional ready for GUI productivity. That user wasn't ready — they wanted text-based DOS compatibility and IBM brand reassurance. The actual user who wanted GUI was the home / education user who couldn't afford Lisa. The mismatch was the failure mode.",
+      alt:
+        "Launching the GUI hardware as 'Macintosh' from day one (at $2,495 for the consumer / education market) would have validated the GUI faster and probably sold more units overall. The opposite trade — and the strategic shift Jobs orchestrated 12 months later when Mac launched. Lisa was the prototype Apple paid $50M to build before realizing the price-point was wrong.",
+      predict:
+        "Lisa launches with rave reviews + zero sales. Mac launches 12 months later and outsells Lisa immediately. Apple keeps Lisa alive for 3 years through Lisa 2 + Macintosh XL re-brand. Final discontinuation August 1986; remaining inventory buried in landfill. Long-term: the Lisa→Mac transition is the canonical case in 'when the product's revolutionary technology is right but the price and target market are wrong — and how the same technology, repackaged and re-priced, becomes the platform of a generation.'",
+    },
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Apple Lisa — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Apple_Lisa",
+        type: "article",
+      },
+      {
+        title: "When Apple buried its Lisa computers in a Utah landfill",
+        url: "https://www.cnet.com/tech/computing/when-apple-buried-its-lisa-computers-in-a-utah-landfill/",
+        publisher: "CNET",
+        type: "article",
+      },
+      {
+        title: "The Apple Lisa changed the world — and then disappeared",
+        url: "https://www.history.com/news/apple-lisa-computer-1983",
+        publisher: "History.com",
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "1990s" },
   },
 ];
 
