@@ -8151,6 +8151,236 @@ export const dailySeed: DailyScenario[] = [
     ],
     tags: { industry: "consumer-social", region: "us", decade: "2010s" },
   },
+  {
+    id: "spotify-discover-weekly-monday",
+    type: "daily",
+    scheduled_date: "",
+    company: "Spotify",
+    era: "2015+ — Discover Weekly Monday cadence",
+    context:
+      "Spotify Discover Weekly (already in the pool as a daily — personalized 30-track playlist) has one critical design detail: it refreshes every Monday morning. Not on signup-anniversary, not on a rolling 7-day basis per user, not on the user's first listening day of the week. Specifically Monday — the same day for every user globally (adjusted for time zone). The Monday cadence is the entire ritual.",
+    prompt:
+      "Why Monday — and what does syncing the refresh time across all users do that per-user rolling refresh wouldn't?",
+    reveal_quote:
+      "Discover Weekly refreshes every Monday. We chose Monday because it's the start of the week, when users are most likely to be looking for something new for their commute, their gym workout, their week ahead.",
+    reveal_quote_attribution: "Spotify — paraphrased from Discover Weekly product commentary",
+    reveal_note:
+      "What's easy to miss: same-day-globally refresh creates a social-shared moment. Friends, coworkers, music journalists all wake up Monday with new Discover Weeklies; the experience can be shared simultaneously ('have you heard the X track Spotify gave you this week?'). A rolling per-user refresh would have produced no shared moment — each user discovers their personalization in isolation. Monday-globally also creates a content marketing surface: 'New Music Mondays' becomes a recurring theme for Spotify's brand. Apple Music's 'New Music Mix' (similar product, launched 2018) refreshes Fridays — explicitly to avoid head-on competition with Spotify's Monday. The lesson: synchronized timing of personalized content delivery creates network-effects that personalization alone doesn't. Same logic applies to BeReal's daily window (everyone at the same moment), Spotify Wrapped's December timing (the cultural December moment), and Apple's annual September iPhone keynote (everyone watches at the same time).",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "How Spotify's Discover Weekly works",
+        url: "https://engineering.atspotify.com/2015/11/what-made-discover-weekly-one-of-our-most-successful-feature-launches-to-date",
+        publisher: "Spotify Engineering",
+        year: 2015,
+        type: "blog",
+      },
+      {
+        title: "Discover Weekly — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Spotify",
+        type: "article",
+      },
+      {
+        title: "The science of Discover Weekly",
+        url: "https://qz.com/571007/the-magic-that-makes-spotifys-discover-weekly-playlists-so-damn-good",
+        publisher: "Quartz",
+        type: "article",
+      },
+    ],
+    tags: { industry: "media", region: "eu", decade: "2010s" },
+  },
+  {
+    id: "github-octocat-mascot",
+    type: "daily",
+    scheduled_date: "",
+    company: "GitHub",
+    era: "2008+ — Octocat brand mascot",
+    context:
+      "Developer tools in the late 2000s have boring corporate branding — IBM blue, Microsoft logos, generic icons. GitHub's brand is anchored by 'Octocat' — a cat with octopus tentacles for legs, designed by artist Cameron McEfee in 2008. The Octocat appears everywhere — on the site, in error messages (when GitHub is down, an Octocat 'unicorn' image appears), in conference talks, on stickers (laptop covers globally), as customized 'Octodex' variations for specific themes (Halloween Octocat, Female Octocat, Black Lives Matter Octocat). The mascot is the brand.",
+    prompt:
+      "Why anchor a developer-tools brand on a whimsical cat mascot — when developer tools' typical audience is highly technical and not historically receptive to playful branding?",
+    reveal_quote:
+      "Octocat is our beloved mascot. He's been with us since the beginning, and represents the playful, creative spirit that we believe makes coding fun.",
+    reveal_quote_attribution: "GitHub — paraphrased from brand commentary",
+    reveal_note:
+      "What's easy to miss: Octocat is one of the most-recognized tech brand mascots of the 2010s, in a category where most companies have no mascot at all. The mascot creates emotional brand attachment that pure logos don't — developers put Octocat stickers on their laptops because it's whimsical, not because they're advertising GitHub. The Octodex (customized variations for events, themes, employees) generates ongoing brand-engagement content. When GitHub is down, the 'unicorn' Octocat error page makes the outage feel charming rather than catastrophic. The lesson: in technical-tool brands, playful mascots can be more durable than serious logos. Developers and engineers — counter to stereotypes — respond strongly to whimsy when it's authentic. GitHub's brand strength among developers is partly the Octocat; Linux's mascot (Tux the penguin), Mozilla's (Firefox), and Slack's emoji-driven branding all run similar playful patterns. The lesson: 'serious' branding for serious tools is often the wrong default. Playfulness can be a competitive moat in markets where competitors all look boring.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Octocat — GitHub",
+        url: "https://octodex.github.com/",
+        publisher: "GitHub",
+        type: "documentation",
+      },
+      {
+        title: "The story of the Octocat",
+        url: "https://github.blog/news-insights/octocat-the-history-of/",
+        publisher: "GitHub Blog",
+        type: "blog",
+      },
+      {
+        title: "How GitHub's Octocat became iconic",
+        url: "https://en.wikipedia.org/wiki/Octocat",
+        type: "article",
+      },
+    ],
+    tags: { industry: "devtools", region: "us", decade: "2000s" },
+  },
+  {
+    id: "spotify-podcasts-acquisition-strategy",
+    type: "daily",
+    scheduled_date: "",
+    company: "Spotify",
+    era: "2019+ — podcast company acquisitions (Gimlet, Anchor, Parcast, Ringer)",
+    context:
+      "Podcasts in 2018 are dominated by Apple Podcasts (~70% of listeners) and the open-RSS distribution model — anyone can host a podcast anywhere and listeners get it via any app. The economics are mostly ad-supported and decentralized. Spotify in early 2019 announces a major shift: acquire podcast production companies to lock in original content exclusive to Spotify. February 2019: Gimlet Media ($230M), Anchor ($150M). March 2019: Parcast. May 2020: Ringer ($200M). The exclusivity strategy: Joe Rogan, Bill Simmons, Michelle Obama all eventually Spotify-exclusive.",
+    prompt:
+      "Why acquire podcast production companies and pull content from open RSS — when podcasts have always been an open ecosystem?",
+    reveal_quote:
+      "We're investing in podcasting as the next big thing in audio. By acquiring premium production companies and licensing exclusive content, we're transforming Spotify from a music streaming service into an audio platform.",
+    reveal_quote_attribution: "Daniel Ek, Spotify CEO — paraphrased from podcast strategy commentary",
+    reveal_note:
+      "What's easy to miss: Spotify's podcast strategy is a structural attack on Apple Podcasts. Apple's dominance of podcasts depends on (a) iPhone ubiquity and (b) the open RSS model that Apple Podcasts indexes. Spotify can't replicate (a) but can attack (b) — exclusive content that's only on Spotify breaks the open-RSS model where any podcast app can play any podcast. By 2024 Spotify has spent ~$1B+ acquiring podcast content + producing originals; Apple Podcasts has lost significant share (down to ~50% from 70%). The lesson: when the incumbent's moat is an open ecosystem (RSS, web standards, file formats), a challenger can attack by creating exclusive content within that ecosystem. The challenger doesn't have to displace the incumbent — they just have to make 'the best content' available only on their platform. Netflix-vs-cable, Apple Music-vs-radio, Spotify-vs-Apple-Podcasts all run versions of this pattern.",
+    quote_type: "paraphrased",
+    sources: [
+      {
+        title: "Spotify acquires Gimlet, Anchor",
+        url: "https://techcrunch.com/2019/02/06/spotify-gimlet-anchor/",
+        publisher: "TechCrunch",
+        year: 2019,
+        type: "article",
+      },
+      {
+        title: "Spotify acquires The Ringer",
+        url: "https://techcrunch.com/2020/02/05/spotify-acquires-the-ringer/",
+        publisher: "TechCrunch",
+        year: 2020,
+        type: "article",
+      },
+      {
+        title: "Spotify's podcast strategy",
+        url: "https://www.theverge.com/2019/2/6/18213623/spotify-gimlet-media-anchor-acquisition-podcast-strategy",
+        publisher: "The Verge",
+        year: 2019,
+        type: "article",
+      },
+    ],
+    tags: { industry: "media", region: "eu", decade: "2010s" },
+  },
+  {
+    id: "google-search-knowledge-panels",
+    type: "daily",
+    scheduled_date: "",
+    company: "Google",
+    era: "May 2012 — Knowledge Graph + Knowledge Panels launch",
+    context:
+      "Google Search through 2011 returns 10 blue links — web pages relevant to the query. Users have to click one and read to find an answer. May 2012: Google launches 'Knowledge Graph' + 'Knowledge Panels' — a structured database of entities (people, places, things, events) with answer-card UI directly in search results. Search 'Eiffel Tower' and get a sidebar with height, location, opening hours, ticket prices, photos — no click required. The panel pulls from Wikipedia, Google Maps, CIA World Factbook, structured data partnerships.",
+    prompt:
+      "Why add answer cards directly to search results — when traditional search drives users to publisher sites (where ads run)?",
+    reveal_quote:
+      "Knowledge Graph helps you find the right answer faster. With Knowledge Panels, you get information directly on the search results page — without having to click into another website.",
+    reveal_quote_attribution: "Google — Knowledge Graph launch announcement, May 2012",
+    reveal_note:
+      "What's easy to miss: answer cards reduce click-through to publisher sites — which is a structural conflict with Google's own ad business (Google's ads only generate revenue when users click). The trade-off: answer cards improve user experience (faster, more direct) but reduce per-search revenue. Google bets that better user experience compounds over the long term — users who trust Google to give direct answers stick with Google as their default search engine. The trade-off is also controversial in the publishing industry — Wikipedia, news sites, and Wolfram Alpha argue Google is 'free-riding' on their data while keeping the user on Google's surface. By 2024 publishers are increasingly opting out of Google's data scraping (Reddit, X, Wikipedia have all restricted access), and Google's compound use of publisher data has become a major regulatory question (DOJ antitrust suit, EU DMA enforcement). The lesson: aggregating third-party content into your own product surface is structurally controversial — even when the user experience improves, the content creators feel exploited.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Knowledge Graph — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Knowledge_Graph",
+        type: "article",
+      },
+      {
+        title: "Introducing the Knowledge Graph",
+        url: "https://blog.google/products/search/introducing-knowledge-graph-things-not/",
+        publisher: "Google Blog",
+        year: 2012,
+        type: "blog",
+      },
+      {
+        title: "How Knowledge Panels work",
+        url: "https://support.google.com/business/answer/9335803",
+        publisher: "Google Help",
+        type: "documentation",
+      },
+    ],
+    tags: { industry: "search", region: "us", decade: "2010s" },
+  },
+  {
+    id: "apple-iphone-airplane-mode",
+    type: "daily",
+    scheduled_date: "",
+    company: "Apple",
+    era: "June 2008 — iPhone OS 2.0 Airplane Mode toggle",
+    context:
+      "Cell phones pre-2007 require turning the phone off completely during flights — FAA regulations prohibit cell-radio transmissions in flight. Turning the phone off means losing all functions (calendar, games, music). The iPhone (June 2007) launches without Airplane Mode; users have to power off completely. With iOS 2.0 (June 2008), Apple ships 'Airplane Mode' — a single toggle in Settings that disables all radios (cellular, Wi-Fi, Bluetooth) while keeping the rest of the phone functional. Users can read books, play games, watch video — without breaking FAA rules.",
+    prompt:
+      "Why bundle multiple radio shutoffs into a single Airplane Mode toggle — and what does the consolidation tell you about contextual UI design?",
+    reveal_quote:
+      "Airplane Mode lets you quickly disable all wireless functions on your iPhone while keeping the rest of the phone's features available. It's designed for use during flights.",
+    reveal_quote_attribution: "Apple — Airplane Mode documentation, iOS 2.0",
+    reveal_note:
+      "What's easy to miss: Airplane Mode is contextual UI for a specific high-frequency use case (flying). Before this, users had to navigate to Settings > Wi-Fi > Off, Settings > Cellular > Off, Settings > Bluetooth > Off — three separate toggles. Bundling them into one Airplane Mode toggle saves ~10 seconds per flight, repeated by hundreds of millions of users billions of times per year. The Airplane Mode label also signals 'this is what you do on planes' — making the feature self-explanatory. Years later, Apple added 'Driving Focus' (auto-silences during driving, in pool as a daily), 'Sleep Mode' (auto-activates at bedtime), 'Do Not Disturb' (focus modes, in pool). All follow the same pattern: consolidate multi-step settings into a single contextual toggle named for the activity. The lesson: when a common user activity requires changing multiple settings simultaneously, bundling those settings into a single contextually-named toggle is high-leverage UX design. Most products have at least a few candidate activities (commute mode, presentation mode, gaming mode, sleep mode) that would benefit.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Airplane Mode — iPhone Support",
+        url: "https://support.apple.com/en-us/HT204234",
+        publisher: "Apple Support",
+        type: "documentation",
+      },
+      {
+        title: "iOS 2.0 — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/IPhone_OS_2",
+        type: "article",
+      },
+      {
+        title: "iPhone Airplane Mode launches",
+        url: "https://www.apple.com/newsroom/2008/06/09iPhone-2-0-Software-Update-to-be-Demonstrated-at-WWDC-Conference/",
+        publisher: "Apple Newsroom",
+        year: 2008,
+        type: "press-release",
+      },
+    ],
+    tags: { industry: "consumer-mobile", region: "us", decade: "2000s" },
+  },
+  {
+    id: "facebook-events-rsvp-system",
+    type: "daily",
+    scheduled_date: "",
+    company: "Facebook (Meta)",
+    era: "2005+ — Facebook Events with 3-state RSVP",
+    context:
+      "Pre-Facebook event organizing in 2005 means: send email invites, recipients reply individually, organizer maintains a spreadsheet of attendees. Facebook Events launches in 2005 with a structured RSVP system: every invited user clicks 'Going,' 'Maybe,' or 'Not Going.' The counts are visible to everyone — you can see who's coming, who might come, who said no. The system synchronizes invitees automatically, surfaces the event on attendees' calendars, sends reminders.",
+    prompt:
+      "Why is a 3-state RSVP ('Going' / 'Maybe' / 'Not Going') structurally different from a 2-state ('Yes' / 'No') — and what does 'Maybe' enable?",
+    reveal_quote:
+      "Facebook Events let you invite friends to anything from a small dinner to a major concert. Three RSVP options make it easy to respond — and friends can see who's coming.",
+    reveal_quote_attribution: "Facebook — Events documentation, 2005",
+    reveal_note:
+      "What's easy to miss: 'Maybe' is a social-friction-reducing RSVP option. In real life, declining a friend's event ('No, I won't come') feels rude. Saying 'Yes' commits you to attending. 'Maybe' offers a third path: 'I'll think about it / I might come / I want to keep options open.' Most users use Maybe as a soft no — they aren't actually planning to come — but it preserves social politeness with the organizer. The RSVP counts on the event page also create social proof: 'Maybe (45) / Going (12)' signals to other invitees 'a lot of people are interested.' The system works structurally because of this ambiguity. The cost: organizers see inflated Maybe counts that don't translate to attendance. Most modern event platforms (Eventbrite, Partiful) have kept the Maybe option for the same reason — social-politeness preservation is more valuable than RSVP accuracy. The lesson: friction-reducing options in social systems (Maybe, Snooze, Mark-as-Read) often serve social rather than information purposes, and the inaccuracy they introduce is a feature, not a bug.",
+    quote_type: "verbatim",
+    sources: [
+      {
+        title: "Facebook Events — Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Facebook_features",
+        type: "article",
+      },
+      {
+        title: "Create an Event on Facebook",
+        url: "https://www.facebook.com/help/210413455658361",
+        publisher: "Facebook Help",
+        type: "documentation",
+      },
+      {
+        title: "Why 'Maybe' is the most popular RSVP",
+        url: "https://www.theatlantic.com/family/archive/2019/03/facebook-event-rsvp-maybe-button/585048/",
+        publisher: "The Atlantic",
+        year: 2019,
+        type: "article",
+      },
+    ],
+    tags: { industry: "consumer-social", region: "us", decade: "2000s" },
+  },
 ];
 
 export const weeklySeed: WeeklyScenario[] = [
