@@ -55,19 +55,23 @@ export default function AuthPage() {
 
   const isSignIn = mode === "signin";
 
+  function switchMode(to: Mode) {
+    if (to === mode) return;
+    setMode(to);
+    setStatus("idle");
+    setErrorMsg("");
+  }
+
   return (
-    <main className="mx-auto max-w-xl px-6 py-20 fade-up">
-      <div className="chapter text-base mb-4" style={{ color: "var(--ink-soft)" }}>
-        {isSignIn ? "Sign in" : "Create account"}
+    <main className="max-w-md mx-auto px-5 sm:px-6 pt-14 sm:pt-20 pb-20">
+      <div className="mb-6">
+        <span className="pill pill-accent">{isSignIn ? "Sign in" : "Create account"}</span>
       </div>
-      <h1
-        className="serif text-4xl leading-tight"
-        style={{ fontWeight: 500, letterSpacing: "-0.015em" }}
-      >
+
+      <h1 className="display text-[2rem] sm:text-[2.25rem]">
         {isSignIn ? "Welcome back." : "Save your reps."}
       </h1>
-      <div className="rule mt-7 mb-7" />
-      <p className="serif text-lg leading-relaxed" style={{ color: "var(--ink-soft)" }}>
+      <p className="body-prose mt-3">
         {isSignIn
           ? "Sign in with your email and password."
           : "Create an account so your reps follow you across devices."}
@@ -82,23 +86,57 @@ export default function AuthPage() {
         </div>
       )}
 
+      {/* Mode toggle */}
+      <div
+        className="mt-8 inline-flex rounded-md p-1"
+        style={{ background: "var(--rule-soft)", border: "1px solid var(--rule)" }}
+        role="tablist"
+      >
+        <button
+          type="button"
+          role="tab"
+          aria-selected={isSignIn}
+          onClick={() => switchMode("signin")}
+          className="px-4 py-1.5 rounded text-sm font-medium transition-colors"
+          style={{
+            background: isSignIn ? "var(--paper-raised)" : "transparent",
+            color: isSignIn ? "var(--ink)" : "var(--ink-soft)",
+            boxShadow: isSignIn ? "var(--shadow-sm)" : "none",
+          }}
+        >
+          Sign in
+        </button>
+        <button
+          type="button"
+          role="tab"
+          aria-selected={!isSignIn}
+          onClick={() => switchMode("signup")}
+          className="px-4 py-1.5 rounded text-sm font-medium transition-colors"
+          style={{
+            background: !isSignIn ? "var(--paper-raised)" : "transparent",
+            color: !isSignIn ? "var(--ink)" : "var(--ink-soft)",
+            boxShadow: !isSignIn ? "var(--shadow-sm)" : "none",
+          }}
+        >
+          Create account
+        </button>
+      </div>
+
       {status === "confirm" ? (
-        <div className="mt-10">
-          <div className="smallcaps mb-2" style={{ color: "var(--accent)" }}>
+        <div className="card p-6 mt-6">
+          <div className="eyebrow mb-2" style={{ color: "var(--accent)" }}>
             Confirm your email
           </div>
-          <p className="serif text-lg leading-relaxed">
+          <p className="text-sm leading-relaxed" style={{ color: "var(--ink)" }}>
             We sent a confirmation link to{" "}
             <span style={{ fontWeight: 600 }}>{email}</span>. Click it to finish setting up
             your account, then come back and sign in.
           </p>
         </div>
       ) : (
-        <form onSubmit={onSubmit} className="mt-10">
+        <form onSubmit={onSubmit} className="card p-6 mt-6">
           <label className="block">
-            <span className="smallcaps" style={{ color: "var(--ink-soft)" }}>
-              Email
-            </span>
+            <span className="eyebrow">Email</span>
             <input
               type="email"
               required
@@ -107,16 +145,14 @@ export default function AuthPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@somewhere.com"
-              className="mt-2 w-full border rounded-md px-4 py-3 serif text-lg"
-              style={{ borderColor: "var(--rule)", background: "white" }}
+              className="mt-1.5 w-full border rounded-md px-3 py-2.5"
+              style={{ borderColor: "var(--rule)", background: "var(--paper)" }}
               disabled={status === "submitting" || !supabaseEnabled}
             />
           </label>
 
-          <label className="block mt-5">
-            <span className="smallcaps" style={{ color: "var(--ink-soft)" }}>
-              Password
-            </span>
+          <label className="block mt-4">
+            <span className="eyebrow">Password</span>
             <input
               type="password"
               required
@@ -125,8 +161,8 @@ export default function AuthPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder={isSignIn ? "Your password" : "At least 8 characters"}
-              className="mt-2 w-full border rounded-md px-4 py-3 serif text-lg"
-              style={{ borderColor: "var(--rule)", background: "white" }}
+              className="mt-1.5 w-full border rounded-md px-3 py-2.5"
+              style={{ borderColor: "var(--rule)", background: "var(--paper)" }}
               disabled={status === "submitting" || !supabaseEnabled}
             />
           </label>
@@ -134,45 +170,34 @@ export default function AuthPage() {
           <button
             type="submit"
             disabled={status === "submitting" || !supabaseEnabled}
-            className="btn-primary mt-6 px-6 py-3 rounded-md font-medium disabled:opacity-50"
+            className="btn-accent rounded-md px-4 py-2.5 text-sm mt-5 w-full inline-flex items-center justify-center gap-1.5 disabled:opacity-50"
           >
             {status === "submitting"
               ? isSignIn
                 ? "Signing in…"
                 : "Creating account…"
-              : isSignIn
-                ? "Sign in →"
-                : "Create account →"}
+              : (
+                <>
+                  {isSignIn ? "Sign in" : "Create account"} <span aria-hidden>→</span>
+                </>
+              )}
           </button>
 
           {status === "error" && (
-            <p className="text-sm mt-4" style={{ color: "#b91c1c" }}>
+            <p
+              className="text-sm mt-4 rounded-md px-3 py-2"
+              style={{ color: "#b91c1c", background: "rgba(185, 28, 28, 0.06)" }}
+            >
               {errorMsg || "Couldn't sign in. Try again?"}
             </p>
           )}
-
-          <p className="text-sm mt-6" style={{ color: "var(--ink-soft)" }}>
-            {isSignIn ? "No account yet?" : "Already have an account?"}{" "}
-            <button
-              type="button"
-              onClick={() => {
-                setMode(isSignIn ? "signup" : "signin");
-                setStatus("idle");
-                setErrorMsg("");
-              }}
-              className="underline"
-              style={{ color: "var(--ink)" }}
-            >
-              {isSignIn ? "Create one" : "Sign in"}
-            </button>
-          </p>
-
-          <p className="text-xs mt-6" style={{ color: "var(--ink-soft)" }}>
-            Anonymous reps still work without signing in. This just lets your reps follow you
-            across devices.
-          </p>
         </form>
       )}
+
+      <p className="text-xs mt-6" style={{ color: "var(--ink-mute)" }}>
+        Anonymous reps still work without signing in. An account just lets your reps follow
+        you across devices.
+      </p>
     </main>
   );
 }

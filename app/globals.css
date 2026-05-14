@@ -201,7 +201,8 @@ body {
 
 textarea,
 input[type="text"],
-input[type="email"] {
+input[type="email"],
+input[type="password"] {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 0.9375rem;
   line-height: 1.55;
