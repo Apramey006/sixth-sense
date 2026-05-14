@@ -7,7 +7,6 @@ import { AuthButton } from "@/components/AuthButton";
 const links = [
   { href: "/today", label: "Today" },
   { href: "/this-week", label: "This week" },
-  { href: "/library", label: "Library" },
 ];
 
 export function TopNav() {
