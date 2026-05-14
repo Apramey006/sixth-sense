@@ -22,7 +22,13 @@ const lines: string[] = [
 
 function jsonbLiteral(value: unknown): string {
   const json = JSON.stringify(value);
-  return `'${json.replace(/'/g, "''")}'::jsonb`;
+  // Use a dollar-quoted string so no character inside JSON can break out of the
+  // SQL literal. The tag $sxsn$ is unlikely to appear in any payload; if it
+  // ever does we'll regenerate with a longer tag.
+  if (json.includes("$sxsn$")) {
+    throw new Error("Payload contains $sxsn$ — pick a different dollar tag.");
+  }
+  return `$sxsn$${json}$sxsn$::jsonb`;
 }
 
 function sqlText(s: string | null): string {
