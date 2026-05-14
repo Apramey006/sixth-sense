@@ -86,9 +86,13 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
                 background: isActive
                   ? "var(--accent-2)"
                   : isDone
-                  ? "rgba(95, 122, 82, 0.18)"
+                  ? "rgba(127, 160, 137, 0.18)"
                   : "var(--rule-soft)",
-                color: isActive ? "#fff" : isDone ? "var(--accent-2)" : "var(--ink-mute)",
+                color: isActive
+                  ? "var(--paper)"
+                  : isDone
+                  ? "var(--accent-2)"
+                  : "var(--ink-mute)",
               }}
             >
               {s.n}

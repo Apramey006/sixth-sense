@@ -21,8 +21,8 @@ export function ScenarioCard({ kind, company, era, excerpt }: CardProps) {
 
   return (
     <article
-      className="bg-white border rounded-md p-5 flex flex-col h-full"
-      style={{ borderColor: "var(--rule)" }}
+      className="border rounded-md p-5 flex flex-col h-full"
+      style={{ borderColor: "var(--rule)", background: "var(--paper-raised)" }}
     >
       <div className="flex items-baseline justify-between gap-3 mb-3">
         <span className="smallcaps" style={{ color: badgeColor }}>

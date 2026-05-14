@@ -92,7 +92,11 @@ export default function AuthPage() {
       {!supabaseEnabled && (
         <div
           className="mt-8 rounded-md p-4 text-sm"
-          style={{ background: "#fef3c7", color: "#78350f" }}
+          style={{
+            background: "rgba(212, 163, 65, 0.12)",
+            color: "var(--accent-soft)",
+            border: "1px solid rgba(212, 163, 65, 0.3)",
+          }}
         >
           Auth isn't configured in this environment. Set the Supabase env vars and reload.
         </div>
@@ -101,7 +105,7 @@ export default function AuthPage() {
       {/* Mode toggle */}
       <div
         className="mt-8 inline-flex rounded-md p-1"
-        style={{ background: "var(--rule-soft)", border: "1px solid var(--rule)" }}
+        style={{ background: "var(--paper-deep)", border: "1px solid var(--rule)" }}
         role="tablist"
       >
         <button
@@ -111,8 +115,8 @@ export default function AuthPage() {
           onClick={() => switchMode("signin")}
           className="px-4 py-1.5 rounded text-sm font-medium transition-colors"
           style={{
-            background: isSignIn ? "var(--paper-raised)" : "transparent",
-            color: isSignIn ? "var(--ink)" : "var(--ink-soft)",
+            background: isSignIn ? "var(--accent)" : "transparent",
+            color: isSignIn ? "var(--paper)" : "var(--ink-soft)",
             boxShadow: isSignIn ? "var(--shadow-sm)" : "none",
           }}
         >
@@ -125,8 +129,8 @@ export default function AuthPage() {
           onClick={() => switchMode("signup")}
           className="px-4 py-1.5 rounded text-sm font-medium transition-colors"
           style={{
-            background: !isSignIn ? "var(--paper-raised)" : "transparent",
-            color: !isSignIn ? "var(--ink)" : "var(--ink-soft)",
+            background: !isSignIn ? "var(--accent)" : "transparent",
+            color: !isSignIn ? "var(--paper)" : "var(--ink-soft)",
             boxShadow: !isSignIn ? "var(--shadow-sm)" : "none",
           }}
         >
@@ -202,7 +206,7 @@ export default function AuthPage() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@somewhere.com"
               className="mt-1.5 w-full border rounded-md px-3 py-2.5"
-              style={{ borderColor: "var(--rule)", background: "var(--paper)" }}
+              style={{ borderColor: "var(--rule)", background: "var(--paper-deep)" }}
               disabled={status === "submitting" || !supabaseEnabled}
             />
           </label>
@@ -218,7 +222,7 @@ export default function AuthPage() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder={isSignIn ? "Your password" : "At least 8 characters"}
               className="mt-1.5 w-full border rounded-md px-3 py-2.5"
-              style={{ borderColor: "var(--rule)", background: "var(--paper)" }}
+              style={{ borderColor: "var(--rule)", background: "var(--paper-deep)" }}
               disabled={status === "submitting" || !supabaseEnabled}
             />
           </label>

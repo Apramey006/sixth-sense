@@ -22,7 +22,7 @@ export function TopNav() {
             className="inline-block w-6 h-6 rounded-md"
             style={{
               background:
-                "linear-gradient(135deg, var(--accent) 0%, var(--accent-soft) 60%, var(--accent-2) 100%)",
+                "linear-gradient(135deg, var(--accent) 0%, var(--accent-soft) 55%, var(--accent-2) 100%)",
               boxShadow: "var(--shadow-sm)",
             }}
           />

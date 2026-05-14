@@ -3,25 +3,31 @@
 @tailwind utilities;
 
 :root {
-  /* Warmer, more saturated cream base */
-  --paper: #f7f1e3;
-  --paper-raised: #fdfaf2;
-  --ink: #15110f;
-  --ink-soft: #6b625a;
-  --ink-mute: #8b8278;
-  --rule: #e4dcc8;
-  --rule-soft: #efe8d6;
+  /* Saturated editorial — clothbound, considered, literary.
+     Oxblood ground, parchment type, old-gold accent, patina secondary. */
+  --paper: #3b1d1f;        /* oxblood ground */
+  --paper-raised: #4a2528; /* slightly lifted surface (cards, inputs) */
+  --paper-deep: #2b1416;   /* deeper inset (input field, code) */
+  --ink: #ede4cf;          /* parchment, primary type */
+  --ink-soft: #c9bda3;     /* secondary type */
+  --ink-mute: #8f836b;     /* tertiary type (timestamps, hints) */
+  --rule: #5e3236;         /* hairline rules and borders */
+  --rule-soft: #4a262a;    /* alt rule, button ghost bg */
 
   /* Two-color accent system */
-  --accent: #c5462b;       /* burnt terracotta */
-  --accent-soft: #e07a5f;  /* lighter terracotta for hovers / pills */
-  --accent-2: #5f7a52;     /* sage green secondary */
-  --accent-2-soft: #88a079;
+  --accent: #d4a341;       /* old gold — primary editorial accent */
+  --accent-soft: #e8c071;  /* lighter gold for hovers / pills */
+  --accent-2: #7fa089;     /* patina green secondary */
+  --accent-2-soft: #a3bba9;
 
-  /* Warm shadow tokens (tinted, not pure black) */
-  --shadow-sm: 0 1px 2px rgba(60, 40, 20, 0.04), 0 1px 1px rgba(60, 40, 20, 0.03);
-  --shadow-md: 0 1px 2px rgba(60, 40, 20, 0.05), 0 4px 12px rgba(80, 50, 25, 0.06);
-  --shadow-lg: 0 2px 4px rgba(60, 40, 20, 0.06), 0 12px 28px rgba(80, 50, 25, 0.08);
+  /* On dark grounds, shadow tokens become subtle dark drops AND a faint
+     warm-light bloom on hover — together they read as depth without
+     glow-y "neon UI" energy. */
+  --shadow-sm: 0 1px 0 rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.18);
+  --shadow-md: 0 1px 0 rgba(0, 0, 0, 0.3), 0 6px 16px rgba(0, 0, 0, 0.28);
+  --shadow-lg: 0 1px 0 rgba(0, 0, 0, 0.35), 0 18px 40px rgba(0, 0, 0, 0.4);
+
+  color-scheme: dark;
 }
 
 html,
@@ -190,14 +196,14 @@ body {
   font-weight: 600;
 }
 .pill-accent {
-  background: rgba(197, 70, 43, 0.08);
+  background: rgba(212, 163, 65, 0.10);
   color: var(--accent);
-  border: 1px solid rgba(197, 70, 43, 0.18);
+  border: 1px solid rgba(212, 163, 65, 0.26);
 }
 .pill-accent-2 {
-  background: rgba(95, 122, 82, 0.10);
+  background: rgba(127, 160, 137, 0.10);
   color: var(--accent-2);
-  border: 1px solid rgba(95, 122, 82, 0.22);
+  border: 1px solid rgba(127, 160, 137, 0.26);
 }
 .pill-mute {
   background: var(--rule-soft);
@@ -209,14 +215,14 @@ body {
 
 .btn-primary {
   background: var(--ink);
-  color: #fafaf7;
+  color: var(--paper);
   font-weight: 500;
   letter-spacing: -0.005em;
   box-shadow: var(--shadow-sm);
   transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 .btn-primary:hover {
-  background: #000;
+  background: #f8f1dc;
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
@@ -226,14 +232,14 @@ body {
 
 .btn-accent {
   background: var(--accent);
-  color: #fff;
-  font-weight: 500;
+  color: #2a1410;
+  font-weight: 600;
   letter-spacing: -0.005em;
   box-shadow: var(--shadow-sm);
   transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 .btn-accent:hover {
-  background: #b03d23;
+  background: var(--accent-soft);
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
@@ -261,11 +267,23 @@ input[type="password"] {
   line-height: 1.55;
   resize: vertical;
 }
+textarea,
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  background: var(--paper-deep);
+  color: var(--ink);
+  caret-color: var(--accent);
+}
+textarea::placeholder,
+input::placeholder {
+  color: var(--ink-mute);
+}
 textarea:focus,
 input:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(197, 70, 43, 0.12);
+  box-shadow: 0 0 0 3px rgba(212, 163, 65, 0.18);
 }
 
 /* Scenario prose --------------------------------------------------------- */
@@ -292,7 +310,7 @@ input:focus {
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 6px;
-  background: rgba(197, 70, 43, 0.10);
+  background: rgba(212, 163, 65, 0.14);
   color: var(--accent);
   font-size: 0.75rem;
   font-weight: 700;
@@ -306,7 +324,7 @@ input:focus {
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 6px;
-  background: rgba(95, 122, 82, 0.12);
+  background: rgba(127, 160, 137, 0.14);
   color: var(--accent-2);
   font-size: 0.75rem;
   font-weight: 700;
@@ -340,7 +358,7 @@ input:focus {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(247, 241, 227, 0.85);
+  background: rgba(43, 20, 22, 0.78);
   backdrop-filter: saturate(140%) blur(10px);
   -webkit-backdrop-filter: saturate(140%) blur(10px);
   border-bottom: 1px solid var(--rule);
@@ -439,10 +457,10 @@ input:focus {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.06;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08  0 0 0 0 0.06  0 0 0 0 0.04  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  background-size: 220px 220px;
+  opacity: 0.10;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.92  0 0 0 0 0.85  0 0 0 0 0.72  0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 240px 240px;
 }
 
 /* Editorial drop cap: first letter of an element with .drop-cap renders
