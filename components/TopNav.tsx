@@ -27,8 +27,13 @@ export function TopNav() {
             }}
           />
           <span
-            className="font-semibold tracking-tight text-[0.95rem]"
-            style={{ color: "var(--ink)", letterSpacing: "-0.01em" }}
+            className="text-[1.05rem]"
+            style={{
+              color: "var(--ink)",
+              fontFamily: "var(--font-display), var(--font-serif), Georgia, serif",
+              fontWeight: 500,
+              letterSpacing: "-0.015em",
+            }}
           >
             Sixth Sense
           </span>
