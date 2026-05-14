@@ -5,9 +5,9 @@
 :root {
   /* Navy + gold — premium, confident, not AI-default.
      Deep navy ground, champagne gold accent, white type. */
-  --paper: #0a1a36;          /* deep navy ground */
-  --paper-raised: #102449;   /* card / surface */
-  --paper-deep: #061029;     /* inset (inputs, code) */
+  --paper: #1a3258;          /* lighter navy ground */
+  --paper-raised: #23416c;   /* card / surface */
+  --paper-deep: #0e2042;     /* inset (inputs, code) */
   --ink: #ffffff;            /* primary type */
   --ink-soft: #c8d1e0;       /* secondary type */
   --ink-mute: #7d8aa3;       /* tertiary type, metadata */
@@ -223,7 +223,7 @@ main {
 }
 .icon-disc-2 {
   background: linear-gradient(135deg, var(--accent-2-soft) 0%, var(--accent-2) 100%);
-  color: #0a1a36;
+  color: var(--paper);
 }
 
 .pill {
@@ -380,7 +380,7 @@ input:focus {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(10, 26, 54, 0.72);
+  background: rgba(26, 50, 88, 0.72);
   backdrop-filter: saturate(140%) blur(14px);
   -webkit-backdrop-filter: saturate(140%) blur(14px);
   border-bottom: 1px solid var(--rule);

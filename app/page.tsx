@@ -20,9 +20,6 @@ export default async function HomePage() {
       <section className="max-w-4xl">
         <div className="flex items-center gap-3 mb-6">
           <span className="pill pill-accent">A practice for product taste</span>
-          <span className="mono text-xs" style={{ color: "var(--ink-mute)" }}>
-            EST. 2026
-          </span>
         </div>
         <h1 className="display text-[3rem] sm:text-[4.5rem] lg:text-[5.5rem]">
           Form your take{" "}
