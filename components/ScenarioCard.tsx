@@ -5,6 +5,7 @@ type CardProps = {
   company: string;
   era: string;
   excerpt: string;
+  featured?: boolean;
 };
 
 function truncate(s: string, n = 180): string {
@@ -13,7 +14,7 @@ function truncate(s: string, n = 180): string {
   return flat.slice(0, n - 1).replace(/[ ,;:.!?-]+$/, "") + "…";
 }
 
-export function ScenarioCard({ kind, company, era, excerpt }: CardProps) {
+export function ScenarioCard({ kind, company, era, excerpt, featured }: CardProps) {
   const href = kind === "daily" ? "/today" : "/this-week";
   const cta = kind === "daily" ? "Take today's daily" : "Take this week's deep rep";
   const badge = kind === "daily" ? "Daily · ~3 min" : "Weekly · ~25 min";
@@ -22,12 +23,29 @@ export function ScenarioCard({ kind, company, era, excerpt }: CardProps) {
   return (
     <article
       className="border rounded-md p-5 flex flex-col h-full"
-      style={{ borderColor: "var(--rule)", background: "var(--paper-raised)" }}
+      style={{
+        borderColor: featured ? "var(--accent)" : "var(--rule)",
+        background: "var(--paper-raised)",
+      }}
     >
       <div className="flex items-baseline justify-between gap-3 mb-3">
-        <span className="smallcaps" style={{ color: badgeColor }}>
-          {badge}
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="smallcaps" style={{ color: badgeColor }}>
+            {badge}
+          </span>
+          {featured && (
+            <span
+              className="smallcaps px-2 py-0.5 rounded-full"
+              style={{
+                background: "var(--accent)",
+                color: "#fafaf9",
+                fontSize: "0.65rem",
+              }}
+            >
+              Featured
+            </span>
+          )}
+        </div>
         <span className="smallcaps" style={{ color: "var(--ink-soft)" }}>
           {era}
         </span>

@@ -9,6 +9,7 @@ type Item = {
   company: string;
   era: string;
   excerpt: string;
+  featured?: boolean;
 };
 
 type Filter = "all" | "daily" | "weekly";
@@ -59,6 +60,7 @@ export function LibraryGrid({ items }: { items: Item[] }) {
               company={item.company}
               era={item.era}
               excerpt={item.excerpt}
+              featured={item.featured}
             />
           ))}
         </div>

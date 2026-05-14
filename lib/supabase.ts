@@ -70,6 +70,8 @@ export type DailyScenario = {
   quote_type: "verbatim" | "paraphrased";
   sources: ScenarioSource[];
   tags: ScenarioTags;
+  priority?: number;
+  featured?: boolean;
 };
 
 export type WeeklyScenario = {
@@ -90,4 +92,6 @@ export type WeeklyScenario = {
   quote_type: "verbatim" | "paraphrased";
   sources: ScenarioSource[];
   tags: ScenarioTags;
+  priority?: number;
+  featured?: boolean;
 };

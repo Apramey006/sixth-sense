@@ -1,6 +1,7 @@
 import { Masthead } from "@/components/Masthead";
 import { LibraryGrid } from "@/components/LibraryGrid";
 import { getAllScenarios } from "@/lib/library";
+import { getDailyMeta, getWeeklyMeta } from "@/lib/scenarioPriorities";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +15,7 @@ export default async function LibraryPage() {
       company: s.company,
       era: s.era,
       excerpt: s.context,
+      featured: getDailyMeta(s.id).featured,
     })),
     ...weekly.map((s) => ({
       id: s.id,
@@ -21,6 +23,7 @@ export default async function LibraryPage() {
       company: s.company,
       era: s.era,
       excerpt: s.intro,
+      featured: getWeeklyMeta(s.id).featured,
     })),
   ];
 

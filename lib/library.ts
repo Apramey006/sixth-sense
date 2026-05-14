@@ -1,11 +1,10 @@
 import { supabase, supabaseEnabled, type DailyScenario, type WeeklyScenario } from "./supabase";
 import { dailySeed, weeklySeed } from "./seedScenarios";
+import { getDailyMeta, getWeeklyMeta } from "./scenarioPriorities";
 
-// Library-specific fetch: returns the entire pool of scenarios per type, not
-// the date-rotated single scenario. Mirrors the supabase-first / TS-seed
-// fallback pattern from lib/scenarios.ts so the library page works whether or
-// not Supabase is configured (or populated). Kept separate from
-// lib/scenarios.ts on purpose to avoid stepping on parallel work.
+// Library-specific fetch: returns the entire pool of scenarios per type, ordered
+// by priority (Tier 1 first, then Tier 2, then everything else alphabetically).
+// Mirrors the supabase-first / TS-seed fallback pattern from lib/scenarios.ts.
 
 export type LibraryEntry =
   | { kind: "daily"; scenario: DailyScenario }
@@ -19,7 +18,23 @@ export async function getAllScenarios(): Promise<{
     fetchPool<DailyScenario>("daily", dailySeed),
     fetchPool<WeeklyScenario>("weekly", weeklySeed),
   ]);
-  return { daily, weekly };
+  return {
+    daily: orderByPriority(daily, "daily"),
+    weekly: orderByPriority(weekly, "weekly"),
+  };
+}
+
+function orderByPriority<T extends DailyScenario | WeeklyScenario>(
+  pool: T[],
+  type: "daily" | "weekly",
+): T[] {
+  const getMeta = type === "daily" ? getDailyMeta : getWeeklyMeta;
+  return [...pool].sort((a, b) => {
+    const pa = getMeta(a.id).priority;
+    const pb = getMeta(b.id).priority;
+    if (pa !== pb) return pa - pb;
+    return a.id.localeCompare(b.id);
+  });
 }
 
 async function fetchPool<T extends DailyScenario | WeeklyScenario>(
