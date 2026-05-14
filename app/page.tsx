@@ -151,10 +151,10 @@ export default async function HomePage() {
           style={{ borderLeft: "3px solid var(--accent)" }}
         >
           <p className="pullquote text-[1.625rem] sm:text-[1.875rem] leading-snug">
-            Nothing here was written or scored by an LLM. Every scenario is a
-            real decision; every reveal is a real quote, a real outcome, a real
-            tradeoff. The point is to stay out of the model's voice long enough
-            to find your own.
+            The scenarios here are real. Actual product decisions, real quotes,
+            real outcomes. Your take isn't graded by a model; you compare it to
+            what actually shipped. The point is to stay out of the model's voice
+            long enough to find your own.
           </p>
         </div>
       </section>
