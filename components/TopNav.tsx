@@ -59,7 +59,7 @@ export function TopNav() {
           })}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-5 sm:gap-6">
           <nav className="flex sm:hidden items-center gap-1">
             {links.map((l) => {
               const active =
