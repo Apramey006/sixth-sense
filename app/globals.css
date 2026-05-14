@@ -3,29 +3,32 @@
 @tailwind utilities;
 
 :root {
-  /* Saturated editorial — clothbound, considered, literary.
-     Oxblood ground, parchment type, old-gold accent, patina secondary. */
-  --paper: #3b1d1f;        /* oxblood ground */
-  --paper-raised: #4a2528; /* slightly lifted surface (cards, inputs) */
-  --paper-deep: #2b1416;   /* deeper inset (input field, code) */
-  --ink: #ede4cf;          /* parchment, primary type */
-  --ink-soft: #c9bda3;     /* secondary type */
-  --ink-mute: #8f836b;     /* tertiary type (timestamps, hints) */
-  --rule: #5e3236;         /* hairline rules and borders */
-  --rule-soft: #4a262a;    /* alt rule, button ghost bg */
+  /* Navy + gold — premium, confident, not AI-default.
+     Deep navy ground, champagne gold accent, white type. */
+  --paper: #0a1a36;          /* deep navy ground */
+  --paper-raised: #102449;   /* card / surface */
+  --paper-deep: #061029;     /* inset (inputs, code) */
+  --ink: #ffffff;            /* primary type */
+  --ink-soft: #c8d1e0;       /* secondary type */
+  --ink-mute: #7d8aa3;       /* tertiary type, metadata */
 
-  /* Two-color accent system */
-  --accent: #d4a341;       /* old gold — primary editorial accent */
-  --accent-soft: #e8c071;  /* lighter gold for hovers / pills */
-  --accent-2: #7fa089;     /* patina green secondary */
-  --accent-2-soft: #a3bba9;
+  /* Borders read as faint gold hairlines on dark navy */
+  --rule: rgba(212, 168, 67, 0.22);
+  --rule-soft: rgba(212, 168, 67, 0.10);
+  --rule-strong: rgba(212, 168, 67, 0.48);
 
-  /* On dark grounds, shadow tokens become subtle dark drops AND a faint
-     warm-light bloom on hover — together they read as depth without
-     glow-y "neon UI" energy. */
-  --shadow-sm: 0 1px 0 rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.18);
-  --shadow-md: 0 1px 0 rgba(0, 0, 0, 0.3), 0 6px 16px rgba(0, 0, 0, 0.28);
-  --shadow-lg: 0 1px 0 rgba(0, 0, 0, 0.35), 0 18px 40px rgba(0, 0, 0, 0.4);
+  /* Champagne gold primary accent + steel-blue secondary */
+  --accent: #d4a843;          /* champagne gold */
+  --accent-soft: #e6c275;     /* lighter gold for hover */
+  --accent-deep: #a8842f;     /* deeper gold for pressed */
+  --accent-2: #6b86b8;        /* steel blue secondary */
+  --accent-2-soft: #94a8cc;
+
+  /* Shadows are deep blacks; hover gets a subtle gold glow */
+  --shadow-sm: 0 1px 0 rgba(0, 0, 0, 0.35), 0 2px 4px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 1px 0 rgba(0, 0, 0, 0.4), 0 10px 24px rgba(0, 0, 0, 0.38);
+  --shadow-lg: 0 1px 0 rgba(0, 0, 0, 0.45), 0 28px 60px rgba(0, 0, 0, 0.5);
+  --glow-accent: 0 0 0 1px var(--accent), 0 12px 32px rgba(212, 168, 67, 0.22);
 
   color-scheme: dark;
 }
@@ -36,82 +39,117 @@ body {
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-feature-settings: "ss01", "cv11";
+  font-family: var(--font-sans), "Plus Jakarta Sans", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-feature-settings: "kern", "liga", "ss01";
 }
 
-/* Editorial serif faces ---------------------------------------------------
-   - Display face (Fraunces): used for big page titles, drop caps, masthead.
-   - Body serif (Newsreader): used for editorial prose — scenarios, intros,
-     anywhere that should read like a publication rather than a UI label.
-   - Sans (Inter): reserved for UI chrome — small caps, eyebrows, nav, buttons,
-     form labels — i.e. the parts that should *not* feel like body copy. */
-
-.serif {
-  font-family: var(--font-serif), Georgia, "Iowan Old Style", "Apple Garamond",
-    "Times New Roman", serif;
-  font-feature-settings: "kern", "liga", "onum";
+/* Body gets a subtle radial vignette so the navy isn't dead flat */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(
+      ellipse 80% 60% at 50% 0%,
+      rgba(212, 168, 67, 0.07),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 50% 100%,
+      rgba(107, 134, 184, 0.05),
+      transparent 60%
+    );
 }
+
+/* Stack content above the vignette */
+header.nav-shell,
+.page-fade,
+.marquee-strip,
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Type system — all sans, with mono for metadata --------------------------- */
 
 .display {
-  font-family: var(--font-display), var(--font-serif), Georgia, "Times New Roman", serif;
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.02;
-  font-feature-settings: "ss01", "kern", "liga";
+  font-family: var(--font-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
 }
 
 .headline {
-  font-family: var(--font-display), var(--font-serif), Georgia, serif;
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  line-height: 1.12;
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
 }
 
 .subhead {
-  font-family: var(--font-display), var(--font-serif), Georgia, serif;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  line-height: 1.22;
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.18;
 }
 
 .body-prose {
-  font-family: var(--font-serif), Georgia, serif;
+  font-family: var(--font-sans), sans-serif;
   font-size: 1.0625rem;
-  line-height: 1.65;
+  line-height: 1.6;
   color: var(--ink-soft);
+  font-weight: 400;
 }
 
 .pullquote {
-  font-family: var(--font-display), var(--font-serif), Georgia, serif;
-  font-weight: 400;
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 600;
   font-size: 1.5rem;
   line-height: 1.35;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
   color: var(--ink);
 }
 
-.scenario p {
-  font-family: var(--font-serif), Georgia, serif;
-  font-size: 1.0625rem;
-  line-height: 1.7;
+/* `.serif` is referenced in 6 places across the codebase — rebind it to the
+   sans family so legacy callsites render correctly in the new system. */
+.serif {
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 600;
 }
 
-/* Typography utilities ---------------------------------------------------- */
+.scenario p {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  margin-bottom: 0.95em;
+  color: var(--ink-soft);
+}
+
+/* Mono utility — metadata, indices, codes */
+.mono {
+  font-family: var(--font-mono), "JetBrains Mono", ui-monospace, monospace;
+  font-feature-settings: "tnum";
+}
 
 .smallcaps {
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.6875rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 500;
+  color: var(--accent);
 }
 
 .eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.6875rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  font-weight: 600;
-  color: var(--ink-soft);
+  font-weight: 500;
+  color: var(--accent);
 }
 
 /* Decorative ------------------------------------------------------------- */
@@ -134,79 +172,84 @@ body {
 }
 
 .stat-num {
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   font-variant-numeric: tabular-nums;
+  color: var(--accent);
 }
 
-/* Cards ------------------------------------------------------------------ */
+/* Cards — deep navy with a faint gold hairline border --------------------- */
 
 .card {
   background: var(--paper-raised);
   border: 1px solid var(--rule);
-  border-radius: 12px;
+  border-radius: 18px;
   box-shadow: var(--shadow-sm);
-  transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+  transition: border-color 0.2s ease, box-shadow 0.25s ease;
 }
 .card:hover {
+  border-color: var(--rule-strong);
   box-shadow: var(--shadow-md);
 }
+
+/* Linked cards: no lift transform — only border + glow shift on hover.
+   (No translateY per user direction.) */
 .card-link {
   position: relative;
-}
-.card-link::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 12%;
-  bottom: 12%;
-  width: 2px;
-  background: var(--accent);
-  border-radius: 2px;
-  opacity: 0;
-  transform: scaleY(0.4);
-  transform-origin: center;
-  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.2, 0.6, 0.2, 1);
+  display: block;
 }
 .card-link:hover {
   border-color: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-}
-.card-link:hover::before {
-  opacity: 1;
-  transform: scaleY(1);
-}
-.card-link[data-tone="accent-2"]::before {
-  background: var(--accent-2);
+  box-shadow: var(--glow-accent);
 }
 .card-link[data-tone="accent-2"]:hover {
   border-color: var(--accent-2);
+  box-shadow: 0 0 0 1px var(--accent-2),
+    0 12px 32px rgba(107, 134, 184, 0.22);
+}
+
+/* Gold circular icon on cards — like the reference screenshot */
+.icon-disc {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
+  color: #1a1408;
+  box-shadow: 0 6px 16px rgba(212, 168, 67, 0.28);
+}
+.icon-disc-2 {
+  background: linear-gradient(135deg, var(--accent-2-soft) 0%, var(--accent-2) 100%);
+  color: #0a1a36;
 }
 
 .pill {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  padding: 0.25rem 0.625rem;
+  padding: 0.3rem 0.75rem;
   border-radius: 999px;
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.6875rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 500;
 }
 .pill-accent {
-  background: rgba(212, 163, 65, 0.10);
+  background: rgba(212, 168, 67, 0.10);
   color: var(--accent);
-  border: 1px solid rgba(212, 163, 65, 0.26);
+  border: 1px solid rgba(212, 168, 67, 0.36);
 }
 .pill-accent-2 {
-  background: rgba(127, 160, 137, 0.10);
-  color: var(--accent-2);
-  border: 1px solid rgba(127, 160, 137, 0.26);
+  background: rgba(107, 134, 184, 0.10);
+  color: var(--accent-2-soft);
+  border: 1px solid rgba(107, 134, 184, 0.36);
 }
 .pill-mute {
-  background: var(--rule-soft);
+  background: rgba(255, 255, 255, 0.04);
   color: var(--ink-soft);
   border: 1px solid var(--rule);
 }
@@ -216,44 +259,40 @@ body {
 .btn-primary {
   background: var(--ink);
   color: var(--paper);
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: -0.005em;
   box-shadow: var(--shadow-sm);
-  transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 .btn-primary:hover {
-  background: #f8f1dc;
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-.btn-primary:active {
-  transform: translateY(0);
+  background: var(--accent);
+  color: #1a1408;
 }
 
 .btn-accent {
   background: var(--accent);
-  color: #2a1410;
-  font-weight: 600;
+  color: #1a1408;
+  font-weight: 700;
   letter-spacing: -0.005em;
   box-shadow: var(--shadow-sm);
-  transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 .btn-accent:hover {
   background: var(--accent-soft);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--glow-accent);
 }
 
 .btn-ghost {
   background: transparent;
   color: var(--ink);
-  font-weight: 500;
+  font-weight: 600;
   border: 1px solid var(--rule);
-  transition: border-color 0.18s ease, background 0.18s ease;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 .btn-ghost:hover {
-  border-color: var(--ink);
-  background: var(--paper-raised);
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(212, 168, 67, 0.06);
 }
 
 /* Inputs ----------------------------------------------------------------- */
@@ -262,18 +301,15 @@ textarea,
 input[type="text"],
 input[type="email"],
 input[type="password"] {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-sans), sans-serif;
   font-size: 0.9375rem;
   line-height: 1.55;
   resize: vertical;
-}
-textarea,
-input[type="text"],
-input[type="email"],
-input[type="password"] {
   background: var(--paper-deep);
   color: var(--ink);
   caret-color: var(--accent);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
 }
 textarea::placeholder,
 input::placeholder {
@@ -283,59 +319,45 @@ textarea:focus,
 input:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(212, 163, 65, 0.18);
+  box-shadow: 0 0 0 3px rgba(212, 168, 67, 0.18);
 }
 
-/* Scenario prose --------------------------------------------------------- */
-
-.scenario p {
-  margin-bottom: 0.95em;
-}
-
-.scenario .lede::first-letter {
-  float: left;
-  font-size: 2.75rem;
-  line-height: 0.9;
-  padding: 0.3rem 0.5rem 0 0;
-  font-weight: 700;
-  color: var(--accent);
-  letter-spacing: -0.02em;
-}
-
-/* Numbered field labels (replaces .field-num roman numerals) */
+/* Numbered field labels */
 .field-num {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 6px;
-  background: rgba(212, 163, 65, 0.14);
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  background: rgba(212, 168, 67, 0.14);
   color: var(--accent);
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
+  border: 1px solid rgba(212, 168, 67, 0.32);
 }
 
 .step-num {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 6px;
-  background: rgba(127, 160, 137, 0.14);
-  color: var(--accent-2);
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  background: rgba(107, 134, 184, 0.14);
+  color: var(--accent-2-soft);
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
+  border: 1px solid rgba(107, 134, 184, 0.36);
 }
 
-/* Compare side-by-side --------------------------------------------------- */
-
+/* Compare row (two-column layout used inside reps) */
 .compare-row {
   display: grid;
-  grid-template-columns: 1fr;
   gap: 1rem;
 }
 @media (min-width: 768px) {
@@ -358,44 +380,69 @@ input:focus {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(43, 20, 22, 0.78);
-  backdrop-filter: saturate(140%) blur(10px);
-  -webkit-backdrop-filter: saturate(140%) blur(10px);
+  background: rgba(10, 26, 54, 0.72);
+  backdrop-filter: saturate(140%) blur(14px);
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
   border-bottom: 1px solid var(--rule);
 }
 
 .nav-link {
-  position: relative;
+  font-family: var(--font-sans), sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--ink-soft);
-  padding: 0.375rem 0.625rem;
-  border-radius: 6px;
-  transition: color 0.15s ease, background 0.15s ease;
+  padding: 0.375rem 0.75rem;
+  border-radius: 8px;
+  position: relative;
+  transition: color 0.18s ease;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.2rem;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.25s cubic-bezier(0.2, 0.6, 0.2, 1);
 }
 .nav-link:hover {
   color: var(--ink);
-  background: var(--rule-soft);
+}
+.nav-link:hover::after,
+.nav-link[data-active="true"]::after {
+  transform: scaleX(1);
 }
 .nav-link[data-active="true"] {
   color: var(--ink);
-  background: var(--rule-soft);
+}
+
+/* Editorial link: underline grow on hover, color flip to accent */
+.editorial-link,
+.link-underline {
+  color: var(--ink);
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: color 0.2s ease, background-size 0.3s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.editorial-link:hover,
+.link-underline:hover {
+  color: var(--accent);
+  background-size: 100% 1px;
 }
 
 /* Animations ------------------------------------------------------------- */
 
 .fade-up {
-  animation: fadeUp 0.45s cubic-bezier(0.2, 0.6, 0.2, 1);
+  animation: fadeUp 0.5s cubic-bezier(0.2, 0.6, 0.2, 1);
 }
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .reveal-stage > * {
@@ -410,17 +457,10 @@ input:focus {
 .reveal-stage > *:nth-child(6) { animation-delay: 1.30s; }
 .reveal-stage > *:nth-child(7) { animation-delay: 1.55s; }
 @keyframes stageIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Scroll-driven reveal: applied by ScrollReveal (IntersectionObserver) */
 .reveal-on-scroll {
   opacity: 0;
   transform: translateY(14px);
@@ -433,61 +473,48 @@ input:focus {
   transform: translateY(0);
 }
 
-/* Page-level fade-through on every route render */
 .page-fade {
   animation: pageFade 0.5s cubic-bezier(0.2, 0.6, 0.2, 1) both;
 }
 @keyframes pageFade {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Paper grain ------------------------------------------------------------
-   A very subtle SVG noise overlay, fixed to viewport. ~3% opacity so it
-   reads as texture, not noise. Disabled for prefers-reduced-motion users
-   who often also prefer fewer overlays. */
-.paper-grain {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.10;
-  mix-blend-mode: soft-light;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.92  0 0 0 0 0.85  0 0 0 0 0.72  0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  background-size: 240px 240px;
-}
+/* Marquee strip — slow scrolling tagline ---------------------------------- */
 
-/* Editorial drop cap: first letter of an element with .drop-cap renders
-   as a magazine-style raised cap in the display face. */
-.drop-cap::first-letter {
-  font-family: var(--font-display), var(--font-serif), Georgia, serif;
-  font-weight: 600;
-  float: left;
-  font-size: 3.4rem;
-  line-height: 0.92;
-  padding: 0.25rem 0.55rem 0 0;
+.marquee-strip {
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-deep);
+  overflow: hidden;
+  margin-top: 4rem;
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 40s linear infinite;
+}
+.marquee-track > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.9rem 1.5rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   color: var(--accent);
-  letter-spacing: -0.02em;
+  white-space: nowrap;
 }
-
-/* Editorial underline-on-hover for inline links inside prose. */
-.editorial-link {
-  color: var(--ink);
-  background-image: linear-gradient(var(--accent), var(--accent));
-  background-size: 100% 1px;
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  transition: color 0.18s ease, background-size 0.25s ease;
-}
-.editorial-link:hover {
+.marquee-track > span::after {
+  content: "✦";
   color: var(--accent);
-  background-size: 100% 2px;
+  opacity: 0.7;
+}
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 /* Respect users who prefer reduced motion */
@@ -495,21 +522,11 @@ input:focus {
   .reveal-on-scroll,
   .page-fade,
   .fade-up,
-  .reveal-stage > * {
+  .reveal-stage > *,
+  .marquee-track {
     animation: none !important;
     transition: none !important;
     opacity: 1 !important;
     transform: none !important;
   }
-  .paper-grain {
-    display: none;
-  }
-}
-
-/* Stack TopNav and content above the fixed grain overlay */
-header.nav-shell,
-.page-fade,
-main {
-  position: relative;
-  z-index: 1;
 }

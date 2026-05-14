@@ -460,17 +460,22 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
       </div>
 
       <div
-        className="mt-12 rounded-xl p-7"
-        style={{ background: "var(--ink)", color: "#e7e1d2" }}
+        className="mt-12 rounded-xl p-7 border"
+        style={{
+          background: "var(--paper-deep)",
+          color: "var(--ink-soft)",
+          borderColor: "var(--rule)",
+        }}
       >
-        <div className="eyebrow mb-3" style={{ color: "#b9aa92" }}>
-          Don't type an answer
-        </div>
-        <p className="text-xl leading-snug" style={{ fontWeight: 500, letterSpacing: "-0.005em" }}>
+        <div className="eyebrow mb-3">Don't type an answer</div>
+        <p
+          className="text-xl leading-snug"
+          style={{ fontWeight: 600, letterSpacing: "-0.005em", color: "var(--ink)" }}
+        >
           Where did your take diverge most from what actually happened — and is that
           divergence a blind spot, or a real disagreement you'd defend?
         </p>
-        <p className="text-sm mt-5" style={{ color: "#b9aa92" }}>
+        <p className="text-sm mt-5" style={{ color: "var(--ink-mute)" }}>
           The rep is the noticing. Close the tab and let it sit.
         </p>
       </div>

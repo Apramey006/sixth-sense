@@ -125,10 +125,14 @@ export function DailyRep({ scenario }: { scenario: DailyScenario }) {
       </div>
 
       <div
-        className="mt-9 rounded-xl p-6"
-        style={{ background: "var(--ink)", color: "#e7e1d2" }}
+        className="mt-9 rounded-xl p-6 border"
+        style={{
+          background: "var(--paper-deep)",
+          color: "var(--ink-soft)",
+          borderColor: "var(--rule)",
+        }}
       >
-        <div className="eyebrow mb-2" style={{ color: "#b9aa92" }}>
+        <div className="eyebrow mb-2">
           The rep is the noticing
         </div>
         <p className="text-[0.95rem] leading-relaxed">

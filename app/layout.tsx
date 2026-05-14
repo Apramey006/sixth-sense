@@ -1,28 +1,20 @@
 import type { Metadata } from "next";
-import { Inter, Fraunces, Newsreader } from "next/font/google";
+import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { TopNav } from "@/components/TopNav";
+import { Marquee } from "@/components/Marquee";
 
-const inter = Inter({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
-const fraunces = Fraunces({
+const mono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-display",
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
-
-const newsreader = Newsreader({
-  subsets: ["latin"],
-  variable: "--font-serif",
+  variable: "--font-mono",
   weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -34,15 +26,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${fraunces.variable} ${newsreader.variable}`}
-    >
+    <html lang="en" className={`${jakarta.variable} ${mono.variable}`}>
       <body className="min-h-screen antialiased">
-        {/* Subtle paper grain — fixed overlay, doesn't scroll, doesn't catch clicks */}
-        <div aria-hidden className="paper-grain" />
         <TopNav />
         <div className="page-fade">{children}</div>
+        <Marquee />
       </body>
     </html>
   );

@@ -15,24 +15,31 @@ export function TopNav() {
 
   return (
     <header className="nav-shell">
-      <div className="max-w-5xl mx-auto px-5 sm:px-6 h-14 flex items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2 group">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6 h-16 flex items-center justify-between gap-4">
+        <Link href="/" className="flex items-center gap-2.5 group">
           <span
             aria-hidden
-            className="inline-block w-6 h-6 rounded-md"
+            className="inline-flex items-center justify-center w-7 h-7 rounded-full"
             style={{
               background:
-                "linear-gradient(135deg, var(--accent) 0%, var(--accent-soft) 55%, var(--accent-2) 100%)",
-              boxShadow: "var(--shadow-sm)",
+                "linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%)",
+              color: "#1a1408",
+              boxShadow: "0 4px 12px rgba(212, 168, 67, 0.28)",
+              fontFamily: "var(--font-sans), sans-serif",
+              fontWeight: 800,
+              fontSize: "0.85rem",
+              letterSpacing: "-0.02em",
             }}
-          />
+          >
+            VI
+          </span>
           <span
             className="text-[1.05rem]"
             style={{
               color: "var(--ink)",
-              fontFamily: "var(--font-display), var(--font-serif), Georgia, serif",
-              fontWeight: 500,
-              letterSpacing: "-0.015em",
+              fontFamily: "var(--font-sans), sans-serif",
+              fontWeight: 700,
+              letterSpacing: "-0.02em",
             }}
           >
             Sixth Sense
