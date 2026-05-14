@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { RepStatus } from "@/components/RepStatus";
-import { ScrollReveal } from "@/components/ScrollReveal";
 import { getDailyForDate, getWeeklyForWeek } from "@/lib/scenarios";
 import { todayISO, currentISOWeek } from "@/lib/dates";
 
@@ -16,17 +15,16 @@ export default async function HomePage() {
 
   return (
     <main className="max-w-6xl mx-auto px-5 sm:px-6 pt-14 sm:pt-24 pb-24">
-      {/* Hero ---------------------------------------------------------- */}
+      {/* Hero — lead with the thesis -------------------------------- */}
       <section className="max-w-4xl">
         <h1 className="display text-[3rem] sm:text-[4.5rem] lg:text-[5.5rem]">
-          Form your take{" "}
-          <span style={{ color: "var(--accent)" }}>before</span> you see anyone
-          else's.
+          When everyone can build,{" "}
+          <span style={{ color: "var(--accent)" }}>instinct is the edge.</span>
         </h1>
         <p className="body-prose mt-7 max-w-2xl">
-          Product taste is a reflex you build by forming opinions and watching them
-          collide with reality. Two reps a week — one short, one deep — on real
-          product decisions. No frameworks. No model-graded answers.
+          Sixth Sense is a practice tool for the one skill AI can't hand you: product
+          instinct. Two reps a week — one short, one deep — on real product decisions,
+          taken before you see how they were actually solved.
         </p>
 
         <div className="flex flex-wrap items-center gap-3 mt-9">
@@ -45,8 +43,16 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Two reps — the only section that earns cards ------------------ */}
-      <ScrollReveal as="section" className="mt-24">
+      {/* Two reps — the only section that earns cards --------------- */}
+      <section className="mt-28">
+        <p
+          className="subhead text-2xl sm:text-3xl mb-8 max-w-3xl"
+          style={{ letterSpacing: "-0.02em" }}
+        >
+          Form your take{" "}
+          <span style={{ color: "var(--accent)" }}>before</span> you see anyone
+          else's.
+        </p>
         <div className="grid sm:grid-cols-2 gap-5">
           <Link href="/today" className="card card-link p-7 sm:p-8 flex flex-col">
             <div className="flex items-start justify-between gap-4 mb-6">
@@ -111,10 +117,10 @@ export default async function HomePage() {
             </div>
           </Link>
         </div>
-      </ScrollReveal>
+      </section>
 
-      {/* How a rep works — pure type + hairlines, no cards ------------- */}
-      <ScrollReveal as="section" className="mt-28">
+      {/* How a rep works — pure type + hairlines, no cards ----------- */}
+      <section className="mt-28">
         <ol className="grid sm:grid-cols-3 sm:divide-x" style={{ borderColor: "var(--rule)" }}>
           {[
             "Read a real product moment.",
@@ -136,10 +142,10 @@ export default async function HomePage() {
             </li>
           ))}
         </ol>
-      </ScrollReveal>
+      </section>
 
-      {/* Constraint — pullquote with a thick left rule, no card -------- */}
-      <ScrollReveal as="section" className="mt-28">
+      {/* Constraint — pullquote with a thick left rule, no card ----- */}
+      <section className="mt-28">
         <div
           className="max-w-3xl pl-6 sm:pl-8"
           style={{ borderLeft: "3px solid var(--accent)" }}
@@ -151,7 +157,7 @@ export default async function HomePage() {
             to find your own.
           </p>
         </div>
-      </ScrollReveal>
+      </section>
     </main>
   );
 }

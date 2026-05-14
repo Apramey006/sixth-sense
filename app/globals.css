@@ -67,7 +67,6 @@ body::before {
 /* Stack content above the vignette */
 header.nav-shell,
 .page-fade,
-.marquee-strip,
 main {
   position: relative;
   z-index: 1;
@@ -419,23 +418,21 @@ input:focus {
   color: var(--ink);
 }
 
-/* Editorial link: underline grow on hover, color flip to accent */
-.editorial-link,
-.link-underline {
-  color: var(--ink);
-  background-image: linear-gradient(var(--accent), var(--accent));
-  background-size: 0% 1px;
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  transition: color 0.2s ease, background-size 0.3s cubic-bezier(0.2, 0.6, 0.2, 1);
-}
-.editorial-link:hover,
-.link-underline:hover {
-  color: var(--accent);
-  background-size: 100% 1px;
-}
+/* Animations -------------------------------------------------------------
+   Two systems, on purpose:
+   - `.page-fade` wraps every route render in layout.tsx for the soft
+     fade-up that lands a new page.
+   - `.fade-up` + `.reveal-stage` are used inside DailyRep / WeeklyRep
+     to stage the reveal sections after a user commits to their take.
+   Anything else (scroll-on-view, marquee) was removed as decoration. */
 
-/* Animations ------------------------------------------------------------- */
+.page-fade {
+  animation: pageFade 0.5s cubic-bezier(0.2, 0.6, 0.2, 1) both;
+}
+@keyframes pageFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
 .fade-up {
   animation: fadeUp 0.5s cubic-bezier(0.2, 0.6, 0.2, 1);
@@ -461,69 +458,10 @@ input:focus {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.reveal-on-scroll {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.7s cubic-bezier(0.2, 0.6, 0.2, 1),
-    transform 0.7s cubic-bezier(0.2, 0.6, 0.2, 1);
-  will-change: opacity, transform;
-}
-.reveal-on-scroll[data-revealed="true"] {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.page-fade {
-  animation: pageFade 0.5s cubic-bezier(0.2, 0.6, 0.2, 1) both;
-}
-@keyframes pageFade {
-  from { opacity: 0; transform: translateY(4px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Marquee strip — slow scrolling tagline ---------------------------------- */
-
-.marquee-strip {
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  background: var(--paper-deep);
-  overflow: hidden;
-  margin-top: 4rem;
-}
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marqueeScroll 40s linear infinite;
-}
-.marquee-track > span {
-  display: inline-flex;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 0.9rem 1.5rem;
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
-  white-space: nowrap;
-}
-.marquee-track > span::after {
-  content: "✦";
-  color: var(--accent);
-  opacity: 0.7;
-}
-@keyframes marqueeScroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-/* Respect users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .reveal-on-scroll,
   .page-fade,
   .fade-up,
-  .reveal-stage > *,
-  .marquee-track {
+  .reveal-stage > * {
     animation: none !important;
     transition: none !important;
     opacity: 1 !important;
