@@ -1,35 +1,39 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
-import { sendMagicLink } from "@/lib/auth";
+import { useRouter } from "next/navigation";
+import { signUpWithPassword } from "@/lib/auth";
 import { supabaseEnabled } from "@/lib/supabase";
 
 /**
- * Quiet email-capture, rendered after a reveal for unauthenticated users.
- * Single field, magic-link button, soft phrasing. Not a wall — an invitation.
+ * Quiet sign-up nudge after a reveal for unauthenticated users.
+ * Email + password, with a link to sign in if they already have an account.
  */
 export function EmailCapture({ context }: { context?: "daily" | "weekly" }) {
+  const router = useRouter();
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [password, setPassword] = useState("");
+  const [status, setStatus] = useState<"idle" | "submitting" | "confirm" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
-  // If auth isn't configured, render nothing — no broken UI in dev.
   if (!supabaseEnabled) return null;
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!email.trim()) return;
-    setStatus("sending");
+    if (!email.trim() || !password) return;
+    setStatus("submitting");
     setErrorMsg("");
     try {
-      const origin = window.location.origin;
-      const next = typeof window !== "undefined" ? window.location.pathname : "/";
-      const redirectTo = `${origin}/auth/callback?next=${encodeURIComponent(next)}`;
-      await sendMagicLink(email, redirectTo);
-      setStatus("sent");
+      const { needsConfirmation } = await signUpWithPassword(email, password);
+      if (needsConfirmation) {
+        setStatus("confirm");
+      } else {
+        router.refresh();
+      }
     } catch (err) {
       setStatus("error");
-      setErrorMsg(err instanceof Error ? err.message : "Couldn't send the link.");
+      setErrorMsg(err instanceof Error ? err.message : "Couldn't create your account.");
     }
   }
 
@@ -50,24 +54,22 @@ export function EmailCapture({ context }: { context?: "daily" | "weekly" }) {
         {headline}
       </p>
       <p className="text-sm mt-2" style={{ color: "var(--ink-soft)" }}>
-        Drop an email and we'll send you a magic link. Your reps follow you across devices.
+        Create an account so your reps follow you across devices.
       </p>
 
-      {status === "sent" ? (
+      {status === "confirm" ? (
         <div className="mt-5">
           <div className="smallcaps mb-1" style={{ color: "var(--accent)" }}>
-            Link sent
+            Confirm your email
           </div>
           <p className="text-sm" style={{ color: "var(--ink-soft)" }}>
-            Check <span style={{ fontWeight: 600 }}>{email}</span>. Click the link on this
-            device and your reps will be tied to your account.
+            We sent a confirmation link to{" "}
+            <span style={{ fontWeight: 600 }}>{email}</span>. Click it to activate your
+            account.
           </p>
         </div>
       ) : (
-        <form
-          onSubmit={onSubmit}
-          className="mt-4 flex flex-col sm:flex-row gap-2 sm:items-center"
-        >
+        <form onSubmit={onSubmit} className="mt-4 flex flex-col gap-2">
           <input
             type="email"
             required
@@ -75,16 +77,28 @@ export function EmailCapture({ context }: { context?: "daily" | "weekly" }) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@somewhere.com"
-            disabled={status === "sending"}
-            className="flex-1 border rounded-md px-3 py-2 serif"
+            disabled={status === "submitting"}
+            className="border rounded-md px-3 py-2 serif"
+            style={{ borderColor: "var(--rule)", background: "white" }}
+          />
+          <input
+            type="password"
+            required
+            minLength={8}
+            autoComplete="new-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password (8+ characters)"
+            disabled={status === "submitting"}
+            className="border rounded-md px-3 py-2 serif"
             style={{ borderColor: "var(--rule)", background: "white" }}
           />
           <button
             type="submit"
-            disabled={status === "sending"}
+            disabled={status === "submitting"}
             className="btn-primary px-5 py-2 rounded-md font-medium disabled:opacity-50 whitespace-nowrap"
           >
-            {status === "sending" ? "Sending…" : "Email me a link"}
+            {status === "submitting" ? "Creating…" : "Create account"}
           </button>
         </form>
       )}
@@ -94,6 +108,14 @@ export function EmailCapture({ context }: { context?: "daily" | "weekly" }) {
           {errorMsg}
         </p>
       )}
+
+      <p className="text-xs mt-4" style={{ color: "var(--ink-soft)" }}>
+        Already have an account?{" "}
+        <Link href="/auth" className="underline" style={{ color: "var(--ink)" }}>
+          Sign in
+        </Link>
+        .
+      </p>
     </div>
   );
 }

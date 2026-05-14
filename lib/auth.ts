@@ -9,7 +9,7 @@ const LINKED_KEY = "sixth-sense:anon-linked";
 
 /**
  * React hook: returns the current Supabase user (or null) and a loading flag.
- * Subscribes to auth state changes so the UI updates after magic-link sign-in.
+ * Subscribes to auth state changes so the UI updates after sign-in.
  */
 export function useUser(): { user: User | null; loading: boolean } {
   const [user, setUser] = useState<User | null>(null);
@@ -39,21 +39,37 @@ export function useUser(): { user: User | null; loading: boolean } {
 }
 
 /**
- * Send a magic link to the given email. The link redirects to /auth/callback,
- * which exchanges the code for a session and bounces back to the app.
+ * Sign in an existing user with email + password. Session is set immediately.
  */
-export async function sendMagicLink(email: string, redirectTo: string): Promise<void> {
+export async function signInWithPassword(email: string, password: string): Promise<void> {
   if (!supabaseEnabled || !supabase) {
     throw new Error("Auth is not configured.");
   }
-  const { error } = await supabase.auth.signInWithOtp({
+  const { error } = await supabase.auth.signInWithPassword({
     email: email.trim(),
-    options: {
-      emailRedirectTo: redirectTo,
-      shouldCreateUser: true,
-    },
+    password,
   });
   if (error) throw error;
+}
+
+/**
+ * Create a new account with email + password. If Supabase email confirmation
+ * is disabled, the user is signed in immediately; otherwise the returned
+ * session is null until they confirm.
+ */
+export async function signUpWithPassword(
+  email: string,
+  password: string
+): Promise<{ needsConfirmation: boolean }> {
+  if (!supabaseEnabled || !supabase) {
+    throw new Error("Auth is not configured.");
+  }
+  const { data, error } = await supabase.auth.signUp({
+    email: email.trim(),
+    password,
+  });
+  if (error) throw error;
+  return { needsConfirmation: !data.session };
 }
 
 export async function signOut(): Promise<void> {
