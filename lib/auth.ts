@@ -72,6 +72,26 @@ export async function signUpWithPassword(
   return { needsConfirmation: !data.session };
 }
 
+/**
+ * Start an OAuth sign-in flow. The browser is redirected to the provider, then
+ * back to /auth/callback?next=... once Supabase exchanges the code.
+ */
+export async function signInWithOAuth(
+  provider: "google" | "github",
+  next: string = "/"
+): Promise<void> {
+  if (!supabaseEnabled || !supabase) {
+    throw new Error("Auth is not configured.");
+  }
+  const safeNext = next.startsWith("/") ? next : "/";
+  const redirectTo = `${window.location.origin}/auth/callback?next=${encodeURIComponent(safeNext)}`;
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider,
+    options: { redirectTo },
+  });
+  if (error) throw error;
+}
+
 export async function signOut(): Promise<void> {
   if (!supabaseEnabled || !supabase) return;
   await supabase.auth.signOut();
