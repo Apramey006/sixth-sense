@@ -1,4 +1,4 @@
--- Taste Reps · v1 schema
+-- Sixth Sense · v1 schema
 -- Run in the Supabase SQL editor after creating a new project.
 
 -- Scenarios are content. Daily and weekly share a table with a `type` discriminator.

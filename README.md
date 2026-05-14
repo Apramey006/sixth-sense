@@ -1,8 +1,8 @@
-# Taste Reps
+# Sixth Sense
 
 A practice tool for product taste. Real product decisions, your unfiltered take, then the reveal.
 
-**Live:** https://taste-reps.vercel.app
+**Live:** https://sixth-sense.app
 
 ## What it is
 
@@ -55,7 +55,7 @@ The app falls back to TypeScript seed content (`lib/seedScenarios.ts`) when Supa
    - `supabase/auth_migration.sql` — adds `user_id` column to `takes`, the `link_anon_takes_to_user` RPC, and auth-related RLS policies. **Required for sign-in to work.**
 3. In **Authentication → URL Configuration → Redirect URLs**, add:
    - `http://localhost:3000/auth/callback`
-   - `https://taste-reps.vercel.app/auth/callback`
+   - `https://sixth-sense.app/auth/callback`
    - Any other deploy URLs.
 4. Paste the project URL + anon key into `.env.local` (and into Vercel project env vars for prod).
 5. Restart `npm run dev`. The app reads scenarios from Supabase, writes takes to the `takes` table, and magic-link sign-in is live.

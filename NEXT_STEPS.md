@@ -19,7 +19,7 @@ The product is ready to be put in front of a small set of real users. It is not 
 1. **Run `supabase/auth_migration.sql`** in the Supabase SQL editor. Without it, sign-in will appear to work but takes won't actually attribute to the user, and `/me` will be empty.
 2. **Add redirect URLs** in Supabase → Authentication → URL Configuration → Redirect URLs:
    - `http://localhost:3000/auth/callback`
-   - `https://taste-reps.vercel.app/auth/callback`
+   - `https://sixth-sense.app/auth/callback`
 3. **Rotate the Supabase anon key** (Settings → API → Reset anon key) since the original was shared in chat history. Anon keys are public-by-design but it's hygiene.
 4. **Walk the full anonymous → email-capture → magic-link → /me flow** yourself before sending the link to anyone. End-to-end testing on a real device is the only honest test.
 

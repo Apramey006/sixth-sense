@@ -14,7 +14,7 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
   const [submitting, setSubmitting] = useState(false);
   const [draftRestored, setDraftRestored] = useState(false);
 
-  const draftKey = `taste-reps:weekly-draft:${scenario.id}`;
+  const draftKey = `sixth-sense:weekly-draft:${scenario.id}`;
 
   useEffect(() => {
     if (typeof window === "undefined") return;

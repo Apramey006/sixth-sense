@@ -30,7 +30,7 @@ export function TopNav() {
             className="font-semibold tracking-tight text-[0.95rem]"
             style={{ color: "var(--ink)", letterSpacing: "-0.01em" }}
           >
-            Taste Reps
+            Sixth Sense
           </span>
         </Link>
 

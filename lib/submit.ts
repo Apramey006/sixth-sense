@@ -13,7 +13,7 @@ export async function submitTake(args: SubmitArgs): Promise<void> {
   if (!supabaseEnabled || !supabase) {
     // No backend configured — keep the rep working offline.
     // We still store the take locally so the user gets the side-by-side reveal.
-    const stash = `taste-reps:take:${args.scenario_type}:${args.scenario_id}`;
+    const stash = `sixth-sense:take:${args.scenario_type}:${args.scenario_id}`;
     if (typeof window !== "undefined") {
       window.localStorage.setItem(stash, JSON.stringify({ ...args.body, at: new Date().toISOString() }));
     }

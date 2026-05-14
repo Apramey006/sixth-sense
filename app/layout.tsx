@@ -3,7 +3,7 @@ import "./globals.css";
 import { TopNav } from "@/components/TopNav";
 
 export const metadata: Metadata = {
-  title: "Taste Reps",
+  title: "Sixth Sense",
   description:
     "A practice tool for product taste — daily and weekly reps on real product decisions.",
 };

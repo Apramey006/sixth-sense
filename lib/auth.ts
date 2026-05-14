@@ -5,7 +5,7 @@ import type { Session, User } from "@supabase/supabase-js";
 import { supabase, supabaseEnabled } from "./supabase";
 import { getAnonId } from "./anonId";
 
-const LINKED_KEY = "taste-reps:anon-linked";
+const LINKED_KEY = "sixth-sense:anon-linked";
 
 /**
  * React hook: returns the current Supabase user (or null) and a loading flag.

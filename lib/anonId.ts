@@ -1,7 +1,7 @@
 "use client";
 import { v4 as uuidv4 } from "uuid";
 
-const KEY = "taste-reps:anon-id";
+const KEY = "sixth-sense:anon-id";
 
 export function getAnonId(): string {
   if (typeof window === "undefined") return "";
@@ -13,7 +13,7 @@ export function getAnonId(): string {
   return id;
 }
 
-const COMPLETIONS_KEY = "taste-reps:completions";
+const COMPLETIONS_KEY = "sixth-sense:completions";
 
 type Completions = { daily: Record<string, true>; weekly: Record<string, true> };
 

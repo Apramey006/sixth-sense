@@ -1,4 +1,4 @@
--- Taste Reps · auth migration
+-- Sixth Sense · auth migration
 -- Adds optional auth.user attribution to takes without breaking the
 -- anonymous-first flow. Run this in the Supabase SQL editor AFTER schema.sql.
 --
@@ -6,7 +6,7 @@
 -- URLs to include both:
 --   http://localhost:3000/auth/callback
 --   http://localhost:3941/auth/callback
---   https://taste-reps.vercel.app/auth/callback
+--   https://sixth-sense.app/auth/callback
 -- (and any preview deploy origins you care about).
 
 -- 1. Add user_id (nullable — anon takes have no user).

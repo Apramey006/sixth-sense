@@ -15,7 +15,7 @@ export const supabase: SupabaseClient | null = supabaseEnabled
         autoRefreshToken: true,
         detectSessionInUrl: true,
         flowType: "pkce",
-        storageKey: "taste-reps:auth",
+        storageKey: "sixth-sense:auth",
       },
     })
   : null;
