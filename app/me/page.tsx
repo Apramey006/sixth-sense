@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useUser } from "@/lib/auth";
 import { supabase, supabaseEnabled } from "@/lib/supabase";
+import { startOfWeek } from "@/lib/dates";
 
 type TakeRow = {
   id: string;
@@ -22,10 +23,15 @@ type ScenarioMeta = {
 
 type EnrichedTake = TakeRow & { scenario: ScenarioMeta | null };
 
+type KindFilter = "all" | "daily" | "weekly";
+type SortOrder = "newest" | "oldest" | "company";
+
 export default function MePage() {
   const { user, loading } = useUser();
   const [takes, setTakes] = useState<EnrichedTake[] | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [filter, setFilter] = useState<KindFilter>("all");
+  const [sort, setSort] = useState<SortOrder>("newest");
 
   useEffect(() => {
     if (loading) return;
@@ -76,12 +82,46 @@ export default function MePage() {
     };
   }, [user, loading]);
 
+  const summary = useMemo(() => {
+    if (!takes) return null;
+    const now = new Date();
+    const weekStart = startOfWeek(now).getTime();
+    const lastWeekStart = weekStart - 7 * 86_400_000;
+    let thisWeek = 0;
+    let lastWeek = 0;
+    for (const t of takes) {
+      const at = new Date(t.created_at).getTime();
+      if (at >= weekStart) thisWeek += 1;
+      else if (at >= lastWeekStart) lastWeek += 1;
+    }
+    return { thisWeek, lastWeek, total: takes.length };
+  }, [takes]);
+
+  const visibleTakes = useMemo(() => {
+    if (!takes) return null;
+    const filtered =
+      filter === "all" ? takes : takes.filter((t) => t.scenario_type === filter);
+    const sorted = [...filtered];
+    if (sort === "newest") {
+      sorted.sort((a, b) => b.created_at.localeCompare(a.created_at));
+    } else if (sort === "oldest") {
+      sorted.sort((a, b) => a.created_at.localeCompare(b.created_at));
+    } else {
+      sorted.sort((a, b) => {
+        const ca = a.scenario?.company ?? a.scenario_id;
+        const cb = b.scenario?.company ?? b.scenario_id;
+        return ca.localeCompare(cb);
+      });
+    }
+    return sorted;
+  }, [takes, filter, sort]);
+
   return (
     <main className="max-w-4xl mx-auto px-5 sm:px-6 pt-14 sm:pt-20 pb-24">
-      <header className="mb-12">
+      <header className="mb-10">
         <h1 className="display text-[2.5rem] sm:text-[3.5rem]">Your reps.</h1>
         <p className="body-prose mt-4 max-w-2xl">
-          Each rep, with what you wrote and what you saw. Sorted newest first.
+          Every rep you've taken, with what you wrote and what you saw.
         </p>
       </header>
 
@@ -91,10 +131,108 @@ export default function MePage() {
       {supabaseEnabled && user && error && <ErrorState message={error} />}
       {supabaseEnabled && user && !error && takes === null && <Loading />}
       {supabaseEnabled && user && takes !== null && takes.length === 0 && <Empty />}
-      {supabaseEnabled && user && takes && takes.length > 0 && (
-        <TakesList takes={takes} />
+      {supabaseEnabled && user && visibleTakes && takes && takes.length > 0 && summary && (
+        <>
+          <SummaryBar summary={summary} />
+          <Controls filter={filter} setFilter={setFilter} sort={sort} setSort={setSort} takes={takes} />
+          {visibleTakes.length === 0 ? (
+            <FilteredEmpty filter={filter} />
+          ) : (
+            <TakesList takes={visibleTakes} />
+          )}
+        </>
       )}
     </main>
+  );
+}
+
+function SummaryBar({ summary }: { summary: { thisWeek: number; lastWeek: number; total: number } }) {
+  const { thisWeek, lastWeek, total } = summary;
+  return (
+    <div
+      className="rounded-md border px-5 py-4 mb-6 flex items-center justify-between gap-4 flex-wrap"
+      style={{ borderColor: "var(--rule)", background: "var(--paper-raised)" }}
+    >
+      <div>
+        <div className="text-sm" style={{ color: "var(--ink)" }}>
+          <span style={{ fontWeight: 600 }}>{thisWeek}</span>{" "}
+          {thisWeek === 1 ? "rep" : "reps"} this week
+        </div>
+        <div className="text-xs mt-0.5" style={{ color: "var(--ink-mute)" }}>
+          Last week: {lastWeek}  ·  Total: {total}
+        </div>
+      </div>
+      <Link
+        href="/today"
+        className="btn-accent rounded-full px-4 py-2 text-xs inline-flex items-center gap-1.5"
+      >
+        Take today's rep <span aria-hidden>→</span>
+      </Link>
+    </div>
+  );
+}
+
+function Controls({
+  filter,
+  setFilter,
+  sort,
+  setSort,
+  takes,
+}: {
+  filter: KindFilter;
+  setFilter: (f: KindFilter) => void;
+  sort: SortOrder;
+  setSort: (s: SortOrder) => void;
+  takes: EnrichedTake[];
+}) {
+  const dailyCount = takes.filter((t) => t.scenario_type === "daily").length;
+  const weeklyCount = takes.filter((t) => t.scenario_type === "weekly").length;
+  return (
+    <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
+      <div className="flex flex-wrap items-center gap-2">
+        <Chip label={`All (${takes.length})`} active={filter === "all"} onClick={() => setFilter("all")} />
+        <Chip label={`Daily (${dailyCount})`} active={filter === "daily"} onClick={() => setFilter("daily")} />
+        <Chip label={`Weekly (${weeklyCount})`} active={filter === "weekly"} onClick={() => setFilter("weekly")} />
+      </div>
+      <label className="text-xs flex items-center gap-2" style={{ color: "var(--ink-mute)" }}>
+        Sort:
+        <select
+          value={sort}
+          onChange={(e) => setSort(e.target.value as SortOrder)}
+          className="text-xs border rounded-md px-2 py-1"
+          style={{ borderColor: "var(--rule)", background: "var(--paper)" }}
+        >
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="company">By company</option>
+        </select>
+      </label>
+    </div>
+  );
+}
+
+function Chip({
+  label,
+  active,
+  onClick,
+}: {
+  label: string;
+  active: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="smallcaps px-3 py-1.5 rounded-full border transition text-xs"
+      style={{
+        borderColor: active ? "var(--ink)" : "var(--rule)",
+        background: active ? "var(--ink)" : "transparent",
+        color: active ? "#fafaf9" : "var(--ink-soft)",
+      }}
+    >
+      {label}
+    </button>
   );
 }
 
@@ -160,6 +298,16 @@ function Empty() {
       >
         Take today's rep <span aria-hidden>→</span>
       </Link>
+    </div>
+  );
+}
+
+function FilteredEmpty({ filter }: { filter: KindFilter }) {
+  return (
+    <div className="card p-6">
+      <p className="text-sm" style={{ color: "var(--ink-soft)" }}>
+        No {filter === "all" ? "" : filter + " "}reps match this filter yet.
+      </p>
     </div>
   );
 }

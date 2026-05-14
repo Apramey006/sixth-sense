@@ -14,3 +14,14 @@ export function currentISOWeek(): string {
   const weekNum = Math.ceil(((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
   return `${d.getUTCFullYear()}-W${String(weekNum).padStart(2, "0")}`;
 }
+
+// Local-time Monday 00:00 of the week containing `ref` (default: now).
+// Used for "this week" counting on /me.
+export function startOfWeek(ref: Date = new Date()): Date {
+  const d = new Date(ref);
+  const day = d.getDay(); // 0=Sun, 1=Mon, ... 6=Sat
+  const diff = (day + 6) % 7; // days since Monday
+  d.setDate(d.getDate() - diff);
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
