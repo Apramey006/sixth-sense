@@ -67,6 +67,49 @@ export async function sendDailyEmail(
   await client().emails.send({ from: FROM, to, subject, html });
 }
 
+export async function sendWelcomeEmail(to: string, userId: string): Promise<void> {
+  const ctaUrl = `${SITE}/today`;
+
+  const subject = "Welcome to Sixth Sense";
+  const html = shell(
+    `
+    <p style="font-size:15px;color:#222;margin:0 0 16px">Hi —</p>
+
+    <p style="font-size:15px;color:#222;margin:0 0 16px">
+      I'm Apramey, and I built Sixth Sense.
+    </p>
+
+    <p style="font-size:15px;color:#222;margin:0 0 16px">
+      As building gets cheaper, the bottleneck is shifting. It's less about how
+      to build and more about what to build, which means product taste and
+      intuition matter more than ever.
+    </p>
+
+    <p style="font-size:15px;color:#222;margin:0 0 16px">
+      Talking to PMs across the industry, the ones with the sharpest instincts
+      all have one thing in common: years of working through hard product
+      decisions. But not everyone gets put in those positions early enough.
+    </p>
+
+    <p style="font-size:15px;color:#222;margin:0 0 24px">
+      That's why I built Sixth Sense. Every day, you work through a real
+      product decision made by a real company and see the how and the why
+      behind it. The goal is to compress that experience so you're developing
+      the judgment that usually takes years to build.
+    </p>
+
+    <p style="margin:0 0 24px">
+      <a href="${ctaUrl}" style="display:inline-block;background:#c66f3a;color:#fff;padding:10px 20px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:500">Take today's rep →</a>
+    </p>
+
+    <p style="font-size:15px;color:#222;margin:0">— Apramey</p>
+    `,
+    userId,
+  );
+
+  await client().emails.send({ from: FROM, to, subject, html });
+}
+
 export async function sendWeeklyEmail(
   to: string,
   userId: string,
