@@ -7,10 +7,14 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 // We deliberately don't expire tokens — once an unsubscribe link is sent, it
 // stays valid forever. Re-subscribe is a separate flow.
 
-const SECRET = process.env.UNSUBSCRIBE_SECRET ?? "sixth-sense-dev-fallback";
+function getSecret(): string {
+  const s = process.env.UNSUBSCRIBE_SECRET;
+  if (!s) throw new Error("UNSUBSCRIBE_SECRET is required");
+  return s;
+}
 
 function sign(userId: string): string {
-  return createHmac("sha256", SECRET).update(userId).digest("hex").slice(0, 16);
+  return createHmac("sha256", getSecret()).update(userId).digest("hex").slice(0, 16);
 }
 
 export function makeUnsubscribeToken(userId: string): string {

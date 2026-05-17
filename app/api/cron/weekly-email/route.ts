@@ -12,11 +12,11 @@ export const maxDuration = 60;
 
 export async function GET(req: NextRequest) {
   const secret = process.env.CRON_SECRET;
-  if (secret) {
-    const auth = req.headers.get("authorization");
-    if (auth !== `Bearer ${secret}`) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
+  if (!secret) {
+    return NextResponse.json({ error: "CRON_SECRET not configured" }, { status: 500 });
+  }
+  if (req.headers.get("authorization") !== `Bearer ${secret}`) {
+    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 
   const dryRun = req.nextUrl.searchParams.get("dry") === "1";
@@ -45,7 +45,6 @@ export async function GET(req: NextRequest) {
       week,
       scenario_id: scenario.id,
       recipient_count: recipients.length,
-      recipients: recipients.map((u) => u.email),
     });
   }
 

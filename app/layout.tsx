@@ -29,6 +29,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen antialiased">
         <TopNav />
         <div className="page-fade">{children}</div>
+        <footer className="max-w-6xl mx-auto px-5 sm:px-6 py-8 text-xs opacity-60 flex gap-4">
+          <a href="/privacy" className="hover:underline">Privacy</a>
+          <a href="/terms" className="hover:underline">Terms</a>
+        </footer>
       </body>
     </html>
   );
