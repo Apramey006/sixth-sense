@@ -7,6 +7,7 @@ import { AuthButton } from "@/components/AuthButton";
 const links = [
   { href: "/today", label: "Today" },
   { href: "/this-week", label: "This week" },
+  { href: "/me", label: "Your reps" },
 ];
 
 export function TopNav() {
@@ -43,7 +44,7 @@ export function TopNav() {
           })}
         </nav>
 
-        <div className="flex items-center gap-5 sm:gap-6">
+        <div className="flex items-center gap-2 sm:gap-3">
           <nav className="flex sm:hidden items-center gap-1">
             {links.map((l) => {
               const active =
@@ -56,13 +57,6 @@ export function TopNav() {
             })}
           </nav>
           <AuthButton />
-          <Link
-            href="/me"
-            className="hidden sm:inline-block text-sm hover:underline whitespace-nowrap"
-            style={{ color: "var(--ink-soft)" }}
-          >
-            Your reps
-          </Link>
         </div>
       </div>
     </header>
