@@ -3,253 +3,134 @@
 @tailwind utilities;
 
 :root {
-  /* Navy + gold — premium, confident, not AI-default.
-     Deep navy ground, champagne gold accent, white type. */
-  --paper: #1a3258;          /* lighter navy ground */
-  --paper-raised: #23416c;   /* card / surface */
-  --paper-deep: #0e2042;     /* inset (inputs, code) */
-  --ink: #ffffff;            /* primary type */
-  --ink-soft: #c8d1e0;       /* secondary type */
-  --ink-mute: #7d8aa3;       /* tertiary type, metadata */
+  --paper: #fafaf7;          /* warm off-white */
+  --paper-raised: #ffffff;
+  --paper-deep: #f2f0ea;     /* inset (inputs) */
+  --ink: #0a0a0a;            /* near-black, primary type */
+  --ink-soft: #5a5a5a;       /* secondary */
+  --ink-mute: #8a8a8a;       /* tertiary, metadata */
+  --rule: #e8e6e0;           /* faint hairline */
+  --rule-soft: #efede7;
+  --rule-strong: #c8c6bf;
 
-  /* Borders read as faint gold hairlines on dark navy */
-  --rule: rgba(212, 168, 67, 0.22);
-  --rule-soft: rgba(212, 168, 67, 0.10);
-  --rule-strong: rgba(212, 168, 67, 0.48);
+  /* "Accent" tokens are aliased to neutrals — many components inline
+     var(--accent) / var(--accent-2). Keeping the names lets every
+     existing call site cascade into the new monochrome palette. */
+  --accent: var(--ink);
+  --accent-soft: var(--ink-soft);
+  --accent-deep: var(--ink);
+  --accent-2: var(--ink-soft);
+  --accent-2-soft: var(--ink-mute);
 
-  /* Champagne gold primary accent + steel-blue secondary */
-  --accent: #d4a843;          /* champagne gold */
-  --accent-soft: #e6c275;     /* lighter gold for hover */
-  --accent-deep: #a8842f;     /* deeper gold for pressed */
-  --accent-2: #6b86b8;        /* steel blue secondary */
-  --accent-2-soft: #94a8cc;
-
-  /* Shadows are deep blacks; hover gets a subtle gold glow */
-  --shadow-sm: 0 1px 0 rgba(0, 0, 0, 0.35), 0 2px 4px rgba(0, 0, 0, 0.25);
-  --shadow-md: 0 1px 0 rgba(0, 0, 0, 0.4), 0 10px 24px rgba(0, 0, 0, 0.38);
-  --shadow-lg: 0 1px 0 rgba(0, 0, 0, 0.45), 0 28px 60px rgba(0, 0, 0, 0.5);
-  --glow-accent: 0 0 0 1px var(--accent), 0 12px 32px rgba(212, 168, 67, 0.22);
-
-  color-scheme: dark;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 html,
 body {
+  background: var(--paper);
   color: var(--ink);
+  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-family: var(--font-sans), "Plus Jakarta Sans", -apple-system,
-    BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-feature-settings: "kern", "liga", "ss01";
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
 }
 
-/* Two-color background: navy at the top, deep warm plum-sepia at the
-   bottom. Attached to the viewport so it doesn't tile on long pages. */
-body {
-  background:
-    linear-gradient(
-      to bottom,
-      #1a3258 0%,
-      #1a3258 38%,
-      #251f3e 72%,
-      #2a1f2c 100%
-    );
-  background-attachment: fixed;
-  min-height: 100vh;
-}
-
-/* Warm complement bloom from the bottom-right, gold bloom from the top.
-   Makes the gold accent visibly resonate with the warmer half of the page. */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    radial-gradient(
-      ellipse 70% 55% at 80% 100%,
-      rgba(196, 124, 70, 0.16),
-      transparent 65%
-    ),
-    radial-gradient(
-      ellipse 80% 55% at 50% 0%,
-      rgba(212, 168, 67, 0.09),
-      transparent 65%
-    ),
-    radial-gradient(
-      ellipse 50% 40% at 15% 35%,
-      rgba(107, 134, 184, 0.06),
-      transparent 65%
-    );
-}
-
-/* Stack content above the vignette */
-header.nav-shell,
-.page-fade,
-main {
-  position: relative;
-  z-index: 1;
-}
-
-/* Type system — all sans, with mono for metadata --------------------------- */
+/* Type ------------------------------------------------------------------ */
 
 .display {
-  font-family: var(--font-sans), "Plus Jakarta Sans", sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 0.98;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
 }
-
 .headline {
-  font-family: var(--font-sans), sans-serif;
   font-weight: 700;
   letter-spacing: -0.02em;
-  line-height: 1.08;
+  line-height: 1.1;
 }
-
 .subhead {
-  font-family: var(--font-sans), sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -0.015em;
-  line-height: 1.18;
+  line-height: 1.2;
 }
-
 .body-prose {
-  font-family: var(--font-sans), sans-serif;
   font-size: 1.0625rem;
   line-height: 1.6;
   color: var(--ink-soft);
-  font-weight: 400;
 }
-
 .pullquote {
-  font-family: var(--font-sans), sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.5rem;
   line-height: 1.35;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
   color: var(--ink);
 }
-
-/* `.serif` is referenced in 6 places across the codebase — rebind it to the
-   sans family so legacy callsites render correctly in the new system. */
 .serif {
-  font-family: var(--font-sans), sans-serif;
   font-weight: 600;
 }
-
 .scenario p {
-  font-family: var(--font-sans), sans-serif;
   font-size: 1.0625rem;
   line-height: 1.7;
   margin-bottom: 0.95em;
   color: var(--ink-soft);
 }
 
-/* Mono utility — metadata, indices, codes */
 .mono {
-  font-family: var(--font-mono), "JetBrains Mono", ui-monospace, monospace;
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-feature-settings: "tnum";
 }
-
-.smallcaps {
+.smallcaps,
+.eyebrow {
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.6875rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 500;
-  color: var(--accent);
+  color: var(--ink-mute);
 }
 
-.eyebrow {
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 0.6875rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: var(--accent);
-}
-
-/* Decorative ------------------------------------------------------------- */
-
-.rule {
-  height: 1px;
-  background: var(--rule);
-}
-
-.drop-rule {
-  border-top: 1px solid var(--rule);
-}
-
-.accent-rail {
-  border-left: 2px solid var(--accent);
-}
-
-.accent-rail-2 {
-  border-left: 2px solid var(--accent-2);
-}
+.rule { height: 1px; background: var(--rule); }
+.drop-rule { border-top: 1px solid var(--rule); }
+.accent-rail { border-left: 2px solid var(--ink); }
+.accent-rail-2 { border-left: 2px solid var(--ink-soft); }
 
 .stat-num {
   font-family: var(--font-mono), ui-monospace, monospace;
   font-weight: 600;
-  letter-spacing: -0.01em;
   font-variant-numeric: tabular-nums;
-  color: var(--accent);
+  color: var(--ink);
 }
 
-/* Cards — deep navy with a faint gold hairline border --------------------- */
+/* Cards (used sparingly) ------------------------------------------------ */
 
 .card {
   background: var(--paper-raised);
   border: 1px solid var(--rule);
-  border-radius: 18px;
-  box-shadow: var(--shadow-sm);
-  transition: border-color 0.2s ease, box-shadow 0.25s ease;
+  border-radius: 10px;
+  transition: border-color 0.2s ease;
 }
-.card:hover {
-  border-color: var(--rule-strong);
-  box-shadow: var(--shadow-md);
-}
+.card-link { display: block; }
+.card-link:hover { border-color: var(--ink); }
 
-/* Linked cards: no lift transform — only border + glow shift on hover.
-   (No translateY per user direction.) */
-.card-link {
-  position: relative;
-  display: block;
-}
-.card-link:hover {
-  border-color: var(--accent);
-  box-shadow: var(--glow-accent);
-}
-.card-link[data-tone="accent-2"]:hover {
-  border-color: var(--accent-2);
-  box-shadow: 0 0 0 1px var(--accent-2),
-    0 12px 32px rgba(107, 134, 184, 0.22);
-}
-
-/* Gold circular icon on cards — like the reference screenshot */
-.icon-disc {
+.icon-disc,
+.icon-disc-2 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
+  width: 2.25rem;
+  height: 2.25rem;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
-  color: #1a1408;
-  box-shadow: 0 6px 16px rgba(212, 168, 67, 0.28);
-}
-.icon-disc-2 {
-  background: linear-gradient(135deg, var(--accent-2-soft) 0%, var(--accent-2) 100%);
-  color: var(--paper);
+  background: var(--paper-deep);
+  color: var(--ink);
+  border: 1px solid var(--rule);
 }
 
 .pill {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  padding: 0.3rem 0.75rem;
+  padding: 0.25rem 0.625rem;
   border-radius: 999px;
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.6875rem;
@@ -257,64 +138,37 @@ main {
   text-transform: uppercase;
   font-weight: 500;
 }
-.pill-accent {
-  background: rgba(212, 168, 67, 0.10);
-  color: var(--accent);
-  border: 1px solid rgba(212, 168, 67, 0.36);
-}
-.pill-accent-2 {
-  background: rgba(107, 134, 184, 0.10);
-  color: var(--accent-2-soft);
-  border: 1px solid rgba(107, 134, 184, 0.36);
-}
+.pill-accent,
+.pill-accent-2,
 .pill-mute {
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--paper-deep);
   color: var(--ink-soft);
   border: 1px solid var(--rule);
 }
 
-/* Buttons ---------------------------------------------------------------- */
+/* Buttons -------------------------------------------------------------- */
 
-.btn-primary {
+.btn-primary,
+.btn-accent {
   background: var(--ink);
   color: var(--paper);
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: -0.005em;
-  box-shadow: var(--shadow-sm);
-  transition: background 0.2s ease, box-shadow 0.2s ease;
+  transition: background 0.18s ease;
 }
-.btn-primary:hover {
-  background: var(--accent);
-  color: #1a1408;
-}
-
-.btn-accent {
-  background: var(--accent);
-  color: #1a1408;
-  font-weight: 700;
-  letter-spacing: -0.005em;
-  box-shadow: var(--shadow-sm);
-  transition: background 0.2s ease, box-shadow 0.2s ease;
-}
-.btn-accent:hover {
-  background: var(--accent-soft);
-  box-shadow: var(--glow-accent);
-}
+.btn-primary:hover,
+.btn-accent:hover { background: #2a2a2a; }
 
 .btn-ghost {
   background: transparent;
   color: var(--ink);
-  font-weight: 600;
+  font-weight: 500;
   border: 1px solid var(--rule);
-  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+  transition: border-color 0.18s ease;
 }
-.btn-ghost:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: rgba(212, 168, 67, 0.06);
-}
+.btn-ghost:hover { border-color: var(--ink); }
 
-/* Inputs ----------------------------------------------------------------- */
+/* Inputs --------------------------------------------------------------- */
 
 textarea,
 input[type="text"],
@@ -324,166 +178,117 @@ input[type="password"] {
   font-size: 0.9375rem;
   line-height: 1.55;
   resize: vertical;
-  background: var(--paper-deep);
+  background: var(--paper-raised);
   color: var(--ink);
-  caret-color: var(--accent);
+  caret-color: var(--ink);
   border: 1px solid var(--rule);
-  border-radius: 10px;
+  border-radius: 8px;
 }
 textarea::placeholder,
-input::placeholder {
-  color: var(--ink-mute);
-}
+input::placeholder { color: var(--ink-mute); }
 textarea:focus,
 input:focus {
   outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(212, 168, 67, 0.18);
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
 }
 
-/* Numbered field labels */
-.field-num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: 999px;
-  background: rgba(212, 168, 67, 0.14);
-  color: var(--accent);
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 0.75rem;
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-  border: 1px solid rgba(212, 168, 67, 0.32);
-}
+/* Numbered labels ------------------------------------------------------ */
 
+.field-num,
 .step-num {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: 999px;
-  background: rgba(107, 134, 184, 0.14);
-  color: var(--accent-2-soft);
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 6px;
+  background: var(--paper-deep);
+  color: var(--ink);
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.75rem;
   font-weight: 600;
-  font-variant-numeric: tabular-nums;
-  border: 1px solid rgba(107, 134, 184, 0.36);
+  border: 1px solid var(--rule);
 }
 
-/* Compare row (two-column layout used inside reps) */
-.compare-row {
-  display: grid;
-  gap: 1rem;
-}
+/* Compare row (used inside reps) -------------------------------------- */
+
+.compare-row { display: grid; gap: 1rem; }
 @media (min-width: 768px) {
-  .compare-row {
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-  }
+  .compare-row { grid-template-columns: 1fr 1fr; gap: 0; }
   .compare-row > div:first-child {
     padding-right: 1.5rem;
     border-right: 1px solid var(--rule);
   }
-  .compare-row > div:last-child {
-    padding-left: 1.5rem;
-  }
+  .compare-row > div:last-child { padding-left: 1.5rem; }
 }
 
-/* Top nav ---------------------------------------------------------------- */
+/* Top nav -------------------------------------------------------------- */
 
 .nav-shell {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(26, 50, 88, 0.72);
-  backdrop-filter: saturate(140%) blur(14px);
-  -webkit-backdrop-filter: saturate(140%) blur(14px);
+  background: rgba(250, 250, 247, 0.85);
+  backdrop-filter: saturate(140%) blur(10px);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
   border-bottom: 1px solid var(--rule);
 }
 
 .nav-link {
-  font-family: var(--font-sans), sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--ink-soft);
   padding: 0.375rem 0.75rem;
-  border-radius: 8px;
+  border-radius: 6px;
   position: relative;
   transition: color 0.18s ease;
 }
-.nav-link::after {
+.nav-link:hover { color: var(--ink); }
+.nav-link[data-active="true"] { color: var(--ink); }
+.nav-link[data-active="true"]::after {
   content: "";
   position: absolute;
   left: 0.75rem;
   right: 0.75rem;
-  bottom: 0.2rem;
+  bottom: 0.15rem;
   height: 1px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.25s cubic-bezier(0.2, 0.6, 0.2, 1);
-}
-.nav-link:hover {
-  color: var(--ink);
-}
-.nav-link:hover::after,
-.nav-link[data-active="true"]::after {
-  transform: scaleX(1);
-}
-.nav-link[data-active="true"] {
-  color: var(--ink);
+  background: var(--ink);
 }
 
-/* Animations -------------------------------------------------------------
-   Two systems, on purpose:
-   - `.page-fade` wraps every route render in layout.tsx for the soft
-     fade-up that lands a new page.
-   - `.fade-up` + `.reveal-stage` are used inside DailyRep / WeeklyRep
-     to stage the reveal sections after a user commits to their take.
-   Anything else (scroll-on-view, marquee) was removed as decoration. */
+/* Animations (kept minimal) -------------------------------------------- */
 
-.page-fade {
-  animation: pageFade 0.5s cubic-bezier(0.2, 0.6, 0.2, 1) both;
-}
+.page-fade { animation: pageFade 0.35s ease both; }
 @keyframes pageFade {
-  from { opacity: 0; transform: translateY(4px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
-.fade-up {
-  animation: fadeUp 0.5s cubic-bezier(0.2, 0.6, 0.2, 1);
-}
+.fade-up { animation: fadeUp 0.4s ease; }
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(6px); }
+  from { opacity: 0; transform: translateY(4px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 .reveal-stage > * {
   opacity: 0;
-  animation: stageIn 0.6s cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
+  animation: stageIn 0.5s ease forwards;
 }
 .reveal-stage > *:nth-child(1) { animation-delay: 0.05s; }
-.reveal-stage > *:nth-child(2) { animation-delay: 0.30s; }
-.reveal-stage > *:nth-child(3) { animation-delay: 0.55s; }
-.reveal-stage > *:nth-child(4) { animation-delay: 0.80s; }
-.reveal-stage > *:nth-child(5) { animation-delay: 1.05s; }
-.reveal-stage > *:nth-child(6) { animation-delay: 1.30s; }
-.reveal-stage > *:nth-child(7) { animation-delay: 1.55s; }
+.reveal-stage > *:nth-child(2) { animation-delay: 0.25s; }
+.reveal-stage > *:nth-child(3) { animation-delay: 0.45s; }
+.reveal-stage > *:nth-child(4) { animation-delay: 0.65s; }
+.reveal-stage > *:nth-child(5) { animation-delay: 0.85s; }
+.reveal-stage > *:nth-child(6) { animation-delay: 1.05s; }
+.reveal-stage > *:nth-child(7) { animation-delay: 1.25s; }
 @keyframes stageIn {
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page-fade,
-  .fade-up,
-  .reveal-stage > * {
+  .page-fade, .fade-up, .reveal-stage > * {
     animation: none !important;
-    transition: none !important;
     opacity: 1 !important;
     transform: none !important;
   }
