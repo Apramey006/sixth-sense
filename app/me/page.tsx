@@ -283,42 +283,113 @@ function FilteredEmpty({ filter }: { filter: KindFilter }) {
   );
 }
 
+function groupByDate(takes: EnrichedTake[]) {
+  const today = new Date();
+  const todayKey = today.toDateString();
+  const yesterday = new Date(today);
+  yesterday.setDate(today.getDate() - 1);
+  const yesterdayKey = yesterday.toDateString();
+
+  const groups: { key: string; label: string; takes: EnrichedTake[] }[] = [];
+  for (const t of takes) {
+    const d = new Date(t.created_at);
+    const key = d.toDateString();
+    let label: string;
+    if (key === todayKey) label = "Today";
+    else if (key === yesterdayKey) label = "Yesterday";
+    else {
+      label = d.toLocaleDateString("en-US", {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: d.getFullYear() === today.getFullYear() ? undefined : "numeric",
+      });
+    }
+    const last = groups[groups.length - 1];
+    if (last && last.key === key) last.takes.push(t);
+    else groups.push({ key, label, takes: [t] });
+  }
+  return groups;
+}
+
 function TakesList({ takes }: { takes: EnrichedTake[] }) {
+  const groups = useMemo(() => groupByDate(takes), [takes]);
   return (
-    <ul className="divide-y" style={{ borderColor: "var(--rule)" }}>
-      {takes.map((t) => (
-        <TakeRow key={t.id} take={t} />
+    <div className="flex flex-col gap-10 mt-2">
+      {groups.map((g) => (
+        <section key={g.key}>
+          <div
+            className="flex items-baseline justify-between mb-4 pb-2"
+            style={{ borderBottom: "1px solid var(--rule)" }}
+          >
+            <h2
+              className="mono text-xs uppercase"
+              style={{ color: "var(--ink)", letterSpacing: "0.14em", fontWeight: 600 }}
+            >
+              {g.label}
+            </h2>
+            <span
+              className="mono text-xs"
+              style={{ color: "var(--ink-mute)", letterSpacing: "0.08em" }}
+            >
+              {g.takes.length} {g.takes.length === 1 ? "rep" : "reps"}
+            </span>
+          </div>
+          <ul className="flex flex-col gap-3">
+            {g.takes.map((t) => (
+              <TakeCard key={t.id} take={t} />
+            ))}
+          </ul>
+        </section>
       ))}
-    </ul>
+    </div>
   );
 }
 
-function TakeRow({ take }: { take: EnrichedTake }) {
-  const dateStr = new Date(take.created_at).toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
+function TakeCard({ take }: { take: EnrichedTake }) {
+  const timeStr = new Date(take.created_at).toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
   });
   const isWeekly = take.scenario_type === "weekly";
-  const kindLabel = isWeekly ? "WEEKLY" : "DAILY";
-  const kindColor = isWeekly ? "var(--accent-2)" : "var(--accent)";
+  const kindLabel = isWeekly ? "Weekly" : "Daily";
+  const railColor = isWeekly ? "var(--ink)" : "var(--ink-soft)";
+  const chipBg = isWeekly ? "var(--ink)" : "var(--paper-deep)";
+  const chipFg = isWeekly ? "var(--paper)" : "var(--ink)";
   const company = take.scenario?.company ?? take.scenario_id;
   const era = take.scenario?.era ?? "";
 
   return (
     <li
-      className="py-7 first:pt-5"
-      style={{ borderColor: "var(--rule)" }}
+      className="relative"
+      style={{
+        background: "var(--paper-raised)",
+        border: "1px solid var(--rule)",
+        borderLeft: `3px solid ${railColor}`,
+        borderRadius: 10,
+        padding: "1.25rem 1.5rem 1.5rem",
+      }}
     >
-      <div className="flex items-baseline justify-between gap-3 mb-4 flex-wrap">
-        <div className="flex items-baseline gap-3 flex-wrap">
+      <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
+        <div className="flex items-center gap-3 flex-wrap">
           <span
-            className="mono text-xs"
-            style={{ color: kindColor, letterSpacing: "0.14em" }}
+            className="mono text-[0.65rem] px-2 py-0.5 rounded-full"
+            style={{
+              background: chipBg,
+              color: chipFg,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              fontWeight: 600,
+            }}
           >
             {kindLabel}
           </span>
-          <div className="font-semibold tracking-tight">{company}</div>
+          <div
+            className="font-semibold tracking-tight"
+            style={{ color: "var(--ink)" }}
+          >
+            {company}
+          </div>
           {era && (
             <span className="mono text-xs" style={{ color: "var(--ink-mute)" }}>
               {era}
@@ -326,7 +397,7 @@ function TakeRow({ take }: { take: EnrichedTake }) {
           )}
         </div>
         <span className="mono text-xs" style={{ color: "var(--ink-mute)" }}>
-          {dateStr}
+          {timeStr}
         </span>
       </div>
 
