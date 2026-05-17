@@ -24,14 +24,12 @@ type ScenarioMeta = {
 type EnrichedTake = TakeRow & { scenario: ScenarioMeta | null };
 
 type KindFilter = "all" | "daily" | "weekly";
-type SortOrder = "newest" | "oldest" | "company";
 
 export default function MePage() {
   const { user, loading } = useUser();
   const [takes, setTakes] = useState<EnrichedTake[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [filter, setFilter] = useState<KindFilter>("all");
-  const [sort, setSort] = useState<SortOrder>("newest");
 
   useEffect(() => {
     if (loading) return;
@@ -99,22 +97,17 @@ export default function MePage() {
 
   const visibleTakes = useMemo(() => {
     if (!takes) return null;
-    const filtered =
-      filter === "all" ? takes : takes.filter((t) => t.scenario_type === filter);
-    const sorted = [...filtered];
-    if (sort === "newest") {
-      sorted.sort((a, b) => b.created_at.localeCompare(a.created_at));
-    } else if (sort === "oldest") {
-      sorted.sort((a, b) => a.created_at.localeCompare(b.created_at));
-    } else {
-      sorted.sort((a, b) => {
-        const ca = a.scenario?.company ?? a.scenario_id;
-        const cb = b.scenario?.company ?? b.scenario_id;
-        return ca.localeCompare(cb);
-      });
-    }
-    return sorted;
-  }, [takes, filter, sort]);
+    return filter === "all" ? takes : takes.filter((t) => t.scenario_type === filter);
+  }, [takes, filter]);
+
+  const counts = useMemo(() => {
+    if (!takes) return { all: 0, daily: 0, weekly: 0 };
+    return {
+      all: takes.length,
+      daily: takes.filter((t) => t.scenario_type === "daily").length,
+      weekly: takes.filter((t) => t.scenario_type === "weekly").length,
+    };
+  }, [takes]);
 
   return (
     <main className="max-w-4xl mx-auto px-5 sm:px-6 pt-14 sm:pt-20 pb-24">
@@ -123,6 +116,15 @@ export default function MePage() {
         <p className="body-prose mt-4 max-w-2xl">
           Every rep you've taken, with what you wrote and what you saw.
         </p>
+        {summary && (
+          <p
+            className="mono text-xs mt-5"
+            style={{ color: "var(--ink-mute)", letterSpacing: "0.06em" }}
+          >
+            {summary.thisWeek} THIS WEEK · {summary.lastWeek} LAST WEEK ·{" "}
+            {summary.total} TOTAL
+          </p>
+        )}
       </header>
 
       {!supabaseEnabled && <NotConfigured />}
@@ -131,10 +133,9 @@ export default function MePage() {
       {supabaseEnabled && user && error && <ErrorState message={error} />}
       {supabaseEnabled && user && !error && takes === null && <Loading />}
       {supabaseEnabled && user && takes !== null && takes.length === 0 && <Empty />}
-      {supabaseEnabled && user && visibleTakes && takes && takes.length > 0 && summary && (
+      {supabaseEnabled && user && visibleTakes && takes && takes.length > 0 && (
         <>
-          <SummaryBar summary={summary} />
-          <Controls filter={filter} setFilter={setFilter} sort={sort} setSort={setSort} takes={takes} />
+          <Tabs filter={filter} setFilter={setFilter} counts={counts} />
           {visibleTakes.length === 0 ? (
             <FilteredEmpty filter={filter} />
           ) : (
@@ -146,93 +147,62 @@ export default function MePage() {
   );
 }
 
-function SummaryBar({ summary }: { summary: { thisWeek: number; lastWeek: number; total: number } }) {
-  const { thisWeek, lastWeek, total } = summary;
-  return (
-    <div
-      className="rounded-md border px-5 py-4 mb-6 flex items-center justify-between gap-4 flex-wrap"
-      style={{ borderColor: "var(--rule)", background: "var(--paper-raised)" }}
-    >
-      <div>
-        <div className="text-sm" style={{ color: "var(--ink)" }}>
-          <span style={{ fontWeight: 600 }}>{thisWeek}</span>{" "}
-          {thisWeek === 1 ? "rep" : "reps"} this week
-        </div>
-        <div className="text-xs mt-0.5" style={{ color: "var(--ink-mute)" }}>
-          Last week: {lastWeek}  ·  Total: {total}
-        </div>
-      </div>
-      <Link
-        href="/today"
-        className="btn-accent rounded-full px-4 py-2 text-xs inline-flex items-center gap-1.5"
-      >
-        Take today's rep <span aria-hidden>→</span>
-      </Link>
-    </div>
-  );
-}
-
-function Controls({
+function Tabs({
   filter,
   setFilter,
-  sort,
-  setSort,
-  takes,
+  counts,
 }: {
   filter: KindFilter;
   setFilter: (f: KindFilter) => void;
-  sort: SortOrder;
-  setSort: (s: SortOrder) => void;
-  takes: EnrichedTake[];
+  counts: { all: number; daily: number; weekly: number };
 }) {
-  const dailyCount = takes.filter((t) => t.scenario_type === "daily").length;
-  const weeklyCount = takes.filter((t) => t.scenario_type === "weekly").length;
+  const items: { key: KindFilter; label: string }[] = [
+    { key: "all", label: "All" },
+    { key: "daily", label: "Daily" },
+    { key: "weekly", label: "Weekly" },
+  ];
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
-      <div className="flex flex-wrap items-center gap-2">
-        <Chip label={`All (${takes.length})`} active={filter === "all"} onClick={() => setFilter("all")} />
-        <Chip label={`Daily (${dailyCount})`} active={filter === "daily"} onClick={() => setFilter("daily")} />
-        <Chip label={`Weekly (${weeklyCount})`} active={filter === "weekly"} onClick={() => setFilter("weekly")} />
-      </div>
-      <label className="text-xs flex items-center gap-2" style={{ color: "var(--ink-mute)" }}>
-        Sort:
-        <select
-          value={sort}
-          onChange={(e) => setSort(e.target.value as SortOrder)}
-          className="text-xs border rounded-md px-2 py-1"
-          style={{ borderColor: "var(--rule)", background: "var(--paper)" }}
-        >
-          <option value="newest">Newest first</option>
-          <option value="oldest">Oldest first</option>
-          <option value="company">By company</option>
-        </select>
-      </label>
-    </div>
-  );
-}
-
-function Chip({
-  label,
-  active,
-  onClick,
-}: {
-  label: string;
-  active: boolean;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="smallcaps px-3 py-1.5 rounded-full border transition text-xs"
-      style={{
-        borderColor: active ? "var(--ink)" : "var(--rule)",
-        background: active ? "var(--ink)" : "transparent",
-        color: active ? "#fafaf9" : "var(--ink-soft)",
-      }}
+    <div
+      className="flex items-center gap-6 mb-2 border-b"
+      style={{ borderColor: "var(--rule)" }}
+      role="tablist"
     >
-      {label}
-    </button>
+      {items.map((it) => {
+        const active = filter === it.key;
+        return (
+          <button
+            key={it.key}
+            type="button"
+            role="tab"
+            aria-selected={active}
+            onClick={() => setFilter(it.key)}
+            className="relative pb-3 text-sm transition-colors"
+            style={{
+              color: active ? "var(--ink)" : "var(--ink-soft)",
+              fontWeight: active ? 600 : 500,
+            }}
+          >
+            <span>{it.label}</span>
+            <span
+              className="mono text-xs ml-1.5"
+              style={{ color: "var(--ink-mute)" }}
+            >
+              {counts[it.key]}
+            </span>
+            <span
+              aria-hidden
+              className="absolute left-0 right-0 -bottom-px h-[2px]"
+              style={{
+                background: "var(--accent)",
+                transform: active ? "scaleX(1)" : "scaleX(0)",
+                transformOrigin: "left center",
+                transition: "transform 0.25s cubic-bezier(0.2, 0.6, 0.2, 1)",
+              }}
+            />
+          </button>
+        );
+      })}
+    </div>
   );
 }
 
@@ -304,40 +274,49 @@ function Empty() {
 
 function FilteredEmpty({ filter }: { filter: KindFilter }) {
   return (
-    <div className="card p-6">
-      <p className="text-sm" style={{ color: "var(--ink-soft)" }}>
-        No {filter === "all" ? "" : filter + " "}reps match this filter yet.
-      </p>
-    </div>
+    <p
+      className="text-sm mt-8"
+      style={{ color: "var(--ink-mute)" }}
+    >
+      No {filter === "all" ? "" : filter + " "}reps yet.
+    </p>
   );
 }
 
 function TakesList({ takes }: { takes: EnrichedTake[] }) {
   return (
-    <div className="space-y-4">
+    <ul className="divide-y" style={{ borderColor: "var(--rule)" }}>
       {takes.map((t) => (
-        <TakeCard key={t.id} take={t} />
+        <TakeRow key={t.id} take={t} />
       ))}
-    </div>
+    </ul>
   );
 }
 
-function TakeCard({ take }: { take: EnrichedTake }) {
+function TakeRow({ take }: { take: EnrichedTake }) {
   const dateStr = new Date(take.created_at).toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
     year: "numeric",
   });
   const isWeekly = take.scenario_type === "weekly";
+  const kindLabel = isWeekly ? "WEEKLY" : "DAILY";
+  const kindColor = isWeekly ? "var(--accent-2)" : "var(--accent)";
   const company = take.scenario?.company ?? take.scenario_id;
   const era = take.scenario?.era ?? "";
 
   return (
-    <article className="card p-6 sm:p-7">
-      <div className="flex items-center justify-between gap-3 mb-5 flex-wrap">
-        <div className="flex items-center gap-3 flex-wrap">
-          <span className={`pill ${isWeekly ? "pill-accent-2" : "pill-accent"}`}>
-            {isWeekly ? "Weekly" : "Daily"}
+    <li
+      className="py-7 first:pt-5"
+      style={{ borderColor: "var(--rule)" }}
+    >
+      <div className="flex items-baseline justify-between gap-3 mb-4 flex-wrap">
+        <div className="flex items-baseline gap-3 flex-wrap">
+          <span
+            className="mono text-xs"
+            style={{ color: kindColor, letterSpacing: "0.14em" }}
+          >
+            {kindLabel}
           </span>
           <div className="font-semibold tracking-tight">{company}</div>
           {era && (
@@ -352,7 +331,7 @@ function TakeCard({ take }: { take: EnrichedTake }) {
       </div>
 
       {isWeekly ? <WeeklyBody body={take.body} /> : <DailyBody body={take.body} />}
-    </article>
+    </li>
   );
 }
 
@@ -376,10 +355,19 @@ function WeeklyBody({ body }: { body: Record<string, unknown> }) {
     { key: "predict" },
   ];
   return (
-    <div className="grid sm:grid-cols-2 gap-x-6 gap-y-5">
+    <div className="grid sm:grid-cols-2 gap-x-8 gap-y-5">
       {fields.map(({ key }) => (
         <div key={key as string}>
-          <div className="eyebrow mb-1.5">{labels[key]}</div>
+          <div
+            className="mono text-xs mb-1.5"
+            style={{
+              color: "var(--ink-mute)",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+            }}
+          >
+            {labels[key]}
+          </div>
           <p
             className="text-sm leading-relaxed whitespace-pre-wrap"
             style={{ color: "var(--ink-soft)" }}
