@@ -1,23 +1,26 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { createBrowserClient } from "@supabase/ssr";
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 export const supabaseEnabled = Boolean(url && anonKey);
 
-// Browser client — persists auth session in localStorage so magic-link sign-in
-// survives reloads. Safe to import server-side; we only call its methods from
-// "use client" components or route handlers (which create their own clients).
+// On the client we use createBrowserClient from @supabase/ssr so the PKCE
+// verifier lives in cookies — that way the /auth/callback server route can
+// finish the OAuth + email-confirmation handshake. On the server (RSC, route
+// handlers reading scenarios) we use a plain createClient since these reads
+// don't need an authed session.
 export const supabase: SupabaseClient | null = supabaseEnabled
-  ? createClient(url!, anonKey!, {
-      auth: {
-        persistSession: true,
-        autoRefreshToken: true,
-        detectSessionInUrl: true,
-        flowType: "pkce",
-        storageKey: "sixth-sense:auth",
-      },
-    })
+  ? typeof window !== "undefined"
+    ? (createBrowserClient(url!, anonKey!) as SupabaseClient)
+    : createClient(url!, anonKey!, {
+        auth: {
+          persistSession: false,
+          autoRefreshToken: false,
+          detectSessionInUrl: false,
+        },
+      })
   : null;
 
 export const supabaseConfig = {
