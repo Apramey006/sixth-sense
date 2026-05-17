@@ -360,16 +360,21 @@ function TakeCard({ take }: { take: EnrichedTake }) {
   const era = take.scenario?.era ?? "";
 
   return (
-    <li
-      className="relative"
-      style={{
-        background: "var(--paper-raised)",
-        border: "1px solid var(--rule)",
-        borderLeft: `3px solid ${railColor}`,
-        borderRadius: 10,
-        padding: "1.25rem 1.5rem 1.5rem",
-      }}
-    >
+    <li>
+      <Link
+        href={`/me/${take.id}`}
+        aria-label={`Review ${kindLabel} rep — ${company}`}
+        className="block transition-colors take-card-link"
+        style={{
+          background: "var(--paper-raised)",
+          border: "1px solid var(--rule)",
+          borderLeft: `3px solid ${railColor}`,
+          borderRadius: 10,
+          padding: "1.25rem 1.5rem 1.5rem",
+          color: "inherit",
+          textDecoration: "none",
+        }}
+      >
       <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
         <div className="flex items-center gap-3 flex-wrap">
           <span
@@ -402,6 +407,13 @@ function TakeCard({ take }: { take: EnrichedTake }) {
       </div>
 
       {isWeekly ? <WeeklyBody body={take.body} /> : <DailyBody body={take.body} />}
+        <div
+          className="mono text-[0.65rem] mt-4 inline-flex items-center gap-1"
+          style={{ color: "var(--ink-mute)", letterSpacing: "0.12em" }}
+        >
+          REVIEW <span aria-hidden>→</span>
+        </div>
+      </Link>
     </li>
   );
 }
