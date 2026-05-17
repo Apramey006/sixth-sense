@@ -150,7 +150,7 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
             className="text-2xl sm:text-[1.625rem] mb-5"
             style={{ fontWeight: 600, letterSpacing: "-0.015em", lineHeight: 1.2 }}
           >
-            {scenario.company}, {scenario.era.toLowerCase()}.
+            {scenario.company}, {scenario.era}.
           </h2>
 
           <div style={{ color: "var(--ink-soft)" }}>
