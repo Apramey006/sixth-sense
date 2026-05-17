@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { supabaseAdmin } from "@/lib/supabaseAdmin";
 import { getWeeklyForWeek } from "@/lib/scenarios";
 import { sendWeeklyEmail } from "@/lib/email";
-import { currentISOWeek } from "@/lib/dates";
+import { upcomingISOWeek } from "@/lib/dates";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
@@ -21,7 +21,10 @@ export async function GET(req: NextRequest) {
 
   const dryRun = req.nextUrl.searchParams.get("dry") === "1";
 
-  const week = currentISOWeek();
+  // Use the week starting Monday rather than the week ending today, so the
+  // Sunday-morning email previews the upcoming rep (not the one that ends in
+  // a few hours).
+  const week = upcomingISOWeek();
   const scenario = await getWeeklyForWeek(week);
 
   const admin = supabaseAdmin();

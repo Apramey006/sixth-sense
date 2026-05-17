@@ -77,10 +77,10 @@ export async function sendWeeklyEmail(
   const intro = escapeHtml(scenario.intro);
   const ctaUrl = `${SITE}/this-week`;
 
-  const subject = `This week's deep rep: ${scenario.company}`;
+  const subject = `This week ahead: ${scenario.company}`;
   const html = shell(
     `
-    <p style="text-transform:uppercase;font-size:12px;letter-spacing:0.08em;color:#888;margin-bottom:4px">Weekly rep · ~25 min</p>
+    <p style="text-transform:uppercase;font-size:12px;letter-spacing:0.08em;color:#888;margin-bottom:4px">Weekly rep · ~25 min · for the week ahead</p>
     <h1 style="font-size:24px;margin:0 0 4px;font-weight:600">${company}</h1>
     <p style="font-size:14px;color:#666;margin:0 0 20px">${era}</p>
     <p style="font-size:15px;color:#222;margin:0 0 24px">${intro}</p>

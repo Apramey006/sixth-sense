@@ -25,3 +25,17 @@ export function startOfWeek(ref: Date = new Date()): Date {
   d.setHours(0, 0, 0, 0);
   return d;
 }
+
+// ISO week containing tomorrow. The Sunday-morning weekly email previews the
+// rep for the week that starts the next day — sending about the week that
+// ends in 12 hours doesn't give the user time to do it.
+export function upcomingISOWeek(): string {
+  const d = new Date();
+  d.setUTCDate(d.getUTCDate() + 1);
+  const ref = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
+  const dayNum = ref.getUTCDay() || 7;
+  ref.setUTCDate(ref.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(ref.getUTCFullYear(), 0, 1));
+  const weekNum = Math.ceil(((ref.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
+  return `${ref.getUTCFullYear()}-W${String(weekNum).padStart(2, "0")}`;
+}
