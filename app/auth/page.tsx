@@ -1,11 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 import { signInWithOAuth, signInWithPassword, signUpWithPassword } from "@/lib/auth";
 import { supabaseEnabled } from "@/lib/supabase";
 
 type Mode = "signin" | "signup";
+
+const CAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY;
 
 export default function AuthPage() {
   const router = useRouter();
@@ -15,6 +18,8 @@ export default function AuthPage() {
   const [status, setStatus] = useState<"idle" | "submitting" | "confirm" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState<string>("");
   const [next, setNext] = useState<string>("/");
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const captchaRef = useRef<HCaptcha | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -43,15 +48,24 @@ export default function AuthPage() {
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email.trim() || !password) return;
+    if (CAPTCHA_SITE_KEY && !captchaToken) {
+      setStatus("error");
+      setErrorMsg("Please complete the captcha first.");
+      return;
+    }
     setStatus("submitting");
     setErrorMsg("");
     try {
       if (mode === "signin") {
-        await signInWithPassword(email, password);
+        await signInWithPassword(email, password, captchaToken ?? undefined);
         router.push(next);
         router.refresh();
       } else {
-        const { needsConfirmation } = await signUpWithPassword(email, password);
+        const { needsConfirmation } = await signUpWithPassword(
+          email,
+          password,
+          captchaToken ?? undefined,
+        );
         if (needsConfirmation) {
           setStatus("confirm");
         } else {
@@ -62,6 +76,9 @@ export default function AuthPage() {
     } catch (err) {
       setStatus("error");
       setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
+      // The captcha token is single-use; reset it so the user can retry.
+      captchaRef.current?.resetCaptcha();
+      setCaptchaToken(null);
     }
   }
 
@@ -226,6 +243,18 @@ export default function AuthPage() {
               disabled={status === "submitting" || !supabaseEnabled}
             />
           </label>
+
+          {CAPTCHA_SITE_KEY && (
+            <div className="mt-5 flex justify-center">
+              <HCaptcha
+                ref={captchaRef}
+                sitekey={CAPTCHA_SITE_KEY}
+                onVerify={(token) => setCaptchaToken(token)}
+                onExpire={() => setCaptchaToken(null)}
+                onError={() => setCaptchaToken(null)}
+              />
+            </div>
+          )}
 
           <button
             type="submit"

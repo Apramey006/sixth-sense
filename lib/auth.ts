@@ -40,14 +40,21 @@ export function useUser(): { user: User | null; loading: boolean } {
 
 /**
  * Sign in an existing user with email + password. Session is set immediately.
+ * If Supabase has CAPTCHA protection enabled, the caller must pass a
+ * captchaToken from the hCaptcha widget on /auth.
  */
-export async function signInWithPassword(email: string, password: string): Promise<void> {
+export async function signInWithPassword(
+  email: string,
+  password: string,
+  captchaToken?: string,
+): Promise<void> {
   if (!supabaseEnabled || !supabase) {
     throw new Error("Auth is not configured.");
   }
   const { error } = await supabase.auth.signInWithPassword({
     email: email.trim(),
     password,
+    options: captchaToken ? { captchaToken } : undefined,
   });
   if (error) throw error;
 }
@@ -59,7 +66,8 @@ export async function signInWithPassword(email: string, password: string): Promi
  */
 export async function signUpWithPassword(
   email: string,
-  password: string
+  password: string,
+  captchaToken?: string,
 ): Promise<{ needsConfirmation: boolean }> {
   if (!supabaseEnabled || !supabase) {
     throw new Error("Auth is not configured.");
@@ -67,6 +75,7 @@ export async function signUpWithPassword(
   const { data, error } = await supabase.auth.signUp({
     email: email.trim(),
     password,
+    options: captchaToken ? { captchaToken } : undefined,
   });
   if (error) throw error;
   return { needsConfirmation: !data.session };
