@@ -1,15 +1,58 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 import type { DailyScenario } from "@/lib/supabase";
+import { supabase, supabaseEnabled } from "@/lib/supabase";
 import { submitTake } from "@/lib/submit";
-import { markCompleted } from "@/lib/anonId";
+import { isCompleted, markCompleted } from "@/lib/anonId";
+import { useUser } from "@/lib/auth";
 import { PostRepFooter } from "@/components/PostRepFooter";
+
+type PriorTake = { id: string | null; note: string };
 
 export function DailyRep({ scenario }: { scenario: DailyScenario }) {
   const [step, setStep] = useState<0 | 1>(0);
   const [text, setText] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const { user, loading: authLoading } = useUser();
+  const [prior, setPrior] = useState<PriorTake | null | undefined>(undefined);
+
+  useEffect(() => {
+    if (authLoading) return;
+    let active = true;
+    (async () => {
+      if (supabaseEnabled && supabase && user) {
+        const { data } = await supabase
+          .from("takes")
+          .select("id, body")
+          .eq("scenario_id", scenario.id)
+          .eq("user_id", user.id)
+          .order("created_at", { ascending: false })
+          .limit(1)
+          .maybeSingle();
+        if (!active) return;
+        if (data) {
+          const body = data.body as { note?: string };
+          setPrior({ id: data.id as string, note: body.note ?? "" });
+        } else if (isCompleted("daily", scenario.scheduled_date)) {
+          setPrior({ id: null, note: "" });
+        } else {
+          setPrior(null);
+        }
+      } else {
+        if (!active) return;
+        setPrior(
+          isCompleted("daily", scenario.scheduled_date)
+            ? { id: null, note: "" }
+            : null
+        );
+      }
+    })();
+    return () => {
+      active = false;
+    };
+  }, [authLoading, user, scenario.id, scenario.scheduled_date]);
 
   async function submitAndReveal() {
     if (!text.trim()) {
@@ -25,6 +68,31 @@ export function DailyRep({ scenario }: { scenario: DailyScenario }) {
     markCompleted("daily", scenario.scheduled_date);
     setSubmitting(false);
     setStep(1);
+  }
+
+  if (step === 0 && prior === undefined) {
+    return (
+      <section className="fade-up">
+        <p
+          className="mono text-xs"
+          style={{ color: "var(--ink-mute)", letterSpacing: "0.16em" }}
+        >
+          Loading…
+        </p>
+      </section>
+    );
+  }
+
+  if (step === 0 && prior) {
+    return (
+      <AlreadyDone
+        kind="daily"
+        scenario={{ company: scenario.company, era: scenario.era }}
+        prior={prior}
+        nextHref="/this-week"
+        nextLabel="Open this week's deep rep"
+      />
+    );
   }
 
   if (step === 0) {
@@ -127,6 +195,72 @@ export function DailyRep({ scenario }: { scenario: DailyScenario }) {
       </aside>
 
       <PostRepFooter kind="daily" />
+    </section>
+  );
+}
+
+export function AlreadyDone({
+  kind,
+  scenario,
+  prior,
+  nextHref,
+  nextLabel,
+}: {
+  kind: "daily" | "weekly";
+  scenario: { company: string; era: string };
+  prior: { id: string | null; note: string };
+  nextHref: string;
+  nextLabel: string;
+}) {
+  const accent = kind === "weekly" ? "var(--accent-2)" : "var(--accent)";
+  return (
+    <section className="fade-up">
+      <div className="rep-header-eyebrow">
+        <span className="line" aria-hidden />
+        <span className="accent" style={{ color: accent }}>
+          Already on the record
+        </span>
+        <span>· {scenario.era}</span>
+      </div>
+      <h1 className="rep-title">{scenario.company}</h1>
+
+      <div
+        className="cabinet-note"
+        style={{ marginTop: "2rem" }}
+      >
+        <div className="cabinet-note-head">
+          You've already done {kind === "weekly" ? "this week's" : "today's"} rep.
+        </div>
+        <p>
+          One rep per {kind === "weekly" ? "week" : "day"} — the take you
+          filed is the take. {kind === "weekly" ? "Come back next week" : "Come back tomorrow"} for
+          the next one.
+        </p>
+        {prior.note && (
+          <div className="your-take-block" style={{ marginTop: "1.5rem" }}>
+            <p className="your-take-quote">"{prior.note}"</p>
+            <p className="your-take-attr">— You</p>
+          </div>
+        )}
+        <div className="rep-action-row" style={{ marginTop: "1.5rem" }}>
+          {prior.id ? (
+            <Link href={`/me/${prior.id}`} className="rep-submit">
+              Open your review <span aria-hidden>→</span>
+            </Link>
+          ) : (
+            <Link href="/auth?next=/me" className="rep-submit">
+              Sign in to view your review <span aria-hidden>→</span>
+            </Link>
+          )}
+          <Link
+            href={nextHref}
+            className="home-cta-ghost"
+            style={{ fontSize: "0.95rem" }}
+          >
+            {nextLabel} →
+          </Link>
+        </div>
+      </div>
     </section>
   );
 }

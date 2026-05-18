@@ -2,8 +2,11 @@
 
 import { useEffect, useState } from "react";
 import type { WeeklyScenario } from "@/lib/supabase";
+import { supabase, supabaseEnabled } from "@/lib/supabase";
 import { submitTake } from "@/lib/submit";
-import { markCompleted } from "@/lib/anonId";
+import { isCompleted, markCompleted } from "@/lib/anonId";
+import { useUser } from "@/lib/auth";
+import { AlreadyDone } from "@/components/DailyRep";
 import { PostRepFooter } from "@/components/PostRepFooter";
 
 type Take = { tradeoff: string; user: string; alt: string; predict: string };
@@ -49,8 +52,50 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
   const [take, setTake] = useState<Take>({ tradeoff: "", user: "", alt: "", predict: "" });
   const [submitting, setSubmitting] = useState(false);
   const [draftRestored, setDraftRestored] = useState(false);
+  const { user, loading: authLoading } = useUser();
+  const [prior, setPrior] = useState<
+    { id: string | null; note: string } | null | undefined
+  >(undefined);
 
   const draftKey = `sixth-sense:weekly-draft:${scenario.id}`;
+
+  useEffect(() => {
+    if (authLoading) return;
+    let active = true;
+    (async () => {
+      if (supabaseEnabled && supabase && user) {
+        const { data } = await supabase
+          .from("takes")
+          .select("id, body")
+          .eq("scenario_id", scenario.id)
+          .eq("user_id", user.id)
+          .order("created_at", { ascending: false })
+          .limit(1)
+          .maybeSingle();
+        if (!active) return;
+        if (data) {
+          const body = data.body as Take;
+          const first =
+            (body.tradeoff || body.user || body.alt || body.predict || "").trim();
+          setPrior({ id: data.id as string, note: first });
+        } else if (isCompleted("weekly", scenario.iso_week)) {
+          setPrior({ id: null, note: "" });
+        } else {
+          setPrior(null);
+        }
+      } else {
+        if (!active) return;
+        setPrior(
+          isCompleted("weekly", scenario.iso_week)
+            ? { id: null, note: "" }
+            : null
+        );
+      }
+    })();
+    return () => {
+      active = false;
+    };
+  }, [authLoading, user, scenario.id, scenario.iso_week]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -102,6 +147,31 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
     }
     setSubmitting(false);
     setStep(2);
+  }
+
+  if (step === 0 && prior === undefined) {
+    return (
+      <section className="fade-up">
+        <p
+          className="mono text-xs"
+          style={{ color: "var(--ink-mute)", letterSpacing: "0.16em" }}
+        >
+          Loading…
+        </p>
+      </section>
+    );
+  }
+
+  if (step === 0 && prior) {
+    return (
+      <AlreadyDone
+        kind="weekly"
+        scenario={{ company: scenario.company, era: scenario.era }}
+        prior={prior}
+        nextHref="/today"
+        nextLabel="Take today's daily rep"
+      />
+    );
   }
 
   if (step === 0) {
