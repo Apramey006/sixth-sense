@@ -13,76 +13,88 @@ export default async function HomePage() {
     getWeeklyForWeek(week),
   ]);
 
-  return (
-    <main className="max-w-3xl mx-auto px-5 sm:px-6 pt-16 sm:pt-24 pb-24">
-      <section>
-        <h1 className="display text-[2.5rem] sm:text-[3.5rem]">
-          When everyone can build, instinct is the edge.
-        </h1>
-        <p className="body-prose mt-6 max-w-2xl">
-          Sixth Sense is a practice tool for the one skill AI can't hand you:
-          product instinct. Two reps a week — one short, one deep — on real
-          product decisions, taken before you see how they were actually solved.
-        </p>
+  const filed = new Date(date + "T00:00:00")
+    .toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    })
+    .toUpperCase();
+  const weekNo = week.split("-W")[1] ?? "";
+  const year = week.split("-")[0] ?? "";
 
-        <div className="flex flex-wrap items-center gap-3 mt-8">
-          <Link
-            href="/today"
-            className="btn-accent rounded-md px-5 py-2.5 text-sm inline-flex items-center gap-2"
-          >
-            Start today's rep <span aria-hidden>→</span>
+  return (
+    <main className="home-shell mx-auto px-4 sm:px-8 pb-24">
+      {/* Issue masthead */}
+      <header className="issue-strip">
+        <span className="issue-no">Issue Nº {weekNo}</span>
+        <span className="dot" aria-hidden>·</span>
+        <span>{year}</span>
+        <span className="dot" aria-hidden>·</span>
+        <span>Filed {filed}</span>
+        <span className="dateline">A practice paper for product taste</span>
+      </header>
+
+      {/* Hero */}
+      <section className="home-hero reveal-stage">
+        <div className="home-hero-eyebrow">
+          <span className="line" aria-hidden />
+          <span>The thesis</span>
+        </div>
+        <h1 className="home-display">
+          When everyone can build,
+          <br />
+          <em className="home-display-em">instinct</em> is the edge.
+        </h1>
+        <p className="home-deck">
+          Sixth Sense is a practice paper for the one skill AI can't hand you:
+          <em> product instinct.</em> Two reps a week — one short, one deep — on
+          real product decisions, taken before you see how they were actually
+          solved.
+        </p>
+        <div className="home-cta-row">
+          <Link href="/today" className="home-cta-primary">
+            Begin today's rep <span aria-hidden>→</span>
           </Link>
-          <Link
-            href="/this-week"
-            className="btn-ghost rounded-md px-5 py-2.5 text-sm"
-          >
-            Open this week's deep rep
+          <Link href="/this-week" className="home-cta-ghost">
+            Read the weekly decision room
           </Link>
         </div>
       </section>
 
-      <section className="mt-20">
-        <p
-          className="subhead text-xl sm:text-2xl mb-6 max-w-2xl"
-          style={{ color: "var(--ink-soft)" }}
-        >
-          Form your take before you see anyone else's.
-        </p>
-        <ul className="divide-y" style={{ borderColor: "var(--rule)" }}>
+      {/* Today's dispatch */}
+      <section className="dispatch-section">
+        <div className="section-banner">
+          <span className="section-banner-num">§ I</span>
+          <span className="section-banner-label">Today's dispatch</span>
+          <span className="section-banner-meta">Two files open</span>
+        </div>
+
+        <ul className="dispatch-list">
           <li>
-            <Link
-              href="/today"
-              className="group flex items-baseline justify-between gap-4 py-6 hover:opacity-80 transition-opacity"
-            >
-              <div className="min-w-0">
-                <div className="flex items-baseline gap-3 mb-1.5 flex-wrap">
-                  <span className="mono text-xs" style={{ color: "var(--ink-mute)" }}>
-                    DAILY · ~3 MIN
-                  </span>
+            <Link href="/today" className="dispatch-row">
+              <div className="dispatch-col-kind">
+                <span className="kind-tag">Daily</span>
+                <span className="kind-len">~3 min</span>
+              </div>
+              <div className="dispatch-col-body">
+                <div className="dispatch-status">
                   <RepStatus kind="daily" scopeKey={date} freshLabel="New today" />
                 </div>
-                <h2 className="headline text-xl sm:text-2xl">
-                  {daily.company}
-                </h2>
-                <p className="mono text-xs mt-1" style={{ color: "var(--ink-mute)" }}>
-                  {daily.era}
-                </p>
+                <h2 className="dispatch-headline">{daily.company}</h2>
+                <p className="dispatch-era">{daily.era}</p>
               </div>
-              <span aria-hidden className="text-xl" style={{ color: "var(--ink-mute)" }}>
-                →
-              </span>
+              <span className="dispatch-arrow" aria-hidden>→</span>
             </Link>
           </li>
           <li>
-            <Link
-              href="/this-week"
-              className="group flex items-baseline justify-between gap-4 py-6 hover:opacity-80 transition-opacity"
-            >
-              <div className="min-w-0">
-                <div className="flex items-baseline gap-3 mb-1.5 flex-wrap">
-                  <span className="mono text-xs" style={{ color: "var(--ink-mute)" }}>
-                    WEEKLY · ~25 MIN
-                  </span>
+            <Link href="/this-week" className="dispatch-row">
+              <div className="dispatch-col-kind">
+                <span className="kind-tag is-weekly">Weekly</span>
+                <span className="kind-len">~25 min</span>
+              </div>
+              <div className="dispatch-col-body">
+                <div className="dispatch-status">
                   <RepStatus
                     kind="weekly"
                     scopeKey={week}
@@ -90,54 +102,69 @@ export default async function HomePage() {
                     tone="accent-2"
                   />
                 </div>
-                <h2 className="headline text-xl sm:text-2xl">
-                  {weekly.company}
-                </h2>
-                <p className="mono text-xs mt-1" style={{ color: "var(--ink-mute)" }}>
-                  {weekly.era}
-                </p>
+                <h2 className="dispatch-headline">{weekly.company}</h2>
+                <p className="dispatch-era">{weekly.era}</p>
               </div>
-              <span aria-hidden className="text-xl" style={{ color: "var(--ink-mute)" }}>
-                →
-              </span>
+              <span className="dispatch-arrow" aria-hidden>→</span>
             </Link>
           </li>
         </ul>
       </section>
 
-      <section className="mt-20">
-        <ol className="space-y-5 max-w-xl">
+      {/* Method */}
+      <section className="method-section">
+        <div className="section-banner">
+          <span className="section-banner-num">§ II</span>
+          <span className="section-banner-label">The method</span>
+          <span className="section-banner-meta">Three steps, twice a week</span>
+        </div>
+
+        <ol className="method-list">
           {[
-            "Read a real product moment.",
-            "Commit to your unfiltered take.",
-            "See what actually shipped.",
+            {
+              t: "Read a real product moment",
+              b: "A real company, a real era, a real fork in the road. No textbook, no synthesized prompts.",
+            },
+            {
+              t: "Commit to your unfiltered take",
+              b: "No editing for the model. No looking things up. Your raw read, on the record.",
+            },
+            {
+              t: "See what actually shipped",
+              b: "What they did, what came out, what they wished they'd known. The rep is the gap between your read and reality.",
+            },
           ].map((step, i) => (
-            <li key={i} className="flex items-baseline gap-4">
-              <span
-                className="mono text-xs shrink-0 w-6"
-                style={{ color: "var(--ink-mute)" }}
-              >
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <p className="subhead text-lg sm:text-xl">{step}</p>
+            <li key={i} className="method-item">
+              <span className="method-num">{String(i + 1).padStart(2, "0")}</span>
+              <div className="method-body">
+                <h3 className="method-title">{step.t}</h3>
+                <p className="method-blurb">{step.b}</p>
+              </div>
             </li>
           ))}
         </ol>
       </section>
 
-      <section className="mt-20">
-        <div
-          className="max-w-2xl pl-5 sm:pl-6"
-          style={{ borderLeft: "2px solid var(--ink)" }}
-        >
-          <p className="pullquote text-lg sm:text-xl leading-relaxed">
-            The scenarios here are real. Actual product decisions, real quotes,
-            real outcomes. Your take isn't graded by a model; you compare it to
-            what actually shipped. The point is to stay out of the model's voice
-            long enough to find your own.
-          </p>
+      {/* Manifesto / endquote */}
+      <section className="manifesto-section">
+        <div className="section-banner">
+          <span className="section-banner-num">§ III</span>
+          <span className="section-banner-label">A note from the editors</span>
         </div>
+        <blockquote className="manifesto-quote">
+          <span className="manifesto-mark" aria-hidden>"</span>
+          The scenarios here are real. Actual product decisions, real quotes,
+          real outcomes. Your take isn't graded by a model; you compare it to
+          what actually shipped. The point is to stay out of the model's voice
+          long enough to find your own.
+        </blockquote>
+        <p className="manifesto-attr">— The editors</p>
       </section>
+
+      <footer className="home-signoff">
+        <span aria-hidden>—— ⁂ ——</span>
+        <p>New daily rep filed each morning · Weekly deep rep every Sunday.</p>
+      </footer>
     </main>
   );
 }

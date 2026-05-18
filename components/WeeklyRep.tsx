@@ -8,6 +8,42 @@ import { PostRepFooter } from "@/components/PostRepFooter";
 
 type Take = { tradeoff: string; user: string; alt: string; predict: string };
 
+const FIELDS: {
+  key: keyof Take;
+  label: string;
+  help: string;
+  example: string;
+}[] = [
+  {
+    key: "tradeoff",
+    label: "What's the core tradeoff?",
+    help: "What's the real tension this decision sits on top of?",
+    example:
+      "e.g. They're trading launch-week credibility for long-term retention — willing to look unfinished to ship inside a market window.",
+  },
+  {
+    key: "user",
+    label: "Who is the actual target user?",
+    help: "Not 'everyone.' Who specifically — and who are they stealing time from?",
+    example:
+      "e.g. Existing IG users curious about text social, not the Twitter power-user cohort. Stealing time from passive scrolling, not from X.",
+  },
+  {
+    key: "alt",
+    label: "What would you do differently?",
+    help: "Pick one real alternative path and commit to it.",
+    example:
+      "e.g. Decoupled launch with DMs from day one, slower S-curve but durable trust — accept losing the Twitter timing window.",
+  },
+  {
+    key: "predict",
+    label: "What do you predict will happen?",
+    help: "Concrete prediction. Big launch then collapse? Slow burn? Why?",
+    example:
+      "e.g. Massive launch-week numbers, fast collapse to 20% of peak, then slow recovery on the back of patient feature work.",
+  },
+];
+
 export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
   const [step, setStep] = useState<0 | 1 | 2>(0);
   const [take, setTake] = useState<Take>({ tradeoff: "", user: "", alt: "", predict: "" });
@@ -49,7 +85,7 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
   async function submitAndReveal() {
     const empty = Object.values(take).some((v) => !v.trim());
     if (empty) {
-      alert("Write something for all four — even rough one-liners. The reps only work if you commit.");
+      alert("Write something for all four — even rough one-liners. The rep only works if you commit.");
       return;
     }
     setSubmitting(true);
@@ -68,161 +104,65 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
     setStep(2);
   }
 
-  // Step indicator (replaces I./II./III. roman chapters)
-  const Stepper = ({ active }: { active: 1 | 2 | 3 }) => (
-    <div className="flex items-center gap-1.5 mb-4">
-      {[
-        { n: 1, label: "Scenario" },
-        { n: 2, label: "Your take" },
-        { n: 3, label: "Reveal" },
-      ].map((s) => {
-        const isActive = s.n === active;
-        const isDone = s.n < active;
-        return (
-          <div key={s.n} className="flex items-center gap-1.5">
-            <span
-              className="inline-flex items-center justify-center w-5 h-5 rounded-md text-[0.6875rem] font-semibold"
-              style={{
-                background: isActive
-                  ? "var(--accent-2)"
-                  : isDone
-                  ? "rgba(127, 160, 137, 0.18)"
-                  : "var(--rule-soft)",
-                color: isActive
-                  ? "var(--paper)"
-                  : isDone
-                  ? "var(--accent-2)"
-                  : "var(--ink-mute)",
-              }}
-            >
-              {s.n}
-            </span>
-            <span
-              className="text-xs font-medium"
-              style={{
-                color: isActive ? "var(--ink)" : "var(--ink-mute)",
-              }}
-            >
-              {s.label}
-            </span>
-            {s.n < 3 && (
-              <span
-                aria-hidden
-                className="inline-block w-4 h-px mx-1"
-                style={{ background: "var(--rule)" }}
-              />
-            )}
-          </div>
-        );
-      })}
-    </div>
-  );
-
   if (step === 0) {
     return (
       <section className="fade-up">
         <Stepper active={1} />
 
-        <div className="mb-7">
-          <h1 className="display text-[2rem] sm:text-[2.25rem]">
-            Form your take before you see anyone else's.
-          </h1>
-          <p
-            className="body-prose mt-3 max-w-2xl"
-            style={{ color: "var(--ink-soft)" }}
-          >
-            One real product decision. Write your unfiltered take across four dimensions
-            before we show you what shipped and what happened.
-          </p>
+        <div className="rep-header-eyebrow">
+          <span className="line" aria-hidden />
+          <span className="accent" style={{ color: "var(--accent-2)" }}>The decision room</span>
+          <span>· Not yet decided</span>
+        </div>
+        <h1 className="rep-title">
+          {scenario.company}, <em style={{ fontStyle: "italic", fontWeight: 700 }}>{scenario.era}.</em>
+        </h1>
+
+        <div className="scenario-article" style={{ marginTop: "2rem" }}>
+          {scenario.intro.split("\n\n").map((para, i) => (
+            <p key={i} className={i === 0 ? "lede" : ""}>
+              {para}
+            </p>
+          ))}
+
+          {scenario.open_questions && scenario.open_questions.length > 0 && (
+            <div className="open-q-table">
+              <div className="open-q-head">Open questions on the table</div>
+              <ul>
+                {scenario.open_questions.map((q, i) => (
+                  <li key={i}>
+                    <span className="num">Q{(i + 1).toString().padStart(2, "0")}</span>
+                    <span>{q}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <p className="closing">{scenario.closing}</p>
         </div>
 
-        <article
-          className="scenario card p-6 sm:p-7"
-          style={{ fontSize: "1rem", lineHeight: 1.65 }}
-        >
-          <div className="flex items-center gap-2 mb-3">
-            <span className="pill pill-accent-2">This week</span>
-            <span className="text-xs" style={{ color: "var(--ink-mute)" }}>
-              A decision room, not yet decided.
-            </span>
-          </div>
-          <h2
-            className="text-2xl sm:text-[1.625rem] mb-5"
-            style={{ fontWeight: 600, letterSpacing: "-0.015em", lineHeight: 1.2 }}
-          >
-            {scenario.company}, {scenario.era}.
-          </h2>
-
-          <div style={{ color: "var(--ink-soft)" }}>
-            {scenario.intro.split("\n\n").map((para, i) => (
-              <p key={i} className={i === 0 ? "lede" : ""}>
-                {para}
-              </p>
-            ))}
-          </div>
-
-          <div
-            className="my-6 accent-rail-2 pl-4 py-1"
-            style={{ color: "var(--ink-soft)" }}
-          >
-            <div className="eyebrow mb-2" style={{ color: "var(--accent-2)" }}>
-              Open questions on the table
-            </div>
-            <ul className="space-y-1.5 text-[0.9375rem]">
-              {scenario.open_questions.map((q, i) => (
-                <li key={i} className="flex gap-2">
-                  <span style={{ color: "var(--accent-2)" }}>—</span>
-                  <span>{q}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <p style={{ color: "var(--ink-soft)" }}>{scenario.closing}</p>
-        </article>
-
-        <div className="mt-8 drop-rule pt-6">
-          <div className="eyebrow mb-3">What you'll see after you submit</div>
-          <div className="grid sm:grid-cols-3 gap-3">
+        <div className="afterview">
+          <span className="afterview-eyebrow">After you submit, you'll see</span>
+          <div className="afterview-grid">
             {[
-              {
-                t: "What shipped",
-                b: "The actual decision and the public reasoning behind it.",
-              },
-              {
-                t: "Real outcomes",
-                b: "Numbers from the months and years after — not predictions.",
-              },
-              {
-                t: "Your take vs. reality",
-                b: "A side-by-side, dimension by dimension. The point of the rep.",
-              },
+              { t: "What shipped", b: "The actual decision and the public reasoning behind it." },
+              { t: "Real outcomes", b: "Numbers from the months and years after — not predictions." },
+              { t: "Your take vs. reality", b: "A side-by-side, dimension by dimension. The point of the rep." },
             ].map((c, i) => (
-              <div key={i} className="card p-4">
-                <div
-                  className="text-sm"
-                  style={{ fontWeight: 600, color: "var(--ink)" }}
-                >
-                  {c.t}
-                </div>
-                <p
-                  className="text-xs mt-1 leading-relaxed"
-                  style={{ color: "var(--ink-soft)" }}
-                >
-                  {c.b}
-                </p>
+              <div key={i} className="afterview-cell">
+                <div className="t">{c.t}</div>
+                <p className="b">{c.b}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="mt-7">
-          <button
-            onClick={() => setStep(1)}
-            className="btn-accent px-4 py-2 rounded-md text-sm inline-flex items-center gap-1.5"
-          >
+        <div className="rep-action-row">
+          <button onClick={() => setStep(1)} className="rep-submit">
             I've read it — write my take <span aria-hidden>→</span>
           </button>
+          <p className="rep-action-hint">~25 minutes. No editing for a model. Your raw read.</p>
         </div>
       </section>
     );
@@ -233,254 +173,193 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
       <section className="fade-up">
         <Stepper active={2} />
 
-        <h2
-          className="text-2xl sm:text-[1.75rem] mb-1.5"
-          style={{ fontWeight: 600, letterSpacing: "-0.015em" }}
-        >
+        <div className="rep-header-eyebrow">
+          <span className="line" aria-hidden />
+          <span className="accent" style={{ color: "var(--accent-2)" }}>Your take, on the record</span>
+        </div>
+        <h2 className="rep-title" style={{ fontSize: "clamp(1.8rem, 4.5vw, 2.6rem)" }}>
           Write what you actually think.
         </h2>
-        <p className="text-sm mb-6" style={{ color: "var(--ink-soft)" }}>
-          No editing for a model, no looking things up. The point is your raw instinct.
+        <p
+          className="dossier-precis"
+          style={{ marginTop: "0.85rem", maxWidth: "34rem" }}
+        >
+          No editing for a model, no looking things up. The point is your raw
+          instinct, dimension by dimension.
         </p>
+
         {draftRestored && (
-          <div
-            className="text-xs mb-5 -mt-3 inline-flex items-center gap-1.5 pill pill-mute"
-          >
-            Draft restored from your last visit
+          <div className="draft-pill" style={{ marginTop: "1.5rem" }}>
+            <span aria-hidden>↺</span> Draft restored from your last visit
           </div>
         )}
 
-        <div className="space-y-5">
-          {(
-            [
-              {
-                key: "tradeoff",
-                n: 1,
-                label: "What's the core tradeoff?",
-                help: "What's the real tension this decision sits on top of?",
-                example:
-                  "e.g. They're trading launch-week credibility for long-term retention — willing to look unfinished to ship inside a market window.",
-              },
-              {
-                key: "user",
-                n: 2,
-                label: "Who is the actual target user?",
-                help: "Not 'everyone.' Who specifically — and who are they stealing time from?",
-                example:
-                  "e.g. Existing IG users curious about text social, not the Twitter power-user cohort. They're stealing time from passive scrolling, not from X.",
-              },
-              {
-                key: "alt",
-                n: 3,
-                label: "What would you do differently?",
-                help: "Pick one real alternative path and commit to it.",
-                example:
-                  "e.g. Decoupled launch with DMs from day one, slower S-curve but durable trust — accept losing the Twitter timing window.",
-              },
-              {
-                key: "predict",
-                n: 4,
-                label: "What do you predict will happen?",
-                help: "Concrete prediction. Big launch then collapse? Slow burn? Why?",
-                example:
-                  "e.g. Massive launch-week numbers, fast collapse to 20% of peak, then slow recovery on the back of patient feature work.",
-              },
-            ] as const
-          ).map(({ key, n, label, help, example }) => (
-            <div key={key} className="card p-4">
-              <label className="flex items-center gap-2.5 mb-1">
-                <span className="field-num shrink-0">{n}</span>
-                <span
-                  className="text-base"
-                  style={{ fontWeight: 600, letterSpacing: "-0.005em" }}
-                >
-                  {label}
-                </span>
-              </label>
-              <p
-                className="text-xs mb-2 ml-9"
-                style={{ color: "var(--ink-soft)" }}
-              >
-                {help}
-              </p>
-              <textarea
-                rows={3}
-                className="w-full border rounded-md px-3 py-2 ml-0"
-                style={{ borderColor: "var(--rule)", background: "var(--paper)" }}
-                placeholder={example}
-                value={take[key]}
-                onChange={(e) => setTake({ ...take, [key]: e.target.value })}
-              />
+        <div style={{ marginTop: "2rem" }}>
+          {FIELDS.map((f, i) => (
+            <div key={f.key} className="field-chapter">
+              <span className="field-chapter-num">{(i + 1).toString().padStart(2, "0")}</span>
+              <div>
+                <h3 className="field-chapter-label">{f.label}</h3>
+                <p className="field-chapter-help">{f.help}</p>
+                <textarea
+                  rows={3}
+                  className="rep-textarea"
+                  placeholder={f.example}
+                  value={take[f.key]}
+                  onChange={(e) => setTake({ ...take, [f.key]: e.target.value })}
+                />
+              </div>
             </div>
           ))}
         </div>
 
-        <div className="drop-rule mt-8 pt-6 flex items-center gap-3 flex-wrap">
-          <button
-            onClick={submitAndReveal}
-            disabled={submitting}
-            className="btn-accent px-4 py-2 rounded-md text-sm disabled:opacity-50 inline-flex items-center gap-1.5"
-          >
-            {submitting ? "Submitting…" : (
+        <div className="rep-action-row">
+          <button onClick={submitAndReveal} disabled={submitting} className="rep-submit">
+            {submitting ? "Filing…" : (
               <>
                 Submit and reveal <span aria-hidden>→</span>
               </>
             )}
           </button>
-          <p className="text-xs" style={{ color: "var(--ink-mute)" }}>
-            Once you reveal, you can't un-see it. That's the point.
-          </p>
+          <p className="rep-action-hint">Once you reveal, you can't un-see it. That's the point.</p>
         </div>
       </section>
     );
   }
 
+  // Step 2: reveal
   return (
     <section className="reveal-stage">
-      <div>
-        <Stepper active={3} />
-        <div className="eyebrow mb-2" style={{ color: "var(--accent)" }}>
-          What shipped
-        </div>
-        <h2
-          className="text-2xl sm:text-[1.75rem] mb-3"
-          style={{ fontWeight: 600, letterSpacing: "-0.015em" }}
-        >
-          The decision they made.
-        </h2>
-        <p
-          className="text-[0.95rem] leading-relaxed"
-          style={{ color: "var(--ink)" }}
-        >
-          {scenario.decision}
-        </p>
-      </div>
+      <Stepper active={3} />
 
-      <div className="mt-9 card p-5 accent-rail">
-        <blockquote className="pullquote">"{scenario.pullquote}"</blockquote>
-        <div className="text-xs mt-2" style={{ color: "var(--ink-mute)" }}>
-          — {scenario.pullquote_attribution}
-        </div>
+      <div className="rep-header-eyebrow">
+        <span className="line" aria-hidden />
+        <span className="accent">Reveal</span>
+        <span>· What shipped</span>
       </div>
+      <h2 className="rep-title">{scenario.company}, <em style={{ fontStyle: "italic", fontWeight: 700 }}>{scenario.era}.</em></h2>
 
-      <div className="mt-9 grid grid-cols-2 sm:grid-cols-4 gap-3">
-        {scenario.outcomes.map((o, i) => (
-          <div
-            key={i}
-            className="card p-4"
-          >
-            <div
-              className="stat-num text-2xl sm:text-3xl"
-              style={{ color: o.accent ? "var(--accent)" : "var(--ink)" }}
-            >
-              {o.stat}
-            </div>
-            <div
-              className="text-xs mt-1 leading-snug"
-              style={{ color: "var(--ink-soft)" }}
-            >
-              {o.label}
-            </div>
+      <div className="section-marker" style={{ marginTop: "2.5rem" }}>
+        <span className="roman">§ I</span>
+        <span className="label">The decision they made</span>
+      </div>
+      <p className="shipped-decision">{scenario.decision}</p>
+      <div className="shipped-pull">
+        <blockquote>"{scenario.pullquote}"</blockquote>
+        <p className="attr">— {scenario.pullquote_attribution}</p>
+      </div>
+      <StatBand outcomes={scenario.outcomes} />
+
+      {scenario.tradeoffs && scenario.tradeoffs.length > 0 && (
+        <>
+          <div className="section-marker">
+            <span className="roman">§ II</span>
+            <span className="label">The interesting tradeoffs</span>
           </div>
+          <ol className="tradeoff-run">
+            {scenario.tradeoffs.map((t, i) => (
+              <li key={i} className="tradeoff-item">
+                <h4>{t.title}</h4>
+                <p>{t.body}</p>
+              </li>
+            ))}
+          </ol>
+        </>
+      )}
+
+      <div className="section-marker">
+        <span className="roman">§ III</span>
+        <span className="label">Read against reality</span>
+      </div>
+      <div className="compare-set">
+        {(["tradeoff", "user", "alt", "predict"] as const).map((k, i) => (
+          <section key={k} className="compare-chapter">
+            <h4>
+              <span className="num">{["I", "II", "III", "IV"][i]}</span>
+              <span className="title">{
+                k === "tradeoff" ? "The core tradeoff" :
+                k === "user" ? "The target user" :
+                k === "alt" ? "The road not taken" :
+                "Your prediction"
+              }</span>
+            </h4>
+            <div className="compare-split">
+              <div className="compare-col you">
+                <div className="tag">You wrote</div>
+                <p>{take[k] || <em style={{ color: "var(--ink-mute)" }}>(left blank)</em>}</p>
+              </div>
+              <div className="rule-col" aria-hidden />
+              <div className="compare-col them">
+                <div className="tag">What they did</div>
+                <p>{scenario.per_dimension_truth[k]}</p>
+              </div>
+            </div>
+          </section>
         ))}
       </div>
 
-      <div className="mt-10">
-        <div className="eyebrow mb-3" style={{ color: "var(--accent)" }}>
-          The interesting tradeoffs
-        </div>
-        <div className="space-y-3">
-          {scenario.tradeoffs.map((t, i) => (
-            <div key={i} className="card p-4">
-              <div
-                className="text-base"
-                style={{ fontWeight: 600, letterSpacing: "-0.005em" }}
-              >
-                {t.title}
-              </div>
-              <p
-                className="text-sm leading-relaxed mt-1"
-                style={{ color: "var(--ink-soft)" }}
-              >
-                {t.body}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="mt-10">
-        <div className="eyebrow mb-3" style={{ color: "var(--accent-2)" }}>
-          Your take, side-by-side
-        </div>
-        <div className="space-y-5">
-          {(
-            [
-              { key: "tradeoff", label: "The core tradeoff" },
-              { key: "user", label: "The target user" },
-              { key: "alt", label: "What you'd do differently" },
-              { key: "predict", label: "Your prediction" },
-            ] as const
-          ).map(({ key, label }) => (
-            <div key={key} className="card p-4">
-              <div className="eyebrow mb-3">{label}</div>
-              <div className="compare-row">
-                <div>
-                  <div
-                    className="text-[0.6875rem] mb-1 font-semibold uppercase tracking-wider"
-                    style={{ color: "var(--ink-mute)" }}
-                  >
-                    You wrote
-                  </div>
-                  <p
-                    className="text-sm leading-relaxed whitespace-pre-wrap"
-                    style={{ color: "var(--ink)" }}
-                  >
-                    {take[key]}
-                  </p>
-                </div>
-                <div>
-                  <div
-                    className="text-[0.6875rem] mb-1 font-semibold uppercase tracking-wider"
-                    style={{ color: "var(--accent)" }}
-                  >
-                    What they did
-                  </div>
-                  <p
-                    className="text-sm leading-relaxed"
-                    style={{ color: "var(--ink)" }}
-                  >
-                    {scenario.per_dimension_truth[key]}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div
-        className="mt-12 rounded-xl p-7 border"
-        style={{
-          background: "var(--paper-deep)",
-          color: "var(--ink-soft)",
-          borderColor: "var(--rule)",
-        }}
-      >
-        <div className="eyebrow mb-3">Don't type an answer</div>
-        <p
-          className="text-xl leading-snug"
-          style={{ fontWeight: 600, letterSpacing: "-0.005em", color: "var(--ink)" }}
-        >
-          Where did your take diverge most from what actually happened — and is that
-          divergence a blind spot, or a real disagreement you'd defend?
+      <aside className="coda" style={{ marginTop: "3.5rem" }}>
+        <div className="coda-eyebrow">A note for next time</div>
+        <p className="coda-body">
+          Where did your read diverge most from what actually happened — and is
+          that gap a blind spot, or a real disagreement you'd defend? The rep
+          is the noticing. Close the tab and let it sit.
         </p>
-        <p className="text-sm mt-5" style={{ color: "var(--ink-mute)" }}>
-          The rep is the noticing. Close the tab and let it sit.
-        </p>
-      </div>
+      </aside>
 
       <PostRepFooter kind="weekly" />
     </section>
+  );
+}
+
+function Stepper({ active }: { active: 1 | 2 | 3 }) {
+  const steps = [
+    { n: 1, label: "Scenario" },
+    { n: 2, label: "Your take" },
+    { n: 3, label: "Reveal" },
+  ];
+  return (
+    <div className="rep-stepper">
+      {steps.map((s, i) => {
+        const state =
+          s.n === active ? "is-active" : s.n < active ? "is-done" : "";
+        return (
+          <span key={s.n} style={{ display: "inline-flex", alignItems: "center" }}>
+            <span className={`step ${state}`}>
+              <span className="num">{s.n}</span>
+              <span>{s.label}</span>
+            </span>
+            {i < steps.length - 1 && <span className="sep" aria-hidden />}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
+function StatBand({
+  outcomes,
+}: {
+  outcomes: { stat: string; label: string; accent?: boolean }[];
+}) {
+  const rows: typeof outcomes[] = [];
+  for (let i = 0; i < outcomes.length; i += 4) rows.push(outcomes.slice(i, i + 4));
+  return (
+    <div className="stat-band">
+      {rows.map((row, rIdx) => (
+        <div key={rIdx} className="stat-band-row">
+          {row.map((o, i) => (
+            <div key={i} className="stat-band-cell">
+              <div className={`num ${o.accent ? "is-accent" : ""}`}>{o.stat}</div>
+              <div className="label">{o.label}</div>
+            </div>
+          ))}
+          {row.length < 4 &&
+            Array.from({ length: 4 - row.length }).map((_, i) => (
+              <div key={`pad-${i}`} className="stat-band-cell is-empty" aria-hidden />
+            ))}
+        </div>
+      ))}
+    </div>
   );
 }

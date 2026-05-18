@@ -11,11 +11,11 @@ export default async function ThisWeekPage() {
   return (
     <>
       <Masthead
-        subtitle={`Weekly deep rep · ${week}`}
+        subtitle={`Weekly rep · ${week}`}
         chapter="A real decision room"
         tone="accent-2"
       />
-      <main className="max-w-3xl mx-auto px-5 sm:px-6 pt-8 pb-20">
+      <main className="rep-shell mx-auto px-4 sm:px-8 pt-10 sm:pt-14 pb-24">
         <WeeklyRep scenario={scenario} />
       </main>
     </>

@@ -22,7 +22,6 @@ type ScenarioMeta = {
 };
 
 type EnrichedTake = TakeRow & { scenario: ScenarioMeta | null };
-
 type KindFilter = "all" | "daily" | "weekly";
 
 export default function MePage() {
@@ -110,22 +109,30 @@ export default function MePage() {
   }, [takes]);
 
   return (
-    <main className="max-w-4xl mx-auto px-4 sm:px-6 pt-10 sm:pt-20 pb-20 sm:pb-24">
-      <header className="mb-8 sm:mb-10">
-        <h1 className="display text-[2rem] sm:text-[3.5rem] leading-tight">Your reps.</h1>
-        <p className="body-prose mt-4 max-w-2xl">
-          Every rep you've taken, with what you wrote and what you saw.
-        </p>
+    <main className="cabinet-shell mx-auto px-4 sm:px-8 pt-8 sm:pt-12 pb-24">
+      {/* Strip masthead */}
+      <header className="cabinet-strip">
+        <span className="cabinet-strip-label">The file cabinet</span>
         {summary && (
-          <p
-            className="mono text-xs mt-5"
-            style={{ color: "var(--ink-mute)", letterSpacing: "0.06em" }}
-          >
-            {summary.thisWeek} THIS WEEK · {summary.lastWeek} LAST WEEK ·{" "}
-            {summary.total} TOTAL
-          </p>
+          <>
+            <span className="dot" aria-hidden>·</span>
+            <span>{summary.thisWeek} this week</span>
+            <span className="dot" aria-hidden>·</span>
+            <span>{summary.lastWeek} last week</span>
+            <span className="dot" aria-hidden>·</span>
+            <span>{summary.total} total</span>
+          </>
         )}
+        <span className="dateline">Every rep, with what you wrote and what you saw</span>
       </header>
+
+      <section className="cabinet-hero">
+        <h1 className="cabinet-title">Your reps.</h1>
+        <p className="cabinet-deck">
+          A file cabinet of every rep you've taken. Open any one to compare
+          your read against what actually happened.
+        </p>
+      </section>
 
       {!supabaseEnabled && <NotConfigured />}
       {supabaseEnabled && loading && <Loading />}
@@ -162,11 +169,7 @@ function Tabs({
     { key: "weekly", label: "Weekly" },
   ];
   return (
-    <div
-      className="flex items-center gap-5 sm:gap-6 mb-2 border-b overflow-x-auto"
-      style={{ borderColor: "var(--rule)" }}
-      role="tablist"
-    >
+    <div className="cabinet-tabs" role="tablist">
       {items.map((it) => {
         const active = filter === it.key;
         return (
@@ -176,29 +179,11 @@ function Tabs({
             role="tab"
             aria-selected={active}
             onClick={() => setFilter(it.key)}
-            className="relative pb-3 text-sm transition-colors"
-            style={{
-              color: active ? "var(--ink)" : "var(--ink-soft)",
-              fontWeight: active ? 600 : 500,
-            }}
+            className="cabinet-tab"
+            data-active={active}
           >
             <span>{it.label}</span>
-            <span
-              className="mono text-xs ml-1.5"
-              style={{ color: "var(--ink-mute)" }}
-            >
-              {counts[it.key]}
-            </span>
-            <span
-              aria-hidden
-              className="absolute left-0 right-0 -bottom-px h-[2px]"
-              style={{
-                background: "var(--accent)",
-                transform: active ? "scaleX(1)" : "scaleX(0)",
-                transformOrigin: "left center",
-                transition: "transform 0.25s cubic-bezier(0.2, 0.6, 0.2, 1)",
-              }}
-            />
+            <span className="cabinet-tab-count">{counts[it.key]}</span>
           </button>
         );
       })}
@@ -208,11 +193,10 @@ function Tabs({
 
 function NotConfigured() {
   return (
-    <div className="card p-6">
-      <div className="subhead text-lg mb-1">Auth isn't configured.</div>
-      <p className="body-prose">
-        Add Supabase credentials to <code className="mono">.env.local</code> to
-        use this page.
+    <div className="cabinet-note">
+      <div className="cabinet-note-head">Auth isn't configured.</div>
+      <p>
+        Add Supabase credentials to <code className="mono">.env.local</code> to use this page.
       </p>
     </div>
   );
@@ -220,26 +204,21 @@ function NotConfigured() {
 
 function Loading() {
   return (
-    <div className="mono text-sm" style={{ color: "var(--ink-mute)" }}>
-      Loading…
-    </div>
+    <p className="mono text-xs" style={{ color: "var(--ink-mute)", letterSpacing: "0.16em" }}>
+      Pulling files…
+    </p>
   );
 }
 
 function NeedsSignIn() {
   return (
-    <div className="card p-7 sm:p-8">
-      <div className="subhead text-xl sm:text-2xl mb-2">
-        Sign in to see your reps.
-      </div>
-      <p className="body-prose mb-6 max-w-xl">
+    <div className="cabinet-note">
+      <div className="cabinet-note-head">Sign in to see your reps.</div>
+      <p>
         Once you sign in, anything you've written on this device gets linked to
         your account, so you can read your past takes from anywhere.
       </p>
-      <Link
-        href="/auth?next=/me"
-        className="btn-accent rounded-full px-5 py-2.5 text-sm inline-flex items-center gap-2"
-      >
+      <Link href="/auth?next=/me" className="rep-submit" style={{ marginTop: "1.25rem" }}>
         Sign in <span aria-hidden>→</span>
       </Link>
     </div>
@@ -248,24 +227,19 @@ function NeedsSignIn() {
 
 function ErrorState({ message }: { message: string }) {
   return (
-    <div className="card p-6">
-      <div className="subhead text-lg mb-1">Couldn't load your reps.</div>
-      <p className="body-prose">{message}</p>
+    <div className="cabinet-note">
+      <div className="cabinet-note-head">Couldn't load your reps.</div>
+      <p>{message}</p>
     </div>
   );
 }
 
 function Empty() {
   return (
-    <div className="card p-8 text-center">
-      <div className="subhead text-xl mb-2">No reps yet.</div>
-      <p className="body-prose mb-6">
-        Start with today's daily — three minutes.
-      </p>
-      <Link
-        href="/today"
-        className="btn-accent rounded-full px-5 py-2.5 text-sm inline-flex items-center gap-2"
-      >
+    <div className="cabinet-note">
+      <div className="cabinet-note-head">No files yet.</div>
+      <p>Start with today's daily — three minutes.</p>
+      <Link href="/today" className="rep-submit" style={{ marginTop: "1.25rem" }}>
         Take today's rep <span aria-hidden>→</span>
       </Link>
     </div>
@@ -274,10 +248,7 @@ function Empty() {
 
 function FilteredEmpty({ filter }: { filter: KindFilter }) {
   return (
-    <p
-      className="text-sm mt-8"
-      style={{ color: "var(--ink-mute)" }}
-    >
+    <p className="mono text-xs" style={{ color: "var(--ink-mute)", marginTop: "1.5rem", letterSpacing: "0.14em" }}>
       No {filter === "all" ? "" : filter + " "}reps yet.
     </p>
   );
@@ -298,12 +269,13 @@ function groupByDate(takes: EnrichedTake[]) {
     if (key === todayKey) label = "Today";
     else if (key === yesterdayKey) label = "Yesterday";
     else {
-      label = d.toLocaleDateString("en-US", {
-        weekday: "long",
-        month: "long",
-        day: "numeric",
-        year: d.getFullYear() === today.getFullYear() ? undefined : "numeric",
-      });
+      label = d
+        .toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "short",
+          year: d.getFullYear() === today.getFullYear() ? undefined : "numeric",
+        })
+        .toUpperCase();
     }
     const last = groups[groups.length - 1];
     if (last && last.key === key) last.takes.push(t);
@@ -315,29 +287,16 @@ function groupByDate(takes: EnrichedTake[]) {
 function TakesList({ takes }: { takes: EnrichedTake[] }) {
   const groups = useMemo(() => groupByDate(takes), [takes]);
   return (
-    <div className="flex flex-col gap-10 mt-2">
+    <div className="cabinet-list">
       {groups.map((g) => (
-        <section key={g.key}>
-          <div
-            className="flex items-baseline justify-between mb-4 pb-2"
-            style={{ borderBottom: "1px solid var(--rule)" }}
-          >
-            <h2
-              className="mono text-xs uppercase"
-              style={{ color: "var(--ink)", letterSpacing: "0.14em", fontWeight: 600 }}
-            >
-              {g.label}
-            </h2>
-            <span
-              className="mono text-xs"
-              style={{ color: "var(--ink-mute)", letterSpacing: "0.08em" }}
-            >
-              {g.takes.length} {g.takes.length === 1 ? "rep" : "reps"}
-            </span>
+        <section key={g.key} className="cabinet-group">
+          <div className="cabinet-group-head">
+            <h2>{g.label}</h2>
+            <span>{g.takes.length} {g.takes.length === 1 ? "file" : "files"}</span>
           </div>
-          <ul className="flex flex-col gap-3">
+          <ul className="cabinet-rows">
             {g.takes.map((t) => (
-              <TakeCard key={t.id} take={t} />
+              <TakeRow key={t.id} take={t} />
             ))}
           </ul>
         </section>
@@ -346,128 +305,53 @@ function TakesList({ takes }: { takes: EnrichedTake[] }) {
   );
 }
 
-function TakeCard({ take }: { take: EnrichedTake }) {
-  const timeStr = new Date(take.created_at).toLocaleTimeString("en-US", {
+function caseNumber(id: string): string {
+  const hex = id.replace(/[^a-f0-9]/gi, "").toUpperCase();
+  return hex.slice(0, 6) || "ARCHIV";
+}
+
+function TakeRow({ take }: { take: EnrichedTake }) {
+  const time = new Date(take.created_at).toLocaleTimeString("en-US", {
     hour: "numeric",
     minute: "2-digit",
   });
   const isWeekly = take.scenario_type === "weekly";
   const kindLabel = isWeekly ? "Weekly" : "Daily";
-  const railColor = isWeekly ? "var(--ink)" : "var(--ink-soft)";
-  const chipBg = isWeekly ? "var(--ink)" : "var(--paper-deep)";
-  const chipFg = isWeekly ? "var(--paper)" : "var(--ink)";
   const company = take.scenario?.company ?? take.scenario_id;
   const era = take.scenario?.era ?? "";
+  const caseId = caseNumber(take.id);
+
+  // Snippet of body for preview row
+  const body = take.body as Record<string, string | undefined>;
+  const snippet = isWeekly
+    ? (body.tradeoff || body.user || body.alt || body.predict || "").trim()
+    : (body.note || "").trim();
+  const snippetDisplay =
+    snippet.length > 140 ? snippet.slice(0, 140).trimEnd() + "…" : snippet;
 
   return (
-    <li>
+    <li className="cabinet-row">
       <Link
         href={`/me/${take.id}`}
         aria-label={`Review ${kindLabel} rep — ${company}`}
-        className="block transition-colors take-card-link"
-        style={{
-          background: "var(--paper-raised)",
-          border: "1px solid var(--rule)",
-          borderLeft: `3px solid ${railColor}`,
-          borderRadius: 10,
-          color: "inherit",
-          textDecoration: "none",
-        }}
-      ><div className="take-card-inner">
-      <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
-        <div className="flex items-center gap-3 flex-wrap">
-          <span
-            className="mono text-[0.65rem] px-2 py-0.5 rounded-full"
-            style={{
-              background: chipBg,
-              color: chipFg,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              fontWeight: 600,
-            }}
-          >
+        className="cabinet-row-link"
+      >
+        <span className="cabinet-row-case">Nº {caseId}</span>
+        <div className="cabinet-row-meta">
+          <span className={`kind-tag ${isWeekly ? "is-weekly" : ""}`}>
             {kindLabel}
           </span>
-          <div
-            className="font-semibold tracking-tight"
-            style={{ color: "var(--ink)" }}
-          >
-            {company}
-          </div>
-          {era && (
-            <span className="mono text-xs" style={{ color: "var(--ink-mute)" }}>
-              {era}
-            </span>
+          <span className="cabinet-row-time">{time}</span>
+        </div>
+        <div className="cabinet-row-body">
+          <h3 className="cabinet-row-title">{company}</h3>
+          {era && <p className="cabinet-row-era">{era}</p>}
+          {snippetDisplay && (
+            <p className="cabinet-row-snippet">{snippetDisplay}</p>
           )}
         </div>
-        <span className="mono text-xs" style={{ color: "var(--ink-mute)" }}>
-          {timeStr}
-        </span>
-      </div>
-
-      {isWeekly ? <WeeklyBody body={take.body} /> : <DailyBody body={take.body} />}
-        <div
-          className="mono text-[0.65rem] mt-4 inline-flex items-center gap-1"
-          style={{ color: "var(--ink-mute)", letterSpacing: "0.12em" }}
-        >
-          REVIEW <span aria-hidden>→</span>
-        </div>
-        </div>
+        <span className="cabinet-row-arrow" aria-hidden>→</span>
       </Link>
     </li>
   );
 }
-
-function DailyBody({ body }: { body: Record<string, unknown> }) {
-  const note = (body.note as string | undefined) ?? "";
-  return (
-    <p
-      className="text-sm leading-relaxed whitespace-pre-wrap"
-      style={{ color: "var(--ink-soft)" }}
-    >
-      {note || <em style={{ color: "var(--ink-mute)" }}>(empty)</em>}
-    </p>
-  );
-}
-
-function WeeklyBody({ body }: { body: Record<string, unknown> }) {
-  const fields: { key: keyof typeof labels }[] = [
-    { key: "tradeoff" },
-    { key: "user" },
-    { key: "alt" },
-    { key: "predict" },
-  ];
-  return (
-    <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4 sm:gap-y-5">
-      {fields.map(({ key }) => (
-        <div key={key as string}>
-          <div
-            className="mono text-xs mb-1.5"
-            style={{
-              color: "var(--ink-mute)",
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-            }}
-          >
-            {labels[key]}
-          </div>
-          <p
-            className="text-sm leading-relaxed whitespace-pre-wrap"
-            style={{ color: "var(--ink-soft)" }}
-          >
-            {(body[key as string] as string) || (
-              <em style={{ color: "var(--ink-mute)" }}>(empty)</em>
-            )}
-          </p>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-const labels = {
-  tradeoff: "Tradeoff",
-  user: "Target user",
-  alt: "Alternative",
-  predict: "Prediction",
-} as const;

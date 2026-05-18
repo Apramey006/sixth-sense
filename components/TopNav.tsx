@@ -15,22 +15,13 @@ export function TopNav() {
 
   return (
     <header className="nav-shell">
-      <div className="max-w-6xl mx-auto px-5 sm:px-6 h-16 flex items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <span
-            className="text-[1.05rem]"
-            style={{
-              color: "var(--ink)",
-              fontFamily: "var(--font-sans), sans-serif",
-              fontWeight: 600,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            Sixth Sense
-          </span>
+      <div className="nav-inner">
+        <Link href="/" className="wordmark-link" aria-label="Sixth Sense — home">
+          <span className="wordmark">Sixth Sense</span>
+          <span className="wordmark-deck">A practice paper for taste</span>
         </Link>
 
-        <nav className="hidden sm:flex items-center gap-1">
+        <nav className="nav-links hidden sm:flex" aria-label="Primary">
           {links.map((l) => {
             const active =
               l.href === "/"
@@ -44,8 +35,8 @@ export function TopNav() {
           })}
         </nav>
 
-        <div className="flex items-center gap-2 sm:gap-3">
-          <nav className="flex sm:hidden items-center gap-1">
+        <div className="nav-right">
+          <nav className="nav-links flex sm:hidden" aria-label="Primary (mobile)">
             {links.map((l) => {
               const active =
                 pathname === l.href || pathname.startsWith(l.href + "/");
