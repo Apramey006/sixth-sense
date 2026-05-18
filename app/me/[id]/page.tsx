@@ -84,7 +84,7 @@ export default function RepDetailPage() {
   }, [id, user, authLoading]);
 
   return (
-    <main className="max-w-3xl mx-auto px-5 sm:px-6 pt-10 sm:pt-14 pb-24">
+    <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 sm:pt-14 pb-20 sm:pb-24">
       <div className="mb-8">
         <Link
           href="/me"
@@ -147,8 +147,8 @@ function RepReview({
 
   return (
     <section className="fade-up">
-      <header className="mb-9">
-        <div className="flex items-center gap-2 mb-3">
+      <header className="mb-8 sm:mb-9">
+        <div className="flex items-center gap-2 mb-3 flex-wrap">
           <span
             className={`pill ${isWeekly ? "pill-accent-2" : "pill-accent"}`}
           >
@@ -158,7 +158,7 @@ function RepReview({
             {dateStr}
           </span>
         </div>
-        <h1 className="display text-[2rem] sm:text-[2.5rem]">
+        <h1 className="display text-[1.75rem] sm:text-[2.5rem] leading-tight break-words">
           {scenario?.company ?? take.scenario_id}
         </h1>
         {scenario?.era && (
@@ -223,7 +223,7 @@ function DailyReview({
   const note = (take.body.note as string | undefined) ?? "";
   return (
     <div>
-      <article className="card p-6">
+      <article className="card p-5 sm:p-6">
         <div className="eyebrow mb-2" style={{ color: "var(--accent)" }}>
           The setup
         </div>
@@ -238,7 +238,7 @@ function DailyReview({
             The prompt
           </div>
           <p
-            className="text-lg leading-snug"
+            className="text-base sm:text-lg leading-snug"
             style={{ fontWeight: 500, letterSpacing: "-0.005em" }}
           >
             {scenario.prompt}
@@ -246,7 +246,7 @@ function DailyReview({
         </div>
       </article>
 
-      <div className="mt-8 card p-5">
+      <div className="mt-6 sm:mt-8 card p-5">
         <div className="eyebrow mb-2" style={{ color: "var(--accent)" }}>
           What you wrote
         </div>
@@ -302,14 +302,14 @@ function WeeklyReview({
   return (
     <div>
       <article
-        className="scenario card p-6 sm:p-7"
+        className="scenario card p-5 sm:p-7"
         style={{ fontSize: "1rem", lineHeight: 1.65 }}
       >
         <div className="eyebrow mb-2" style={{ color: "var(--accent-2)" }}>
           The decision room
         </div>
         <h2
-          className="text-2xl sm:text-[1.625rem] mb-5"
+          className="text-xl sm:text-[1.625rem] mb-4 sm:mb-5 break-words"
           style={{ fontWeight: 600, letterSpacing: "-0.015em", lineHeight: 1.2 }}
         >
           {scenario.company}, {scenario.era}.
@@ -361,9 +361,9 @@ function WeeklyReview({
 
       <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
         {scenario.outcomes.map((o, i) => (
-          <div key={i} className="card p-4">
+          <div key={i} className="card p-3 sm:p-4">
             <div
-              className="stat-num text-2xl sm:text-3xl"
+              className="stat-num text-xl sm:text-3xl break-words"
               style={{ color: o.accent ? "var(--accent)" : "var(--ink)" }}
             >
               {o.stat}

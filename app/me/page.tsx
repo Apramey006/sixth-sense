@@ -110,9 +110,9 @@ export default function MePage() {
   }, [takes]);
 
   return (
-    <main className="max-w-4xl mx-auto px-5 sm:px-6 pt-14 sm:pt-20 pb-24">
-      <header className="mb-10">
-        <h1 className="display text-[2.5rem] sm:text-[3.5rem]">Your reps.</h1>
+    <main className="max-w-4xl mx-auto px-4 sm:px-6 pt-10 sm:pt-20 pb-20 sm:pb-24">
+      <header className="mb-8 sm:mb-10">
+        <h1 className="display text-[2rem] sm:text-[3.5rem] leading-tight">Your reps.</h1>
         <p className="body-prose mt-4 max-w-2xl">
           Every rep you've taken, with what you wrote and what you saw.
         </p>
@@ -163,7 +163,7 @@ function Tabs({
   ];
   return (
     <div
-      className="flex items-center gap-6 mb-2 border-b"
+      className="flex items-center gap-5 sm:gap-6 mb-2 border-b overflow-x-auto"
       style={{ borderColor: "var(--rule)" }}
       role="tablist"
     >
@@ -370,11 +370,10 @@ function TakeCard({ take }: { take: EnrichedTake }) {
           border: "1px solid var(--rule)",
           borderLeft: `3px solid ${railColor}`,
           borderRadius: 10,
-          padding: "1.25rem 1.5rem 1.5rem",
           color: "inherit",
           textDecoration: "none",
         }}
-      >
+      ><div className="take-card-inner">
       <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
         <div className="flex items-center gap-3 flex-wrap">
           <span
@@ -413,6 +412,7 @@ function TakeCard({ take }: { take: EnrichedTake }) {
         >
           REVIEW <span aria-hidden>→</span>
         </div>
+        </div>
       </Link>
     </li>
   );
@@ -438,7 +438,7 @@ function WeeklyBody({ body }: { body: Record<string, unknown> }) {
     { key: "predict" },
   ];
   return (
-    <div className="grid sm:grid-cols-2 gap-x-8 gap-y-5">
+    <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4 sm:gap-y-5">
       {fields.map(({ key }) => (
         <div key={key as string}>
           <div
