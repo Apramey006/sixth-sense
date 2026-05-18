@@ -73,7 +73,7 @@ export async function sendWelcomeEmail(to: string, userId: string): Promise<void
   const subject = "Welcome to Sixth Sense";
   const html = shell(
     `
-    <p style="font-size:15px;color:#222;margin:0 0 16px">Hi —</p>
+    <p style="font-size:15px;color:#222;margin:0 0 16px">Hey —</p>
 
     <p style="font-size:15px;color:#222;margin:0 0 16px">
       I'm Apramey, and I built Sixth Sense.
@@ -86,9 +86,9 @@ export async function sendWelcomeEmail(to: string, userId: string): Promise<void
     </p>
 
     <p style="font-size:15px;color:#222;margin:0 0 16px">
-      Talking to PMs across the industry, the ones with the sharpest instincts
-      all have one thing in common: years of working through hard product
-      decisions. But not everyone gets put in those positions early enough.
+      Talking to PMs across the industry, I realized that the ones with the
+      sharpest instincts all have one thing in common: years of working through
+      hard product decisions. But not everyone gets put in those positions early enough.
     </p>
 
     <p style="font-size:15px;color:#222;margin:0 0 24px">
