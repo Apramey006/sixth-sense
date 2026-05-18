@@ -127,26 +127,21 @@ body {
 
 .home-display {
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-  font-weight: 800;
-  font-size: clamp(2.75rem, 8vw, 5.5rem);
-  letter-spacing: -0.04em;
-  line-height: 0.94;
-  color: var(--ink);
-  max-width: 18ch;
-}
-.home-display-em {
-  font-style: italic;
   font-weight: 700;
-  letter-spacing: -0.038em;
+  font-size: clamp(2.25rem, 4.2vw, 3.5rem);
+  letter-spacing: -0.028em;
+  line-height: 1.04;
+  color: var(--ink);
+  max-width: 22ch;
 }
 
 .home-deck {
-  margin-top: 1.75rem;
-  font-size: clamp(1.05rem, 1.6vw, 1.225rem);
-  line-height: 1.55;
+  margin-top: 1.5rem;
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  line-height: 1.6;
   color: var(--ink-soft);
-  max-width: 38rem;
-  letter-spacing: -0.008em;
+  max-width: 36rem;
+  letter-spacing: -0.005em;
 }
 .home-deck em { font-style: italic; color: var(--ink); }
 

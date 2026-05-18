@@ -18,9 +18,7 @@ export default async function HomePage() {
       {/* Hero */}
       <section className="home-hero reveal-stage">
         <h1 className="home-display">
-          When everyone can build,
-          <br />
-          <em className="home-display-em">instinct</em> is the edge.
+          When everyone can build, instinct is the edge.
         </h1>
         <p className="home-deck">
           Sixth Sense is a practice tool for the one skill AI can't hand you:
