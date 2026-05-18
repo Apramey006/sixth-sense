@@ -51,6 +51,13 @@ export async function GET(request: NextRequest) {
   const user = data.session?.user;
   if (user?.email && !user.user_metadata?.welcome_sent) {
     try {
+      // Honor the newsletter opt-out captured at signup before sending the
+      // welcome email itself (the welcome is transactional, not promotional).
+      if (user.user_metadata?.subscribe === false) {
+        await supabaseAdmin()
+          .from("email_unsubscribes")
+          .upsert({ user_id: user.id }, { onConflict: "user_id" });
+      }
       await sendWelcomeEmail(user.email, user.id);
       await supabaseAdmin().auth.admin.updateUserById(user.id, {
         user_metadata: { ...user.user_metadata, welcome_sent: true },

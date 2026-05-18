@@ -68,6 +68,7 @@ export async function signUpWithPassword(
   email: string,
   password: string,
   captchaToken?: string,
+  subscribe: boolean = true,
 ): Promise<{ needsConfirmation: boolean }> {
   if (!supabaseEnabled || !supabase) {
     throw new Error("Auth is not configured.");
@@ -75,7 +76,12 @@ export async function signUpWithPassword(
   const { data, error } = await supabase.auth.signUp({
     email: email.trim(),
     password,
-    options: captchaToken ? { captchaToken } : undefined,
+    options: {
+      ...(captchaToken ? { captchaToken } : {}),
+      // Stashed in user_metadata so /auth/callback can honor the choice when
+      // the confirmation link is clicked.
+      data: { subscribe },
+    },
   });
   if (error) throw error;
   return { needsConfirmation: !data.session };

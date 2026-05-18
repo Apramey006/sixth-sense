@@ -19,6 +19,7 @@ export default function AuthPage() {
   const [errorMsg, setErrorMsg] = useState<string>("");
   const [next, setNext] = useState<string>("/");
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [subscribe, setSubscribe] = useState(true);
   const captchaRef = useRef<HCaptcha | null>(null);
 
   useEffect(() => {
@@ -65,6 +66,7 @@ export default function AuthPage() {
           email,
           password,
           captchaToken ?? undefined,
+          subscribe,
         );
         if (needsConfirmation) {
           setStatus("confirm");
@@ -243,6 +245,21 @@ export default function AuthPage() {
               disabled={status === "submitting" || !supabaseEnabled}
             />
           </label>
+
+          {!isSignIn && (
+            <label className="mt-5 flex items-start gap-2.5 cursor-pointer text-sm" style={{ color: "var(--ink)" }}>
+              <input
+                type="checkbox"
+                checked={subscribe}
+                onChange={(e) => setSubscribe(e.target.checked)}
+                className="mt-0.5"
+              />
+              <span>
+                Send me the daily rep by email.{" "}
+                <span style={{ color: "var(--ink-mute)" }}>One short email per day. Unsubscribe anytime.</span>
+              </span>
+            </label>
+          )}
 
           {CAPTCHA_SITE_KEY && (
             <div className="mt-5 flex justify-center">
