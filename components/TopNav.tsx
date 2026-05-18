@@ -18,7 +18,6 @@ export function TopNav() {
       <div className="nav-inner">
         <Link href="/" className="wordmark-link" aria-label="Sixth Sense — home">
           <span className="wordmark">Sixth Sense</span>
-          <span className="wordmark-deck">A practice paper for taste</span>
         </Link>
 
         <nav className="nav-links hidden sm:flex" aria-label="Primary">

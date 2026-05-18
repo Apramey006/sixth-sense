@@ -13,41 +13,17 @@ export default async function HomePage() {
     getWeeklyForWeek(week),
   ]);
 
-  const filed = new Date(date + "T00:00:00")
-    .toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    })
-    .toUpperCase();
-  const weekNo = week.split("-W")[1] ?? "";
-  const year = week.split("-")[0] ?? "";
-
   return (
-    <main className="home-shell mx-auto px-4 sm:px-8 pb-24">
-      {/* Issue masthead */}
-      <header className="issue-strip">
-        <span className="issue-no">Issue Nº {weekNo}</span>
-        <span className="dot" aria-hidden>·</span>
-        <span>{year}</span>
-        <span className="dot" aria-hidden>·</span>
-        <span>Filed {filed}</span>
-        <span className="dateline">A practice paper for product taste</span>
-      </header>
-
+    <main className="home-shell mx-auto px-4 sm:px-8 pt-14 sm:pt-20 pb-24">
       {/* Hero */}
       <section className="home-hero reveal-stage">
-        <div className="home-hero-eyebrow">
-          <span className="line" aria-hidden />
-          <span>The thesis</span>
-        </div>
         <h1 className="home-display">
           When everyone can build,
           <br />
           <em className="home-display-em">instinct</em> is the edge.
         </h1>
         <p className="home-deck">
-          Sixth Sense is a practice paper for the one skill AI can't hand you:
+          Sixth Sense is a practice tool for the one skill AI can't hand you:
           <em> product instinct.</em> Two reps a week — one short, one deep — on
           real product decisions, taken before you see how they were actually
           solved.
@@ -57,18 +33,14 @@ export default async function HomePage() {
             Begin today's rep <span aria-hidden>→</span>
           </Link>
           <Link href="/this-week" className="home-cta-ghost">
-            Read the weekly decision room
+            Open this week's deep rep
           </Link>
         </div>
       </section>
 
       {/* Today's dispatch */}
       <section className="dispatch-section">
-        <div className="section-banner">
-          <span className="section-banner-num">§ I</span>
-          <span className="section-banner-label">Today's dispatch</span>
-          <span className="section-banner-meta">Two files open</span>
-        </div>
+        <h2 className="home-subhead">Form your take before you see anyone else's.</h2>
 
         <ul className="dispatch-list">
           <li>
@@ -113,12 +85,6 @@ export default async function HomePage() {
 
       {/* Method */}
       <section className="method-section">
-        <div className="section-banner">
-          <span className="section-banner-num">§ II</span>
-          <span className="section-banner-label">The method</span>
-          <span className="section-banner-meta">Three steps, twice a week</span>
-        </div>
-
         <ol className="method-list">
           {[
             {
@@ -145,12 +111,8 @@ export default async function HomePage() {
         </ol>
       </section>
 
-      {/* Manifesto / endquote */}
+      {/* Endquote */}
       <section className="manifesto-section">
-        <div className="section-banner">
-          <span className="section-banner-num">§ III</span>
-          <span className="section-banner-label">A note from the editors</span>
-        </div>
         <blockquote className="manifesto-quote">
           <span className="manifesto-mark" aria-hidden>"</span>
           The scenarios here are real. Actual product decisions, real quotes,
@@ -158,13 +120,7 @@ export default async function HomePage() {
           what actually shipped. The point is to stay out of the model's voice
           long enough to find your own.
         </blockquote>
-        <p className="manifesto-attr">— The editors</p>
       </section>
-
-      <footer className="home-signoff">
-        <span aria-hidden>—— ⁂ ——</span>
-        <p>New daily rep filed each morning · Weekly deep rep every Sunday.</p>
-      </footer>
     </main>
   );
 }
