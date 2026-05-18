@@ -4,7 +4,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useUser } from "@/lib/auth";
-import { supabase, supabaseEnabled, type DailyScenario, type WeeklyScenario } from "@/lib/supabase";
+import {
+  supabase,
+  supabaseEnabled,
+  type DailyScenario,
+  type WeeklyScenario,
+  type ScenarioSource,
+} from "@/lib/supabase";
 import { dailySeed, weeklySeed } from "@/lib/seedScenarios";
 
 type TakeRow = {
@@ -16,6 +22,8 @@ type TakeRow = {
 };
 
 type AnyScenario = DailyScenario | WeeklyScenario;
+
+const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII"] as const;
 
 export default function RepDetailPage() {
   const params = useParams<{ id: string }>();
@@ -84,21 +92,29 @@ export default function RepDetailPage() {
   }, [id, user, authLoading]);
 
   return (
-    <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 sm:pt-14 pb-20 sm:pb-24">
-      <div className="mb-8">
+    <main className="dossier-shell mx-auto px-4 sm:px-8 pt-8 sm:pt-12 pb-24">
+      <nav className="mb-10 sm:mb-14">
         <Link
           href="/me"
-          className="mono text-xs inline-flex items-center gap-1.5"
-          style={{ color: "var(--ink-mute)", letterSpacing: "0.08em" }}
+          className="mono text-[0.7rem] inline-flex items-center gap-2 hover:text-ink transition-colors"
+          style={{
+            color: "var(--ink-mute)",
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+          }}
         >
-          <span aria-hidden>←</span> ALL REPS
+          <span aria-hidden>←</span> Return to file cabinet
         </Link>
-      </div>
+      </nav>
 
       {!supabaseEnabled && (
         <p className="body-prose">Auth isn't configured.</p>
       )}
-      {supabaseEnabled && authLoading && <p className="mono text-sm" style={{ color: "var(--ink-mute)" }}>Loading…</p>}
+      {supabaseEnabled && authLoading && (
+        <p className="mono text-xs" style={{ color: "var(--ink-mute)" }}>
+          Pulling file…
+        </p>
+      )}
       {supabaseEnabled && !authLoading && !user && (
         <div className="card p-6">
           <div className="subhead text-lg mb-2">Sign in to see this rep.</div>
@@ -111,7 +127,9 @@ export default function RepDetailPage() {
         </div>
       )}
       {supabaseEnabled && user && !done && (
-        <p className="mono text-sm" style={{ color: "var(--ink-mute)" }}>Loading…</p>
+        <p className="mono text-xs" style={{ color: "var(--ink-mute)" }}>
+          Pulling file…
+        </p>
       )}
       {supabaseEnabled && user && done && error && (
         <div className="card p-6">
@@ -120,13 +138,33 @@ export default function RepDetailPage() {
         </div>
       )}
       {supabaseEnabled && user && done && !error && take && (
-        <RepReview take={take} scenario={scenario} />
+        <RepDossier take={take} scenario={scenario} />
       )}
     </main>
   );
 }
 
-function RepReview({
+function caseNumber(id: string): string {
+  const hex = id.replace(/[^a-f0-9]/gi, "").toUpperCase();
+  return hex.slice(0, 6) || "ARCHIV";
+}
+
+function formatFiledDate(iso: string): { day: string; time: string } {
+  const d = new Date(iso);
+  const day = d
+    .toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    })
+    .toUpperCase();
+  const time = d
+    .toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })
+    .toUpperCase();
+  return { day, time };
+}
+
+function RepDossier({
   take,
   scenario,
 }: {
@@ -134,86 +172,84 @@ function RepReview({
   scenario: AnyScenario | null;
 }) {
   const isWeekly = take.scenario_type === "weekly";
-  const tone = isWeekly ? "var(--accent-2)" : "var(--accent)";
-  const kindLabel = isWeekly ? "Weekly" : "Daily";
-  const dateStr = new Date(take.created_at).toLocaleString("en-US", {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-  });
+  const { day, time } = formatFiledDate(take.created_at);
+  const caseId = caseNumber(take.id);
+  const company = scenario?.company ?? take.scenario_id;
+  const era = scenario?.era ?? "";
 
   return (
-    <section className="fade-up">
-      <header className="mb-8 sm:mb-9">
-        <div className="flex items-center gap-2 mb-3 flex-wrap">
-          <span
-            className={`pill ${isWeekly ? "pill-accent-2" : "pill-accent"}`}
-          >
-            {kindLabel} rep
-          </span>
-          <span className="text-xs" style={{ color: "var(--ink-mute)" }}>
-            {dateStr}
-          </span>
-        </div>
-        <h1 className="display text-[1.75rem] sm:text-[2.5rem] leading-tight break-words">
-          {scenario?.company ?? take.scenario_id}
-        </h1>
-        {scenario?.era && (
-          <p
-            className="mono text-xs mt-2"
-            style={{ color: "var(--ink-mute)", letterSpacing: "0.06em" }}
-          >
-            {scenario.era.toUpperCase()}
-          </p>
-        )}
-        <p className="text-sm mt-4 max-w-2xl" style={{ color: "var(--ink-soft)" }}>
-          A read-only review. The original prompt, the take you wrote, and what actually happened.
-        </p>
+    <article className="reveal-stage dossier">
+      {/* I. Masthead */}
+      <header className="dossier-masthead">
+        <span className="case-no">Nº {caseId}</span>
+        <span className="dot" aria-hidden>·</span>
+        <span>Filed {day}</span>
+        <span className="dot" aria-hidden>·</span>
+        <span>{time}</span>
+        <span className={`kind ${isWeekly ? "is-weekly" : ""}`}>
+          {isWeekly ? "Weekly review" : "Daily review"}
+        </span>
       </header>
 
+      {/* II. Display title */}
+      <div className="dossier-title-block">
+        <h1 className="dossier-title">{company}</h1>
+        {era && <p className="dossier-era">{era}</p>}
+        <p className="dossier-precis">
+          A retrospective on a decision you took a stance on. Your read, on the
+          record, alongside what actually happened.
+        </p>
+      </div>
+
       {scenario === null ? (
-        <div className="card p-6">
-          <div className="subhead text-lg mb-1">Scenario unavailable.</div>
-          <p className="body-prose">
-            The original scenario for this rep couldn't be loaded. Your take is still preserved below.
-          </p>
-          <div className="mt-6">
-            <YourTake take={take} />
-          </div>
-        </div>
+        <FallbackUnavailable take={take} />
       ) : isWeekly ? (
-        <WeeklyReview take={take} scenario={scenario as WeeklyScenario} />
+        <WeeklyDossier take={take} scenario={scenario as WeeklyScenario} />
       ) : (
-        <DailyReview take={take} scenario={scenario as DailyScenario} />
+        <DailyDossier take={take} scenario={scenario as DailyScenario} />
       )}
-    </section>
+    </article>
   );
 }
 
-function YourTake({ take }: { take: TakeRow }) {
-  if (take.scenario_type === "daily") {
-    const note = (take.body.note as string | undefined) ?? "";
-    return (
-      <div className="card p-5">
-        <div className="eyebrow mb-2" style={{ color: "var(--accent)" }}>
-          Your take
-        </div>
-        <p
-          className="text-[0.95rem] leading-relaxed whitespace-pre-wrap"
-          style={{ color: "var(--ink)" }}
-        >
-          {note || <em style={{ color: "var(--ink-mute)" }}>(empty)</em>}
-        </p>
-      </div>
-    );
-  }
-  return null;
+function SectionMarker({
+  num,
+  label,
+}: {
+  num: number;
+  label: string;
+}) {
+  return (
+    <div className="section-marker">
+      <span className="roman">§ {ROMAN[num - 1]}</span>
+      <span className="label">{label}</span>
+    </div>
+  );
 }
 
-function DailyReview({
+function FallbackUnavailable({ take }: { take: TakeRow }) {
+  return (
+    <div>
+      <SectionMarker num={1} label="Your take" />
+      <p
+        className="mono text-xs mb-5"
+        style={{ color: "var(--ink-mute)", letterSpacing: "0.1em" }}
+      >
+        The original case file couldn't be retrieved. Your take is preserved.
+      </p>
+      <pre
+        className="text-sm whitespace-pre-wrap"
+        style={{ color: "var(--ink)" }}
+      >
+        {JSON.stringify(take.body, null, 2)}
+      </pre>
+    </div>
+  );
+}
+
+/* ──────────────────────────── DAILY ──────────────────────────── */
+
+function DailyDossier({
   take,
   scenario,
 }: {
@@ -221,71 +257,71 @@ function DailyReview({
   scenario: DailyScenario;
 }) {
   const note = (take.body.note as string | undefined) ?? "";
+  const { day } = formatFiledDate(take.created_at);
+
   return (
-    <div>
-      <article className="card p-5 sm:p-6">
-        <div className="eyebrow mb-2" style={{ color: "var(--accent)" }}>
-          The setup
-        </div>
-        <p
-          className="text-[0.95rem] leading-relaxed"
-          style={{ color: "var(--ink-soft)" }}
-        >
-          {scenario.context}
-        </p>
-        <div className="mt-6 accent-rail pl-4">
-          <div className="eyebrow mb-2" style={{ color: "var(--accent)" }}>
-            The prompt
-          </div>
-          <p
-            className="text-base sm:text-lg leading-snug"
-            style={{ fontWeight: 500, letterSpacing: "-0.005em" }}
-          >
-            {scenario.prompt}
-          </p>
-        </div>
-      </article>
-
-      <div className="mt-6 sm:mt-8 card p-5">
-        <div className="eyebrow mb-2" style={{ color: "var(--accent)" }}>
-          What you wrote
-        </div>
-        <p
-          className="text-[0.95rem] leading-relaxed whitespace-pre-wrap"
-          style={{ color: "var(--ink)" }}
-        >
-          {note || <em style={{ color: "var(--ink-mute)" }}>(empty)</em>}
-        </p>
-      </div>
-
-      <div className="mt-8">
-        <div className="eyebrow mb-2">What they said</div>
-        <blockquote className="pullquote">"{scenario.reveal_quote}"</blockquote>
-        <div className="text-xs mt-2" style={{ color: "var(--ink-mute)" }}>
-          — {scenario.reveal_quote_attribution}
+    <>
+      <SectionMarker num={1} label="The setup" />
+      <div className="scenario-article">
+        <p className="lede">{scenario.context}</p>
+        <div className="prompt-callout">
+          <span className="prompt-eyebrow">The prompt put to you</span>
+          <p className="prompt-body">{scenario.prompt}</p>
         </div>
       </div>
 
-      <div className="mt-8 drop-rule pt-6">
-        <div className="eyebrow mb-2" style={{ color: "var(--accent-2)" }}>
-          The choice that's easy to miss
-        </div>
-        <p
-          className="text-[0.95rem] leading-relaxed"
-          style={{ color: "var(--ink)" }}
-        >
-          {scenario.reveal_note}
+      <SectionMarker num={2} label="Your read, on the record" />
+      <div className="your-take-block">
+        <p className="your-take-quote">
+          {note ? `"${note}"` : (
+            <em style={{ color: "var(--ink-mute)" }}>(left blank)</em>
+          )}
         </p>
+        <p className="your-take-attr">— You, {day}</p>
+      </div>
+
+      <SectionMarker num={3} label="What they actually said" />
+      <div className="shipped-pull">
+        <blockquote>"{scenario.reveal_quote}"</blockquote>
+        <p className="attr">— {scenario.reveal_quote_attribution}</p>
+      </div>
+      <div className="reveal-note">
+        <span className="reveal-note-eyebrow">The choice that's easy to miss</span>
+        <p>{scenario.reveal_note}</p>
       </div>
 
       {scenario.sources && scenario.sources.length > 0 && (
-        <SourcesList sources={scenario.sources} />
+        <Endnotes sources={scenario.sources} />
       )}
-    </div>
+    </>
   );
 }
 
-function WeeklyReview({
+/* ──────────────────────────── WEEKLY ──────────────────────────── */
+
+const DIMENSION_LABELS: Record<
+  "tradeoff" | "user" | "alt" | "predict",
+  { question: string; short: string }
+> = {
+  tradeoff: {
+    question: "What's the core tradeoff?",
+    short: "The core tradeoff",
+  },
+  user: {
+    question: "Who is the actual target user?",
+    short: "The target user",
+  },
+  alt: {
+    question: "What would you have done differently?",
+    short: "The road not taken",
+  },
+  predict: {
+    question: "What did you predict would happen?",
+    short: "Your prediction",
+  },
+};
+
+function WeeklyDossier({
   take,
   scenario,
 }: {
@@ -298,204 +334,187 @@ function WeeklyReview({
     alt?: string;
     predict?: string;
   };
+  const { day } = formatFiledDate(take.created_at);
+  const dims = ["tradeoff", "user", "alt", "predict"] as const;
 
   return (
-    <div>
-      <article
-        className="scenario card p-5 sm:p-7"
-        style={{ fontSize: "1rem", lineHeight: 1.65 }}
-      >
-        <div className="eyebrow mb-2" style={{ color: "var(--accent-2)" }}>
-          The decision room
-        </div>
-        <h2
-          className="text-xl sm:text-[1.625rem] mb-4 sm:mb-5 break-words"
-          style={{ fontWeight: 600, letterSpacing: "-0.015em", lineHeight: 1.2 }}
-        >
-          {scenario.company}, {scenario.era}.
-        </h2>
-        <div style={{ color: "var(--ink-soft)" }}>
-          {scenario.intro.split("\n\n").map((para, i) => (
-            <p key={i} className={i === 0 ? "lede" : ""}>
-              {para}
-            </p>
-          ))}
-        </div>
-        <div
-          className="my-6 accent-rail-2 pl-4 py-1"
-          style={{ color: "var(--ink-soft)" }}
-        >
-          <div className="eyebrow mb-2" style={{ color: "var(--accent-2)" }}>
-            Open questions on the table
-          </div>
-          <ul className="space-y-1.5 text-[0.9375rem]">
-            {scenario.open_questions.map((q, i) => (
-              <li key={i} className="flex gap-2">
-                <span style={{ color: "var(--accent-2)" }}>—</span>
-                <span>{q}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <p style={{ color: "var(--ink-soft)" }}>{scenario.closing}</p>
-      </article>
-
-      <div className="mt-10">
-        <div className="eyebrow mb-2" style={{ color: "var(--accent)" }}>
-          What shipped
-        </div>
-        <p
-          className="text-[0.95rem] leading-relaxed"
-          style={{ color: "var(--ink)" }}
-        >
-          {scenario.decision}
-        </p>
-      </div>
-
-      <div className="mt-8 card p-5 accent-rail">
-        <blockquote className="pullquote">"{scenario.pullquote}"</blockquote>
-        <div className="text-xs mt-2" style={{ color: "var(--ink-mute)" }}>
-          — {scenario.pullquote_attribution}
-        </div>
-      </div>
-
-      <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
-        {scenario.outcomes.map((o, i) => (
-          <div key={i} className="card p-3 sm:p-4">
-            <div
-              className="stat-num text-xl sm:text-3xl break-words"
-              style={{ color: o.accent ? "var(--accent)" : "var(--ink)" }}
-            >
-              {o.stat}
+    <>
+      <SectionMarker num={1} label="The decision room" />
+      <div className="scenario-article">
+        {scenario.intro.split("\n\n").map((para, i) => (
+          <p key={i} className={i === 0 ? "lede" : ""}>
+            {para}
+          </p>
+        ))}
+        {scenario.open_questions && scenario.open_questions.length > 0 && (
+          <div className="open-q-table">
+            <div className="open-q-head">
+              Open questions on the table
             </div>
-            <div
-              className="text-xs mt-1 leading-snug"
-              style={{ color: "var(--ink-soft)" }}
-            >
-              {o.label}
+            <ul>
+              {scenario.open_questions.map((q, i) => (
+                <li key={i}>
+                  <span className="num">Q{(i + 1).toString().padStart(2, "0")}</span>
+                  <span>{q}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        <p className="closing">{scenario.closing}</p>
+      </div>
+
+      <SectionMarker num={2} label="Your read, on the record" />
+      <p
+        className="mono text-[0.7rem] mb-4"
+        style={{ color: "var(--ink-mute)", letterSpacing: "0.14em", textTransform: "uppercase" }}
+      >
+        Filed by You · {day}
+      </p>
+      <div className="dimension-manifest">
+        {dims.map((k, i) => (
+          <div key={k} className="dimension-take">
+            <span className="num">{(i + 1).toString().padStart(2, "0")}</span>
+            <div>
+              <p className="field-label">{DIMENSION_LABELS[k].question}</p>
+              <p className="take">
+                {body[k] || (
+                  <em style={{ color: "var(--ink-mute)" }}>(left blank)</em>
+                )}
+              </p>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="mt-10">
-        <div className="eyebrow mb-3" style={{ color: "var(--accent)" }}>
-          The interesting tradeoffs
-        </div>
-        <div className="space-y-3">
-          {scenario.tradeoffs.map((t, i) => (
-            <div key={i} className="card p-4">
-              <div
-                className="text-base"
-                style={{ fontWeight: 600, letterSpacing: "-0.005em" }}
-              >
-                {t.title}
+      <SectionMarker num={3} label="What actually shipped" />
+      <p className="shipped-decision">{scenario.decision}</p>
+      <div className="shipped-pull">
+        <blockquote>"{scenario.pullquote}"</blockquote>
+        <p className="attr">— {scenario.pullquote_attribution}</p>
+      </div>
+      <StatBand outcomes={scenario.outcomes} />
+
+      {scenario.tradeoffs && scenario.tradeoffs.length > 0 && (
+        <>
+          <SectionMarker num={4} label="The interesting tradeoffs" />
+          <ol className="tradeoff-run">
+            {scenario.tradeoffs.map((t, i) => (
+              <li key={i} className="tradeoff-item">
+                <h4>{t.title}</h4>
+                <p>{t.body}</p>
+              </li>
+            ))}
+          </ol>
+        </>
+      )}
+
+      <SectionMarker num={5} label="Read against reality" />
+      <div className="compare-set">
+        {dims.map((k, i) => (
+          <section key={k} className="compare-chapter">
+            <h4>
+              <span className="num">{ROMAN[i]}</span>
+              <span className="title">{DIMENSION_LABELS[k].short}</span>
+            </h4>
+            <div className="compare-split">
+              <div className="compare-col you">
+                <div className="tag">You wrote</div>
+                <p>
+                  {body[k] || (
+                    <em style={{ color: "var(--ink-mute)" }}>(left blank)</em>
+                  )}
+                </p>
               </div>
-              <p
-                className="text-sm leading-relaxed mt-1"
-                style={{ color: "var(--ink-soft)" }}
-              >
-                {t.body}
-              </p>
+              <div className="rule-col" aria-hidden />
+              <div className="compare-col them">
+                <div className="tag">What they did</div>
+                <p>{scenario.per_dimension_truth[k]}</p>
+              </div>
             </div>
-          ))}
-        </div>
+          </section>
+        ))}
       </div>
 
-      <div className="mt-10">
-        <div className="eyebrow mb-3" style={{ color: "var(--accent-2)" }}>
-          Your take, side-by-side
-        </div>
-        <div className="space-y-5">
-          {(
-            [
-              { key: "tradeoff", label: "The core tradeoff" },
-              { key: "user", label: "The target user" },
-              { key: "alt", label: "What you'd do differently" },
-              { key: "predict", label: "Your prediction" },
-            ] as const
-          ).map(({ key, label }) => (
-            <div key={key} className="card p-4">
-              <div className="eyebrow mb-3">{label}</div>
-              <div className="compare-row">
-                <div>
-                  <div
-                    className="text-[0.6875rem] mb-1 font-semibold uppercase tracking-wider"
-                    style={{ color: "var(--ink-mute)" }}
-                  >
-                    You wrote
-                  </div>
-                  <p
-                    className="text-sm leading-relaxed whitespace-pre-wrap"
-                    style={{ color: "var(--ink)" }}
-                  >
-                    {body[key] || (
-                      <em style={{ color: "var(--ink-mute)" }}>(empty)</em>
-                    )}
-                  </p>
-                </div>
-                <div>
-                  <div
-                    className="text-[0.6875rem] mb-1 font-semibold uppercase tracking-wider"
-                    style={{ color: "var(--accent)" }}
-                  >
-                    What they did
-                  </div>
-                  <p
-                    className="text-sm leading-relaxed"
-                    style={{ color: "var(--ink)" }}
-                  >
-                    {scenario.per_dimension_truth[key]}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <Coda />
 
       {scenario.sources && scenario.sources.length > 0 && (
-        <SourcesList sources={scenario.sources} />
+        <Endnotes sources={scenario.sources} />
       )}
+    </>
+  );
+}
+
+function StatBand({
+  outcomes,
+}: {
+  outcomes: { stat: string; label: string; accent?: boolean }[];
+}) {
+  // Lay out in rows of 4 (or 2 on mobile via CSS)
+  const rows: typeof outcomes[] = [];
+  for (let i = 0; i < outcomes.length; i += 4) {
+    rows.push(outcomes.slice(i, i + 4));
+  }
+  return (
+    <div className="stat-band">
+      {rows.map((row, rIdx) => (
+        <div key={rIdx} className="stat-band-row">
+          {row.map((o, i) => (
+            <div key={i} className="stat-band-cell">
+              <div className={`num ${o.accent ? "is-accent" : ""}`}>
+                {o.stat}
+              </div>
+              <div className="label">{o.label}</div>
+            </div>
+          ))}
+          {row.length < 4 &&
+            Array.from({ length: 4 - row.length }).map((_, i) => (
+              <div key={`pad-${i}`} className="stat-band-cell is-empty" aria-hidden />
+            ))}
+        </div>
+      ))}
     </div>
   );
 }
 
-function SourcesList({
-  sources,
-}: {
-  sources: { title: string; url?: string; publisher?: string }[];
-}) {
+function Coda() {
   return (
-    <div className="mt-12 drop-rule pt-6">
-      <div
-        className="mono text-xs mb-3"
-        style={{ color: "var(--ink-mute)", letterSpacing: "0.12em" }}
-      >
-        SOURCES
-      </div>
-      <ul className="space-y-1.5 text-sm">
+    <aside className="coda">
+      <div className="coda-eyebrow">A note for next time</div>
+      <p className="coda-body">
+        Where did your read diverge most from what actually happened — and is
+        that gap a blind spot, or a real disagreement you'd defend? The rep is
+        the noticing. Close the tab and let it sit.
+      </p>
+    </aside>
+  );
+}
+
+function Endnotes({ sources }: { sources: ScenarioSource[] }) {
+  return (
+    <footer className="endnotes">
+      <h4>Endnotes</h4>
+      <ol>
         {sources.map((s, i) => (
-          <li key={i} style={{ color: "var(--ink-soft)" }}>
-            {s.url ? (
-              <a
-                href={s.url}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="underline"
-                style={{ color: "var(--ink)" }}
-              >
-                {s.title}
-              </a>
-            ) : (
-              <span style={{ color: "var(--ink)" }}>{s.title}</span>
-            )}
-            {s.publisher && (
-              <span style={{ color: "var(--ink-mute)" }}> — {s.publisher}</span>
-            )}
+          <li key={i}>
+            <span>
+              {s.url ? (
+                <a href={s.url} target="_blank" rel="noreferrer noopener">
+                  {s.title}
+                </a>
+              ) : (
+                s.title
+              )}
+              {s.publisher && (
+                <span className="publisher"> — {s.publisher}</span>
+              )}
+              {s.year && (
+                <span className="publisher">, {s.year}</span>
+              )}
+            </span>
           </li>
         ))}
-      </ul>
-    </div>
+      </ol>
+    </footer>
   );
 }
