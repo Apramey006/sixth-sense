@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 import { signInWithOAuth, signInWithPassword, signUpWithPassword } from "@/lib/auth";
 import { supabaseEnabled } from "@/lib/supabase";
+import { isInAppBrowser } from "@/lib/inAppBrowser";
 
 type Mode = "signin" | "signup";
 
@@ -20,6 +21,7 @@ export default function AuthPage() {
   const [next, setNext] = useState<string>("/");
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [subscribe, setSubscribe] = useState(true);
+  const [inAppBrowser, setInAppBrowser] = useState(false);
   const captchaRef = useRef<HCaptcha | null>(null);
 
   useEffect(() => {
@@ -32,7 +34,18 @@ export default function AuthPage() {
       setStatus("error");
       setErrorMsg(err);
     }
+    setInAppBrowser(isInAppBrowser());
   }, []);
+
+  async function copyCurrentUrl() {
+    if (typeof window === "undefined") return;
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+    } catch {
+      // Clipboard API can fail inside some webviews; user can still open
+      // the menu manually.
+    }
+  }
 
   async function onOAuth(provider: "google" | "github") {
     setStatus("submitting");
@@ -157,7 +170,40 @@ export default function AuthPage() {
         </button>
       </div>
 
-      {status !== "confirm" && (
+      {status !== "confirm" && inAppBrowser && (
+        <div
+          className="mt-6 rounded-md p-4 text-sm"
+          style={{
+            background: "rgba(212, 163, 65, 0.12)",
+            color: "var(--ink)",
+            border: "1px solid rgba(212, 163, 65, 0.3)",
+          }}
+        >
+          <div className="font-medium mb-1" style={{ color: "var(--accent-soft)" }}>
+            Google sign-in isn't available in this browser
+          </div>
+          <p className="leading-relaxed" style={{ color: "var(--ink-soft)" }}>
+            Looks like you opened this page inside another app. Google blocks
+            sign-in from in-app browsers. Tap the <span aria-hidden>⋯</span> menu
+            and choose <span style={{ fontWeight: 600 }}>Open in browser</span>{" "}
+            (or Safari/Chrome), or use email + password below.
+          </p>
+          <button
+            type="button"
+            onClick={copyCurrentUrl}
+            className="mt-3 inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-xs font-medium"
+            style={{
+              borderColor: "var(--rule)",
+              background: "var(--paper-raised)",
+              color: "var(--ink)",
+            }}
+          >
+            Copy link
+          </button>
+        </div>
+      )}
+
+      {status !== "confirm" && !inAppBrowser && (
         <div className="mt-6 space-y-2">
           <button
             type="button"
