@@ -1,4 +1,4 @@
-import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient, type User } from "@supabase/supabase-js";
 
 // Admin client — uses the service_role key, bypasses RLS. ONLY import this from
 // server-side code (route handlers, cron jobs). Never expose to the browser.
@@ -14,4 +14,23 @@ export function supabaseAdmin(): SupabaseClient {
   }
   _admin = createClient(url, key, { auth: { persistSession: false } });
   return _admin;
+}
+
+// Walks every page of admin.listUsers. The single-page call silently caps in
+// some GoTrue deployments, so don't trust perPage alone — page until empty.
+export async function listAllAuthUsers(): Promise<User[]> {
+  const admin = supabaseAdmin();
+  const all: User[] = [];
+  let page = 1;
+  const perPage = 200;
+  for (;;) {
+    const { data, error } = await admin.auth.admin.listUsers({ page, perPage });
+    if (error) throw error;
+    const users = data.users ?? [];
+    all.push(...users);
+    if (users.length < perPage) break;
+    page += 1;
+    if (page > 50) break; // hard stop, ~10k users
+  }
+  return all;
 }

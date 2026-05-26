@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { supabaseAdmin } from "@/lib/supabaseAdmin";
+import { supabaseAdmin, listAllAuthUsers } from "@/lib/supabaseAdmin";
 import { getWeeklyForWeek } from "@/lib/scenarios";
 import { sendWeeklyEmail } from "@/lib/email";
 import { upcomingISOWeek } from "@/lib/dates";
@@ -28,28 +28,40 @@ export async function GET(req: NextRequest) {
   const scenario = await getWeeklyForWeek(week);
 
   const admin = supabaseAdmin();
-  const { data: usersPage, error: usersErr } = await admin.auth.admin.listUsers({ perPage: 1000 });
-  if (usersErr) {
-    return NextResponse.json({ error: usersErr.message }, { status: 500 });
-  }
+  const allUsers = await listAllAuthUsers();
 
   const { data: optOutRows } = await admin.from("email_unsubscribes").select("user_id");
   const optedOut = new Set((optOutRows ?? []).map((r) => r.user_id));
 
-  const recipients = (usersPage.users ?? []).filter(
+  const recipients = allUsers.filter(
     (u) => u.email && u.email_confirmed_at && !optedOut.has(u.id),
+  );
+
+  console.log(
+    `[weekly-email] week=${week} total_users=${allUsers.length} opted_out=${optedOut.size} recipients=${recipients.length}`,
   );
 
   if (dryRun) {
     return NextResponse.json({
       week,
       scenario_id: scenario.id,
+      total_users: allUsers.length,
+      opted_out: optedOut.size,
       recipient_count: recipients.length,
+      recipients: recipients.map((u) => u.email),
     });
   }
 
   const results = await Promise.allSettled(
-    recipients.map((u) => sendWeeklyEmail(u.email!, u.id, scenario)),
+    recipients.map(async (u) => {
+      try {
+        await sendWeeklyEmail(u.email!, u.id, scenario);
+        return u.email;
+      } catch (e) {
+        console.error(`[weekly-email] send failed for ${u.email}:`, e);
+        throw e;
+      }
+    }),
   );
   const ok = results.filter((r) => r.status === "fulfilled").length;
   const failed = results.length - ok;
@@ -57,6 +69,8 @@ export async function GET(req: NextRequest) {
   return NextResponse.json({
     week,
     scenario_id: scenario.id,
+    total_users: allUsers.length,
+    recipient_count: recipients.length,
     sent: ok,
     failed,
     failures: results
