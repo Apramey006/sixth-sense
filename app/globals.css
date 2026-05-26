@@ -748,6 +748,29 @@ body {
   font-weight: 600;
 }
 .dossier-masthead .kind.is-weekly { color: var(--accent-2); }
+.dossier-fav {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: 0.75rem;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+.dossier-fav:hover { color: var(--ink); border-color: var(--ink); }
+.dossier-fav[data-active="true"] {
+  color: #c8862b;
+  border-color: #c8862b;
+  background: rgba(200, 134, 43, 0.06);
+}
 
 .dossier-title-block {
   padding-top: 2.5rem;

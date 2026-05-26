@@ -19,6 +19,7 @@ type TakeRow = {
   scenario_type: "daily" | "weekly";
   body: Record<string, unknown>;
   created_at: string;
+  favorited: boolean;
 };
 
 type AnyScenario = DailyScenario | WeeklyScenario;
@@ -43,7 +44,7 @@ export default function RepDetailPage() {
     (async () => {
       const { data: takeData, error: takeErr } = await supabase!
         .from("takes")
-        .select("id, scenario_id, scenario_type, body, created_at")
+        .select("id, scenario_id, scenario_type, body, created_at, favorited")
         .eq("id", id)
         .eq("user_id", user.id)
         .maybeSingle();
@@ -63,7 +64,7 @@ export default function RepDetailPage() {
         return;
       }
 
-      const t = takeData as TakeRow;
+      const t = { ...(takeData as TakeRow), favorited: (takeData as TakeRow).favorited ?? false };
       if (active) setTake(t);
 
       const { data: scenarioRow } = await supabase!
@@ -138,7 +139,21 @@ export default function RepDetailPage() {
         </div>
       )}
       {supabaseEnabled && user && done && !error && take && (
-        <RepDossier take={take} scenario={scenario} />
+        <RepDossier
+          take={take}
+          scenario={scenario}
+          onToggleFavorite={async () => {
+            if (!supabase || !user) return;
+            const next = !take.favorited;
+            setTake({ ...take, favorited: next });
+            const { error: updErr } = await supabase
+              .from("takes")
+              .update({ favorited: next })
+              .eq("id", take.id)
+              .eq("user_id", user.id);
+            if (updErr) setTake({ ...take, favorited: !next });
+          }}
+        />
       )}
     </main>
   );
@@ -167,9 +182,11 @@ function formatFiledDate(iso: string): { day: string; time: string } {
 function RepDossier({
   take,
   scenario,
+  onToggleFavorite,
 }: {
   take: TakeRow;
   scenario: AnyScenario | null;
+  onToggleFavorite: () => void;
 }) {
   const isWeekly = take.scenario_type === "weekly";
   const { day, time } = formatFiledDate(take.created_at);
@@ -189,6 +206,17 @@ function RepDossier({
         <span className={`kind ${isWeekly ? "is-weekly" : ""}`}>
           {isWeekly ? "Weekly review" : "Daily review"}
         </span>
+        <button
+          type="button"
+          className="dossier-fav"
+          data-active={take.favorited}
+          aria-pressed={take.favorited}
+          aria-label={take.favorited ? "Unfavorite this rep" : "Favorite this rep"}
+          onClick={onToggleFavorite}
+        >
+          <span aria-hidden>{take.favorited ? "★" : "☆"}</span>
+          <span>{take.favorited ? "Favorited" : "Favorite"}</span>
+        </button>
       </header>
 
       {/* II. Display title */}

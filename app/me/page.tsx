@@ -12,6 +12,7 @@ type TakeRow = {
   scenario_type: "daily" | "weekly";
   body: Record<string, unknown>;
   created_at: string;
+  favorited: boolean;
 };
 
 type ScenarioMeta = {
@@ -22,13 +23,14 @@ type ScenarioMeta = {
 };
 
 type EnrichedTake = TakeRow & { scenario: ScenarioMeta | null };
-type KindFilter = "all" | "daily" | "weekly";
+type KindFilter = "all" | "daily" | "weekly" | "favorites";
 
 export default function MePage() {
   const { user, loading } = useUser();
   const [takes, setTakes] = useState<EnrichedTake[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [filter, setFilter] = useState<KindFilter>("all");
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     if (loading) return;
@@ -38,7 +40,7 @@ export default function MePage() {
     (async () => {
       const { data: takesData, error: takesErr } = await supabase!
         .from("takes")
-        .select("id, scenario_id, scenario_type, body, created_at")
+        .select("id, scenario_id, scenario_type, body, created_at, favorited")
         .eq("user_id", user.id)
         .order("created_at", { ascending: false });
 
@@ -68,6 +70,7 @@ export default function MePage() {
 
       const enriched: EnrichedTake[] = rows.map((r) => ({
         ...r,
+        favorited: r.favorited ?? false,
         scenario: metas[r.scenario_id] ?? null,
       }));
 
@@ -96,17 +99,57 @@ export default function MePage() {
 
   const visibleTakes = useMemo(() => {
     if (!takes) return null;
-    return filter === "all" ? takes : takes.filter((t) => t.scenario_type === filter);
-  }, [takes, filter]);
+    let rows = takes;
+    if (filter === "daily" || filter === "weekly") {
+      rows = rows.filter((t) => t.scenario_type === filter);
+    } else if (filter === "favorites") {
+      rows = rows.filter((t) => t.favorited);
+    }
+    const q = query.trim().toLowerCase();
+    if (q) {
+      rows = rows.filter((t) => {
+        const company = (t.scenario?.company ?? "").toLowerCase();
+        const era = (t.scenario?.era ?? "").toLowerCase();
+        const body = Object.values(t.body)
+          .filter((v): v is string => typeof v === "string")
+          .join(" ")
+          .toLowerCase();
+        return (
+          company.includes(q) || era.includes(q) || body.includes(q)
+        );
+      });
+    }
+    return rows;
+  }, [takes, filter, query]);
 
   const counts = useMemo(() => {
-    if (!takes) return { all: 0, daily: 0, weekly: 0 };
+    if (!takes) return { all: 0, daily: 0, weekly: 0, favorites: 0 };
     return {
       all: takes.length,
       daily: takes.filter((t) => t.scenario_type === "daily").length,
       weekly: takes.filter((t) => t.scenario_type === "weekly").length,
+      favorites: takes.filter((t) => t.favorited).length,
     };
   }, [takes]);
+
+  const toggleFavorite = async (takeId: string, next: boolean) => {
+    setTakes((prev) =>
+      prev ? prev.map((t) => (t.id === takeId ? { ...t, favorited: next } : t)) : prev,
+    );
+    if (!supabase || !user) return;
+    const { error: updErr } = await supabase
+      .from("takes")
+      .update({ favorited: next })
+      .eq("id", takeId)
+      .eq("user_id", user.id);
+    if (updErr) {
+      setTakes((prev) =>
+        prev
+          ? prev.map((t) => (t.id === takeId ? { ...t, favorited: !next } : t))
+          : prev,
+      );
+    }
+  };
 
   return (
     <main className="cabinet-shell mx-auto px-4 sm:px-8 pt-8 sm:pt-12 pb-24">
@@ -143,10 +186,11 @@ export default function MePage() {
       {supabaseEnabled && user && visibleTakes && takes && takes.length > 0 && (
         <>
           <Tabs filter={filter} setFilter={setFilter} counts={counts} />
+          <SearchBox query={query} setQuery={setQuery} />
           {visibleTakes.length === 0 ? (
-            <FilteredEmpty filter={filter} />
+            <FilteredEmpty filter={filter} query={query} />
           ) : (
-            <TakesList takes={visibleTakes} />
+            <TakesList takes={visibleTakes} onToggleFavorite={toggleFavorite} />
           )}
         </>
       )}
@@ -161,12 +205,13 @@ function Tabs({
 }: {
   filter: KindFilter;
   setFilter: (f: KindFilter) => void;
-  counts: { all: number; daily: number; weekly: number };
+  counts: { all: number; daily: number; weekly: number; favorites: number };
 }) {
   const items: { key: KindFilter; label: string }[] = [
     { key: "all", label: "All" },
     { key: "daily", label: "Daily" },
     { key: "weekly", label: "Weekly" },
+    { key: "favorites", label: "Favorites" },
   ];
   return (
     <div className="cabinet-tabs" role="tablist">
@@ -246,11 +291,49 @@ function Empty() {
   );
 }
 
-function FilteredEmpty({ filter }: { filter: KindFilter }) {
+function FilteredEmpty({ filter, query }: { filter: KindFilter; query: string }) {
+  const q = query.trim();
+  let msg: string;
+  if (q && filter === "all") msg = `No reps match "${q}".`;
+  else if (q) msg = `No ${filter} reps match "${q}".`;
+  else if (filter === "favorites") msg = "No favorited reps yet — tap the star on any rep to save it.";
+  else if (filter === "all") msg = "No reps yet.";
+  else msg = `No ${filter} reps yet.`;
   return (
     <p className="mono text-xs" style={{ color: "var(--ink-mute)", marginTop: "1.5rem", letterSpacing: "0.14em" }}>
-      No {filter === "all" ? "" : filter + " "}reps yet.
+      {msg}
     </p>
+  );
+}
+
+function SearchBox({
+  query,
+  setQuery,
+}: {
+  query: string;
+  setQuery: (q: string) => void;
+}) {
+  return (
+    <div className="cabinet-search">
+      <input
+        type="search"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search company, era, or your notes…"
+        aria-label="Search your reps"
+        className="cabinet-search-input"
+      />
+      {query && (
+        <button
+          type="button"
+          onClick={() => setQuery("")}
+          className="cabinet-search-clear"
+          aria-label="Clear search"
+        >
+          ×
+        </button>
+      )}
+    </div>
   );
 }
 
@@ -284,7 +367,13 @@ function groupByDate(takes: EnrichedTake[]) {
   return groups;
 }
 
-function TakesList({ takes }: { takes: EnrichedTake[] }) {
+function TakesList({
+  takes,
+  onToggleFavorite,
+}: {
+  takes: EnrichedTake[];
+  onToggleFavorite: (id: string, next: boolean) => void;
+}) {
   const groups = useMemo(() => groupByDate(takes), [takes]);
   return (
     <div className="cabinet-list">
@@ -296,7 +385,7 @@ function TakesList({ takes }: { takes: EnrichedTake[] }) {
           </div>
           <ul className="cabinet-rows">
             {g.takes.map((t) => (
-              <TakeRow key={t.id} take={t} />
+              <TakeRow key={t.id} take={t} onToggleFavorite={onToggleFavorite} />
             ))}
           </ul>
         </section>
@@ -310,7 +399,13 @@ function caseNumber(id: string): string {
   return hex.slice(0, 6) || "ARCHIV";
 }
 
-function TakeRow({ take }: { take: EnrichedTake }) {
+function TakeRow({
+  take,
+  onToggleFavorite,
+}: {
+  take: EnrichedTake;
+  onToggleFavorite: (id: string, next: boolean) => void;
+}) {
   const time = new Date(take.created_at).toLocaleTimeString("en-US", {
     hour: "numeric",
     minute: "2-digit",
@@ -352,6 +447,20 @@ function TakeRow({ take }: { take: EnrichedTake }) {
         </div>
         <span className="cabinet-row-arrow" aria-hidden>→</span>
       </Link>
+      <button
+        type="button"
+        className="cabinet-row-star"
+        data-active={take.favorited}
+        aria-label={take.favorited ? "Unfavorite this rep" : "Favorite this rep"}
+        aria-pressed={take.favorited}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          onToggleFavorite(take.id, !take.favorited);
+        }}
+      >
+        {take.favorited ? "★" : "☆"}
+      </button>
     </li>
   );
 }
