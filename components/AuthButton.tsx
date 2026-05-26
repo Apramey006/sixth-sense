@@ -117,6 +117,23 @@ export function AuthButton() {
               {user.email}
             </div>
           </div>
+          <Link
+            href="/settings"
+            role="menuitem"
+            onClick={() => setOpen(false)}
+            className="block w-full text-left text-sm px-4 py-2.5 transition-colors"
+            style={{ color: "var(--ink-soft)", borderBottom: "1px solid var(--rule)" }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.background = "var(--paper-deep)";
+              (e.currentTarget as HTMLAnchorElement).style.color = "var(--ink)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
+              (e.currentTarget as HTMLAnchorElement).style.color = "var(--ink-soft)";
+            }}
+          >
+            Settings
+          </Link>
           <button
             type="button"
             role="menuitem"

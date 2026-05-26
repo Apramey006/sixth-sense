@@ -8,6 +8,7 @@ const links = [
   { href: "/today", label: "Today" },
   { href: "/this-week", label: "This week" },
   { href: "/me", label: "Your reps" },
+  { href: "/settings", label: "Settings" },
 ];
 
 export function TopNav() {
