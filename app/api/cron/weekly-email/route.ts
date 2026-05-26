@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { supabaseAdmin, listAllAuthUsers } from "@/lib/supabaseAdmin";
 import { getWeeklyForWeek } from "@/lib/scenarios";
-import { sendWeeklyEmail } from "@/lib/email";
+import { buildWeeklyEmail, sendBatch } from "@/lib/email";
 import { upcomingISOWeek } from "@/lib/dates";
 
 export const dynamic = "force-dynamic";
@@ -52,29 +52,22 @@ export async function GET(req: NextRequest) {
     });
   }
 
-  const results = await Promise.allSettled(
-    recipients.map(async (u) => {
-      try {
-        await sendWeeklyEmail(u.email!, u.id, scenario);
-        return u.email;
-      } catch (e) {
-        console.error(`[weekly-email] send failed for ${u.email}:`, e);
-        throw e;
-      }
-    }),
-  );
-  const ok = results.filter((r) => r.status === "fulfilled").length;
-  const failed = results.length - ok;
+  const payloads = recipients.map((u) => buildWeeklyEmail(u.email!, u.id, scenario));
+  const { sent, failed, errors } = await sendBatch(payloads);
+
+  if (failed > 0) {
+    console.error(`[weekly-email] sent=${sent} failed=${failed} errors=${errors.join(" | ")}`);
+  } else {
+    console.log(`[weekly-email] sent=${sent}`);
+  }
 
   return NextResponse.json({
     week,
     scenario_id: scenario.id,
     total_users: allUsers.length,
     recipient_count: recipients.length,
-    sent: ok,
+    sent,
     failed,
-    failures: results
-      .filter((r) => r.status === "rejected")
-      .map((r) => (r as PromiseRejectedResult).reason?.message ?? "unknown"),
+    failures: errors,
   });
 }

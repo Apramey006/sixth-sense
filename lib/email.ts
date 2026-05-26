@@ -38,11 +38,18 @@ ${footer(userId)}
 </body></html>`;
 }
 
-export async function sendDailyEmail(
+export type EmailPayload = {
+  from: string;
+  to: string;
+  subject: string;
+  html: string;
+};
+
+export function buildDailyEmail(
   to: string,
   userId: string,
   scenario: DailyScenario,
-): Promise<void> {
+): EmailPayload {
   const company = escapeHtml(scenario.company);
   const era = escapeHtml(scenario.era);
   const context = escapeHtml(scenario.context);
@@ -64,7 +71,49 @@ export async function sendDailyEmail(
     userId,
   );
 
-  await client().emails.send({ from: FROM, to, subject, html });
+  return { from: FROM, to, subject, html };
+}
+
+export async function sendDailyEmail(
+  to: string,
+  userId: string,
+  scenario: DailyScenario,
+): Promise<void> {
+  await client().emails.send(buildDailyEmail(to, userId, scenario));
+}
+
+// Resend's batch endpoint accepts up to 100 emails per call. We chunk to be
+// safe and to avoid a single 429 nuking an entire send. Returns counts per
+// chunk so callers can log + return success/failure totals.
+export async function sendBatch(
+  payloads: EmailPayload[],
+): Promise<{ sent: number; failed: number; errors: string[] }> {
+  if (payloads.length === 0) return { sent: 0, failed: 0, errors: [] };
+
+  const CHUNK = 100;
+  let sent = 0;
+  let failed = 0;
+  const errors: string[] = [];
+
+  for (let i = 0; i < payloads.length; i += CHUNK) {
+    const chunk = payloads.slice(i, i + CHUNK);
+    try {
+      const { data, error } = await client().batch.send(chunk);
+      if (error) {
+        failed += chunk.length;
+        errors.push(error.message ?? "batch error");
+        continue;
+      }
+      const returned = data?.data?.length ?? 0;
+      sent += returned;
+      failed += chunk.length - returned;
+    } catch (e) {
+      failed += chunk.length;
+      errors.push(e instanceof Error ? e.message : String(e));
+    }
+  }
+
+  return { sent, failed, errors };
 }
 
 export async function sendWelcomeEmail(to: string, userId: string): Promise<void> {
@@ -110,11 +159,11 @@ export async function sendWelcomeEmail(to: string, userId: string): Promise<void
   await client().emails.send({ from: FROM, to, subject, html });
 }
 
-export async function sendWeeklyEmail(
+export function buildWeeklyEmail(
   to: string,
   userId: string,
   scenario: WeeklyScenario,
-): Promise<void> {
+): EmailPayload {
   const company = escapeHtml(scenario.company);
   const era = escapeHtml(scenario.era);
   const intro = escapeHtml(scenario.intro);
@@ -134,5 +183,13 @@ export async function sendWeeklyEmail(
     userId,
   );
 
-  await client().emails.send({ from: FROM, to, subject, html });
+  return { from: FROM, to, subject, html };
+}
+
+export async function sendWeeklyEmail(
+  to: string,
+  userId: string,
+  scenario: WeeklyScenario,
+): Promise<void> {
+  await client().emails.send(buildWeeklyEmail(to, userId, scenario));
 }
