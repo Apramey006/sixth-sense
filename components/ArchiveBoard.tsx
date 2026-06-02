@@ -46,7 +46,11 @@ export function ArchiveBoard({
   const [tab, setTab] = useState<Tab>("daily");
   const [filter, setFilter] = useState<Filter>("all");
 
-  // Scenario ids the signed-in user has filed (with the retroactive flag).
+  // Reps the signed-in user filed, keyed precisely by the day/week they were
+  // FOR (`${kind}:${target_date}`) so a scenario that recurs across weeks can't
+  // mark the wrong row done. byScenario is a legacy fallback for reps filed
+  // before target_date existed.
+  const [doneByTarget, setDoneByTarget] = useState<Record<string, DoneInfo>>({});
   const [doneByScenario, setDoneByScenario] = useState<Record<string, DoneInfo>>({});
   // Local fallback so anonymous + offline reps still read as done.
   const [localDone, setLocalDone] = useState<Set<string>>(new Set());
@@ -63,28 +67,40 @@ export function ArchiveBoard({
     if (loading || !user || !supabaseEnabled || !supabase) return;
     let active = true;
     (async () => {
-      // Prefer the retroactive flag; fall back gracefully if the column
-      // (retroactive_migration.sql) hasn't been applied yet.
-      let rows: { scenario_id: string; retroactive?: boolean }[] = [];
-      const withFlag = await supabase!
+      // Prefer precise target_date matching; fall back gracefully if those
+      // columns (retroactive_migration.sql) haven't been applied yet.
+      type Row = {
+        scenario_id: string;
+        scenario_type?: "daily" | "weekly";
+        target_date?: string | null;
+        retroactive?: boolean;
+      };
+      let rows: Row[] = [];
+      const full = await supabase!
         .from("takes")
-        .select("scenario_id, retroactive")
+        .select("scenario_id, scenario_type, target_date, retroactive")
         .eq("user_id", user.id);
-      if (withFlag.error) {
+      if (full.error) {
         const basic = await supabase!
           .from("takes")
           .select("scenario_id")
           .eq("user_id", user.id);
-        rows = (basic.data ?? []) as { scenario_id: string }[];
+        rows = (basic.data ?? []) as Row[];
       } else {
-        rows = (withFlag.data ?? []) as { scenario_id: string; retroactive?: boolean }[];
+        rows = (full.data ?? []) as Row[];
       }
       if (!active) return;
-      const map: Record<string, DoneInfo> = {};
+      const byTarget: Record<string, DoneInfo> = {};
+      const byScenario: Record<string, DoneInfo> = {};
       for (const r of rows) {
-        map[r.scenario_id] = { retroactive: Boolean(r.retroactive) };
+        const info = { retroactive: Boolean(r.retroactive) };
+        byScenario[r.scenario_id] = info;
+        if (r.scenario_type && r.target_date) {
+          byTarget[`${r.scenario_type}:${r.target_date}`] = info;
+        }
       }
-      setDoneByScenario(map);
+      setDoneByTarget(byTarget);
+      setDoneByScenario(byScenario);
     })();
     return () => {
       active = false;
@@ -92,8 +108,10 @@ export function ArchiveBoard({
   }, [user, loading]);
 
   const statusFor = (it: ArchiveItem): { done: boolean; retroactive: boolean } => {
-    const db = doneByScenario[it.scenario_id];
-    if (db) return { done: true, retroactive: db.retroactive };
+    const byTarget = doneByTarget[`${it.kind}:${it.target_date}`];
+    if (byTarget) return { done: true, retroactive: byTarget.retroactive };
+    const byScenario = doneByScenario[it.scenario_id];
+    if (byScenario) return { done: true, retroactive: byScenario.retroactive };
     if (localDone.has(`${it.kind}:${it.key}`)) return { done: true, retroactive: false };
     return { done: false, retroactive: false };
   };
@@ -105,7 +123,7 @@ export function ArchiveBoard({
     for (const it of items) if (statusFor(it).done) done += 1;
     return { all: items.length, done, missed: items.length - done };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items, doneByScenario, localDone]);
+  }, [items, doneByTarget, doneByScenario, localDone]);
 
   const visible = useMemo(() => {
     if (filter === "all") return items;
@@ -114,7 +132,7 @@ export function ArchiveBoard({
       return filter === "done" ? done : !done;
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items, filter, doneByScenario, localDone]);
+  }, [items, filter, doneByTarget, doneByScenario, localDone]);
 
   return (
     <>
