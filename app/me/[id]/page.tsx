@@ -20,6 +20,8 @@ type TakeRow = {
   body: Record<string, unknown>;
   created_at: string;
   favorited: boolean;
+  target_date: string | null;
+  retroactive: boolean;
 };
 
 type AnyScenario = DailyScenario | WeeklyScenario;
@@ -44,7 +46,7 @@ export default function RepDetailPage() {
     (async () => {
       const { data: takeData, error: takeErr } = await supabase!
         .from("takes")
-        .select("id, scenario_id, scenario_type, body, created_at, favorited")
+        .select("id, scenario_id, scenario_type, body, created_at, favorited, target_date, retroactive")
         .eq("id", id)
         .eq("user_id", user.id)
         .maybeSingle();
@@ -64,7 +66,13 @@ export default function RepDetailPage() {
         return;
       }
 
-      const t = { ...(takeData as TakeRow), favorited: (takeData as TakeRow).favorited ?? false };
+      const raw = takeData as TakeRow;
+      const t = {
+        ...raw,
+        favorited: raw.favorited ?? false,
+        retroactive: raw.retroactive ?? false,
+        target_date: raw.target_date ?? null,
+      };
       if (active) setTake(t);
 
       const { data: scenarioRow } = await supabase!
@@ -206,6 +214,11 @@ function RepDossier({
         <span className={`kind ${isWeekly ? "is-weekly" : ""}`}>
           {isWeekly ? "Weekly review" : "Daily review"}
         </span>
+        {take.retroactive && (
+          <span className="caught-up-tag" title="Done after the day passed">
+            Caught up
+          </span>
+        )}
         <button
           type="button"
           className="dossier-fav"

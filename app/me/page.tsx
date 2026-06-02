@@ -13,6 +13,8 @@ type TakeRow = {
   body: Record<string, unknown>;
   created_at: string;
   favorited: boolean;
+  target_date: string | null;
+  retroactive: boolean;
 };
 
 type ScenarioMeta = {
@@ -40,7 +42,7 @@ export default function MePage() {
     (async () => {
       const { data: takesData, error: takesErr } = await supabase!
         .from("takes")
-        .select("id, scenario_id, scenario_type, body, created_at, favorited")
+        .select("id, scenario_id, scenario_type, body, created_at, favorited, target_date, retroactive")
         .eq("user_id", user.id)
         .order("created_at", { ascending: false });
 
@@ -71,6 +73,8 @@ export default function MePage() {
       const enriched: EnrichedTake[] = rows.map((r) => ({
         ...r,
         favorited: r.favorited ?? false,
+        retroactive: r.retroactive ?? false,
+        target_date: r.target_date ?? null,
         scenario: metas[r.scenario_id] ?? null,
       }));
 
@@ -89,12 +93,14 @@ export default function MePage() {
     const lastWeekStart = weekStart - 7 * 86_400_000;
     let thisWeek = 0;
     let lastWeek = 0;
+    let caughtUp = 0;
     for (const t of takes) {
       const at = new Date(t.created_at).getTime();
       if (at >= weekStart) thisWeek += 1;
       else if (at >= lastWeekStart) lastWeek += 1;
+      if (t.retroactive) caughtUp += 1;
     }
-    return { thisWeek, lastWeek, total: takes.length };
+    return { thisWeek, lastWeek, total: takes.length, caughtUp };
   }, [takes]);
 
   const visibleTakes = useMemo(() => {
@@ -164,6 +170,12 @@ export default function MePage() {
             <span>{summary.lastWeek} last week</span>
             <span className="dot" aria-hidden>·</span>
             <span>{summary.total} total</span>
+            {summary.caughtUp > 0 && (
+              <>
+                <span className="dot" aria-hidden>·</span>
+                <span>{summary.caughtUp} caught up</span>
+              </>
+            )}
           </>
         )}
         <span className="dateline">Every rep, with what you wrote and what you saw</span>
@@ -346,7 +358,11 @@ function groupByDate(takes: EnrichedTake[]) {
 
   const groups: { key: string; label: string; takes: EnrichedTake[] }[] = [];
   for (const t of takes) {
-    const d = new Date(t.created_at);
+    // Group by the day the rep is FOR, so a caught-up rep files under its real
+    // day rather than the day you got around to it. Falls back to filing time.
+    const d = t.target_date
+      ? new Date(t.target_date + "T00:00:00")
+      : new Date(t.created_at);
     const key = d.toDateString();
     let label: string;
     if (key === todayKey) label = "Today";
@@ -436,6 +452,11 @@ function TakeRow({
           <span className={`kind-tag ${isWeekly ? "is-weekly" : ""}`}>
             {kindLabel}
           </span>
+          {take.retroactive && (
+            <span className="caught-up-tag" title="Done after the day passed">
+              Caught up
+            </span>
+          )}
           <span className="cabinet-row-time">{time}</span>
         </div>
         <div className="cabinet-row-body">

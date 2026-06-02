@@ -5,6 +5,7 @@ import type { WeeklyScenario } from "@/lib/supabase";
 import { supabase, supabaseEnabled } from "@/lib/supabase";
 import { submitTake } from "@/lib/submit";
 import { isCompleted, markCompleted } from "@/lib/anonId";
+import { currentISOWeek, isoWeekToMonday } from "@/lib/dates";
 import { useUser } from "@/lib/auth";
 import { AlreadyDone } from "@/components/DailyRep";
 import { PostRepFooter } from "@/components/PostRepFooter";
@@ -58,6 +59,9 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
   >(undefined);
 
   const draftKey = `sixth-sense:weekly-draft:${scenario.id}`;
+
+  // A rep whose week has already passed — done from the archive, not live.
+  const isPast = scenario.iso_week !== currentISOWeek();
 
   useEffect(() => {
     if (authLoading) return;
@@ -138,6 +142,8 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
       scenario_id: scenario.id,
       scenario_type: "weekly",
       body: take,
+      target_date: isoWeekToMonday(scenario.iso_week),
+      retroactive: isPast,
     });
     markCompleted("weekly", scenario.iso_week);
     try {
@@ -168,8 +174,9 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
         kind="weekly"
         scenario={{ company: scenario.company, era: scenario.era }}
         prior={prior}
-        nextHref="/today"
-        nextLabel="Take today's daily rep"
+        nextHref={isPast ? "/archive" : "/today"}
+        nextLabel={isPast ? "Back to the archive" : "Take today's daily rep"}
+        isPast={isPast}
       />
     );
   }
@@ -185,7 +192,7 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
           <span>· Not yet decided</span>
         </div>
         <h1 className="rep-title">
-          {scenario.company}, <em style={{ fontStyle: "italic", fontWeight: 700 }}>{scenario.era}.</em>
+          {scenario.company}, <span style={{ color: "var(--ink-soft)" }}>{scenario.era}.</span>
         </h1>
 
         <div className="scenario-article" style={{ marginTop: "2rem" }}>
@@ -307,7 +314,7 @@ export function WeeklyRep({ scenario }: { scenario: WeeklyScenario }) {
         <span className="accent">Reveal</span>
         <span>· What shipped</span>
       </div>
-      <h2 className="rep-title">{scenario.company}, <em style={{ fontStyle: "italic", fontWeight: 700 }}>{scenario.era}.</em></h2>
+      <h2 className="rep-title">{scenario.company}, <span style={{ color: "var(--ink-soft)" }}>{scenario.era}.</span></h2>
 
       <div className="section-marker" style={{ marginTop: "2.5rem" }}>
         <span className="roman">§ I</span>

@@ -7,6 +7,10 @@ type SubmitArgs = {
   scenario_id: string;
   scenario_type: "daily" | "weekly";
   body: Record<string, unknown>;
+  // The day (daily) or Monday of the ISO week (weekly) this rep is FOR.
+  target_date?: string;
+  // True when filed after target_date passed — i.e. caught up from the archive.
+  retroactive?: boolean;
 };
 
 export async function submitTake(args: SubmitArgs): Promise<void> {
@@ -32,6 +36,8 @@ export async function submitTake(args: SubmitArgs): Promise<void> {
     scenario_id: args.scenario_id,
     scenario_type: args.scenario_type,
     body: args.body,
+    target_date: args.target_date ?? null,
+    retroactive: args.retroactive ?? false,
   });
   if (error) {
     console.error("submitTake error", error);

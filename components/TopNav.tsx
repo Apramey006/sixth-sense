@@ -5,10 +5,11 @@ import { usePathname } from "next/navigation";
 import { AuthButton } from "@/components/AuthButton";
 
 const links = [
-  { href: "/today", label: "Today" },
-  { href: "/this-week", label: "This week" },
-  { href: "/me", label: "Your reps" },
-  { href: "/settings", label: "Settings" },
+  { href: "/today", label: "Today", short: "Today" },
+  { href: "/this-week", label: "This week", short: "Week" },
+  { href: "/archive", label: "Archive", short: "Archive" },
+  { href: "/me", label: "Your reps", short: "Reps" },
+  { href: "/settings", label: "Settings", short: "Settings" },
 ];
 
 export function TopNav() {
@@ -36,13 +37,13 @@ export function TopNav() {
         </nav>
 
         <div className="nav-right">
-          <nav className="nav-links flex sm:hidden" aria-label="Primary (mobile)">
+          <nav className="nav-links nav-links-mobile flex sm:hidden" aria-label="Primary (mobile)">
             {links.map((l) => {
               const active =
                 pathname === l.href || pathname.startsWith(l.href + "/");
               return (
                 <Link key={l.href} href={l.href} className="nav-link" data-active={active}>
-                  {l.label}
+                  {l.short}
                 </Link>
               );
             })}

@@ -6,10 +6,17 @@ import type { DailyScenario } from "@/lib/supabase";
 import { supabase, supabaseEnabled } from "@/lib/supabase";
 import { submitTake } from "@/lib/submit";
 import { isCompleted, markCompleted } from "@/lib/anonId";
+import { todayISO } from "@/lib/dates";
 import { useUser } from "@/lib/auth";
 import { PostRepFooter } from "@/components/PostRepFooter";
 
 type PriorTake = { id: string | null; note: string };
+
+function formatDay(date: string): string {
+  return new Date(date + "T00:00:00")
+    .toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })
+    .toUpperCase();
+}
 
 export function DailyRep({ scenario }: { scenario: DailyScenario }) {
   const [step, setStep] = useState<0 | 1>(0);
@@ -17,6 +24,9 @@ export function DailyRep({ scenario }: { scenario: DailyScenario }) {
   const [submitting, setSubmitting] = useState(false);
   const { user, loading: authLoading } = useUser();
   const [prior, setPrior] = useState<PriorTake | null | undefined>(undefined);
+
+  // A rep whose day has already passed — done from the archive, not live.
+  const isPast = scenario.scheduled_date !== todayISO();
 
   useEffect(() => {
     if (authLoading) return;
@@ -64,6 +74,8 @@ export function DailyRep({ scenario }: { scenario: DailyScenario }) {
       scenario_id: scenario.id,
       scenario_type: "daily",
       body: { note: text.trim() },
+      target_date: scenario.scheduled_date,
+      retroactive: isPast,
     });
     markCompleted("daily", scenario.scheduled_date);
     setSubmitting(false);
@@ -89,8 +101,9 @@ export function DailyRep({ scenario }: { scenario: DailyScenario }) {
         kind="daily"
         scenario={{ company: scenario.company, era: scenario.era }}
         prior={prior}
-        nextHref="/this-week"
-        nextLabel="Open this week's deep rep"
+        nextHref={isPast ? "/archive" : "/this-week"}
+        nextLabel={isPast ? "Back to the archive" : "Open this week's deep rep"}
+        isPast={isPast}
       />
     );
   }
@@ -102,8 +115,8 @@ export function DailyRep({ scenario }: { scenario: DailyScenario }) {
 
         <div className="rep-header-eyebrow">
           <span className="line" aria-hidden />
-          <span className="accent">Today's moment</span>
-          <span>· {scenario.era}</span>
+          <span className="accent">{isPast ? "A missed moment" : "Today's moment"}</span>
+          <span>· {isPast ? formatDay(scenario.scheduled_date) : scenario.era}</span>
         </div>
         <h1 className="rep-title">{scenario.company}</h1>
 
@@ -190,7 +203,8 @@ export function DailyRep({ scenario }: { scenario: DailyScenario }) {
         <div className="coda-eyebrow">The rep is the noticing</div>
         <p className="coda-body">
           You don't need to type an answer to this. Sit with the gap between
-          what you noticed and what they were thinking. Come back tomorrow.
+          what you noticed and what they were thinking.{" "}
+          {isPast ? "It's on the record now, caught up." : "Come back tomorrow."}
         </p>
       </aside>
 
@@ -205,14 +219,17 @@ export function AlreadyDone({
   prior,
   nextHref,
   nextLabel,
+  isPast = false,
 }: {
   kind: "daily" | "weekly";
   scenario: { company: string; era: string };
   prior: { id: string | null; note: string };
   nextHref: string;
   nextLabel: string;
+  isPast?: boolean;
 }) {
   const accent = kind === "weekly" ? "var(--accent-2)" : "var(--accent)";
+  const period = kind === "weekly" ? "week" : "day";
   return (
     <section className="fade-up">
       <div className="rep-header-eyebrow">
@@ -229,12 +246,17 @@ export function AlreadyDone({
         style={{ marginTop: "2rem" }}
       >
         <div className="cabinet-note-head">
-          You've already done {kind === "weekly" ? "this week's" : "today's"} rep.
+          {isPast
+            ? `You've already done this ${period}'s rep.`
+            : `You've already done ${kind === "weekly" ? "this week's" : "today's"} rep.`}
         </div>
         <p>
-          One rep per {kind === "weekly" ? "week" : "day"} — the take you
-          filed is the take. {kind === "weekly" ? "Come back next week" : "Come back tomorrow"} for
-          the next one.
+          One rep per {period} — the take you filed is the take.{" "}
+          {isPast
+            ? "Browse the archive for another one you missed."
+            : kind === "weekly"
+              ? "Come back next week for the next one."
+              : "Come back tomorrow for the next one."}
         </p>
         {prior.note && (
           <div className="your-take-block" style={{ marginTop: "1.5rem" }}>
