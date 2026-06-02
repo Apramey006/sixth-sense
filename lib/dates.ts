@@ -6,14 +6,18 @@
 const TZ = "America/New_York";
 
 // The archive never reaches before launch — earlier days had no rep to miss.
-// Mirrors the first scheduled scenario in lib/scenarioPriorities.ts.
+// LAUNCH_WEEK is the ISO week that CONTAINS launch day (May 15 falls in W20),
+// not the first scheduled weekly (W21) — users could do the launch-week weekly
+// via rotation, so it must be reachable.
 export const LAUNCH_DATE = "2026-05-15";
-export const LAUNCH_WEEK = "2026-W21";
+export const LAUNCH_WEEK = "2026-W20";
 
 // How far back the archive reaches. Single source of truth so the archive list
-// and the do-a-past-rep routes always agree on what's reachable.
+// and the do-a-past-rep routes always agree on what's reachable. Both are
+// floored at launch, so they never list empty pre-launch slots. Weekly runs
+// wide so a weekly you did months ago doesn't silently fall off the list.
 export const DAILY_ARCHIVE_DAYS = 15;
-export const WEEKLY_ARCHIVE_WEEKS = 2;
+export const WEEKLY_ARCHIVE_WEEKS = 8;
 
 function pad(n: number): string {
   return String(n).padStart(2, "0");

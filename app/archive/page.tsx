@@ -50,18 +50,18 @@ export default async function ArchivePage() {
       <header className="cabinet-strip">
         <span className="cabinet-strip-label">Back issues</span>
         <span className="dot" aria-hidden>·</span>
-        <span>Last {DAILY_ARCHIVE_DAYS} days</span>
+        <span>{dates.length} days</span>
         <span className="dot" aria-hidden>·</span>
-        <span>Last {WEEKLY_ARCHIVE_WEEKS} weeks</span>
+        <span>{weeks.length} weeks</span>
         <span className="dateline">The reps you missed are still doable</span>
       </header>
 
       <section className="cabinet-hero">
         <h1 className="cabinet-title">The archive.</h1>
         <p className="cabinet-deck">
-          Forgot a day? Every past rep is here — the last {DAILY_ARCHIVE_DAYS} daily
-          moments and {WEEKLY_ARCHIVE_WEEKS} weekly rooms. Do the ones you missed and
-          they file straight into your reps.
+          Forgot a day? Every past rep is here — {dates.length} daily moments and{" "}
+          {weeks.length} weekly rooms. Do the ones you missed and they file
+          straight into your reps.
         </p>
       </section>
       <ArchiveBoard daily={daily} weekly={weekly} />
