@@ -9,7 +9,6 @@ const links = [
   { href: "/this-week", label: "This week", short: "Week" },
   { href: "/archive", label: "Archive", short: "Archive" },
   { href: "/me", label: "Your reps", short: "Reps" },
-  { href: "/settings", label: "Settings", short: "Settings" },
 ];
 
 export function TopNav() {
